@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAS MODE | Nos Défilés</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@300;400;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+@font-face {
+  font-family: 'Zina';
+  src: url('/fonts/Zina-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-tertiary": "#ffffff",
+        "tertiary-container": "#faf7f6",
+        "on-primary-container": "#72716d",
+        "primary-fixed-dim": "#c8c6c2",
+        "surface-container-low": "#f5f3f3",
+        "primary": "#5f5e5b",
+        "on-secondary-container": "#722700",
+        "on-primary-fixed": "#1c1c19",
+        "secondary-fixed": "#ffdbce",
+        "on-secondary-fixed": "#370e00",
+        "tertiary-fixed": "#e5e2e1",
+        "on-surface": "#1b1c1c",
+        "outline-variant": "#c8c7be",
+        "on-error": "#ffffff",
+        "surface-container-highest": "#e3e2e2",
+        "on-tertiary-container": "#727171",
+        "tertiary-fixed-dim": "#c8c6c5",
+        "deep-ink": "#1A1A1A",
+        "outline": "#787770",
+        "error": "#ba1a1a",
+        "surface-variant": "#e3e2e2",
+        "on-primary-fixed-variant": "#474743",
+        "background": "#fbf9f9",
+        "primary-container": "#faf7f2",
+        "secondary-container": "#fd8d5e",
+        "surface-tint": "#5f5e5b",
+        "inverse-primary": "#c8c6c2",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#1c1b1b",
+        "secondary": "#9c441b",
+        "inverse-on-surface": "#f2f0f0",
+        "surface-container": "#efeded",
+        "on-secondary": "#ffffff",
+        "on-background": "#1b1c1c",
+        "surface-dim": "#dbdad9",
+        "primary-fixed": "#e5e2dd",
+        "terracotta-accent": "#B5562C",
+        "chapter-ghost": "#E5E5E5",
+        "surface": "#fbf9f9",
+        "tertiary": "#5f5e5e",
+        "on-primary": "#ffffff",
+        "on-error-container": "#93000a",
+        "surface-bright": "#fbf9f9",
+        "inverse-surface": "#303031",
+        "surface-container-high": "#e9e8e7",
+        "on-tertiary-fixed-variant": "#474746",
+        "on-surface-variant": "#474741",
+        "on-secondary-fixed-variant": "#7d2d04",
+        "secondary-fixed-dim": "#ffb598",
+        "ivory-base": "#FAF7F2",
+        "error-container": "#ffdad6"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "container-max": "1440px",
+        "margin-desktop": "80px",
+        "section-gap": "120px",
+        "gutter": "32px",
+        "margin-mobile": "24px"
+      },
+      "fontFamily": {
+        "label-caps": ["Inter"],
+        "display-xxl": ["EB Garamond"],
+        "headline-lg-mobile": ["EB Garamond"],
+        "body-md": ["Inter"],
+        "body-lg": ["Inter"],
+        "headline-lg": ["EB Garamond"],
+        "chapter-number": ["Inter"]
+      },
+      "fontSize": {
+        "label-caps": ["12px", { "lineHeight": "100%", "letterSpacing": "0.15em", "fontWeight": "600" }],
+        "display-xxl": ["120px", { "lineHeight": "110%", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+        "headline-lg-mobile": ["42px", { "lineHeight": "115%", "fontWeight": "400" }],
+        "body-md": ["16px", { "lineHeight": "160%", "fontWeight": "400" }],
+        "body-lg": ["20px", { "lineHeight": "160%", "fontWeight": "300" }],
+        "headline-lg": ["64px", { "lineHeight": "110%", "fontWeight": "400" }],
+        "chapter-number": ["160px", { "lineHeight": "100%", "letterSpacing": "-0.05em", "fontWeight": "700" }]
+      }
+    },
+  },
+}
+</script>
+<style>
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+body {
+    background-color: #FAF7F2;
+    color: #1A1A1A;
+    overflow-x: hidden;
+}
+.nav-scrolled {
+    background-color: #FAF7F2 !important;
+    box-shadow: 0 4px 15px -1px rgb(0 0 0 / 0.05);
+}
+#preloader {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FAF7F2;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1), opacity 0.6s ease-in-out;
+    pointer-events: all;
+}
+#preloader.loaded {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+#preloader-logo {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+#preloader-logo.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+body.is-loading {
+    overflow: hidden;
+}
+@media (min-width: 1024px) {
+    body { cursor: none; }
+    body a, body button, body .cursor-pointer { cursor: none; }
+    .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        background-color: #B5562C;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease-out, scale 0.3s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+    .custom-cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #B5562C;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s cubic-bezier(0.2, 0, 0.2, 1), height 0.4s cubic-bezier(0.2, 0, 0.2, 1), border-width 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+        will-change: transform;
+    }
+    .custom-cursor.active { scale: 0.5; opacity: 0.8; }
+    .custom-cursor-ring.active { width: 60px; height: 60px; border-width: 2px; }
+}
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 600ms cubic-bezier(0.2, 0, 0.2, 1), transform 600ms cubic-bezier(0.2, 0, 0.2, 1);
+}
+.reveal-up.is-visible { opacity: 1; transform: translateY(0); }
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 4px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.masonry-item.is-visible { opacity: 1; transform: translateY(0); }
+.masonry-item:nth-child(even) { transition-delay: 0.2s; }
+.masonry-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+}
+.masonry-item:hover img { transform: scale(1.05); }
+.masonry-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+.masonry-item:hover::after { opacity: 0.2; }
+#lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10001;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+#lightbox.open { display: flex; }
+#lightbox-img {
+    max-width: 85vw;
+    max-height: 85vh;
+    object-fit: contain;
+    cursor: default;
+}
+#lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 10002;
+    color: white;
+    font-size: 42px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: Inter, sans-serif;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+#lightbox-close:hover { opacity: 1; }
+.lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10002;
+    color: white;
+    font-size: 48px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 20px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    font-family: Inter, sans-serif;
+    line-height: 1;
+}
+.lightbox-nav:hover { opacity: 1; }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+@media (max-width: 767px) {
+    .masonry-grid { columns: 2; column-gap: 4px; }
+    .lightbox-nav { font-size: 32px; padding: 12px; }
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
+}
+@media (min-width: 768px) {
+    .masonry-grid { columns: 3; column-gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .reveal-up, .custom-cursor, .custom-cursor-ring {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        display: none !important;
+    }
+    body { cursor: auto !important; }
+}
+</style>
+</head>
+<body class="is-loading">
+<div class="custom-cursor" id="cursor-dot"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+<div id="lightbox">
+  <button id="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+<div id="preloader">
+<div class="text-center">
+<div class="font-display-xxl text-headline-lg md:text-[80px] tracking-tighter text-deep-ink" id="preloader-logo">NAS MODE</div>
+</div>
+</div>
+<nav class="flex justify-between items-center w-full px-margin-desktop py-6 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav">
+<a href="nasmode.html" class="block"><img src="/images/ecole/logo-nas-mode.png" alt="NAS MODE" class="h-16 w-auto"/></a>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html#formations">Nos Formations</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="#">Défilés</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html#ecole">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html#soutenir">Nous Soutenir</a>
+</div>
+<a class="bg-deep-ink text-ivory-base px-10 py-4 font-label-caps text-label-caps hover:bg-terracotta-accent transition-colors duration-300 cursor-pointer inline-block" href="mailto:info@nasmodeformation.com">Nous Contacter</a>
+</nav>
+<main>
+<section class="pt-40 pb-20 px-margin-desktop">
+<h1 class="text-center text-deep-ink mb-16 reveal-up" style="font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 400; line-height: 1.1;">Nos Défilés</h1>
+<div class="masonry-grid max-w-[1440px] mx-auto">
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-181913.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-193111.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-193158.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195150.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195242.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195330.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195408.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195435.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195507.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195803.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195852.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-195937.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-200013.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-200722.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-200752.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-200855.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-200938.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-201005.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-201130.png"/></div>
+<div class="masonry-item"><img alt="Défilé" src="/images/defiles/defiles-screenshot-2026-06-21-201221.png"/></div>
+</div>
+</section>
+</main>
+<script>
+const cursorDot = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+const allowsMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (allowsMotion && window.innerWidth >= 1024) {
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px)';
+    });
+    const animateCursor = () => {
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        cursorRing.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px)';
+        requestAnimationFrame(animateCursor);
+    };
+    requestAnimationFrame(animateCursor);
+    document.querySelectorAll('a, button, .cursor-pointer').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('active');
+            cursorRing.classList.add('active');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('active');
+            cursorRing.classList.remove('active');
+        });
+    });
+}
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    const logo = document.getElementById('preloader-logo');
+    const body = document.body;
+    setTimeout(() => logo.classList.add('visible'), 100);
+    setTimeout(() => {
+        preloader.classList.add('loaded');
+        body.classList.remove('is-loading');
+    }, 800);
+});
+const nav = document.getElementById('top-nav');
+window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    if (scrolled > 50) {
+        nav.classList.add('nav-scrolled');
+        nav.classList.replace('py-6', 'py-4');
+    } else {
+        nav.classList.remove('nav-scrolled');
+        nav.classList.replace('py-4', 'py-6');
+    }
+});
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+const masonryObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+}, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.masonry-item').forEach(el => masonryObserver.observe(el));
+const images = Array.from(document.querySelectorAll('.masonry-item img')).map(img => img.src);
+let currentIndex = 0;
+document.querySelectorAll('.masonry-item').forEach((item, index) => {
+    item.addEventListener('click', () => openLightbox(index));
+});
+function openLightbox(index) {
+    currentIndex = index;
+    document.getElementById('lightbox-img').src = images[currentIndex];
+    document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.getElementById('lightbox-img').src = '';
+}
+function navLightbox(dir) {
+    currentIndex = (currentIndex + dir + images.length) % images.length;
+    document.getElementById('lightbox-img').src = images[currentIndex];
+}
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+    if (e.key === 'ArrowRight') navLightbox(1);
+});
+</script>
+</body>
+</html>

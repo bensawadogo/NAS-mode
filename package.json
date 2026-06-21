@@ -1,0 +1,35 @@
+{
+  "name": "nas-mode",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "images:optimize": "node ./scripts/optimize-images.js",
+    "images:enhance": "node ./scripts/enhance-images.js",
+    "images:restore": "node ./scripts/restore-images.js",
+    "images:report": "node ./scripts/report-dimensions.js",
+    "images:audit": "node ./scripts/audit-enhance.js",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "autoprefixer": "latest",
+    "framer-motion": "latest",
+    "next": "^16.2.9",
+    "postcss": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "sharp": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "prettier": "latest",
+    "typescript": "latest"
+  }
+}
