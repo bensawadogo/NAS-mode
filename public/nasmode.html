@@ -253,6 +253,376 @@ body.is-loading {
     }
     body { cursor: auto !important; }
 }
+/* ===== MODAL ===== */
+.formation-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.formation-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.formation-modal {
+  width: 100%;
+  max-width: 1200px;
+  max-height: 85vh;
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.formation-overlay.open .formation-modal {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.formation-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 48px 56px 0;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  background: #FFFFFF;
+  z-index: 2;
+}
+.formation-modal-header h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #1A1A1A;
+  letter-spacing: -0.01em;
+}
+.formation-modal-header .subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #72716D;
+  margin-top: 8px;
+  font-style: italic;
+}
+.formation-modal-header .header-accent {
+  width: 40px;
+  height: 2px;
+  background: #B5562C;
+  margin-top: 12px;
+}
+.modal-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #F0EDE8;
+  color: #5F5E5B;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 4px;
+}
+.modal-close-btn:hover {
+  background: #1A1A1A;
+  color: #FFFFFF;
+}
+.formation-modal-body {
+  padding: 40px 56px;
+  overflow-y: auto;
+  flex: 1;
+}
+.formation-modal-body::-webkit-scrollbar { width: 4px; }
+.formation-modal-body::-webkit-scrollbar-track { background: transparent; }
+.formation-modal-body::-webkit-scrollbar-thumb { background: #D4D1CC; border-radius: 2px; }
+.modal-section-divider {
+  width: 100%;
+  height: 1px;
+  background: #E5E2DD;
+  margin: 36px 0;
+}
+.modal-section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.formation-modal .presentation {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #474743;
+  max-width: 720px;
+}
+.formation-modal .presentation p + p { margin-top: 16px; }
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.info-card {
+  background: #FAF7F2;
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.info-card .value {
+  font-family: 'EB Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1A1A1A;
+  line-height: 1.2;
+}
+.info-card .label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #72716D;
+  margin-top: 6px;
+}
+.objectives-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 32px;
+}
+.objective-item {
+  font-size: 14px;
+  color: #474743;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.objective-item::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: #B5562C;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.accordion { margin-top: 4px; }
+.accordion-item {
+  border-bottom: 1px solid #EDEAE5;
+}
+.accordion-item:first-child { border-top: 1px solid #EDEAE5; }
+.accordion-item input { display: none; }
+.accordion-item label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #1A1A1A;
+  cursor: pointer;
+  user-select: none;
+}
+.accordion-item label::after {
+  content: '+';
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #B5562C;
+  transition: transform 0.3s;
+}
+.accordion-item input:checked + label::after {
+  content: '−';
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0;
+}
+.accordion-item input:checked ~ .accordion-content {
+  max-height: 400px;
+  padding: 0 0 20px;
+}
+.accordion-content ul {
+  list-style: none;
+  columns: 2;
+  column-gap: 32px;
+}
+.accordion-content li {
+  font-size: 14px;
+  color: #474743;
+  padding: 4px 0;
+  break-inside: avoid;
+}
+.accordion-content li::before {
+  content: '—';
+  color: #B5562C;
+  margin-right: 8px;
+}
+.badges-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: #5F5E5B;
+  background: #FAF7F2;
+  padding: 8px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+  border: 1px solid #EDEAE5;
+}
+.debouches-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.debouche-item {
+  background: #FAF7F2;
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1A1A1A;
+  border: 1px solid transparent;
+}
+.debouche-item:hover {
+  border-color: #B5562C;
+}
+.highlight-box {
+  background: #FAF7F2;
+  border-radius: 16px;
+  padding: 32px 36px;
+  border-left: 3px solid #B5562C;
+}
+.highlight-box p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #474743;
+  font-style: italic;
+}
+.formation-modal-footer {
+  flex-shrink: 0;
+  padding: 0 56px 40px;
+  background: #FFFFFF;
+  position: sticky;
+  bottom: 0;
+}
+.btn-postuler {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: #B5562C;
+  padding: 18px 0;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  width: 100%;
+}
+.btn-postuler:hover {
+  background: #1A1A1A;
+  transform: translateY(-1px);
+}
+.info-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+}
+.info-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+.badge {
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+.badge:hover {
+  background: #EDEAE5;
+  border-color: #B5562C;
+  transform: translateY(-1px);
+}
+.debouche-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: default;
+}
+.debouche-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+.modal-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+.modal-spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #EDEAE5;
+  border-top-color: #B5562C;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.modal-section-reveal {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.modal-section-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.formation-modal *:focus-visible {
+  outline: 2px solid #B5562C;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+  .debouches-grid { grid-template-columns: repeat(2, 1fr); }
+  .formation-modal-header { padding: 36px 32px 0; }
+  .formation-modal-body { padding: 40px 32px; }
+  .formation-modal-footer { padding: 0 32px 32px; }
+}
+@media (max-width: 768px) {
+  .formation-modal-header { padding: 32px 24px 0; flex-direction: column; gap: 12px; }
+  .formation-modal-header h2 { font-size: 28px; }
+  .formation-modal-body { padding: 24px; }
+  .formation-modal-footer { padding: 0 24px 24px; }
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+  .objectives-grid { grid-template-columns: 1fr; }
+  .accordion-content ul { columns: 1; }
+  .debouches-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlight-box { padding: 24px; }
+  .formation-overlay { padding: 16px; }
+  .formation-modal { max-height: 90vh; border-radius: 16px; }
+}
 </style>
 </head>
 <body class="is-loading">
@@ -313,7 +683,7 @@ body.is-loading {
 <h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Stylisme &amp; Couture</h2>
 <p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">De la coupe au patronage assisté par ordinateur, nos élèves maîtrisent chaque étape de la création de mode.</p>
 <div class="pt-4 reveal-up stagger-3">
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#soutenir">DÉCOUVRIR LE PROGRAMME</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#" onclick="openModal('stylisme'); return false;">DÉCOUVRIR LE PROGRAMME</a>
 </div>
 </div>
 </section>
@@ -323,7 +693,7 @@ body.is-loading {
 <h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Coiffure</h2>
 <p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">Des techniques classiques aux créations sculpturales, la coiffure comme art à part entière.</p>
 <div class="pt-4 reveal-up stagger-3">
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#soutenir">VOIR LE PROGRAMME</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#" onclick="openModal('coiffure'); return false;">VOIR LE PROGRAMME</a>
 </div>
 </div>
 <div class="md:col-span-7 md:col-start-6 order-1 md:order-2 reveal-image">
@@ -349,7 +719,7 @@ body.is-loading {
 <h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Esthétique</h2>
 <p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">Soins, beauté et expertise au service des femmes burkinabè.</p>
 <div class="pt-4 reveal-up stagger-3">
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#soutenir">NOS SPÉCIALISATIONS</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#" onclick="openModal('esthetique'); return false;">NOS SPÉCIALISATIONS</a>
 </div>
 </div>
 </section>
@@ -359,7 +729,7 @@ body.is-loading {
 <h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Maquillage Cinéma</h2>
 <p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">Une filière unique au Burkina Faso, formant les maquilleurs des productions cinématographiques et théâtrales.</p>
 <div class="pt-4 reveal-up stagger-3">
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#soutenir">ENTRER DANS LE STUDIO</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#" onclick="openModal('maquillage'); return false;">ENTRER DANS LE STUDIO</a>
 </div>
 </div>
 <div class="md:col-span-7 md:col-start-6 order-1 md:order-2 reveal-image">
@@ -388,15 +758,15 @@ body.is-loading {
 <section id="ecole" class="bg-deep-ink py-section-gap px-margin-desktop text-center">
 <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
 <div class="space-y-4 reveal-up stagger-1">
-<div class="font-chapter-number text-headline-lg text-ivory-base">1000+</div>
+<div class="font-chapter-number text-headline-lg text-ivory-base"><span class="counter" data-target="3000" data-suffix="+" style="display:inline-block;min-width:3ch;font-variant-numeric:tabular-nums">0</span></div>
 <div class="font-label-caps text-label-caps text-terracotta-accent uppercase">Jeunes formés</div>
 </div>
 <div class="space-y-4 reveal-up stagger-2">
-<div class="font-chapter-number text-headline-lg text-ivory-base">22</div>
+<div class="font-chapter-number text-headline-lg text-ivory-base"><span class="counter" data-target="23" style="display:inline-block;min-width:2ch;font-variant-numeric:tabular-nums">0</span></div>
 <div class="font-label-caps text-label-caps text-terracotta-accent uppercase">Promotions</div>
 </div>
 <div class="space-y-4 reveal-up stagger-3">
-<div class="font-chapter-number text-headline-lg text-ivory-base">100%</div>
+<div class="font-chapter-number text-headline-lg text-ivory-base"><span class="counter" data-target="100" data-suffix="%" style="display:inline-block;min-width:4ch;font-variant-numeric:tabular-nums">0</span></div>
 <div class="font-label-caps text-label-caps text-terracotta-accent uppercase">Taux de réussite CQP</div>
 </div>
 </div>
@@ -565,15 +935,56 @@ if (magneticBtn && allowsMotion) {
 }
 </script>
 <script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
   anchor.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (!href || href === '#') return;
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
+    var target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
   });
 });
+function animateCounters() {
+  var counters = document.querySelectorAll('.counter');
+  if (!counters.length) return;
+  var running = {};
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      var counter = entry.target;
+      var target = parseInt(counter.dataset.target);
+      var suffix = counter.dataset.suffix || '';
+      if (!entry.isIntersecting) {
+        counter.textContent = '0';
+        if (running[counter.dataset.target + suffix]) {
+          cancelAnimationFrame(running[counter.dataset.target + suffix]);
+          delete running[counter.dataset.target + suffix];
+        }
+        return;
+      }
+      if (running[counter.dataset.target + suffix]) return;
+      var duration = 4000;
+      var start = performance.now();
+      function update(now) {
+        var elapsed = now - start;
+        var progress = Math.min(elapsed / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = Math.round(eased * target);
+        counter.textContent = current + suffix;
+        if (progress < 1) {
+          running[counter.dataset.target + suffix] = requestAnimationFrame(update);
+        } else {
+          delete running[counter.dataset.target + suffix];
+        }
+      }
+      running[counter.dataset.target + suffix] = requestAnimationFrame(update);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function(c) { observer.observe(c); });
+}
+document.addEventListener('DOMContentLoaded', animateCounters);
+
 function initSlideshow(id) {
   const c = document.getElementById(id);
   if (!c) return;
@@ -591,6 +1002,355 @@ function initSlideshow(id) {
 initSlideshow('slideshow-stylisme');
 initSlideshow('slideshow-coiffure');
 initSlideshow('slideshow-maquillage');
+
+const formationData = {
+  stylisme: {
+    title: 'Stylisme &amp; Modélisme Couture',
+    subtitle: 'De la première esquisse au vêtement fini.',
+    presentation: [
+      'La filière Stylisme &amp; Modélisme Couture forme des professionnels capables de concevoir, dessiner, modéliser et réaliser des vêtements, depuis le croquis jusqu\'à la confection finale.',
+      'L\'enseignement associe créativité, maîtrise technique, pratique intensive en atelier et utilisation des outils numériques afin de préparer les apprenants aux exigences du secteur de la mode.'
+    ],
+    infos: [
+      { value: '3 ans', label: 'Durée' },
+      { value: 'CQP', label: 'Diplôme' },
+      { value: 'BEPC / BAC', label: 'Admission' },
+      { value: 'Théorie + Atelier', label: 'Formation' }
+    ],
+    admissionDetails: [
+      'Être titulaire du BEPC ou du BAC (selon le parcours choisi)',
+      'Déposer un dossier de candidature',
+      'Réussir les formalités d\'admission de NAS MODE'
+    ],
+    objectives: [
+      'Concevoir une collection', 'Réaliser des patrons',
+      'Maîtriser les techniques professionnelles', 'Utiliser les outils numériques',
+      'Développer sa créativité', 'Créer sa propre marque'
+    ],
+    program: [
+      { year: 'Première année', items: ['Initiation à la couture','Couture manuelle','Prise de mesures','Coupe','Patronage','Assemblage'] },
+      { year: 'Deuxième année', items: ['Stylisme','Modélisme','Patronage avancé','Coupe industrielle','Transformation des modèles','Techniques de finition'] },
+      { year: 'Troisième année', items: ['DAO','Patronage assisté par ordinateur','Création de collection','Gestion d\'atelier','Entrepreneuriat','Préparation au CQP'] }
+    ],
+    skills: ['Créativité','Stylisme','Modélisme','Patronage','Couture','DAO','Gestion d\'atelier','Entrepreneuriat'],
+    qualites: ['Créativité','Rigueur','Patience','Sens du détail','Esprit d\'équipe'],
+    debouches: ['Styliste','Modéliste','Couturier professionnel','Créateur de marque','Responsable d\'atelier','Costumier','Entrepreneur'],
+    why: 'Depuis plus de vingt ans, NAS MODE accompagne les jeunes vers les métiers de la mode grâce à une pédagogie fondée sur la pratique, des ateliers spécialisés, des équipements adaptés et un encadrement assuré par des professionnels.'
+  },
+  coiffure: {
+    title: 'Coiffure Professionnelle',
+    subtitle: 'Maîtrisez les techniques de coiffure modernes et révélez votre talent.',
+    presentation: [
+      'La filière Coiffure Professionnelle forme des spécialistes capables de réaliser des prestations capillaires modernes et traditionnelles tout en développant les compétences nécessaires à la gestion d\'un salon.',
+      'La formation privilégie la pratique en atelier, la créativité, l\'hygiène professionnelle et l\'accompagnement de la clientèle.'
+    ],
+    infos: [
+      { value: '2 ans', label: 'Durée' },
+      { value: 'CQP', label: 'Diplôme' },
+      { value: 'BEPC / BAC', label: 'Admission' },
+      { value: 'Théorie + Ateliers pratiques', label: 'Formation' }
+    ],
+    admissionDetails: [
+      'Être titulaire du BEPC ou du BAC (selon le parcours choisi)',
+      'Déposer un dossier de candidature',
+      'Réussir les formalités d\'admission de NAS MODE'
+    ],
+    objectives: [
+      'Maîtriser les techniques de coiffure modernes et traditionnelles',
+      'Réaliser des coupes professionnelles',
+      'Effectuer des colorations et traitements capillaires',
+      'Poser des extensions et des perruques',
+      'Conseiller la clientèle',
+      'Créer et gérer un salon de coiffure'
+    ],
+    program: [
+      { year: 'Première année', items: [
+        'Hygiène et sécurité professionnelle',
+        'Connaissance du cheveu et du cuir chevelu',
+        'Shampooing professionnel',
+        'Brushing',
+        'Coupe femme',
+        'Coupe homme',
+        'Nattes',
+        'Tresses africaines',
+        'Vanilles',
+        'Accueil clientèle'
+      ]},
+      { year: 'Deuxième année', items: [
+        'Coloration',
+        'Décoloration',
+        'Mèches',
+        'Lissage',
+        'Défrisage',
+        'Pose d\'extensions',
+        'Pose de perruques',
+        'Coiffure événementielle',
+        'Gestion d\'un salon',
+        'Entrepreneuriat',
+        'Préparation au CQP'
+      ]}
+    ],
+    skills: ['Coupe','Coloration','Brushing','Tresses','Extensions','Perruques','Relation client','Gestion'],
+    qualites: ['Créativité','Rigueur','Patience','Sens du détail','Esprit d\'équipe'],
+    debouches: ['Coiffeur professionnel','Styliste capillaire','Responsable de salon','Conseiller beauté','Entrepreneur','Formateur'],
+    why: 'NAS MODE privilégie une pédagogie basée sur la pratique. Les apprenants évoluent dans un environnement professionnel et développent les compétences techniques et entrepreneuriales nécessaires pour intégrer rapidement le marché de l\'emploi ou créer leur propre salon.'
+  },
+  esthetique: {
+    title: 'Esthétique Professionnelle',
+    subtitle: 'Prenez soin de la beauté, du bien-être et de la confiance de vos futurs clients.',
+    presentation: [
+      'La filière Esthétique Professionnelle prépare les apprenants aux métiers de la beauté et du bien-être.',
+      'Grâce à une formation essentiellement pratique, ils acquièrent les compétences nécessaires pour réaliser des soins esthétiques, conseiller une clientèle et gérer un institut de beauté.'
+    ],
+    infos: [
+      { value: '2 ans', label: 'Durée' },
+      { value: 'CQP', label: 'Diplôme' },
+      { value: 'BEPC / BAC', label: 'Admission' },
+      { value: 'Théorie + Ateliers pratiques', label: 'Formation' }
+    ],
+    admissionDetails: [
+      'Être titulaire du BEPC ou du BAC (selon le parcours choisi)',
+      'Déposer un dossier de candidature',
+      'Réussir les formalités d\'admission de NAS MODE'
+    ],
+    objectives: [
+      'Maîtriser les soins esthétiques du visage et du corps',
+      'Réaliser un maquillage professionnel',
+      'Conseiller une clientèle',
+      'Assurer les règles d\'hygiène',
+      'Développer un institut de beauté',
+      'Créer sa propre activité'
+    ],
+    program: [
+      { year: 'Première année', items: [
+        'Hygiène professionnelle',
+        'Diagnostic de peau',
+        'Soins du visage',
+        'Soins du corps',
+        'Manucure',
+        'Pédicure',
+        'Beauté des mains',
+        'Beauté des pieds',
+        'Accueil clientèle'
+      ]},
+      { year: 'Deuxième année', items: [
+        'Maquillage professionnel',
+        'Cosmétologie',
+        'Épilation',
+        'Massage esthétique',
+        'Conseil beauté',
+        'Vente de produits cosmétiques',
+        'Gestion d\'un institut',
+        'Entrepreneuriat',
+        'Préparation au CQP'
+      ]}
+    ],
+    skills: ['Soins visage','Soins corps','Maquillage','Manucure','Pédicure','Cosmétologie','Relation client','Gestion'],
+    qualites: ['Créativité','Rigueur','Patience','Sens du détail','Esprit d\'équipe'],
+    debouches: ['Esthéticien(ne)','Conseiller beauté','Responsable d\'institut','Spa','Centre de bien-être','Entrepreneur'],
+    why: 'La formation met l\'accent sur la pratique, la qualité du service et l\'autonomie professionnelle afin de permettre aux diplômés d\'intégrer un institut de beauté ou de créer leur propre entreprise.'
+  },
+  maquillage: {
+    title: 'Maquillage Professionnel &amp; Cinéma',
+    subtitle: 'L\'art du maquillage pour le cinéma, le théâtre et la mode.',
+    presentation: [
+      'La filière Maquillage Professionnel &amp; Cinéma forme des maquilleurs capables d\'intervenir sur les plateaux de tournage, les théâtres et les défilés de mode.',
+      'Unique au Burkina Faso, cette formation associe techniques de maquillage artistique, effets spéciaux, prothèses et création de personnages.'
+    ],
+    infos: [
+      { value: '2 ans', label: 'Durée' },
+      { value: 'CQP', label: 'Diplôme' },
+      { value: 'BEPC / BAC', label: 'Admission' },
+      { value: 'Théorie + Atelier', label: 'Formation' }
+    ],
+    admissionDetails: [
+      'Être titulaire du BEPC ou du BAC (selon le parcours choisi)',
+      'Déposer un dossier de candidature',
+      'Réussir les formalités d\'admission de NAS MODE'
+    ],
+    objectives: [
+      'Maîtriser le maquillage social', 'Réaliser des maquillages artistiques',
+      'Créer des effets spéciaux', 'Connaître les prothèses',
+      'Travailler sur un plateau', 'Développer sa créativité'
+    ],
+    program: [
+      { year: 'Première année', items: ['Maquillage social', 'Maquillage de jour/soir', 'Correction du visage', 'Soins de la peau', 'Colorimétrie', 'Hygiène et sécurité'] },
+      { year: 'Deuxième année', items: ['Maquillage cinéma', 'Effets spéciaux', 'Prothèses et postiches', 'Maquillage de mode', 'Création de personnages', 'Préparation au CQP'] }
+    ],
+    skills: ['Maquillage social','Maquillage artistique','Effets spéciaux','Prothèses','Création de personnages','Colorimétrie','Travail d\'équipe','Créativité'],
+    qualites: ['Créativité','Rigueur','Patience','Sens du détail','Esprit d\'équipe'],
+    debouches: ['Maquilleur cinéma','Maquilleur théâtre','Maquilleur mode','Coloriste','Artiste maquillage','Freelance','Formateur'],
+    why: 'Depuis plus de vingt ans, NAS MODE est la seule école au Burkina Faso à former des maquilleurs professionnels pour le cinéma et la mode, avec des équipements de pointe et un réseau de partenaires dans l\'industrie.'
+  }
+};
+
+var modalSections = [
+  { type: 'presentation', title: 'Présentation' },
+  { type: 'infos', title: 'Informations rapides' },
+  { type: 'admissionDetails', title: 'Conditions d\'admission' },
+  { type: 'objectives', title: 'Objectifs' },
+  { type: 'program', title: 'Programme' },
+  { type: 'skills', title: 'Compétences développées' },
+  { type: 'qualites', title: 'Qualités requises' },
+  { type: 'debouches', title: 'Débouchés' },
+  { type: 'why', title: 'Pourquoi choisir NAS MODE ?' }
+];
+
+function renderSection(type, data) {
+  switch (type) {
+    case 'presentation':
+      return '<div class="presentation">' + data.presentation.map(function(p) { return '<p>' + p + '</p>'; }).join('') + '</div>';
+    case 'infos':
+      return '<div class="info-grid">' + data.infos.map(function(i) {
+        return '<div class="info-card"><div class="value">' + i.value + '</div><div class="label">' + i.label + '</div></div>';
+      }).join('') + '</div>';
+    case 'objectives':
+      return '<div class="objectives-grid">' + data.objectives.map(function(o) {
+        return '<div class="objective-item">' + o + '</div>';
+      }).join('') + '</div>';
+    case 'program':
+      return '<div class="accordion">' + data.program.map(function(p, i) {
+        return '<div class="accordion-item">' +
+        '<input type="radio" name="accordion" id="acc' + i + '">' +
+        '<label for="acc' + i + '">' + p.year + '</label>' +
+        '<div class="accordion-content"><ul>' +
+        p.items.map(function(it) { return '<li>' + it + '</li>'; }).join('') +
+        '</ul></div></div>';
+      }).join('') + '</div>';
+    case 'skills':
+      return '<div class="badges-wrap">' + data.skills.map(function(s) {
+        return '<span class="badge">' + s + '</span>';
+      }).join('') + '</div>';
+    case 'admissionDetails':
+      return '<div class="objectives-grid">' + data.admissionDetails.map(function(a) {
+        return '<div class="objective-item">' + a + '</div>';
+      }).join('') + '</div>';
+    case 'qualites':
+      return '<div class="badges-wrap">' + data.qualites.map(function(q) {
+        return '<span class="badge">' + q + '</span>';
+      }).join('') + '</div>';
+    case 'debouches':
+      return '<div class="debouches-grid">' + data.debouches.map(function(d) {
+        return '<div class="debouche-item">' + d + '</div>';
+      }).join('') + '</div>';
+    case 'why':
+      return '<div class="highlight-box"><p>' + data.why + '</p></div>';
+    default:
+      return '';
+  }
+}
+
+function getEl(id) { return document.getElementById(id); }
+
+var modalRevealObserver = null;
+
+window.openModal = function(key) {
+  var data = formationData[key];
+  if (!data) return;
+  window._prevFocus = document.activeElement;
+  var overlay = getEl('formation-overlay');
+  var body = getEl('modal-body');
+  var loading = getEl('modal-loading');
+  getEl('modal-title').innerHTML = data.title;
+  getEl('modal-subtitle').textContent = data.subtitle;
+  getEl('formation-modal').setAttribute('aria-label', data.title + ' - Détails de la formation');
+  if (loading) loading.style.display = 'flex';
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function() {
+    if (loading) loading.style.display = 'none';
+    var html = '';
+    for (var s = 0; s < modalSections.length; s++) {
+      var section = modalSections[s];
+      html += '<div class="modal-section-reveal">';
+      html += '<h3 class="modal-section-title">' + section.title + '</h3>';
+      html += renderSection(section.type, data);
+      if (s < modalSections.length - 1) html += '<div class="modal-section-divider"></div>';
+      html += '</div>';
+    }
+    var existing = body.querySelectorAll('.modal-section-reveal');
+    for (var e = 0; e < existing.length; e++) existing[e].remove();
+    var temp = document.createElement('div');
+    temp.innerHTML = html;
+    while (temp.firstChild) body.insertBefore(temp.firstChild, loading);
+    if (modalRevealObserver) modalRevealObserver.disconnect();
+    modalRevealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { root: body, threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    var reveals = body.querySelectorAll('.modal-section-reveal');
+    for (var r = 0; r < reveals.length; r++) {
+      modalRevealObserver.observe(reveals[r]);
+    }
+    var first = reveals[0];
+    if (first) first.classList.add('is-visible');
+    setTimeout(function() {
+      var f = body.querySelector('button, a, [tabindex]:not([tabindex="-1"])');
+      if (f) f.focus();
+    }, 100);
+  }, 200);
+  document.addEventListener('keydown', handleKeydown);
+};
+
+window.closeModal = function() {
+  getEl('formation-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', handleKeydown);
+  if (modalRevealObserver) {
+    modalRevealObserver.disconnect();
+    modalRevealObserver = null;
+  }
+  if (window._prevFocus) {
+    window._prevFocus.focus();
+    window._prevFocus = null;
+  }
+};
+
+function handleKeydown(e) {
+  if (e.key === 'Escape') { closeModal(); return; }
+  if (e.key === 'Tab') {
+    var modal = getEl('formation-modal');
+    var focusable = modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+}
+
+function handlePostuler() {
+  closeModal();
+  setTimeout(function() {
+    var target = document.getElementById('formations');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  }, 350);
+}
 </script>
+<div class="formation-overlay" id="formation-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="formation-modal" id="formation-modal" role="dialog" aria-modal="true" aria-label="Détails de la formation">
+    <div class="formation-modal-header">
+      <div>
+        <h2 class="modal-title" id="modal-title"></h2>
+        <p class="subtitle modal-subtitle" id="modal-subtitle"></p>
+        <div class="header-accent"></div>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal()" aria-label="Fermer">&times;</button>
+    </div>
+    <div class="formation-modal-body" id="modal-body">
+      <div class="modal-loading" id="modal-loading">
+        <div class="modal-spinner"></div>
+      </div>
+    </div>
+    <div class="formation-modal-footer">
+      <button class="btn-postuler" onclick="handlePostuler()">POSTULER</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
