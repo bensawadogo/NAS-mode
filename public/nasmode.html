@@ -615,13 +615,13 @@ body.is-loading {
 <div class="hero-slide active" data-src="images/portraits/portraits-screenshot-2026-06-21-182814.png">
 <div class="hero-slide-bg" style="background-image: url('images/portraits/portraits-screenshot-2026-06-21-182814.png')"></div>
 </div>
-<div class="hero-slide" data-src="images/ecole/ecole-screenshot-2026-06-21-192644.png">
+<div class="hero-slide" data-src="images/hero/hero-02.jpg">
 <div class="hero-slide-bg"></div>
 </div>
-<div class="hero-slide" data-src="images/ateliers/atelier-screenshot-2026-06-21-193338.png">
+<div class="hero-slide" data-src="images/hero/hero-03.jpg">
 <div class="hero-slide-bg"></div>
 </div>
-<div class="hero-slide" data-src="images/defiles/defiles-screenshot-2026-06-21-195242.png">
+<div class="hero-slide" data-src="images/hero/hero-04.jpg">
 <div class="hero-slide-bg"></div>
 </div>
 </div>
@@ -840,7 +840,7 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         preloader.classList.add('loaded');
         body.classList.remove('is-loading');
-        const heroImages = ['images/portraits/portraits-screenshot-2026-06-21-182814.png','images/ecole/ecole-screenshot-2026-06-21-192644.png','images/ateliers/atelier-screenshot-2026-06-21-193338.png','images/defiles/defiles-screenshot-2026-06-21-195242.png'];
+        const heroImages = ['images/portraits/portraits-screenshot-2026-06-21-182814.png','images/hero/hero-02.jpg','images/hero/hero-03.jpg','images/hero/hero-04.jpg'];
         const slides = document.querySelectorAll('.hero-slide');
         let current = 0;
         document.querySelectorAll('.hero-line').forEach(function(el, i) {
