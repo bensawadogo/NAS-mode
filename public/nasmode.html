@@ -33,14 +33,17 @@
 .hero-slide-bg {
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
     transform: scale(1);
 }
 .hero-slide.active .hero-slide-bg {
     transform: scale(1.06);
     transition: transform 8s linear;
+}
+picture {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 .hero-line {
     opacity: 0;
@@ -612,17 +615,29 @@ body.is-loading {
 </div>
 <header class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden" id="hero">
 <div class="absolute inset-0 z-0">
-<div class="hero-slide active" data-src="images/portraits/portraits-screenshot-2026-06-21-182814.png">
-<div class="hero-slide-bg" style="background-image: url('images/portraits/portraits-screenshot-2026-06-21-182814.png')"></div>
+<div class="hero-slide active" data-desktop="images/portraits/portraits-screenshot-2026-06-21-182814.png" data-mobile="images/hero/mobile/hero-01.jpg">
+<picture>
+<source media="(max-width: 767px)" srcset="images/hero/mobile/hero-01.jpg">
+<img class="hero-slide-bg" src="images/portraits/portraits-screenshot-2026-06-21-182814.png" alt="">
+</picture>
 </div>
-<div class="hero-slide" data-src="images/hero/hero-02.jpg">
-<div class="hero-slide-bg"></div>
+<div class="hero-slide" data-desktop="images/hero/hero-02.jpg" data-mobile="images/hero/mobile/hero-02.jpg">
+<picture>
+<source media="(max-width: 767px)" srcset="">
+<img class="hero-slide-bg" src="" alt="">
+</picture>
 </div>
-<div class="hero-slide" data-src="images/hero/hero-03.jpg">
-<div class="hero-slide-bg"></div>
+<div class="hero-slide" data-desktop="images/hero/hero-03.jpg" data-mobile="images/hero/mobile/hero-03.jpg">
+<picture>
+<source media="(max-width: 767px)" srcset="">
+<img class="hero-slide-bg" src="" alt="">
+</picture>
 </div>
-<div class="hero-slide" data-src="images/hero/hero-04.jpg">
-<div class="hero-slide-bg"></div>
+<div class="hero-slide" data-desktop="images/hero/hero-04.jpg" data-mobile="images/hero/mobile/hero-04.jpg">
+<picture>
+<source media="(max-width: 767px)" srcset="">
+<img class="hero-slide-bg" src="" alt="">
+</picture>
 </div>
 </div>
 <div class="absolute inset-0 z-[1]" style="background: rgba(0,0,0,0.40)"></div>
@@ -840,7 +855,7 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         preloader.classList.add('loaded');
         body.classList.remove('is-loading');
-        const heroImages = ['images/portraits/portraits-screenshot-2026-06-21-182814.png','images/hero/hero-02.jpg','images/hero/hero-03.jpg','images/hero/hero-04.jpg'];
+        const heroSlides = [['images/portraits/portraits-screenshot-2026-06-21-182814.png','images/hero/mobile/hero-01.jpg'],['images/hero/hero-02.jpg','images/hero/mobile/hero-02.jpg'],['images/hero/hero-03.jpg','images/hero/mobile/hero-03.jpg'],['images/hero/hero-04.jpg','images/hero/mobile/hero-04.jpg']];
         const slides = document.querySelectorAll('.hero-slide');
         let current = 0;
         document.querySelectorAll('.hero-line').forEach(function(el, i) {
@@ -853,24 +868,32 @@ window.addEventListener('load', () => {
                 firstBg.style.transform = 'scale(1.06)';
             });
         }
+        function loadSlide(slide, index) {
+            var img = slide.querySelector('.hero-slide-bg');
+            var source = slide.querySelector('source');
+            var desktop = heroSlides[index][0];
+            var mobile = heroSlides[index][1];
+            if (img && !img.getAttribute('src')) {
+                img.setAttribute('src', desktop);
+                if (source) source.setAttribute('srcset', mobile);
+            }
+        }
         function showSlide(index) {
             var prevBg = slides[current].querySelector('.hero-slide-bg');
             prevBg.style.transition = 'none';
             prevBg.style.transform = 'scale(1)';
             slides[current].classList.remove('active');
             var slide = slides[index];
-            var bg = slide.querySelector('.hero-slide-bg');
-            if (!bg.style.backgroundImage || bg.style.backgroundImage === 'none') {
-                bg.style.backgroundImage = "url('" + heroImages[index] + "')";
-            }
+            loadSlide(slide, index);
             slide.classList.add('active');
+            var bg = slide.querySelector('.hero-slide-bg');
             requestAnimationFrame(function() {
                 bg.style.transition = 'transform 8s linear';
                 bg.style.transform = 'scale(1.06)';
             });
             current = index;
         }
-        setInterval(function() { showSlide((current + 1) % heroImages.length); }, 8000);
+        setInterval(function() { showSlide((current + 1) % heroSlides.length); }, 8000);
     }, 800);
 });
 const progressFill = document.getElementById('reading-progress-fill');
