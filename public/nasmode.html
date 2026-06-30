@@ -64,14 +64,6 @@
 .animate-scroll-down {
     animation: scroll-down 2s ease-in-out infinite;
 }
-@media (width < 640px) {
-    .hero-slide-bg {
-        background-position: 30% center;
-    }
-    #hero-content {
-        padding-top: 80px;
-    }
-}
 body {
     background-color: #FAF7F2;
     color: #1A1A1A;
@@ -632,23 +624,20 @@ body.is-loading {
 <div class="hero-slide" data-src="images/hero/hero-04.jpg">
 <div class="hero-slide-bg"></div>
 </div>
-<div class="hero-slide" data-src="images/hero/hero-05.jpg">
-<div class="hero-slide-bg"></div>
 </div>
-</div>
-<div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.45) 40%, rgba(0,0,0,0.70) 100%);"></div>
+<div class="absolute inset-0 z-[1]" style="background: rgba(0,0,0,0.40)"></div>
 <div class="relative z-[2] text-center px-margin-desktop max-md:px-margin-mobile max-w-4xl mx-auto" id="hero-content">
-<p class="hero-line hero-line-1 text-[clamp(1.5rem,7vw,3.5rem)] md:text-[56px] leading-[1.2] md:leading-tight mb-4 md:mb-6 text-white" style="font-family: 'EB Garamond', serif; font-weight: 400; text-shadow: 0 2px 20px rgba(0,0,0,0.3);">
+<p class="hero-line hero-line-1 text-[clamp(1.75rem,5vw,3.5rem)] md:text-[56px] leading-tight mb-6 text-ivory-base" style="font-family: 'EB Garamond', serif; font-weight: 400;">
 Là où naissent les talents<br class="hidden md:block"> de la mode et de la beauté.
 </p>
-<p class="hero-line hero-line-2 text-[15px] md:text-body-lg text-white/85 max-w-2xl mx-auto leading-relaxed mb-8 md:mb-10" style="text-shadow: 0 1px 12px rgba(0,0,0,0.2);">
+<p class="hero-line hero-line-2 font-body-lg text-body-lg max-md:text-sm text-ivory-base/80 max-w-2xl mx-auto leading-relaxed mb-10 max-md:mb-8">
 Depuis plus de 20 ans, NAS MODE forme les futurs professionnels de la mode, de la coiffure, de l'esthétique et du maquillage grâce à une pédagogie fondée sur la pratique et l'excellence.
 </p>
 <div class="hero-line hero-line-3 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-<a href="#formations" class="inline-block bg-white text-deep-ink font-label-caps text-label-caps max-md:text-[11px] px-8 md:px-10 py-3.5 md:py-4 tracking-wider hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 cursor-pointer">
+<a href="#formations" class="inline-block bg-ivory-base text-deep-ink font-label-caps text-label-caps px-10 py-4 tracking-wider hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 cursor-pointer">
 DÉCOUVRIR LES FORMATIONS
 </a>
-<a href="#ecole" class="inline-block border-2 border-white text-white font-label-caps text-label-caps max-md:text-[11px] px-8 md:px-10 py-3.5 md:py-4 tracking-wider hover:-translate-y-0.5 hover:shadow-lg hover:bg-white hover:text-deep-ink transition-all duration-300 cursor-pointer">
+<a href="#ecole" class="inline-block border-2 border-ivory-base text-ivory-base font-label-caps text-label-caps px-10 py-4 tracking-wider hover:-translate-y-0.5 hover:shadow-lg hover:bg-ivory-base hover:text-deep-ink transition-all duration-300 cursor-pointer">
 POSTULER
 </a>
 </div>
@@ -851,7 +840,7 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         preloader.classList.add('loaded');
         body.classList.remove('is-loading');
-        const heroImages = ['images/portraits/portraits-screenshot-2026-06-21-182814.png','images/hero/hero-02.jpg','images/hero/hero-03.jpg','images/hero/hero-04.jpg','images/hero/hero-05.jpg'];
+        const heroImages = ['images/portraits/portraits-screenshot-2026-06-21-182814.png','images/hero/hero-02.jpg','images/hero/hero-03.jpg','images/hero/hero-04.jpg'];
         const slides = document.querySelectorAll('.hero-slide');
         let current = 0;
         document.querySelectorAll('.hero-line').forEach(function(el, i) {
