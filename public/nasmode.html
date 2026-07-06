@@ -212,9 +212,6 @@ body.is-loading {
         transition: width 0.4s cubic-bezier(0.2, 0, 0.2, 1), height 0.4s cubic-bezier(0.2, 0, 0.2, 1), border-width 0.4s cubic-bezier(0.2, 0, 0.2, 1);
         will-change: transform;
     }
-    .custom-cursor.active { scale: 0.5; opacity: 0.8; }
-    .custom-cursor-ring.active { width: 60px; height: 60px; border-width: 2px; }
-}
 .reveal-up {
     opacity: 0;
     transform: translateY(30px);
@@ -847,36 +844,7 @@ POSTULER
 </div>
 </div>
 </footer>
-<script>
-const cursorDot = document.getElementById('cursor-dot');
-const cursorRing = document.getElementById('cursor-ring');
-const allowsMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (allowsMotion && window.innerWidth >= 1024) {
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px)';
-    });
-    const animateCursor = () => {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        cursorRing.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px)';
-        requestAnimationFrame(animateCursor);
-    };
-    requestAnimationFrame(animateCursor);
-    document.querySelectorAll('a, button, .cursor-pointer, .image-container').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursorDot.classList.add('active');
-            cursorRing.classList.add('active');
-        });
-        el.addEventListener('mouseleave', () => {
-            cursorDot.classList.remove('active');
-            cursorRing.classList.remove('active');
-        });
-    });
-}
+
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     const logo = document.getElementById('preloader-logo');
