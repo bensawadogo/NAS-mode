@@ -16,6 +16,47 @@ body { background-color: #FAF7F2; color: #1A1A1A; }
 .donor-card { background: white; border: 1px solid #e5e5e5; padding: 2rem; transition: all 0.3s; }
 .donor-card:hover { border-color: #C17D5A; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 </style>
+<style>
+* { cursor: none !important; }
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 36px;
+    background-image: url('../images/ecole/logo-nas-mode.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.15s ease;
+    transform: translate(-50%, -50%);
+}
+.custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+.custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 1.5px solid rgba(193, 125, 90, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+.custom-cursor-ring.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+}
+@media (max-width: 767px) {
+    .custom-cursor, .custom-cursor-ring { display: none; }
+    * { cursor: auto !important; }
+}
 </head>
 <body>
 
@@ -172,5 +213,37 @@ body { background-color: #FAF7F2; color: #1A1A1A; }
 </div>
 </footer>
 
+<div id="custom-cursor" class="custom-cursor"></div>
+<div id="custom-cursor-ring" class="custom-cursor-ring"></div>
+<script>
+(function(){
+  var dot = document.getElementById('custom-cursor');
+  var ring = document.getElementById('custom-cursor-ring');
+  if (!dot || !ring) return;
+  var moved = false;
+  document.addEventListener('mousemove', function(e) {
+    if (!moved) { moved = true; dot.style.display = ring.style.display = 'block'; }
+    dot.style.left = e.clientX + 'px';
+    dot.style.top = e.clientY + 'px';
+    ring.style.left = e.clientX + 'px';
+    ring.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mouseleave', function() {
+    dot.style.display = ring.style.display = 'none';
+  });
+  document.addEventListener('mouseenter', function() {
+    if (moved) dot.style.display = ring.style.display = 'block';
+  });
+  var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
+  document.addEventListener('mouseover', function(e) {
+    var t = e.target.closest(interactive);
+    if (t) { dot.classList.add('hover'); ring.classList.add('hover'); }
+  });
+  document.addEventListener('mouseout', function(e) {
+    var t = e.target.closest(interactive);
+    if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
+  });
+})();
+</script>
 </body>
 </html>

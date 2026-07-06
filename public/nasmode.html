@@ -1003,22 +1003,25 @@ function animateCounters() {
   var counters = document.querySelectorAll('.counter');
   if (!counters.length) return;
   var running = {};
+  var cid = 0;
+  counters.forEach(function(c) { c.dataset.cid = ++cid; });
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       var counter = entry.target;
+      var key = counter.dataset.cid;
       var target = parseInt(counter.dataset.target);
       var suffix = counter.dataset.suffix || '';
       if (!entry.isIntersecting) {
         counter.textContent = '0';
-        if (running[counter.dataset.target + suffix]) {
-          cancelAnimationFrame(running[counter.dataset.target + suffix]);
-          delete running[counter.dataset.target + suffix];
+        if (running[key]) {
+          cancelAnimationFrame(running[key]);
+          delete running[key];
         }
         return;
       }
-      if (running[counter.dataset.target + suffix]) {
-        cancelAnimationFrame(running[counter.dataset.target + suffix]);
-        delete running[counter.dataset.target + suffix];
+      if (running[key]) {
+        cancelAnimationFrame(running[key]);
+        delete running[key];
       }
       var duration = 4000;
       var start = performance.now();
@@ -1029,12 +1032,12 @@ function animateCounters() {
         var current = Math.round(eased * target);
         counter.textContent = current + suffix;
         if (progress < 1) {
-          running[counter.dataset.target + suffix] = requestAnimationFrame(update);
+          running[key] = requestAnimationFrame(update);
         } else {
-          delete running[counter.dataset.target + suffix];
+          delete running[key];
         }
       }
-      running[counter.dataset.target + suffix] = requestAnimationFrame(update);
+      running[key] = requestAnimationFrame(update);
     });
   }, { threshold: 0.5 });
   counters.forEach(function(c) { observer.observe(c); });
