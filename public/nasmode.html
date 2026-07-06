@@ -845,7 +845,8 @@ POSTULER
 </div>
 </div>
 </footer>
-
+<script>
+var allowsMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     const logo = document.getElementById('preloader-logo');
