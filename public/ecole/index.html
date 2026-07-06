@@ -13,18 +13,19 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 12px;
-    height: 12px;
-    background: #C17D5A;
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-image: url('../images/ecole/logo-nas-mode.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     pointer-events: none;
     z-index: 99999;
-    transition: transform 0.15s ease, background 0.2s ease;
+    transition: transform 0.15s ease;
     transform: translate(-50%, -50%);
 }
 .custom-cursor.hover {
-    transform: translate(-50%, -50%) scale(2.5);
-    background: rgba(193, 125, 90, 0.5);
+    transform: translate(-50%, -50%) scale(1.2);
 }
 .custom-cursor-ring {
     position: fixed;
