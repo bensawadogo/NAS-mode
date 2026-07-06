@@ -339,6 +339,9 @@
   .mt-1 {
     margin-top: var(--spacing);
   }
+  .mt-2 {
+    margin-top: calc(var(--spacing) * 2);
+  }
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
   }
@@ -491,6 +494,9 @@
   }
   .max-w-\[1100px\] {
     max-width: 1100px;
+  }
+  .max-w-\[1200px\] {
+    max-width: 1200px;
   }
   .max-w-\[1440px\] {
     max-width: 1440px;
@@ -670,6 +676,18 @@
   .border-ivory-base {
     border-color: var(--color-ivory-base);
   }
+  .border-ivory-base\/10 {
+    border-color: color-mix(in srgb, #FAF7F2 10%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-ivory-base) 10%, transparent);
+    }
+  }
+  .border-ivory-base\/30 {
+    border-color: color-mix(in srgb, #FAF7F2 30%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-ivory-base) 30%, transparent);
+    }
+  }
   .border-neutral-100 {
     border-color: var(--color-neutral-100);
   }
@@ -711,12 +729,6 @@
   }
   .bg-deep-ink {
     background-color: var(--color-deep-ink);
-  }
-  .bg-deep-ink\/5 {
-    background-color: color-mix(in srgb, #1A1A1A 5%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-deep-ink) 5%, transparent);
-    }
   }
   .bg-ivory-base {
     background-color: var(--color-ivory-base);
@@ -762,9 +774,6 @@
   }
   .p-2 {
     padding: calc(var(--spacing) * 2);
-  }
-  .p-8 {
-    padding: calc(var(--spacing) * 8);
   }
   .px-5 {
     padding-inline: calc(var(--spacing) * 5);
@@ -820,6 +829,9 @@
   .pt-6 {
     padding-top: calc(var(--spacing) * 6);
   }
+  .pt-8 {
+    padding-top: calc(var(--spacing) * 8);
+  }
   .pt-10 {
     padding-top: calc(var(--spacing) * 10);
   }
@@ -837,6 +849,9 @@
   }
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
+  }
+  .pb-3 {
+    padding-bottom: calc(var(--spacing) * 3);
   }
   .pb-16 {
     padding-bottom: calc(var(--spacing) * 16);
@@ -1021,12 +1036,6 @@
   .text-deep-ink {
     color: var(--color-deep-ink);
   }
-  .text-deep-ink\/40 {
-    color: color-mix(in srgb, #1A1A1A 40%, transparent);
-    @supports (color: color-mix(in lab, red, red)) {
-      color: color-mix(in oklab, var(--color-deep-ink) 40%, transparent);
-    }
-  }
   .text-ivory-base {
     color: var(--color-ivory-base);
   }
@@ -1187,6 +1196,14 @@
     &:is(:where(.group):hover *) {
       @media (hover: hover) {
         scale: 1.03;
+      }
+    }
+  }
+  .placeholder\:text-ivory-base\/30 {
+    &::placeholder {
+      color: color-mix(in srgb, #FAF7F2 30%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, var(--color-ivory-base) 30%, transparent);
       }
     }
   }
