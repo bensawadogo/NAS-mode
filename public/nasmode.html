@@ -37,6 +37,9 @@
 .custom-cursor.hover {
     transform: translate(-50%, -50%) scale(1.2);
 }
+.custom-cursor.cursor-big {
+    transform: translate(-50%, -50%) scale(1.5);
+}
 .custom-cursor-ring {
     position: fixed;
     top: 0;
@@ -52,6 +55,10 @@
 }
 .custom-cursor-ring.hover {
     transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+}
+.custom-cursor-ring.cursor-big {
+    transform: translate(-50%, -50%) scale(1.8);
     opacity: 0;
 }
 @media (max-width: 767px) {
@@ -1426,6 +1433,11 @@ function handlePostuler() {
         requestAnimationFrame(animate);
     }
     animate();
+    var formations = document.getElementById('formations');
+    if (formations) {
+        formations.addEventListener('mouseenter', function() { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); });
+        formations.addEventListener('mouseleave', function() { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); });
+    }
     var targets = document.querySelectorAll('a, button, [onclick], .cursor-pointer, input, textarea');
     for (var i = 0; i < targets.length; i++) {
         targets[i].addEventListener('mouseenter', function() {
