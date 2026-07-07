@@ -20,3 +20,4 @@ public/images/defiles/Capture*
 public/images/Capture*
 .aider*
 *.DS_Store
+public/screenshot-*.png
