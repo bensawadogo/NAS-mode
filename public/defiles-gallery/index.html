@@ -13,7 +13,7 @@
   <script type="module" crossorigin src="./assets/index-CPd6kHPm.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-BBq7xlPj.css">
   <style>
-  * { cursor: none !important; }
+  html.cursor-active * { cursor: none !important; }
   .custom-cursor {
       position: fixed;
       top: 0;
@@ -73,34 +73,40 @@
 <div id="custom-cursor" class="custom-cursor"></div>
 <div id="custom-cursor-ring" class="custom-cursor-ring"></div>
 <script>
-(function(){
+try {
   var dot = document.getElementById('custom-cursor');
   var ring = document.getElementById('custom-cursor-ring');
-  if (!dot || !ring) return;
-  var moved = false;
-  document.addEventListener('mousemove', function(e) {
-    if (!moved) { moved = true; dot.style.display = ring.style.display = 'block'; }
-    dot.style.left = e.clientX + 'px';
-    dot.style.top = e.clientY + 'px';
-    ring.style.left = e.clientX + 'px';
-    ring.style.top = e.clientY + 'px';
-  });
-  document.addEventListener('mouseleave', function() {
-    dot.style.display = ring.style.display = 'none';
-  });
-  document.addEventListener('mouseenter', function() {
-    if (moved) dot.style.display = ring.style.display = 'block';
-  });
-  var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
-  document.addEventListener('mouseover', function(e) {
-    var t = e.target.closest(interactive);
-    if (t) { dot.classList.add('hover'); ring.classList.add('hover'); }
-  });
+  if (dot && ring) {
+    dot.style.left = (window.innerWidth / 2) + 'px';
+    dot.style.top = (window.innerHeight / 2) + 'px';
+    ring.style.left = (window.innerWidth / 2) + 'px';
+    ring.style.top = (window.innerHeight / 2) + 'px';
+    document.addEventListener('mousemove', function(e) {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', function() {
+      dot.style.display = 'none';
+      ring.style.display = 'none';
+    });
+    document.addEventListener('mouseenter', function() {
+      dot.style.display = '';
+      ring.style.display = '';
+    });
+    var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
+    document.addEventListener('mouseover', function(e) {
+      var t = e.target.closest(interactive);
+      if (t) { dot.classList.add('hover'); ring.classList.add('hover'); }
+    });
   document.addEventListener('mouseout', function(e) {
-    var t = e.target.closest(interactive);
-    if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
-  });
-})();
+     var t = e.target.closest(interactive);
+     if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
+   });
+   document.documentElement.classList.add('cursor-active');
+  }
+} catch(e) {}
 </script>
 </body>
 </html>

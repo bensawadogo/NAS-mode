@@ -17,7 +17,7 @@ body { background-color: #FAF7F2; color: #1A1A1A; }
 .donor-card:hover { border-color: #C17D5A; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 </style>
 <style>
-* { cursor: none !important; }
+html.cursor-active * { cursor: none !important; }
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -70,7 +70,6 @@ body { background-color: #FAF7F2; color: #1A1A1A; }
 <div class="flex items-center gap-8">
 <a href="../index.html#formations" class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer hidden md:block">Nos Formations</a>
 <a href="../ecole/index.html" class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer hidden md:block">L'École</a>
-<a href="../index.html#formations" class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer hidden md:block">Nos Formations</a>
 <a href="../defiles-gallery/index.html" class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer hidden md:block">Défilés</a>
 <a href="index.html" class="font-label-caps text-label-caps text-terracotta-accent cursor-pointer hidden md:block">Nous Soutenir</a>
 <a class="bg-deep-ink text-ivory-base px-8 py-3 font-label-caps text-label-caps hover:bg-terracotta-accent transition-colors duration-300 cursor-pointer hidden md:inline-block" href="mailto:info@nasmodeformation.com">Contact</a>
@@ -78,7 +77,7 @@ body { background-color: #FAF7F2; color: #1A1A1A; }
 </nav>
 
 <header class="relative pt-20">
-<div class="relative h-[70vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden" style="background-image: url('../images/soutenir/suisse-carte.png'); background-size: cover; background-position: center; background-color: #FF0000;">
+<div class="relative h-[70vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden" style="background-image: url('../images/soutenir/suisse-carte.png'); background-size: cover; background-position: center; background-color: #1A1A1A;">
 <div class="absolute inset-0" style="background: rgba(0,0,0,0.3)"></div>
 <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
 <h1 class="font-headline-xl text-headline-xl text-ivory-base mb-4" style="font-family: 'Cormorant Garamond', serif; text-shadow: 0 2px 12px rgba(0,0,0,0.5);">La Fondation NAS MODE</h1>
@@ -217,34 +216,40 @@ body { background-color: #FAF7F2; color: #1A1A1A; }
 <div id="custom-cursor" class="custom-cursor"></div>
 <div id="custom-cursor-ring" class="custom-cursor-ring"></div>
 <script>
-(function(){
+try {
   var dot = document.getElementById('custom-cursor');
   var ring = document.getElementById('custom-cursor-ring');
-  if (!dot || !ring) return;
-  var moved = false;
-  document.addEventListener('mousemove', function(e) {
-    if (!moved) { moved = true; dot.style.display = ring.style.display = 'block'; }
-    dot.style.left = e.clientX + 'px';
-    dot.style.top = e.clientY + 'px';
-    ring.style.left = e.clientX + 'px';
-    ring.style.top = e.clientY + 'px';
-  });
-  document.addEventListener('mouseleave', function() {
-    dot.style.display = ring.style.display = 'none';
-  });
-  document.addEventListener('mouseenter', function() {
-    if (moved) dot.style.display = ring.style.display = 'block';
-  });
-  var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
-  document.addEventListener('mouseover', function(e) {
-    var t = e.target.closest(interactive);
-    if (t) { dot.classList.add('hover'); ring.classList.add('hover'); }
-  });
+  if (dot && ring) {
+    dot.style.left = (window.innerWidth / 2) + 'px';
+    dot.style.top = (window.innerHeight / 2) + 'px';
+    ring.style.left = (window.innerWidth / 2) + 'px';
+    ring.style.top = (window.innerHeight / 2) + 'px';
+    document.addEventListener('mousemove', function(e) {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', function() {
+      dot.style.display = 'none';
+      ring.style.display = 'none';
+    });
+    document.addEventListener('mouseenter', function() {
+      dot.style.display = '';
+      ring.style.display = '';
+    });
+    var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
+    document.addEventListener('mouseover', function(e) {
+      var t = e.target.closest(interactive);
+      if (t) { dot.classList.add('hover'); ring.classList.add('hover'); }
+    });
   document.addEventListener('mouseout', function(e) {
-    var t = e.target.closest(interactive);
-    if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
-  });
-})();
+     var t = e.target.closest(interactive);
+     if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
+   });
+   document.documentElement.classList.add('cursor-active');
+  }
+} catch(e) {}
 </script>
 </body>
 </html>

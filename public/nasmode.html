@@ -18,7 +18,8 @@
 </style>
 <link rel="stylesheet" href="css/tailwind.css"/>
 <style>
-* { cursor: none !important; }
+html.cursor-active * { cursor: none !important; }
+html.cursor-active body a, html.cursor-active body button, html.cursor-active body .cursor-pointer, html.cursor-active body .image-container { cursor: none !important; }
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -193,33 +194,6 @@ body.is-loading {
 @media (min-width: 1024px) {
     body { cursor: none; }
     body a, body button, body .cursor-pointer, body .image-container { cursor: none; }
-    .custom-cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 10px;
-        height: 10px;
-        background-color: #B5562C;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10000;
-        transform: translate(-50%, -50%);
-        transition: transform 0.1s ease-out, scale 0.3s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.2, 0, 0.2, 1);
-    }
-    .custom-cursor-ring {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 40px;
-        height: 40px;
-        border: 1px solid #B5562C;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.4s cubic-bezier(0.2, 0, 0.2, 1), height 0.4s cubic-bezier(0.2, 0, 0.2, 1), border-width 0.4s cubic-bezier(0.2, 0, 0.2, 1);
-        will-change: transform;
-    }
 .reveal-up {
     opacity: 0;
     transform: translateY(30px);
@@ -257,13 +231,15 @@ body.is-loading {
 .magnetic-wrap { display: inline-block; position: relative; }
 #magnetic-button { transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1); will-change: transform; }
 @media (prefers-reduced-motion: reduce) {
-    .reveal-up, .reveal-image, .reveal-chapter, .custom-cursor, .custom-cursor-ring, #magnetic-button {
+    .custom-cursor, .custom-cursor-ring, #magnetic-button {
+        display: none !important;
+    }
+    .reveal-up, .reveal-image, .reveal-chapter {
         transition: none !important;
         opacity: 1 !important;
         transform: none !important;
-        display: none !important;
     }
-    body { cursor: auto !important; }
+    html.cursor-active * { cursor: auto !important; }
 }
 /* ===== MODAL ===== */
 .formation-overlay {
@@ -1414,42 +1390,45 @@ function handlePostuler() {
   </div>
 </div>
 <script>
-(function() {
+try {
     var cursor = document.getElementById('custom-cursor');
     var ring = document.getElementById('custom-cursor-ring');
-    if (!cursor || !ring) return;
-    var mx = 0, my = 0, cx = 0, cy = 0;
-    document.addEventListener('mousemove', function(e) {
-        mx = e.clientX;
-        my = e.clientY;
-    });
-    function animate() {
-        cx += (mx - cx) * 0.15;
-        cy += (my - cy) * 0.15;
-        cursor.style.left = mx + 'px';
-        cursor.style.top = my + 'px';
-        ring.style.left = cx + 'px';
-        ring.style.top = cy + 'px';
-        requestAnimationFrame(animate);
-    }
-    animate();
-    var formations = document.getElementById('formations');
-    if (formations) {
-        formations.addEventListener('mouseenter', function() { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); });
-        formations.addEventListener('mouseleave', function() { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); });
-    }
-    var targets = document.querySelectorAll('a, button, [onclick], .cursor-pointer, input, textarea');
-    for (var i = 0; i < targets.length; i++) {
-        targets[i].addEventListener('mouseenter', function() {
-            cursor.classList.add('hover');
-            ring.classList.add('hover');
+    if (cursor && ring) {
+        cursor.style.left = (window.innerWidth / 2) + 'px';
+        cursor.style.top = (window.innerHeight / 2) + 'px';
+        ring.style.left = (window.innerWidth / 2) + 'px';
+        ring.style.top = (window.innerHeight / 2) + 'px';
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            ring.style.left = e.clientX + 'px';
+            ring.style.top = e.clientY + 'px';
         });
-        targets[i].addEventListener('mouseleave', function() {
-            cursor.classList.remove('hover');
-            ring.classList.remove('hover');
+        document.addEventListener('mouseleave', function() {
+            cursor.style.display = 'none';
+            ring.style.display = 'none';
         });
+        document.addEventListener('mouseenter', function() {
+            cursor.style.display = '';
+            ring.style.display = '';
+        });
+        var formations = document.getElementById('formations');
+        if (formations) {
+            formations.addEventListener('mouseenter', function() { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); });
+            formations.addEventListener('mouseleave', function() { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); });
+        }
+        var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
+        document.addEventListener('mouseover', function(e) {
+            var t = e.target.closest(interactive);
+            if (t) { cursor.classList.add('hover'); ring.classList.add('hover'); }
+        });
+        document.addEventListener('mouseout', function(e) {
+            var t = e.target.closest(interactive);
+            if (t) { cursor.classList.remove('hover'); ring.classList.remove('hover'); }
+        });
+        document.documentElement.classList.add('cursor-active');
     }
-})();
+} catch(e) {}
 </script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../css/tailwind.css"/>
 <style>
-* { cursor: none !important; }
+html.cursor-active * { cursor: none !important; }
 .custom-cursor {
     position: fixed;
     top: 0;
@@ -551,7 +551,7 @@ body {
 <!-- 1. HERO -->
 <section class="ecole-hero">
 <div class="ecole-hero-bg">
-<img src="" alt="NAS MODE — Photo de l'école" data-placeholder="true"/>
+<img src="../images/ecole/ecole-screenshot-2026-06-21-192644.png" alt="NAS MODE — Photo de l'école"/>
 </div>
 <div class="ecole-hero-overlay"></div>
 <div class="ecole-hero-content">
@@ -577,7 +577,7 @@ body {
 <section id="histoire" class="ecole-section">
 <div class="histoire-grid">
 <div class="histoire-image reveal">
-<img src="" alt="NAS MODE — Histoire et traditions" data-placeholder="true" style="width: 100%; height: 100%; object-fit: cover; background: #e8e4de;"/>
+<img src="../images/ateliers/atelier-screenshot-2026-06-21-193338.png" alt="NAS MODE — Histoire et traditions" style="width: 100%; height: 100%; object-fit: cover;"/>
 </div>
 <div class="reveal reveal-delay-1" style="padding: 20px 0;">
 <p class="ecole-label">NOTRE HISTOIRE</p>
@@ -593,7 +593,7 @@ body {
 <section class="mot-section">
 <div class="mot-grid">
 <div class="mot-photo reveal">
-<img src="" alt="Safi Ouattara Diallo — Fondatrice de NAS MODE" data-placeholder="true" style="width: 100%; height: 100%; object-fit: cover; background: #d4d0ca;"/>
+<img src="../images/portraits/portraits-screenshot-2026-06-21-182814.png" alt="Safi Ouattara Diallo — Fondatrice de NAS MODE" style="width: 100%; height: 100%; object-fit: cover;"/>
 </div>
 <div class="mot-content reveal reveal-delay-1">
 <div>
@@ -696,7 +696,7 @@ body {
 <section class="ecole-section">
 <div class="equipe-grid">
 <div class="reveal equipe-photo">
-<img src="" alt="Équipe NAS MODE" data-placeholder="true" style="width: 100%; height: 100%; object-fit: cover; background: #d4d0ca;"/>
+<img src="../images/ateliers/atelier-mains-machine-2026-06-21.png" alt="Équipe NAS MODE" style="width: 100%; height: 100%; object-fit: cover;"/>
 </div>
 <div class="reveal reveal-delay-1" style="padding: 20px 0;">
 <p class="ecole-label">L'ÉQUIPE</p>
@@ -802,36 +802,40 @@ body {
 
 <script>
 (function() {
-    // Custom cursor
-    var cursor = document.getElementById('custom-cursor');
-    var ring = document.getElementById('custom-cursor-ring');
-    if (cursor && ring) {
-        var mx = 0, my = 0, cx = 0, cy = 0;
-        document.addEventListener('mousemove', function(e) {
-            mx = e.clientX;
-            my = e.clientY;
-        });
-        function animate() {
-            cx += (mx - cx) * 0.15;
-            cy += (my - cy) * 0.15;
-            cursor.style.left = mx + 'px';
-            cursor.style.top = my + 'px';
-            ring.style.left = cx + 'px';
-            ring.style.top = cy + 'px';
-            requestAnimationFrame(animate);
-        }
-        animate();
-        document.querySelectorAll('a, button, [onclick], .cursor-pointer, input, textarea').forEach(function(el) {
-            el.addEventListener('mouseenter', function() {
-                cursor.classList.add('hover');
-                ring.classList.add('hover');
-            });
-            el.addEventListener('mouseleave', function() {
-                cursor.classList.remove('hover');
-                ring.classList.remove('hover');
-            });
-        });
-    }
+try {
+     var cursor = document.getElementById('custom-cursor');
+     var ring = document.getElementById('custom-cursor-ring');
+     if (cursor && ring) {
+         cursor.style.left = (window.innerWidth / 2) + 'px';
+         cursor.style.top = (window.innerHeight / 2) + 'px';
+         ring.style.left = (window.innerWidth / 2) + 'px';
+         ring.style.top = (window.innerHeight / 2) + 'px';
+         document.addEventListener('mousemove', function(e) {
+             cursor.style.left = e.clientX + 'px';
+             cursor.style.top = e.clientY + 'px';
+             ring.style.left = e.clientX + 'px';
+             ring.style.top = e.clientY + 'px';
+         });
+         document.addEventListener('mouseleave', function() {
+             cursor.style.display = 'none';
+             ring.style.display = 'none';
+         });
+         document.addEventListener('mouseenter', function() {
+             cursor.style.display = '';
+             ring.style.display = '';
+         });
+         var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
+         document.addEventListener('mouseover', function(e) {
+             var t = e.target.closest(interactive);
+             if (t) { cursor.classList.add('hover'); ring.classList.add('hover'); }
+         });
+         document.addEventListener('mouseout', function(e) {
+             var t = e.target.closest(interactive);
+             if (t) { cursor.classList.remove('hover'); ring.classList.remove('hover'); }
+         });
+         document.documentElement.classList.add('cursor-active');
+     }
+ } catch(e) {}
 
     // Scroll reveal
     var revealElements = document.querySelectorAll('.reveal');
