@@ -72,9 +72,13 @@
     --color-ivory-base: #FAF7F2;
     --font-label-caps: "Inter", sans-serif;
     --font-display-xxl: "EB Garamond", serif;
+    --font-body-sm: "Inter", sans-serif;
     --font-body-md: "Inter", sans-serif;
     --font-body-lg: "Inter", sans-serif;
+    --font-display-xl: "EB Garamond", serif;
+    --font-headline-md: "Cormorant Garamond", serif;
     --font-headline-lg: "EB Garamond", serif;
+    --font-headline-xl: "Cormorant Garamond", serif;
     --font-chapter-number: "Inter", sans-serif;
     --text-label-caps: 12px;
     --text-label-caps--line-height: 100%;
@@ -87,9 +91,15 @@
     --text-body-lg: 16px;
     --text-body-lg--line-height: 160%;
     --text-body-lg--font-weight: 300;
+    --text-headline-md: 24px;
+    --text-headline-md--line-height: 110%;
+    --text-headline-md--font-weight: 400;
     --text-headline-lg: 36px;
     --text-headline-lg--line-height: 110%;
     --text-headline-lg--font-weight: 400;
+    --text-headline-xl: 48px;
+    --text-headline-xl--line-height: 110%;
+    --text-headline-xl--font-weight: 400;
     --text-chapter-number: 160px;
     --text-chapter-number--line-height: 100%;
     --text-chapter-number--letter-spacing: -0.05em;
@@ -865,6 +875,9 @@
   .text-left {
     text-align: left;
   }
+  .font-body-sm {
+    font-family: var(--font-body-sm);
+  }
   .font-body-lg {
     font-family: var(--font-body-lg);
   }
@@ -874,11 +887,20 @@
   .font-chapter-number {
     font-family: var(--font-chapter-number);
   }
+  .font-display-xl {
+    font-family: var(--font-display-xl);
+  }
   .font-display-xxl {
     font-family: var(--font-display-xxl);
   }
+  .font-headline-md {
+    font-family: var(--font-headline-md);
+  }
   .font-headline-lg {
     font-family: var(--font-headline-lg);
+  }
+  .font-headline-xl {
+    font-family: var(--font-headline-xl);
   }
   .font-label-caps {
     font-family: var(--font-label-caps);
@@ -906,10 +928,20 @@
     line-height: var(--tw-leading, var(--text-body-lg--line-height));
     font-weight: var(--tw-font-weight, var(--text-body-lg--font-weight));
   }
+  .text-headline-md {
+    font-size: var(--text-headline-md);
+    line-height: var(--tw-leading, var(--text-headline-md--line-height));
+    font-weight: var(--tw-font-weight, var(--text-headline-md--font-weight));
+  }
   .text-headline-lg {
     font-size: var(--text-headline-lg);
     line-height: var(--tw-leading, var(--text-headline-lg--line-height));
     font-weight: var(--tw-font-weight, var(--text-headline-lg--font-weight));
+  }
+  .text-headline-xl {
+    font-size: var(--text-headline-xl);
+    line-height: var(--tw-leading, var(--text-headline-xl--line-height));
+    font-weight: var(--tw-font-weight, var(--text-headline-xl--font-weight));
   }
   .text-2xl {
     font-size: var(--text-2xl);
