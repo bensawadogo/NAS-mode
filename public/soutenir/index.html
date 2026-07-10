@@ -73,8 +73,20 @@ html.cursor-active * { cursor: none !important; }
 <a href="../defiles-gallery/index.html" class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer hidden md:block">Défilés</a>
 <a href="index.html" class="font-label-caps text-label-caps text-terracotta-accent cursor-pointer hidden md:block">Nous Soutenir</a>
 <a class="bg-deep-ink text-ivory-base px-8 py-3 font-label-caps text-label-caps hover:bg-terracotta-accent transition-colors duration-300 cursor-pointer hidden md:inline-block" href="mailto:info@nasmodeformation.com">Contact</a>
+<button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-1"></span>
+<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300" id="menu-bar-2"></span>
+<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-3"></span>
+</button>
+</div>
 </div>
 </nav>
+<div class="fixed inset-0 z-40 bg-ivory-base flex flex-col items-center justify-center gap-8 transition-all duration-500 ease-in-out" id="mobile-menu" style="transform: translateX(100%); opacity: 0;">
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../index.html#formations" onclick="toggleMobileMenu()">Nos Formations</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../ecole/index.html" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../defiles-gallery/index.html" onclick="toggleMobileMenu()">Défilés</a>
+<a class="bg-deep-ink text-ivory-base px-12 py-5 font-label-caps text-label-caps cursor-pointer mt-4" href="mailto:info@nasmodeformation.com">Contact</a>
+</div>
 
 <header class="relative pt-20">
 <div class="relative h-[70vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden" style="background-image: url('../images/soutenir/suisse-carte.png'); background-size: cover; background-position: center; background-color: #1A1A1A;">
@@ -250,6 +262,30 @@ try {
    document.documentElement.classList.add('cursor-active');
   }
 } catch(e) {}
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobile-menu');
+  var bar1 = document.getElementById('menu-bar-1');
+  var bar2 = document.getElementById('menu-bar-2');
+  var bar3 = document.getElementById('menu-bar-3');
+  var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open');
+  if (isOpen) {
+    menu.style.transform = 'translateX(100%)';
+    menu.style.opacity = '0';
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+    bar1.style.transform = '';
+    bar2.style.opacity = '';
+    bar3.style.transform = '';
+  } else {
+    menu.style.transform = 'translateX(0%)';
+    menu.style.opacity = '1';
+    menu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    bar1.style.transform = 'rotate(45deg) translate(5px, 5px)';
+    bar2.style.opacity = '0';
+    bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)';
+  }
+}
 </script>
 </body>
 </html>

@@ -5,9 +5,12 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="NAS MODE — Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 25 ans d'excellence artisanale ouest-africaine." name="description"/>
 <title>NAS MODE | Excellence Artisanale Ouest-Africaine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@300;400;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link rel="preload" as="image" href="images/portraits/portraits-screenshot-2026-06-21-182814.png">
+<link rel="preload" as="image" href="images/hero/hero-02.jpg">
 <style>
 @font-face {
   font-family: 'Zina';
@@ -626,7 +629,7 @@ body.is-loading {
 </div>
 </div>
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile py-6 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav">
-<a href="#" class="block shrink-0"><img src="images/ecole/logo-nas-mode.png" alt="NAS MODE" class="h-16 md:h-20 w-auto" loading="lazy"/></a>
+<a href="#" class="block shrink-0"><img src="images/ecole/logo-nas-mode.png" alt="NAS MODE" class="h-16 md:h-20 w-auto"/></a>
 <div class="hidden md:flex items-center gap-10">
 <a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="#formations">Nos Formations</a>
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="defiles-gallery/index.html">Défilés</a>
@@ -898,26 +901,30 @@ document.querySelectorAll('.reveal-up, .reveal-image, .reveal-chapter').forEach(
 if (window.innerWidth >= 768 && allowsMotion) {
     const parallaxSections = document.querySelectorAll('.parallax-section');
     const activeSections = new Set();
+    const winHeight = window.innerHeight;
     const parallaxObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             entry.isIntersecting ? activeSections.add(entry.target) : activeSections.delete(entry.target);
         });
     }, { threshold: 0 });
     parallaxSections.forEach(section => parallaxObserver.observe(section));
+    let ticking = false;
     const updateParallax = () => {
         activeSections.forEach(section => {
             const target = section.querySelector('.parallax-target');
             if (!target) return;
             const rect = section.getBoundingClientRect();
             const strength = parseFloat(section.dataset.parallaxStrength) || 50;
-            const centerOffset = (rect.top + rect.height / 2 - window.innerHeight / 2) / (window.innerHeight / 2);
-            const yPos = centerOffset * strength;
+            const centerOffset = (rect.top + rect.height / 2 - winHeight / 2) / (winHeight / 2);
             const xBase = target.classList.contains('-translate-x-12') ? '-3rem' : '3rem';
-            target.style.transform = 'translate3d(' + xBase + ', calc(-6rem + ' + yPos + 'px), 0)';
+            target.style.transform = 'translate3d(' + xBase + ', calc(-6rem + ' + centerOffset * strength + 'px), 0)';
         });
-        requestAnimationFrame(updateParallax);
+        ticking = false;
     };
-    requestAnimationFrame(updateParallax);
+    window.addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(updateParallax); }
+    }, { passive: true });
+    updateParallax();
 }
 const magneticBtn = document.getElementById('magnetic-button');
 const magneticWrap = magneticBtn?.closest('.magnetic-wrap');
