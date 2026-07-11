@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none">
+  <rect width="120" height="80" rx="4" fill="transparent"/>
+  <path d="M60 68C60 68 30 50 30 38C30 30 36 24 44 24C49 24 54 27 56 31C58 27 63 24 68 24C76 24 82 30 82 38C82 50 60 68 60 68Z" fill="#C17D5A" opacity="0.7"/>
+  <text x="60" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="400" fill="#474741">MONIKA BURKHART</text>
+  <text x="60" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="400" fill="#474741">&amp; THOMAS FERREUX</text>
+</svg>

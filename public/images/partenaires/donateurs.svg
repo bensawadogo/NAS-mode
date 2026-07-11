@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none">
+  <rect width="120" height="80" rx="4" fill="transparent"/>
+  <circle cx="48" cy="28" r="8" fill="#C17D5A" opacity="0.5"/>
+  <circle cx="72" cy="28" r="8" fill="#C17D5A" opacity="0.5"/>
+  <ellipse cx="48" cy="48" rx="14" ry="10" fill="#C17D5A" opacity="0.3"/>
+  <ellipse cx="72" cy="48" rx="14" ry="10" fill="#C17D5A" opacity="0.3"/>
+  <text x="60" y="66" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="400" fill="#474741">DONATEURS</text>
+  <text x="60" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="300" fill="#474741">INDIVIDUELS</text>
+</svg>
