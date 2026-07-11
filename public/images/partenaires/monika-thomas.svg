@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none">
-  <rect width="120" height="80" rx="4" fill="transparent"/>
-  <path d="M60 68C60 68 30 50 30 38C30 30 36 24 44 24C49 24 54 27 56 31C58 27 63 24 68 24C76 24 82 30 82 38C82 50 60 68 60 68Z" fill="#C17D5A" opacity="0.7"/>
-  <text x="60" y="52" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="400" fill="#474741">MONIKA BURKHART</text>
-  <text x="60" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="400" fill="#474741">&amp; THOMAS FERREUX</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none">
+  <rect width="200" height="120" rx="4" fill="transparent"/>
+  <circle cx="100" cy="35" r="16" fill="#C17D5A" opacity="0.12"/>
+  <path d="M100 46C100 46 82 36 82 28C82 23 86 19 91 19C94 19 97 21 98 23C99 21 102 19 105 19C110 19 114 23 114 28C114 36 100 46 100 46Z" stroke="#C17D5A" stroke-width="1.5" fill="none"/>
+  <text x="100" y="72" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="500" fill="#474741">MONIKA BURKHART</text>
+  <text x="100" y="82" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="300" fill="#474741">&amp; THOMAS FERREUX</text>
+  <text x="100" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="5" font-weight="300" fill="#999">Soutiens d'Allemagne</text>
 </svg>
