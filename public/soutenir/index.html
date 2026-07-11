@@ -3,7 +3,21 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="icon" href="/images/ecole/logo-nas-mode.png" sizes="any"/>
+<link rel="apple-touch-icon" href="/images/ecole/logo-nas-mode.png"/>
 <title>Soutenir NAS MODE — Excellence Artisanale Ouest-Africaine</title>
+<meta property="og:title" content="Soutenir NAS MODE — Excellence Artisanale Ouest-Africaine"/>
+<meta property="og:description" content="Découvrez l'histoire de Bea Petri et de nos partenaires. Soutenez NAS MODE pour continuer à transformer des vies."/>
+<meta property="og:image" content="https://bensawadogo.github.io/NAS-mode/images/ecole/logo-nas-mode.png"/>
+<meta property="og:url" content="https://bensawadogo.github.io/NAS-mode/soutenir/"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Soutenir NAS MODE — Excellence Artisanale Ouest-Africaine"/>
+<meta name="twitter:description" content="Découvrez l'histoire de Bea Petri et de nos partenaires. Soutenez NAS MODE pour continuer à transformer des vies."/>
+<meta name="twitter:image" content="https://bensawadogo.github.io/NAS-mode/images/ecole/logo-nas-mode.png"/>
+<link rel="canonical" href="https://bensawadogo.github.io/NAS-mode/soutenir/"/>
+
 <meta name="description" content="Découvrez l'histoire de Bea Petri et de nos partenaires. Soutenez NAS MODE pour continuer à transformer des vies."/>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="../css/tailwind.css"/>
@@ -58,13 +72,31 @@ html.cursor-active * { cursor: none !important; }
     * { cursor: auto !important; }
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "NAS MODE",
+  "description": "Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma au Burkina Faso",
+  "url": "https://bensawadogo.github.io/NAS-mode/",
+  "foundingDate": "2001",
+  "founder": {
+    "@type": "Person",
+    "name": "Safi Ouattara Diallo"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "BF"
+  }
+}
+</script>
 </head>
 <body>
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-ivory-base/95 backdrop-blur-sm border-b border-deep-ink/10">
 <div class="max-w-[1440px] mx-auto flex items-center justify-between px-6 md:px-12 h-28 md:h-48">
 <a href="../index.html" class="flex items-center gap-3">
-<img src="../images/ecole/logo-nas-mode.png" alt="NAS MODE" class="h-24 md:h-40 w-auto"/>
+<picture><source srcset="../images/ecole/logo-nas-mode.webp" type="image/webp"><img src="../images/ecole/logo-nas-mode.png" alt="NAS MODE" class="h-24 md:h-40 w-auto"/></picture>
 <span class="font-display-xl text-xl text-deep-ink tracking-wide hidden md:block" style="font-family: 'EB Garamond', serif;">NAS MODE</span>
 </a>
 <div class="flex items-center gap-8">
@@ -89,7 +121,7 @@ html.cursor-active * { cursor: none !important; }
 </div>
 
 <header class="relative pt-20">
-<div class="relative h-[70vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden" style="background-image: url('../images/soutenir/suisse-carte.png'); background-size: cover; background-position: center; background-color: #1A1A1A;">
+<div class="relative h-[70vh] min-h-[500px] w-full flex items-center justify-center overflow-hidden" style="background-image: image-set(url('../images/soutenir/suisse-carte.webp') type('image/webp'), url('../images/soutenir/suisse-carte.png') type('image/png')); background-size: cover; background-position: center; background-color: #1A1A1A;">
 <div class="absolute inset-0" style="background: rgba(0,0,0,0.3)"></div>
 <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
 <h1 class="font-headline-xl text-headline-xl text-ivory-base mb-4" style="font-family: 'Cormorant Garamond', serif; text-shadow: 0 2px 12px rgba(0,0,0,0.5);">La Fondation NAS MODE</h1>
@@ -111,7 +143,7 @@ html.cursor-active * { cursor: none !important; }
 </div>
 <div class="relative">
 <div class="aspect-[4/5] overflow-hidden">
-<img src="../images/soutenir/bea-petri.jpg" alt="Bea Petri avec une enfant au Burkina Faso" class="w-full h-full object-cover"/>
+<picture><source srcset="../images/soutenir/bea-petri.webp" type="image/webp"><img src="../images/soutenir/bea-petri.jpg" alt="Bea Petri avec une enfant au Burkina Faso" class="w-full h-full object-cover"/></picture>
 </div>
 </div>
 </div>
@@ -228,64 +260,7 @@ html.cursor-active * { cursor: none !important; }
 <div id="custom-cursor" class="custom-cursor"></div>
 <div id="custom-cursor-ring" class="custom-cursor-ring"></div>
 <script>
-try {
-  var dot = document.getElementById('custom-cursor');
-  var ring = document.getElementById('custom-cursor-ring');
-  if (dot && ring) {
-    dot.style.left = (window.innerWidth / 2) + 'px';
-    dot.style.top = (window.innerHeight / 2) + 'px';
-    ring.style.left = (window.innerWidth / 2) + 'px';
-    ring.style.top = (window.innerHeight / 2) + 'px';
-    document.addEventListener('mousemove', function(e) {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top = e.clientY + 'px';
-      ring.style.left = e.clientX + 'px';
-      ring.style.top = e.clientY + 'px';
-    });
-    document.addEventListener('mouseleave', function() {
-      dot.style.display = 'none';
-      ring.style.display = 'none';
-    });
-    document.addEventListener('mouseenter', function() {
-      dot.style.display = '';
-      ring.style.display = '';
-    });
-    var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
-    document.addEventListener('mouseover', function(e) {
-      var t = e.target.closest(interactive);
-      if (t) { dot.classList.add('hover'); ring.classList.add('hover'); }
-    });
-  document.addEventListener('mouseout', function(e) {
-     var t = e.target.closest(interactive);
-     if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
-   });
-   document.documentElement.classList.add('cursor-active');
-  }
-} catch(e) {}
-function toggleMobileMenu() {
-  var menu = document.getElementById('mobile-menu');
-  var bar1 = document.getElementById('menu-bar-1');
-  var bar2 = document.getElementById('menu-bar-2');
-  var bar3 = document.getElementById('menu-bar-3');
-  var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open');
-  if (isOpen) {
-    menu.style.transform = 'translateX(100%)';
-    menu.style.opacity = '0';
-    menu.classList.remove('open');
-    document.body.style.overflow = '';
-    bar1.style.transform = '';
-    bar2.style.opacity = '';
-    bar3.style.transform = '';
-  } else {
-    menu.style.transform = 'translateX(0%)';
-    menu.style.opacity = '1';
-    menu.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    bar1.style.transform = 'rotate(45deg) translate(5px, 5px)';
-    bar2.style.opacity = '0';
-    bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)';
-  }
-}
+try { var dot = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (dot && ring) { dot.style.left = (window.innerWidth / 2) + 'px'; dot.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; document.addEventListener('mousemove', function(e) { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }); document.addEventListener('mouseleave', function() { dot.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function() { dot.style.display = ''; ring.style.display = ''; }); var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]'; document.addEventListener('mouseover', function(e) { var t = e.target.closest(interactive); if (t) { dot.classList.add('hover'); ring.classList.add('hover'); } }); document.addEventListener('mouseout', function(e) { var t = e.target.closest(interactive); if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); } }); document.documentElement.classList.add('cursor-active'); } } catch(e) {} function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.classList.remove('open'); document.body.style.overflow = ''; bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.classList.add('open'); document.body.style.overflow = 'hidden'; bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; } }
 </script>
 </body>
 </html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bensawadogo.github.io/NAS-mode/sitemap.xml
