@@ -423,7 +423,10 @@ body {
     text-align: center;
 }
 @media (min-width: 640px) {
-    .chiffres-grid { grid-template-columns: repeat(4, 1fr); gap: 60px; }
+    .chiffres-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+}
+@media (min-width: 1024px) {
+    .chiffres-grid { grid-template-columns: repeat(5, 1fr); gap: 60px; }
 }
 .chiffre-number {
     font-family: 'Cormorant Garamond', serif;
@@ -439,6 +442,99 @@ body {
     font-weight: 400;
     color: #474741;
     letter-spacing: 0.05em;
+}
+
+/* Campus */
+.campus-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+.campus-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+@media (min-width: 768px) {
+    .campus-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
+}
+.campus-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+.campus-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+.campus-card-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+}
+.campus-card-body {
+    padding: 32px 28px;
+}
+.campus-card-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 12px;
+    border-radius: 2px;
+}
+.campus-card-badge.existing {
+    background: #C17D5A;
+    color: #FAF7F2;
+}
+.campus-card-badge.upcoming {
+    background: #1A1A1A;
+    color: #FAF7F2;
+}
+.campus-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin-bottom: 6px;
+}
+.campus-card-location {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #C17D5A;
+    margin-bottom: 16px;
+}
+.campus-card-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #474741;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+.campus-card-details {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #474741;
+    line-height: 1.8;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+.campus-card-details span {
+    display: block;
+}
+.campus-card-details strong {
+    font-weight: 500;
+    color: #1A1A1A;
 }
 
 /* Partenaires */
@@ -632,6 +728,7 @@ body {
 <p class="ecole-text" style="margin-bottom: 24px;">En 2001, Safi Ouattara Diallo fonde NAS MODE à Ouagadougou avec une vision claire : offrir aux jeunes burkinabè une formation professionnelle d'excellence dans les métiers de la mode et de la beauté.</p>
 <p class="ecole-text" style="margin-bottom: 24px;">D'abord modeste atelier de couture, l'école s'est agrandie année après année. En 2008, la rencontre avec Bea Petri, venue de Suisse via Swisscontact, marque un tournant décisif. Grâce à son engagement et aux donateurs internationaux, NAS MODE s'est dotée d'infrastructures modernes.</p>
 <p class="ecole-text">Aujourd'hui, plus de 25 ans après sa création, l'école forme près de 200 jeunes chaque année et rayonne bien au-delà des frontières du Burkina Faso, portée par une conviction simple : la formation est le plus puissant levier de transformation sociale.</p>
+<p class="ecole-text" style="margin-top: 24px;">Forte de cet héritage, NAS MODE franchit une nouvelle étape en ouvrant un second campus à Abidjan, en Côte d'Ivoire. Ce nouveau chapitre incarne notre volonté de rayonner dans toute l'Afrique de l'Ouest et d'offrir aux jeunes ivoiriens la même excellence qui fait notre renomée au Burkina Faso.</p>
 </div>
 </div>
 </section>
@@ -739,7 +836,44 @@ body {
 </div>
 </section>
 
-<!-- 6. L'ÉQUIPE -->
+<!-- 6. NOS CAMPUS -->
+<section class="ecole-section">
+<div class="ecole-section-header reveal">
+<p class="ecole-label">NOS CAMPUS</p>
+<h2 class="ecole-title">Deux campus, une même excellence.</h2>
+</div>
+<p class="campus-intro reveal ecole-text">De Ouagadougou à Abidjan, NAS MODE étend son excellence à travers l'Afrique de l'Ouest pour offrir une formation professionnelle d'élite au plus grand nombre.</p>
+<div class="campus-grid">
+<div class="reveal campus-card">
+<img class="campus-card-image" src="../images/ecole/ecole-screenshot-2026-06-21-192644.png" alt="Campus Ouagadougou" loading="lazy"/>
+<div class="campus-card-body">
+<span class="campus-card-badge existing">Depuis 2001</span>
+<h3 class="campus-card-title">Campus Ouagadougou</h3>
+<p class="campus-card-location">Ouagadougou, Burkina Faso</p>
+<p class="campus-card-text">Le campus historique, berceau de NAS MODE. Des ateliers modernes de couture, coiffure, esthétique et un studio de maquillage cinéma.</p>
+<div class="campus-card-details">
+<span><strong>Formations :</strong> Stylisme &amp; Couture, Coiffure, Esthétique, Maquillage Cinéma</span>
+<span><strong>Contact :</strong> info@nasmodeformation.com</span>
+</div>
+</div>
+</div>
+<div class="reveal campus-card reveal-delay-1">
+<img class="campus-card-image" src="../images/ecole/campus-abidjan.svg" alt="Campus Abidjan" loading="lazy"/>
+<div class="campus-card-body">
+<span class="campus-card-badge upcoming">Prochainement</span>
+<h3 class="campus-card-title">Campus Abidjan</h3>
+<p class="campus-card-location">Abidjan, Côte d'Ivoire</p>
+<p class="campus-card-text">NAS MODE ouvre son second campus à Abidjan, portant son excellence au-delà des frontières pour former les talents de demain.</p>
+<div class="campus-card-details">
+<span><strong>Formations :</strong> Stylisme &amp; Couture, Coiffure, Esthétique, Maquillage Cinéma</span>
+<span><strong>Contact :</strong> info@nasmodeformation.com</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 7. L'ÉQUIPE -->
 <section class="ecole-section">
 <div class="equipe-grid">
 <div class="reveal equipe-photo">
@@ -754,7 +888,7 @@ body {
 </div>
 </section>
 
-<!-- 7. NOS CHIFFRES -->
+<!-- 8. NOS CHIFFRES -->
 <section style="background: #1A1A1A; padding: 100px 24px;">
 <div class="ecole-section-header reveal">
 <p class="ecole-label" style="color: #C17D5A;">NOS CHIFFRES</p>
@@ -777,10 +911,14 @@ body {
 <div class="chiffre-number" data-count="80">0</div>
 <p class="chiffre-label" style="color: rgba(250,247,242,0.6);">% d'insertion</p>
 </div>
+<div class="reveal reveal-delay-4">
+<div class="chiffre-number" data-count="2">0</div>
+<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Campus</p>
+</div>
 </div>
 </section>
 
-<!-- 8. PARTENAIRES -->
+<!-- 9. PARTENAIRES -->
 <section class="ecole-section">
 <div class="ecole-section-header reveal">
 <p class="ecole-label">PARTENAIRES</p>
@@ -796,7 +934,7 @@ body {
 </div>
 </section>
 
-<!-- 9. APPEL À L'ACTION -->
+<!-- 10. APPEL À L'ACTION -->
 <section class="cta-section">
 <div class="reveal">
 <h2 class="cta-title">Prêt à construire votre avenir ?</h2>
@@ -836,7 +974,7 @@ body {
 </div>
 </div>
 <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-ivory-base/10">
-<p class="font-body-sm" style="color: rgba(250,247,242,0.4);">© 2024 NAS MODE Ouagadougou. Excellence Artisanale Ouest-Africaine.</p>
+<p class="font-body-sm" style="color: rgba(250,247,242,0.4);">© 2024 NAS MODE Ouagadougou · Abidjan. Excellence Artisanale Ouest-Africaine.</p>
 <div class="flex items-center gap-6">
 <a href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" class="font-body-sm hover:text-terracotta-accent transition-colors" style="color: rgba(250,247,242,0.5);">Facebook</a>
 <a href="mailto:info@nasmodeformation.com" class="font-body-sm hover:text-terracotta-accent transition-colors" style="color: rgba(250,247,242,0.5);">Contact</a>
