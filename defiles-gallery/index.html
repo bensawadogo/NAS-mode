@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="fr" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Défilés — NAS MODE</title>
+  <meta name="description" content="Galerie immersive des créations NAS MODE — défilés, collections et savoir-faire ouest-africain." />
+  <meta name="author" content="NAS MODE" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <script>document.documentElement.className = 'js'</script>
+  <script type="module" crossorigin src="./assets/index-CPd6kHPm.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BBq7xlPj.css">
+  <style>
+  html.cursor-active * { cursor: none !important; }
+  .custom-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      background-image: url('../images/ecole/logo-nas-mode.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      pointer-events: none;
+      z-index: 99999;
+      transition: transform 0.15s ease;
+      transform: translate(-50%, -50%);
+  }
+  .custom-cursor.hover {
+      transform: translate(-50%, -50%) scale(1.2);
+  }
+  .custom-cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(193, 125, 90, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform: translate(-50%, -50%);
+  }
+  .custom-cursor-ring.hover {
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0;
+  }
+  @media (max-width: 767px) {
+      .custom-cursor, .custom-cursor-ring { display: none; }
+      * { cursor: auto !important; }
+  }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="frame">
+      <h1 class="frame__title">
+        <a href="../index.html">NAS MODE</a>
+      </h1>
+      <a class="frame__back" href="../index.html">← Retour</a>
+      <nav class="frame__credit">
+        <p>Défilés — Galerie Immersive</p>
+      </nav>
+    </header>
+    <div class="content">
+      <canvas class="webgl"></canvas>
+    </div>
+  </main>
+<div id="custom-cursor" class="custom-cursor"></div>
+<div id="custom-cursor-ring" class="custom-cursor-ring"></div>
+<script>
+try {
+  var dot = document.getElementById('custom-cursor');
+  var ring = document.getElementById('custom-cursor-ring');
+  if (dot && ring) {
+    dot.style.left = (window.innerWidth / 2) + 'px';
+    dot.style.top = (window.innerHeight / 2) + 'px';
+    ring.style.left = (window.innerWidth / 2) + 'px';
+    ring.style.top = (window.innerHeight / 2) + 'px';
+    document.addEventListener('mousemove', function(e) {
+      dot.style.left = e.clientX + 'px';
+      dot.style.top = e.clientY + 'px';
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', function() {
+      dot.style.display = 'none';
+      ring.style.display = 'none';
+    });
+    document.addEventListener('mouseenter', function() {
+      dot.style.display = '';
+      ring.style.display = '';
+    });
+    var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
+    document.addEventListener('mouseover', function(e) {
+      var t = e.target.closest(interactive);
+      if (t) { dot.classList.add('hover'); ring.classList.add('hover'); }
+    });
+  document.addEventListener('mouseout', function(e) {
+     var t = e.target.closest(interactive);
+     if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
+   });
+   document.documentElement.classList.add('cursor-active');
+  }
+} catch(e) {}
+</script>
+</body>
+</html>

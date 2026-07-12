@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 90" width="250" height="90">
+  <rect x="0" y="0" width="250" height="90" fill="#FAF7F2" rx="4"/>
+  <circle cx="100" cy="25" r="10" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+  <circle cx="125" cy="25" r="10" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+  <circle cx="150" cy="25" r="10" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+  <circle cx="100" cy="25" r="3" fill="#D4A574" opacity="0.3"/>
+  <circle cx="125" cy="25" r="3" fill="#D4A574" opacity="0.3"/>
+  <circle cx="150" cy="25" r="3" fill="#D4A574" opacity="0.3"/>
+  <text x="125" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1A1A1A">Donateurs</text>
+  <text x="125" y="72" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#1A1A1A">individuels</text>
+  <text x="125" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#5A5A5A">Soutiens privés</text>
+</svg>

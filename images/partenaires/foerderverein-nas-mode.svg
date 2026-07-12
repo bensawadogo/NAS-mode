@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 90" width="250" height="90">
+  <rect x="0" y="0" width="250" height="90" fill="#FAF7F2" rx="4"/>
+  <rect x="97" y="10" width="56" height="56" rx="14" fill="#D52B1E" stroke="#D52B1E" stroke-width="4"/>
+  <rect x="109" y="22" width="32" height="32" rx="4" fill="#FAF7F2"/>
+  <rect x="121" y="22" width="8" height="32" fill="#D52B1E"/>
+  <rect x="109" y="34" width="32" height="8" fill="#D52B1E"/>
+  <text x="125" y="80" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1A1A1A">Förderverein</text>
+  <text x="125" y="88" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#5A5A5A">NAS MODE (Suisse)</text>
+</svg>

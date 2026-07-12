@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAS MODE — Modal Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  color: #1A1A1A;
+  background: #FAF7F2;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* ====== SIMULATED PAGE BACKGROUND ====== */
+.page-mock {
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.page-mock p {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #B5562C;
+  margin-bottom: 12px;
+}
+.page-mock .btn-demo {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #B5562C;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #B5562C;
+  padding-bottom: 8px;
+  cursor: pointer;
+}
+.page-mock .btn-demo:hover { color: #1A1A1A; border-color: #1A1A1A; }
+
+/* ====== MODAL OVERLAY ====== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 24px;
+}
+
+/* ====== MODAL CONTAINER ====== */
+.modal {
+  width: 100%;
+  max-width: 1200px;
+  max-height: 85vh;
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ====== HEADER ====== */
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 48px 56px 0;
+  flex-shrink: 0;
+}
+.modal-header h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #1A1A1A;
+  letter-spacing: -0.01em;
+}
+.modal-header .subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: #72716D;
+  margin-top: 8px;
+  font-style: italic;
+}
+.modal-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #F0EDE8;
+  color: #5F5E5B;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 4px;
+}
+.modal-close:hover {
+  background: #1A1A1A;
+  color: #FFFFFF;
+}
+
+/* ====== BODY (SCROLLABLE) ====== */
+.modal-body {
+  padding: 40px 56px 56px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* ====== PRESENTATION ====== */
+.presentation {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #474743;
+  max-width: 720px;
+}
+.presentation p + p { margin-top: 16px; }
+
+/* ====== INFO CARDS ====== */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 36px;
+}
+.info-card {
+  background: #FAF7F2;
+  border-radius: 16px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.info-card .value {
+  font-family: 'EB Garamond', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: #1A1A1A;
+  line-height: 1.2;
+}
+.info-card .label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #72716D;
+  margin-top: 6px;
+}
+
+/* ====== DIVIDER ====== */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: #E5E2DD;
+  margin: 40px 0;
+}
+
+/* ====== SECTION TITLE ====== */
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+/* ====== OBJECTIVES ====== */
+.objectives-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 32px;
+  margin-top: 4px;
+}
+.objective-item {
+  font-size: 14px;
+  color: #474743;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.objective-item::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background: #B5562C;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ====== ACCORDION ====== */
+.accordion { margin-top: 4px; }
+.accordion-item {
+  border-bottom: 1px solid #EDEAE5;
+}
+.accordion-item:first-child { border-top: 1px solid #EDEAE5; }
+.accordion-item input { display: none; }
+.accordion-item label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #1A1A1A;
+  cursor: pointer;
+  user-select: none;
+}
+.accordion-item label::after {
+  content: '+';
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: #B5562C;
+  transition: transform 0.3s;
+}
+.accordion-item input:checked + label::after {
+  content: '−';
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0;
+}
+.accordion-item input:checked ~ .accordion-content {
+  max-height: 400px;
+  padding: 0 0 20px;
+}
+.accordion-content ul {
+  list-style: none;
+  columns: 2;
+  column-gap: 32px;
+}
+.accordion-content li {
+  font-size: 14px;
+  color: #474743;
+  padding: 4px 0;
+  break-inside: avoid;
+}
+.accordion-content li::before {
+  content: '—';
+  color: #B5562C;
+  margin-right: 8px;
+}
+
+/* ====== BADGES ====== */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: #5F5E5B;
+  background: #FAF7F2;
+  padding: 8px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+  border: 1px solid #EDEAE5;
+}
+
+/* ====== DEBOUCHES GRID ====== */
+.debouches-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 4px;
+}
+.debouche-item {
+  background: #FAF7F2;
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  color: #1A1A1A;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.debouche-item:hover {
+  border-color: #B5562C;
+}
+
+/* ====== HIGHLIGHT BOX ====== */
+.highlight-box {
+  background: #FAF7F2;
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin-top: 4px;
+  border-left: 3px solid #B5562C;
+}
+.highlight-box p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #474743;
+  font-style: italic;
+}
+
+/* ====== POSTULER BUTTON ====== */
+.cta-wrap {
+  text-align: center;
+  margin-top: 40px;
+}
+.btn-postuler {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: #B5562C;
+  padding: 18px 56px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-postuler:hover {
+  background: #1A1A1A;
+  transform: translateY(-1px);
+}
+
+/* ====== SCROLLBAR ====== */
+.modal-body::-webkit-scrollbar { width: 4px; }
+.modal-body::-webkit-scrollbar-track { background: transparent; }
+.modal-body::-webkit-scrollbar-thumb { background: #D4D1CC; border-radius: 2px; }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .modal-header { padding: 32px 24px 0; flex-direction: column; gap: 12px; }
+  .modal-header h2 { font-size: 28px; }
+  .modal-body { padding: 24px; }
+  .info-grid { grid-template-columns: repeat(2, 1fr); }
+  .objectives-grid { grid-template-columns: 1fr; }
+  .accordion-content ul { columns: 1; }
+  .debouches-grid { grid-template-columns: repeat(2, 1fr); }
+  .highlight-box { padding: 24px; }
+  .modal-overlay { padding: 16px; }
+  .modal { max-height: 90vh; border-radius: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIMULATED PAGE BACKGROUND -->
+<div class="page-mock">
+  <div style="text-align:center">
+    <p>Stylisme &amp; Modélisme Couture</p>
+    <button class="btn-demo">DÉCOUVRIR LE PROGRAMME</button>
+  </div>
+</div>
+
+<!-- ====== MODAL ====== -->
+<div class="modal-overlay">
+  <div class="modal" role="dialog" aria-label="Détails de la formation Stylisme &amp; Modélisme Couture">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+      <div>
+        <h2>Stylisme &amp; Modélisme Couture</h2>
+        <p class="subtitle">De la première esquisse au vêtement fini.</p>
+      </div>
+      <button class="modal-close" aria-label="Fermer">&times;</button>
+    </div>
+
+    <!-- BODY -->
+    <div class="modal-body">
+
+      <!-- 1. PRÉSENTATION -->
+      <div class="presentation">
+        <p>
+          La filière Stylisme &amp; Modélisme Couture forme des professionnels capables de concevoir, dessiner, modéliser et réaliser des vêtements, depuis le croquis jusqu'à la confection finale.
+        </p>
+        <p>
+          L'enseignement combine théorie, pratique intensive en atelier et projets créatifs afin de préparer les apprenants aux réalités du secteur de la mode.
+        </p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 2. INFORMATIONS RAPIDES -->
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="value">3 ans</div>
+          <div class="label">Durée</div>
+        </div>
+        <div class="info-card">
+          <div class="value">CQP</div>
+          <div class="label">Diplôme</div>
+        </div>
+        <div class="info-card">
+          <div class="value">BEPC / BAC</div>
+          <div class="label">Niveau</div>
+        </div>
+        <div class="info-card">
+          <div class="value">Théorie + Atelier</div>
+          <div class="label">Mode</div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 3. OBJECTIFS -->
+      <h3 class="section-title">Objectifs</h3>
+      <div class="objectives-grid">
+        <div class="objective-item">Concevoir une collection</div>
+        <div class="objective-item">Réaliser des patrons</div>
+        <div class="objective-item">Maîtriser la couture professionnelle</div>
+        <div class="objective-item">Utiliser les outils numériques</div>
+        <div class="objective-item">Développer son esprit créatif</div>
+        <div class="objective-item">Créer sa propre marque</div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 4. PROGRAMME (ACCORDÉON) -->
+      <h3 class="section-title">Programme</h3>
+      <div class="accordion">
+
+        <div class="accordion-item">
+          <input type="checkbox" id="year1">
+          <label for="year1">Première année</label>
+          <div class="accordion-content">
+            <ul>
+              <li>Initiation à la couture</li>
+              <li>Couture manuelle</li>
+              <li>Mesures</li>
+              <li>Coupe</li>
+              <li>Patronage</li>
+              <li>Assemblage</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <input type="checkbox" id="year2">
+          <label for="year2">Deuxième année</label>
+          <div class="accordion-content">
+            <ul>
+              <li>Stylisme</li>
+              <li>Modélisme</li>
+              <li>Patronage avancé</li>
+              <li>Coupe industrielle</li>
+              <li>Transformation des modèles</li>
+              <li>Techniques de finition</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <input type="checkbox" id="year3">
+          <label for="year3">Troisième année</label>
+          <div class="accordion-content">
+            <ul>
+              <li>DAO</li>
+              <li>Patronage assisté par ordinateur</li>
+              <li>Création de collection</li>
+              <li>Gestion d'atelier</li>
+              <li>Entrepreneuriat</li>
+              <li>Préparation au CQP</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 5. COMPÉTENCES -->
+      <h3 class="section-title">Compétences développées</h3>
+      <div class="badges">
+        <span class="badge">Créativité</span>
+        <span class="badge">Patronage</span>
+        <span class="badge">Stylisme</span>
+        <span class="badge">Modélisme</span>
+        <span class="badge">Couture</span>
+        <span class="badge">DAO</span>
+        <span class="badge">Entrepreneuriat</span>
+        <span class="badge">Gestion d'atelier</span>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 6. DÉBOUCHÉS -->
+      <h3 class="section-title">Débouchés</h3>
+      <div class="debouches-grid">
+        <div class="debouche-item">Styliste</div>
+        <div class="debouche-item">Modéliste</div>
+        <div class="debouche-item">Couturier</div>
+        <div class="debouche-item">Créateur de marque</div>
+        <div class="debouche-item">Responsable d'atelier</div>
+        <div class="debouche-item">Entrepreneur</div>
+        <div class="debouche-item">Costumier</div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 7. POURQUOI NAS MODE -->
+      <h3 class="section-title">Pourquoi choisir NAS MODE ?</h3>
+      <div class="highlight-box">
+        <p>
+          Depuis plus de vingt ans, NAS MODE accompagne les jeunes vers les métiers de la mode grâce à une pédagogie basée sur la pratique, des ateliers spécialisés et un encadrement professionnel.
+        </p>
+      </div>
+
+      <!-- 8. CTA -->
+      <div class="cta-wrap">
+        <button class="btn-postuler">POSTULER</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,359 @@
+{
+  "generatedAt": "2026-06-22T15:28:52.622Z",
+  "targets": {
+    "hero": {
+      "minWidth": 1600,
+      "idealWidth": 2000,
+      "note": "Bannière large — idéal 2000px+"
+    },
+    "portraits": {
+      "minWidth": 1200,
+      "idealWidth": 1600,
+      "note": "Portrait net — min 1200px"
+    },
+    "ateliers": {
+      "minWidth": 1400,
+      "idealWidth": 2000,
+      "note": "Ambiance atelier — idéal 1600–2000px"
+    },
+    "defiles": {
+      "minWidth": 1200,
+      "idealWidth": 1600,
+      "note": "Podium — plusieurs captures ~960px (limite source)"
+    },
+    "ecole": {
+      "minWidth": 1600,
+      "idealWidth": 2000,
+      "note": "Photo établissement — idéal 2000px"
+    }
+  },
+  "categories": {
+    "hero": [
+      {
+        "file": "image-1782086378954.png",
+        "width": 2000,
+        "height": 1339,
+        "format": "png",
+        "bytes": 4476987,
+        "megapixels": 2.68,
+        "mb": 4.27,
+        "status": "ideal"
+      },
+      {
+        "file": "image-1782086406158.png",
+        "width": 2000,
+        "height": 1342,
+        "format": "png",
+        "bytes": 3534598,
+        "megapixels": 2.68,
+        "mb": 3.37,
+        "status": "ideal"
+      }
+    ],
+    "portraits": [
+      {
+        "file": "portraits-screenshot-2026-06-21-181749.png",
+        "width": 1282,
+        "height": 1241,
+        "format": "png",
+        "bytes": 3371418,
+        "megapixels": 1.59,
+        "mb": 3.22,
+        "status": "ok"
+      },
+      {
+        "file": "portraits-screenshot-2026-06-21-182616.png",
+        "width": 1504,
+        "height": 1144,
+        "format": "png",
+        "bytes": 3306354,
+        "megapixels": 1.72,
+        "mb": 3.15,
+        "status": "ok"
+      },
+      {
+        "file": "portraits-screenshot-2026-06-21-182814.png",
+        "width": 2000,
+        "height": 993,
+        "format": "png",
+        "bytes": 3593404,
+        "megapixels": 1.99,
+        "mb": 3.43,
+        "status": "ideal"
+      }
+    ],
+    "ateliers": [
+      {
+        "file": "atelier-machine-detail-2026-06-21.png",
+        "width": 2000,
+        "height": 1183,
+        "format": "png",
+        "bytes": 4489453,
+        "megapixels": 2.37,
+        "mb": 4.28,
+        "status": "ideal"
+      },
+      {
+        "file": "atelier-mains-machine-2026-06-21.png",
+        "width": 1519,
+        "height": 1141,
+        "format": "png",
+        "bytes": 3712749,
+        "megapixels": 1.73,
+        "mb": 3.54,
+        "status": "ok"
+      },
+      {
+        "file": "atelier-screenshot-2026-06-21-193338.png",
+        "width": 2000,
+        "height": 1246,
+        "format": "png",
+        "bytes": 5812639,
+        "megapixels": 2.49,
+        "mb": 5.54,
+        "status": "ideal"
+      },
+      {
+        "file": "atelier-screenshot-2026-06-21-193447.png",
+        "width": 2000,
+        "height": 1253,
+        "format": "png",
+        "bytes": 5060969,
+        "megapixels": 2.51,
+        "mb": 4.83,
+        "status": "ideal"
+      },
+      {
+        "file": "image-1782086429765.png",
+        "width": 1339,
+        "height": 896,
+        "format": "png",
+        "bytes": 1746903,
+        "megapixels": 1.2,
+        "mb": 1.67,
+        "status": "small"
+      }
+    ],
+    "defiles": [
+      {
+        "file": "defiles-screenshot-2026-06-21-181913.png",
+        "width": 1665,
+        "height": 1103,
+        "format": "png",
+        "bytes": 4410938,
+        "megapixels": 1.84,
+        "mb": 4.21,
+        "status": "ideal"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-193111.png",
+        "width": 954,
+        "height": 1420,
+        "format": "png",
+        "bytes": 3150475,
+        "megapixels": 1.35,
+        "mb": 3,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-193158.png",
+        "width": 967,
+        "height": 1313,
+        "format": "png",
+        "bytes": 2856835,
+        "megapixels": 1.27,
+        "mb": 2.72,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195150.png",
+        "width": 924,
+        "height": 1376,
+        "format": "png",
+        "bytes": 3416885,
+        "megapixels": 1.27,
+        "mb": 3.26,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195242.png",
+        "width": 1575,
+        "height": 1039,
+        "format": "png",
+        "bytes": 3399319,
+        "megapixels": 1.64,
+        "mb": 3.24,
+        "status": "ok"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195330.png",
+        "width": 966,
+        "height": 1391,
+        "format": "png",
+        "bytes": 2682228,
+        "megapixels": 1.34,
+        "mb": 2.56,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195408.png",
+        "width": 971,
+        "height": 1407,
+        "format": "png",
+        "bytes": 2956330,
+        "megapixels": 1.37,
+        "mb": 2.82,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195435.png",
+        "width": 960,
+        "height": 1389,
+        "format": "png",
+        "bytes": 3014327,
+        "megapixels": 1.33,
+        "mb": 2.87,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195507.png",
+        "width": 960,
+        "height": 1391,
+        "format": "png",
+        "bytes": 2897045,
+        "megapixels": 1.34,
+        "mb": 2.76,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195803.png",
+        "width": 976,
+        "height": 1413,
+        "format": "png",
+        "bytes": 2449642,
+        "megapixels": 1.38,
+        "mb": 2.34,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195852.png",
+        "width": 963,
+        "height": 1383,
+        "format": "png",
+        "bytes": 2861590,
+        "megapixels": 1.33,
+        "mb": 2.73,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-195937.png",
+        "width": 1059,
+        "height": 1399,
+        "format": "png",
+        "bytes": 2759097,
+        "megapixels": 1.48,
+        "mb": 2.63,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-200013.png",
+        "width": 902,
+        "height": 1395,
+        "format": "png",
+        "bytes": 2579719,
+        "megapixels": 1.26,
+        "mb": 2.46,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-200722.png",
+        "width": 963,
+        "height": 1387,
+        "format": "png",
+        "bytes": 2746396,
+        "megapixels": 1.34,
+        "mb": 2.62,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-200752.png",
+        "width": 967,
+        "height": 1403,
+        "format": "png",
+        "bytes": 2703078,
+        "megapixels": 1.36,
+        "mb": 2.58,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-200855.png",
+        "width": 968,
+        "height": 1400,
+        "format": "png",
+        "bytes": 2647560,
+        "megapixels": 1.36,
+        "mb": 2.52,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-200938.png",
+        "width": 961,
+        "height": 1382,
+        "format": "png",
+        "bytes": 2718412,
+        "megapixels": 1.33,
+        "mb": 2.59,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-201005.png",
+        "width": 959,
+        "height": 1376,
+        "format": "png",
+        "bytes": 2573981,
+        "megapixels": 1.32,
+        "mb": 2.45,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-201130.png",
+        "width": 1173,
+        "height": 1393,
+        "format": "png",
+        "bytes": 3287469,
+        "megapixels": 1.63,
+        "mb": 3.14,
+        "status": "small"
+      },
+      {
+        "file": "defiles-screenshot-2026-06-21-201221.png",
+        "width": 1133,
+        "height": 1408,
+        "format": "png",
+        "bytes": 3027397,
+        "megapixels": 1.6,
+        "mb": 2.89,
+        "status": "small"
+      }
+    ],
+    "ecole": [
+      {
+        "file": "ecole-screenshot-2026-06-21-192644.png",
+        "width": 2000,
+        "height": 1314,
+        "format": "png",
+        "bytes": 6421484,
+        "megapixels": 2.63,
+        "mb": 6.12,
+        "status": "ideal"
+      }
+    ]
+  },
+  "summary": {
+    "total": 31,
+    "ideal": 8,
+    "ok": 4,
+    "small": 19,
+    "heavyFiles": 14
+  }
+}

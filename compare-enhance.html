@@ -1,0 +1,63 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>NAS MODE — Compare Enhanced vs Original</title>
+<style>
+  body{font-family:Inter,system-ui,Arial;margin:20px}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;align-items:start}
+  figure{border:1px solid #eee;padding:8px}
+  img{max-width:100%;height:auto;display:block}
+  figcaption{margin-top:8px;font-size:13px;color:#333}
+  .pair{display:flex;gap:12px}
+  .col{flex:1}
+  h1{margin-bottom:12px}
+  .note{color:#666;font-size:13px;margin-bottom:8px}
+</style>
+<h1>Comparaison — Avant (gauche) vs Après traitement (droite)</h1>
+<div class="note">
+  Backup de référence : <code>2026-06-22T15-16-24-300Z-enhance</code> (avant le passage doux actuel).<br>
+  Restauration : <code>npm run images:restore -- --backup=2026-06-22T15-16-24-300Z-enhance</code>
+</div>
+
+<div class="grid">
+  <figure>
+    <div class="pair">
+      <div class="col"><strong>Avant</strong><img src="/images/originals/backups/2026-06-22T15-16-24-300Z-enhance/ateliers/atelier-machine-detail-2026-06-21.png" alt="orig1"></div>
+      <div class="col"><strong>Après</strong><img src="/images/ateliers/atelier-machine-detail-2026-06-21.png" alt="enh1"></div>
+    </div>
+    <figcaption>ateliers/atelier-machine-detail-2026-06-21.png</figcaption>
+  </figure>
+
+  <figure>
+    <div class="pair">
+      <div class="col"><strong>Avant</strong><img src="/images/originals/backups/2026-06-22T15-16-24-300Z-enhance/defiles/defiles-screenshot-2026-06-21-200722.png" alt="orig2"></div>
+      <div class="col"><strong>Après</strong><img src="/images/defiles/defiles-screenshot-2026-06-21-200722.png" alt="enh2"></div>
+    </div>
+    <figcaption>defiles/defiles-screenshot-2026-06-21-200722.png (hautes lumières — à surveiller)</figcaption>
+  </figure>
+
+  <figure>
+    <div class="pair">
+      <div class="col"><strong>Avant</strong><img src="/images/originals/backups/2026-06-22T15-16-24-300Z-enhance/defiles/defiles-screenshot-2026-06-21-193158.png" alt="orig3"></div>
+      <div class="col"><strong>Après</strong><img src="/images/defiles/defiles-screenshot-2026-06-21-193158.png" alt="enh3"></div>
+    </div>
+    <figcaption>defiles/defiles-screenshot-2026-06-21-193158.png</figcaption>
+  </figure>
+
+  <figure>
+    <div class="pair">
+      <div class="col"><strong>Avant</strong><img src="/images/originals/backups/2026-06-22T15-16-24-300Z-enhance/ecole/ecole-screenshot-2026-06-21-192644.png" alt="orig4"></div>
+      <div class="col"><strong>Après</strong><img src="/images/ecole/ecole-screenshot-2026-06-21-192644.png" alt="enh4"></div>
+    </div>
+    <figcaption>ecole/ecole-screenshot-2026-06-21-192644.png</figcaption>
+  </figure>
+
+  <figure>
+    <div class="pair">
+      <div class="col"><strong>Avant</strong><img src="/images/originals/backups/2026-06-22T15-16-24-300Z-enhance/portraits/portraits-screenshot-2026-06-21-182616.png" alt="orig5"></div>
+      <div class="col"><strong>Après</strong><img src="/images/portraits/portraits-screenshot-2026-06-21-182616.png" alt="enh5"></div>
+    </div>
+    <figcaption>portraits/portraits-screenshot-2026-06-21-182616.png</figcaption>
+  </figure>
+</div>
+
+<p style="margin-top:18px;color:#666">Lancer <code>npm run dev</code> puis ouvrir cette page. Rapport dimensions : <code>npm run images:report</code></p>

@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="icon" href="/images/ecole/logo-nas-mode.png" sizes="any"/>
+<link rel="apple-touch-icon" href="/images/ecole/logo-nas-mode.png"/>
+<title>L'École — NAS MODE | Excellence Artisanale Ouest-Africaine</title>
+<meta property="og:title" content="L'École — NAS MODE | Excellence Artisanale Ouest-Africaine"/>
+<meta property="og:description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 20 ans d'excellence."/>
+<meta property="og:image" content="https://bensawadogo.github.io/NAS-mode/images/ecole/logo-nas-mode.png"/>
+<meta property="og:url" content="https://bensawadogo.github.io/NAS-mode/ecole/"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="L'École — NAS MODE | Excellence Artisanale Ouest-Africaine"/>
+<meta name="twitter:description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 20 ans d'excellence."/>
+<meta name="twitter:image" content="https://bensawadogo.github.io/NAS-mode/images/ecole/logo-nas-mode.png"/>
+<link rel="canonical" href="https://bensawadogo.github.io/NAS-mode/ecole/"/>
+
+<meta name="description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 20 ans d'excellence."/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/tailwind.css"/>
+<style>
+html.cursor-active * { cursor: none !important; }
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/ecole/logo-nas-mode.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.15s ease;
+    transform: translate(-50%, -50%);
+}
+.custom-cursor.hover {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+.custom-cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(193, 125, 90, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translate(-50%, -50%);
+}
+.custom-cursor-ring.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+}
+@media (max-width: 767px) {
+    * { cursor: auto !important; }
+    .custom-cursor, .custom-cursor-ring { display: none; }
+}
+body {
+    background-color: #FAF7F2;
+    color: #1A1A1A;
+    overflow-x: hidden;
+}
+.ecole-hero {
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.ecole-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-color: #1A1A1A;
+}
+.ecole-hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.ecole-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.40);
+}
+.ecole-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.ecole-hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 24px;
+}
+.ecole-hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 400;
+    color: #FAF7F2;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.ecole-hero-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    font-weight: 300;
+    color: rgba(250,247,242,0.75);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+.ecole-section {
+    padding: 120px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .ecole-section { padding: 80px 20px; }
+}
+.ecole-section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+@media (max-width: 768px) {
+    .ecole-section-header { margin-bottom: 48px; }
+}
+.ecole-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #C17D5A;
+    margin-bottom: 16px;
+}
+.ecole-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: #1A1A1A;
+    line-height: 1.2;
+}
+.ecole-title-light {
+    color: #FAF7F2;
+}
+.ecole-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #474741;
+    line-height: 1.8;
+}
+.ecole-text-light {
+    color: rgba(250,247,242,0.8);
+}
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 600ms ease-out, transform 600ms ease-out;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 100ms; }
+.reveal-delay-2 { transition-delay: 200ms; }
+.reveal-delay-3 { transition-delay: 300ms; }
+.reveal-delay-4 { transition-delay: 400ms; }
+
+/* Histoire */
+.histoire-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    align-items: center;
+}
+@media (min-width: 768px) {
+    .histoire-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+    }
+}
+.histoire-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+}
+.histoire-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.histoire-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.05);
+}
+
+/* Mot fondatrice */
+.mot-section {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+.mot-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 80vh;
+}
+@media (min-width: 768px) {
+    .mot-grid {
+        grid-template-columns: 1fr 1fr;
+        min-height: 90vh;
+    }
+}
+.mot-photo {
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+}
+.mot-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.mot-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 40px;
+    background: #1A1A1A;
+    color: #FAF7F2;
+}
+@media (min-width: 768px) {
+    .mot-content { padding: 80px 60px; }
+}
+.mot-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.4;
+    color: #FAF7F2;
+    margin-bottom: 32px;
+}
+.mot-quote::before {
+    content: '\201C';
+    font-size: 4rem;
+    line-height: 0.5;
+    display: block;
+    color: #C17D5A;
+    margin-bottom: 16px;
+    font-style: normal;
+}
+.mot-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.7);
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+.mot-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #FAF7F2;
+}
+.mot-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.5);
+    margin-top: 4px;
+}
+.mot-signature {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: rgba(250,247,242,0.2);
+    margin-top: 24px;
+}
+
+/* Cartes mission */
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+@media (min-width: 640px) {
+    .mission-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+}
+.mission-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 48px 32px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+.mission-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    border-color: rgba(193,125,90,0.2);
+}
+.mission-card-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 24px;
+    color: #C17D5A;
+}
+.mission-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin-bottom: 12px;
+}
+.mission-card-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #474741;
+    line-height: 1.7;
+}
+
+/* Grille pourquoi choisir */
+.choisir-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+@media (min-width: 640px) {
+    .choisir-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+    .choisir-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.choisir-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 36px 28px;
+    transition: all 0.4s ease;
+}
+.choisir-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+}
+.choisir-card-icon {
+    width: 40px;
+    height: 40px;
+    color: #C17D5A;
+    margin-bottom: 20px;
+}
+.choisir-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+}
+.choisir-card-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #474741;
+    line-height: 1.7;
+}
+
+/* Équipe */
+.equipe-section {
+    position: relative;
+    overflow: hidden;
+}
+.equipe-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    align-items: center;
+}
+@media (min-width: 768px) {
+    .equipe-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+    }
+}
+.equipe-photo {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+}
+.equipe-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Chiffres */
+.chiffres-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    text-align: center;
+}
+@media (min-width: 640px) {
+    .chiffres-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+}
+@media (min-width: 1024px) {
+    .chiffres-grid { grid-template-columns: repeat(5, 1fr); gap: 60px; }
+}
+.chiffre-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    color: #C17D5A;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+.chiffre-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #474741;
+    letter-spacing: 0.05em;
+}
+
+/* Campus */
+.campus-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+.campus-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+@media (min-width: 768px) {
+    .campus-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
+}
+.campus-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+.campus-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+.campus-card-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    object-fit: cover;
+    display: block;
+}
+.campus-card-body {
+    padding: 32px 28px;
+}
+.campus-card-badge {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-bottom: 12px;
+    border-radius: 2px;
+}
+.campus-card-badge.existing {
+    background: #C17D5A;
+    color: #FAF7F2;
+}
+.campus-card-badge.upcoming {
+    background: #1A1A1A;
+    color: #FAF7F2;
+}
+.campus-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin-bottom: 6px;
+}
+.campus-card-location {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #C17D5A;
+    margin-bottom: 16px;
+}
+.campus-card-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #474741;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+.campus-card-details {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #474741;
+    line-height: 1.8;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+}
+.campus-card-details span {
+    display: block;
+}
+.campus-card-details strong {
+    font-weight: 500;
+    color: #1A1A1A;
+}
+
+/* Partenaires */
+.partenaires-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+@media (min-width: 640px) {
+    .partenaires-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+}
+.partenaire-logo {
+    aspect-ratio: 3/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.06);
+    padding: 20px;
+    transition: border-color 0.3s ease;
+}
+.partenaire-logo:hover {
+    border-color: rgba(193,125,90,0.3);
+}
+.partenaire-logo img,
+.partenaire-logo svg {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+.partenaire-logo-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: #474741;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+/* CTA */
+.cta-section {
+    background: #C17D5A;
+    padding: 100px 24px;
+    text-align: center;
+}
+@media (max-width: 768px) {
+    .cta-section { padding: 80px 20px; }
+}
+.cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    color: #FAF7F2;
+    margin-bottom: 40px;
+    line-height: 1.2;
+}
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+}
+@media (min-width: 640px) {
+    .cta-buttons { flex-direction: row; gap: 24px; }
+}
+.cta-btn {
+    display: inline-block;
+    padding: 16px 48px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.cta-btn-primary {
+    background: #FAF7F2;
+    color: #1A1A1A;
+}
+.cta-btn-primary:hover {
+    background: #FFFFFF;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.cta-btn-secondary {
+    background: transparent;
+    color: #FAF7F2;
+    border: 1.5px solid rgba(250,247,242,0.5);
+}
+.cta-btn-secondary:hover {
+    border-color: #FAF7F2;
+    background: rgba(250,247,242,0.1);
+    transform: translateY(-2px);
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "NAS MODE",
+  "description": "Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma au Burkina Faso",
+  "url": "https://bensawadogo.github.io/NAS-mode/",
+  "foundingDate": "2001",
+  "founder": {
+    "@type": "Person",
+    "name": "Safi Ouattara Diallo"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "BF"
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="custom-cursor" id="custom-cursor"></div>
+<div class="custom-cursor-ring" id="custom-cursor-ring"></div>
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-ivory-base/95 backdrop-blur-sm border-b border-deep-ink/10">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between px-6 md:px-12 h-20 md:h-48">
+<a href="../index.html" class="flex items-center gap-3">
+<picture><source srcset="../images/ecole/logo-nas-mode.webp" type="image/webp"><img src="../images/ecole/logo-nas-mode.png" alt="NAS MODE" class="h-20 md:h-44 w-auto"/></picture>
+<span class="font-display-xl text-xl text-deep-ink tracking-wide hidden md:block" style="font-family: 'EB Garamond', serif;">NAS MODE</span>
+</a>
+<div class="flex items-center gap-8">
+<a href="index.html" class="font-label-caps text-label-caps text-terracotta-accent cursor-pointer hidden md:block">L'École</a>
+<a href="../index.html#formations" class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer hidden md:block">Nos Formations</a>
+<a href="../defiles-gallery/index.html" class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer hidden md:block">Défilés</a>
+<a href="../soutenir/index.html" class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer hidden md:block">Nous Soutenir</a>
+<a class="bg-deep-ink text-ivory-base px-8 py-3 font-label-caps text-label-caps hover:bg-terracotta-accent transition-colors duration-300 cursor-pointer hidden md:inline-block" href="mailto:info@nasmodeformation.com">Contact</a>
+<button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-1"></span>
+<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300" id="menu-bar-2"></span>
+<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-3"></span>
+</button>
+</div>
+</div>
+</nav>
+<div class="fixed inset-0 z-40 bg-ivory-base flex flex-col items-center justify-center gap-8 transition-all duration-500 ease-in-out" id="mobile-menu" style="transform: translateX(100%); opacity: 0;">
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../index.html#formations" onclick="toggleMobileMenu()">Nos Formations</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../defiles-gallery/index.html" onclick="toggleMobileMenu()">Défilés</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../soutenir/index.html" onclick="toggleMobileMenu()">Nous Soutenir</a>
+<a class="bg-deep-ink text-ivory-base px-12 py-5 font-label-caps text-label-caps cursor-pointer mt-4" href="mailto:info@nasmodeformation.com">Contact</a>
+</div>
+
+<main>
+
+<!-- 1. HERO -->
+<section class="ecole-hero">
+<div class="ecole-hero-bg">
+<picture><source srcset="../images/ecole/ecole-screenshot-2026-06-21-192644.webp" type="image/webp"><img src="../images/ecole/ecole-screenshot-2026-06-21-192644.png" alt="NAS MODE — Photo de l'école"/></picture>
+</div>
+<div class="ecole-hero-overlay"></div>
+<div class="ecole-hero-content">
+<p class="ecole-hero-subtitle reveal">NAS MODE — Centre de Formation Professionnelle</p>
+<h1 class="ecole-hero-title reveal reveal-delay-1">L'École NAS MODE</h1>
+<p class="ecole-hero-desc reveal reveal-delay-2">Depuis plus de 20 ans, NAS MODE accompagne les talents vers les métiers de la mode, de la beauté et de la création.</p>
+<div class="reveal reveal-delay-3">
+<a href="#histoire" class="cta-btn cta-btn-primary" style="display: inline-block; cursor: pointer;">DÉCOUVRIR NOTRE HISTOIRE</a>
+</div>
+</div>
+<div style="position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; cursor: pointer;" onclick="document.getElementById('histoire').scrollIntoView({behavior:'smooth'})">
+<span style="color: rgba(250,247,242,0.4); font-size: 24px; font-family: 'Inter', sans-serif; animation: scrollDown 2s ease-in-out infinite; display: block;">↓</span>
+</div>
+<style>
+@keyframes scrollDown {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(8px); opacity: 1; }
+}
+</style>
+</section>
+
+<!-- 2. NOTRE HISTOIRE -->
+<section id="histoire" class="ecole-section">
+<div class="histoire-grid">
+<div class="histoire-image reveal">
+<picture><source srcset="../images/ateliers/atelier-screenshot-2026-06-21-193338.webp" type="image/webp"><img src="../images/ateliers/atelier-screenshot-2026-06-21-193338.png" alt="NAS MODE — Histoire et traditions" style="width: 100%; height: 100%; object-fit: cover;"/></picture>
+</div>
+<div class="reveal reveal-delay-1" style="padding: 20px 0;">
+<p class="ecole-label">NOTRE HISTOIRE</p>
+<h2 class="ecole-title" style="margin-bottom: 32px;">Une école née d'une passion.</h2>
+<p class="ecole-text" style="margin-bottom: 24px;">En 2001, Safi Ouattara Diallo fonde NAS MODE à Ouagadougou avec une vision claire : offrir aux jeunes burkinabè une formation professionnelle d'excellence dans les métiers de la mode et de la beauté.</p>
+<p class="ecole-text" style="margin-bottom: 24px;">D'abord modeste atelier de couture, l'école s'est agrandie année après année. En 2008, la rencontre avec Bea Petri, venue de Suisse via Swisscontact, marque un tournant décisif. Grâce à son engagement et aux donateurs internationaux, NAS MODE s'est dotée d'infrastructures modernes.</p>
+<p class="ecole-text">Aujourd'hui, plus de 25 ans après sa création, l'école forme près de 200 jeunes chaque année et rayonne bien au-delà des frontières du Burkina Faso, portée par une conviction simple : la formation est le plus puissant levier de transformation sociale.</p>
+<p class="ecole-text" style="margin-top: 24px;">Forte de cet héritage, NAS MODE franchit une nouvelle étape en ouvrant un second campus à Abidjan, en Côte d'Ivoire. Ce nouveau chapitre incarne notre volonté de rayonner dans toute l'Afrique de l'Ouest et d'offrir aux jeunes ivoiriens la même excellence qui fait notre renomée au Burkina Faso.</p>
+</div>
+</div>
+</section>
+
+<!-- 3. MOT DE LA FONDATRICE -->
+<section class="mot-section">
+<div class="mot-grid">
+<div class="mot-photo reveal">
+<picture><source srcset="../images/portraits/portraits-screenshot-2026-06-21-182814.webp" type="image/webp"><img src="../images/portraits/portraits-screenshot-2026-06-21-182814.png" alt="Safi Ouattara Diallo — Fondatrice de NAS MODE" style="width: 100%; height: 100%; object-fit: cover;"/></picture>
+</div>
+<div class="mot-content reveal reveal-delay-1">
+<div>
+<div class="mot-quote">L'éducation est l'arme la plus puissante pour changer le monde. Cette conviction a guidé chacun de nos pas depuis la création de NAS MODE.</div>
+<p class="mot-text">Notre mission est de donner à chaque jeune la chance d'apprendre un métier, de développer son talent et de construire son avenir. Nous croyons en une formation exigeante, ancrée dans la pratique et ouverte sur le monde.</p>
+<p class="mot-name">Safi Ouattara Diallo</p>
+<p class="mot-role">Fondatrice de NAS MODE</p>
+<div class="mot-signature">Safi Ouattara Diallo</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 4. NOTRE MISSION -->
+<section class="ecole-section">
+<div class="ecole-section-header reveal">
+<p class="ecole-label">NOTRE MISSION</p>
+<h2 class="ecole-title">Ce qui nous anime.</h2>
+</div>
+<div class="mission-grid">
+<div class="reveal mission-card">
+<div class="mission-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+</div>
+<h3 class="mission-card-title">Mission</h3>
+<p class="mission-card-text">Former des professionnels compétents et créatifs dans les métiers de la mode, de la coiffure, de l'esthétique et du maquillage cinéma.</p>
+</div>
+<div class="reveal mission-card reveal-delay-1">
+<div class="mission-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+</div>
+<h3 class="mission-card-title">Vision</h3>
+<p class="mission-card-text">Devenir une référence régionale de l'enseignement des métiers de la mode et de la beauté, et contribuer à l'émergence d'une industrie créative ouest-africaine.</p>
+</div>
+<div class="reveal mission-card reveal-delay-2">
+<div class="mission-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="48" height="48"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+</div>
+<h3 class="mission-card-title">Valeurs</h3>
+<p class="mission-card-text">Excellence, transmission, solidarité et respect de la dignité humaine. Nous croyons que chaque talent mérite une chance.</p>
+</div>
+</div>
+</section>
+
+<!-- 5. POURQUOI CHOISIR NAS MODE -->
+<section class="ecole-section" style="background: #FAF7F2; max-width: 100%; padding-left: 0; padding-right: 0;">
+<div style="max-width: 1200px; margin: 0 auto; padding: 120px 24px;">
+<div class="ecole-section-header reveal">
+<p class="ecole-label">POURQUOI NOUS CHOISIR</p>
+<h2 class="ecole-title">Les atouts de NAS MODE.</h2>
+</div>
+<div class="choisir-grid">
+<div class="reveal choisir-card">
+<div class="choisir-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+</div>
+<h3 class="choisir-card-title">Formation pratique</h3>
+<p class="choisir-card-text">Nos programmes sont conçus pour privilégier la pratique : ateliers, projets concrets et stages en entreprise.</p>
+</div>
+<div class="reveal choisir-card reveal-delay-1">
+<div class="choisir-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+</div>
+<h3 class="choisir-card-title">Formateurs expérimentés</h3>
+<p class="choisir-card-text">Une équipe pédagogique passionnée, alliant expertise technique et expérience du terrain.</p>
+</div>
+<div class="reveal choisir-card reveal-delay-2">
+<div class="choisir-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+</div>
+<h3 class="choisir-card-title">Diplômes reconnus</h3>
+<p class="choisir-card-text">Nos certifications sont agréées par l'État burkinabè, garantissant une formation de qualité.</p>
+</div>
+<div class="reveal choisir-card reveal-delay-3">
+<div class="choisir-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+</div>
+<h3 class="choisir-card-title">Insertion professionnelle</h3>
+<p class="choisir-card-text">80% de nos diplômés exercent dans leur domaine, grâce à un réseau de partenaires et un suivi actif.</p>
+</div>
+<div class="reveal choisir-card">
+<div class="choisir-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+</div>
+<h3 class="choisir-card-title">Partenariats</h3>
+<p class="choisir-card-text">Des collaborations avec Swisscontact, FESPACO et des partenaires internationaux pour une ouverture sur le monde.</p>
+</div>
+<div class="reveal choisir-card reveal-delay-1">
+<div class="choisir-card-icon">
+<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+</div>
+<h3 class="choisir-card-title">Accompagnement</h3>
+<p class="choisir-card-text">Suivi personnalisé, bourses pour les talents méritants et microcrédits pour les entrepreneurs en herbe.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 6. NOS CAMPUS -->
+<section class="ecole-section">
+<div class="ecole-section-header reveal">
+<p class="ecole-label">NOS CAMPUS</p>
+<h2 class="ecole-title">Deux campus, une même excellence.</h2>
+</div>
+<p class="campus-intro reveal ecole-text">De Ouagadougou à Abidjan, NAS MODE étend son excellence à travers l'Afrique de l'Ouest pour offrir une formation professionnelle d'élite au plus grand nombre.</p>
+<div class="campus-grid">
+<div class="reveal campus-card">
+<picture><source srcset="../images/ecole/ecole-screenshot-2026-06-21-192644.webp" type="image/webp"><img class="campus-card-image" src="../images/ecole/ecole-screenshot-2026-06-21-192644.png" alt="Campus Ouagadougou" loading="lazy"/></picture>
+<div class="campus-card-body">
+<span class="campus-card-badge existing">Depuis 2001</span>
+<h3 class="campus-card-title">Campus Ouagadougou</h3>
+<p class="campus-card-location">Ouagadougou, Burkina Faso</p>
+<p class="campus-card-text">Le campus historique, berceau de NAS MODE. Des ateliers modernes de couture, coiffure, esthétique et un studio de maquillage cinéma.</p>
+<div class="campus-card-details">
+<span><strong>Formations :</strong> Stylisme &amp; Couture, Coiffure, Esthétique, Maquillage Cinéma</span>
+<span><strong>Contact :</strong> info@nasmodeformation.com</span>
+</div>
+</div>
+</div>
+<div class="reveal campus-card reveal-delay-1">
+<img class="campus-card-image" src="../images/ecole/campus-abidjan.svg" alt="Campus Abidjan" loading="lazy"/>
+<div class="campus-card-body">
+<span class="campus-card-badge upcoming">Prochainement</span>
+<h3 class="campus-card-title">Campus Abidjan</h3>
+<p class="campus-card-location">Abidjan, Côte d'Ivoire</p>
+<p class="campus-card-text">NAS MODE ouvre son second campus à Abidjan, portant son excellence au-delà des frontières pour former les talents de demain.</p>
+<div class="campus-card-details">
+<span><strong>Formations :</strong> Stylisme &amp; Couture, Coiffure, Esthétique, Maquillage Cinéma</span>
+<span><strong>Contact :</strong> info@nasmodeformation.com</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 7. L'ÉQUIPE -->
+<section class="ecole-section">
+<div class="equipe-grid">
+<div class="reveal equipe-photo">
+<picture><source srcset="../images/ateliers/equipe-nas-mode.webp" type="image/webp"><img src="../images/ateliers/equipe-nas-mode.png" alt="Équipe NAS MODE" style="width: 100%; height: 100%; object-fit: cover;"/></picture>
+</div>
+<div class="reveal reveal-delay-1" style="padding: 20px 0;">
+<p class="ecole-label">L'ÉQUIPE</p>
+<h2 class="ecole-title" style="margin-bottom: 24px;">Une équipe engagée.</h2>
+<p class="ecole-text" style="margin-bottom: 32px;">Derrière NAS MODE, une équipe de formateurs passionnés, de partenaires dévoués et de collaborateurs qui œuvrent chaque jour pour offrir aux jeunes la meilleure formation possible.</p>
+<a href="../index.html#formations" class="cta-btn cta-btn-primary" style="display: inline-block; cursor: pointer; background: #C17D5A; color: #FAF7F2; text-decoration: none;">DÉCOUVRIR NOS FORMATIONS</a>
+</div>
+</div>
+</section>
+
+<!-- 8. NOS CHIFFRES -->
+<section style="background: #1A1A1A; padding: 100px 24px;">
+<div class="ecole-section-header reveal">
+<p class="ecole-label" style="color: #C17D5A;">NOS CHIFFRES</p>
+<h2 class="ecole-title ecole-title-light">L'impact en chiffres.</h2>
+</div>
+<div class="chiffres-grid" style="max-width: 900px; margin: 0 auto;">
+<div class="reveal">
+<div class="chiffre-number" data-count="25">0</div>
+<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Années d'expérience</p>
+</div>
+<div class="reveal reveal-delay-1">
+<div class="chiffre-number" data-count="2500">0</div>
+<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Apprenants formés</p>
+</div>
+<div class="reveal reveal-delay-2">
+<div class="chiffre-number" data-count="4">0</div>
+<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Filières</p>
+</div>
+<div class="reveal reveal-delay-3">
+<div class="chiffre-number" data-count="80">0</div>
+<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">% d'insertion</p>
+</div>
+<div class="reveal reveal-delay-4">
+<div class="chiffre-number" data-count="2">0</div>
+<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Campus</p>
+</div>
+</div>
+</section>
+
+<!-- 9. PARTENAIRES -->
+<section class="ecole-section">
+<div class="ecole-section-header reveal">
+<p class="ecole-label">PARTENAIRES</p>
+<h2 class="ecole-title">Ils nous font confiance.</h2>
+</div>
+<div class="partenaires-grid reveal">
+    <div class="partenaire-logo"><img src="../images/partenaires/swisscontact.svg" alt="Swisscontact" loading="lazy"/></div>
+    <div class="partenaire-logo"><img src="../images/partenaires/foerderverein-nas-mode.svg" alt="Förderverein NAS MODE (Suisse)" loading="lazy"/></div>
+    <div class="partenaire-logo"><img src="../images/partenaires/burkina-faso-armoiries.svg" alt="État du Burkina Faso" loading="lazy"/></div>
+    <div class="partenaire-logo"><img src="../images/partenaires/fespaco-logo.png" alt="FESPACO" loading="lazy"/></div>
+    <div class="partenaire-logo"><img src="../images/partenaires/monika-thomas.svg" alt="Monika Burkhart &amp; Thomas Ferreux" loading="lazy"/></div>
+    <div class="partenaire-logo"><img src="../images/partenaires/donateurs.svg" alt="Donateurs individuels" loading="lazy"/></div>
+</div>
+</section>
+
+<!-- 10. APPEL À L'ACTION -->
+<section class="cta-section">
+<div class="reveal">
+<h2 class="cta-title">Prêt à construire votre avenir ?</h2>
+<div class="cta-buttons">
+<a href="../index.html#formations" class="cta-btn cta-btn-primary" style="cursor: pointer; text-decoration: none;">DÉCOUVRIR LES FORMATIONS</a>
+<a href="../index.html#ecole" class="cta-btn cta-btn-secondary" style="cursor: pointer; text-decoration: none;">POSTULER</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-deep-ink text-ivory-base px-6 md:px-12 py-16">
+<div class="max-w-[1200px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-16 max-md:mb-10">
+<div class="space-y-6">
+<div class="font-display-xxl text-headline-lg" style="font-family: 'EB Garamond', serif;">NAS MODE</div>
+<p class="font-body-md text-primary-fixed-dim max-w-xs" style="color: rgba(250,247,242,0.5);">Élever l'artisanat ouest-africain grâce à une formation professionnelle d'élite et des laboratoires de design modernes.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">ACADÉMIQUE</h4>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html#formations">Programme</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html#formations">Admissions</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html#formations">Notre impact</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">CONTACT</h4>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="mailto:info@nasmodeformation.com">Contact</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html#formations">Presse</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="#">Mentions légales</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">NEWSLETTER</h4>
+<input type="email" placeholder="Adresse Email" class="bg-transparent border-b border-ivory-base/30 pb-3 font-body-md text-ivory-base placeholder:text-ivory-base/30 focus:outline-none focus:border-terracotta-accent transition-colors"/>
+<button class="font-label-caps text-label-caps text-terracotta-accent mt-2 hover:text-ivory-base transition-colors cursor-pointer text-left" onclick="window.location.href='mailto:info@nasmodeformation.com'">S'ABONNER →</button>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-ivory-base/10">
+<p class="font-body-sm" style="color: rgba(250,247,242,0.4);">© 2024 NAS MODE Ouagadougou · Abidjan. Excellence Artisanale Ouest-Africaine.</p>
+<div class="flex items-center gap-6">
+<a href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" class="font-body-sm hover:text-terracotta-accent transition-colors" style="color: rgba(250,247,242,0.5);">Facebook</a>
+<a href="mailto:info@nasmodeformation.com" class="font-body-sm hover:text-terracotta-accent transition-colors" style="color: rgba(250,247,242,0.5);">Contact</a>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+(function() { try { var cursor = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (cursor && ring) { cursor.style.left = (window.innerWidth / 2) + 'px'; cursor.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; document.addEventListener('mousemove', function(e) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }); document.addEventListener('mouseleave', function() { cursor.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function() { cursor.style.display = ''; ring.style.display = ''; }); var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]'; document.addEventListener('mouseover', function(e) { var t = e.target.closest(interactive); if (t) { cursor.classList.add('hover'); ring.classList.add('hover'); } }); document.addEventListener('mouseout', function(e) { var t = e.target.closest(interactive); if (t) { cursor.classList.remove('hover'); ring.classList.remove('hover'); } }); document.documentElement.classList.add('cursor-active'); } } catch(e) {} var revealElements = document.querySelectorAll('.reveal'); function checkReveal() { for (var i = 0; i < revealElements.length; i++) { var rect = revealElements[i].getBoundingClientRect(); if (rect.top < window.innerHeight * 0.9) { revealElements[i].classList.add('visible'); } } } window.addEventListener('scroll', checkReveal); window.addEventListener('resize', checkReveal); checkReveal(); var counters = document.querySelectorAll('.chiffre-number'); var counted = false; function startCounters() { if (counted) return; var countSection = document.querySelector('.chiffres-grid'); if (!countSection) return; var rect = countSection.getBoundingClientRect(); if (rect.top < window.innerHeight * 0.85) { counted = true; counters.forEach(function(el) { var target = parseInt(el.getAttribute('data-count')); if (isNaN(target)) return; var current = 0; var step = Math.max(1, Math.ceil(target / 60)); var timer = setInterval(function() { current += step; if (current >= target) { current = target; clearInterval(timer); } el.textContent = current + (target === 80 || target === 25 || target === 4 ? '' : '+'); }, 20); }); } } window.addEventListener('scroll', startCounters); startCounters(); })(); function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.classList.remove('open'); document.body.style.overflow = ''; bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.classList.add('open'); document.body.style.overflow = 'hidden'; bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; } }
+</script>
+</body>
+</html>

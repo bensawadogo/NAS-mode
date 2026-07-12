@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NAS MODE | Excellence Artisanale Ouest-Africaine</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@300;400;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+@font-face {
+  font-family: 'Zina';
+  src: url('/fonts/Zina-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-tertiary": "#ffffff",
+        "tertiary-container": "#faf7f6",
+        "on-primary-container": "#72716d",
+        "primary-fixed-dim": "#c8c6c2",
+        "surface-container-low": "#f5f3f3",
+        "primary": "#5f5e5b",
+        "on-secondary-container": "#722700",
+        "on-primary-fixed": "#1c1c19",
+        "secondary-fixed": "#ffdbce",
+        "on-secondary-fixed": "#370e00",
+        "tertiary-fixed": "#e5e2e1",
+        "on-surface": "#1b1c1c",
+        "outline-variant": "#c8c7be",
+        "on-error": "#ffffff",
+        "surface-container-highest": "#e3e2e2",
+        "on-tertiary-container": "#727171",
+        "tertiary-fixed-dim": "#c8c6c5",
+        "deep-ink": "#1A1A1A",
+        "outline": "#787770",
+        "error": "#ba1a1a",
+        "surface-variant": "#e3e2e2",
+        "on-primary-fixed-variant": "#474743",
+        "background": "#fbf9f9",
+        "primary-container": "#faf7f2",
+        "secondary-container": "#fd8d5e",
+        "surface-tint": "#5f5e5b",
+        "inverse-primary": "#c8c6c2",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#1c1b1b",
+        "secondary": "#9c441b",
+        "inverse-on-surface": "#f2f0f0",
+        "surface-container": "#efeded",
+        "on-secondary": "#ffffff",
+        "on-background": "#1b1c1c",
+        "surface-dim": "#dbdad9",
+        "primary-fixed": "#e5e2dd",
+        "terracotta-accent": "#B5562C",
+        "chapter-ghost": "#E5E5E5",
+        "surface": "#fbf9f9",
+        "tertiary": "#5f5e5e",
+        "on-primary": "#ffffff",
+        "on-error-container": "#93000a",
+        "surface-bright": "#fbf9f9",
+        "inverse-surface": "#303031",
+        "surface-container-high": "#e9e8e7",
+        "on-tertiary-fixed-variant": "#474746",
+        "on-surface-variant": "#474741",
+        "on-secondary-fixed-variant": "#7d2d04",
+        "secondary-fixed-dim": "#ffb598",
+        "ivory-base": "#FAF7F2",
+        "error-container": "#ffdad6"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "container-max": "1440px",
+        "margin-desktop": "80px",
+        "section-gap": "120px",
+        "gutter": "32px",
+        "margin-mobile": "24px"
+      },
+      "fontFamily": {
+        "label-caps": ["Inter"],
+        "display-xxl": ["EB Garamond"],
+        "headline-lg-mobile": ["EB Garamond"],
+        "body-md": ["Inter"],
+        "body-lg": ["Inter"],
+        "headline-lg": ["EB Garamond"],
+        "chapter-number": ["Inter"]
+      },
+      "fontSize": {
+        "label-caps": ["12px", { "lineHeight": "100%", "letterSpacing": "0.15em", "fontWeight": "600" }],
+        "display-xxl": ["120px", { "lineHeight": "110%", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+        "headline-lg-mobile": ["42px", { "lineHeight": "115%", "fontWeight": "400" }],
+        "body-md": ["16px", { "lineHeight": "160%", "fontWeight": "400" }],
+        "body-lg": ["20px", { "lineHeight": "160%", "fontWeight": "300" }],
+        "headline-lg": ["64px", { "lineHeight": "110%", "fontWeight": "400" }],
+        "chapter-number": ["160px", { "lineHeight": "100%", "letterSpacing": "-0.05em", "fontWeight": "700" }]
+      }
+    },
+  },
+}
+</script>
+<style>
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+body {
+    background-color: #FAF7F2;
+    color: #1A1A1A;
+    overflow-x: hidden;
+}
+.nav-scrolled {
+    background-color: #FAF7F2 !important;
+    box-shadow: 0 4px 15px -1px rgb(0 0 0 / 0.05);
+}
+#preloader {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FAF7F2;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1), opacity 0.6s ease-in-out;
+    pointer-events: all;
+}
+#preloader.loaded {
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+#preloader-logo {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+#preloader-logo.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+body.is-loading {
+    overflow: hidden;
+}
+@media (min-width: 1024px) {
+    body { cursor: none; }
+    body a, body button, body .cursor-pointer, body .image-container { cursor: none; }
+    .custom-cursor {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        background-color: #B5562C;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease-out, scale 0.3s cubic-bezier(0.2, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.2, 0, 0.2, 1);
+    }
+    .custom-cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #B5562C;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: width 0.4s cubic-bezier(0.2, 0, 0.2, 1), height 0.4s cubic-bezier(0.2, 0, 0.2, 1), border-width 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+        will-change: transform;
+    }
+    .custom-cursor.active { scale: 0.5; opacity: 0.8; }
+    .custom-cursor-ring.active { width: 60px; height: 60px; border-width: 2px; }
+}
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 600ms cubic-bezier(0.2, 0, 0.2, 1), transform 600ms cubic-bezier(0.2, 0, 0.2, 1);
+}
+.reveal-up.is-visible { opacity: 1; transform: translateY(0); }
+.reveal-image {
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 700ms cubic-bezier(0.2, 0, 0.2, 1), transform 700ms cubic-bezier(0.2, 0, 0.2, 1);
+}
+.reveal-image.is-visible { opacity: 1; transform: scale(1); }
+.reveal-chapter {
+    opacity: 0;
+    transition: opacity 800ms cubic-bezier(0.2, 0, 0.2, 1);
+}
+.reveal-chapter.is-visible { opacity: 0.4; }
+.stagger-1 { transition-delay: 100ms; }
+.stagger-2 { transition-delay: 200ms; }
+.stagger-3 { transition-delay: 300ms; }
+.image-container { position: relative; overflow: hidden; }
+.image-container img { transition: transform 500ms cubic-bezier(0.2, 0, 0.2, 1); }
+.image-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    transition: opacity 500ms cubic-bezier(0.2, 0, 0.2, 1);
+    pointer-events: none;
+}
+.image-container:hover img { transform: scale(1.08); }
+.image-container:hover::after { opacity: 0.15; }
+.chapter-number-bg { user-select: none; z-index: -1; pointer-events: none; will-change: transform; }
+.magnetic-wrap { display: inline-block; position: relative; }
+#magnetic-button { transition: transform 0.4s cubic-bezier(0.2, 0, 0.2, 1); will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+    .reveal-up, .reveal-image, .reveal-chapter, .custom-cursor, .custom-cursor-ring, #magnetic-button {
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        display: none !important;
+    }
+    body { cursor: auto !important; }
+}
+</style>
+</head>
+<body class="is-loading">
+<div class="fixed top-0 left-0 w-full h-[3px] bg-black/5 z-[60] pointer-events-none" id="reading-progress-container">
+<div class="h-full bg-terracotta-accent w-0 transition-all duration-150 ease-out" id="reading-progress-fill"></div>
+</div>
+<div class="custom-cursor" id="cursor-dot"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+<div id="preloader">
+<div class="text-center">
+<div class="font-display-xxl text-headline-lg md:text-[80px] tracking-tighter text-deep-ink" id="preloader-logo">NAS MODE</div>
+</div>
+</div>
+<nav class="flex justify-between items-center w-full px-margin-desktop py-6 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav">
+<a href="#" class="block"><img src="/images/ecole/logo-nas-mode.png" alt="NAS MODE" class="h-20 w-auto"/></a>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="#formations">Nos Formations</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="defiles.html">Défilés</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="#ecole">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="#soutenir">Nous Soutenir</a>
+</div>
+<a class="bg-deep-ink text-ivory-base px-10 py-4 font-label-caps text-label-caps hover:bg-terracotta-accent transition-colors duration-300 cursor-pointer inline-block" href="mailto:info@nasmodeformation.com">Nous Contacter</a>
+</nav>
+<header class="relative h-screen w-full flex flex-col items-end justify-end overflow-hidden">
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="w-full h-[120%] -top-[10%] bg-cover bg-center will-change-transform" id="hero-bg" style="background-image: url('/images/portraits/portraits-screenshot-2026-06-21-182814.png');"></div>
+<div class="absolute inset-0 bg-black/5"></div>
+</div>
+<div class="absolute bottom-20 left-20 text-left z-10 space-y-6" id="hero-content">
+<h1 class="text-display-xxl md:text-[160px] drop-shadow-sm" style="font-family: 'Zina', serif; font-size: 160px; line-height: 1.1; color: #C9A04D; text-shadow: 0 4px 30px rgba(0,0,0,0.5)">NAS MODE</h1>
+<p class="font-label-caps text-label-caps uppercase tracking-[0.3em]" style="color: #C9A04D; letter-spacing: 0.3em">Centre de Formation Professionnelle — Ouagadougou, Burkina Faso</p>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-ivory-base text-4xl">keyboard_double_arrow_down</span>
+</div>
+</header>
+<section class="py-section-gap px-margin-desktop">
+<div class="max-w-[800px] mx-auto text-center space-y-8">
+<p class="font-label-caps text-label-caps text-terracotta-accent uppercase tracking-[0.15em]">NOTRE HISTOIRE</p>
+<h2 class="font-headline-lg text-headline-lg text-deep-ink" style="font-family: 'Cormorant Garamond', serif;">Deux femmes. Une vision.</h2>
+<p class="font-body-lg text-body-lg leading-relaxed" style="color: #474741; line-height: 1.8;">En 2001, Safi Ouattara Diallo ouvre à Ouagadougou un centre de formation pour donner aux jeunes femmes burkinabè les outils d'une vie meilleure. Quelques années plus tard, Bea Petri, venue de Suisse, découvre cette école et décide de s'engager à ses côtés. Depuis, grâce au soutien de donateurs suisses et de la Fondation Nas Mode, des centaines de jeunes ont pu accéder gratuitement à une formation d'excellence en stylisme, coiffure, esthétique et maquillage cinéma. Ensemble, elles prouvent qu'une école de mode peut changer des destins.</p>
+</div>
+</section>
+<main class="max-w-[1440px] mx-auto">
+<section id="formations" class="mt-section-gap px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center relative parallax-section" data-parallax-strength="-80">
+<div class="absolute left-0 top-0 chapter-number-bg font-chapter-number text-chapter-number text-chapter-ghost -translate-x-12 -translate-y-24 reveal-chapter parallax-target">01</div>
+<div class="md:col-span-7 reveal-image">
+<div class="aspect-[4/5] image-container cursor-pointer">
+<img alt="Stylisme &amp; Couture" class="w-full h-full object-cover grayscale-[0.2]" src="/images/hero/image-1782086378954.png"/>
+</div>
+</div>
+<div class="md:col-span-4 md:col-start-9 space-y-8">
+<h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Stylisme &amp; Couture</h2>
+<p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">De la coupe au patronage assisté par ordinateur, nos élèves maîtrisent chaque étape de la création de mode.</p>
+<div class="pt-4 reveal-up stagger-3">
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#soutenir">DÉCOUVRIR LE PROGRAMME</a>
+</div>
+</div>
+</section>
+<section class="mt-section-gap px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center relative parallax-section" data-parallax-strength="80">
+<div class="absolute right-0 top-0 chapter-number-bg font-chapter-number text-chapter-number text-chapter-ghost translate-x-12 -translate-y-24 reveal-chapter parallax-target">02</div>
+<div class="md:col-span-4 space-y-8 order-2 md:order-1">
+<h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Coiffure</h2>
+<p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">Des techniques classiques aux créations sculpturales, la coiffure comme art à part entière.</p>
+<div class="pt-4 reveal-up stagger-3">
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#soutenir">VOIR LE PROGRAMME</a>
+</div>
+</div>
+<div class="md:col-span-7 md:col-start-6 order-1 md:order-2 reveal-image">
+<div class="aspect-[16/9] image-container cursor-pointer">
+<img alt="Coiffure" class="w-full h-full object-cover grayscale-[0.1]" src="/images/ateliers/atelier-screenshot-2026-06-21-193447.png"/>
+</div>
+</div>
+</section>
+<section class="mt-section-gap px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center relative parallax-section" data-parallax-strength="-80">
+<div class="absolute left-0 top-0 chapter-number-bg font-chapter-number text-chapter-number text-chapter-ghost -translate-x-12 -translate-y-24 reveal-chapter parallax-target">03</div>
+<div class="md:col-span-7 reveal-image">
+<div class="aspect-[4/5] image-container cursor-pointer">
+<img alt="Esthétique" class="w-full h-full object-cover grayscale-[0.2]" src="/images/ateliers/esthetique-ongles.jpg"/>
+</div>
+</div>
+<div class="md:col-span-4 md:col-start-9 space-y-8">
+<h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Esthétique</h2>
+<p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">Soins, beauté et expertise au service des femmes burkinabè.</p>
+<div class="pt-4 reveal-up stagger-3">
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#soutenir">NOS SPÉCIALISATIONS</a>
+</div>
+</div>
+</section>
+<section class="mt-section-gap px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center relative mb-section-gap parallax-section" data-parallax-strength="80">
+<div class="absolute right-0 top-0 chapter-number-bg font-chapter-number text-chapter-number text-chapter-ghost translate-x-12 -translate-y-24 reveal-chapter parallax-target">04</div>
+<div class="md:col-span-4 space-y-8 order-2 md:order-1">
+<h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Maquillage Cinéma</h2>
+<p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">Une filière unique au Burkina Faso, formant les maquilleurs des productions cinématographiques et théâtrales.</p>
+<div class="pt-4 reveal-up stagger-3">
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#soutenir">ENTRER DANS LE STUDIO</a>
+</div>
+</div>
+<div class="md:col-span-7 md:col-start-6 order-1 md:order-2 reveal-image">
+<div class="aspect-[4/5] image-container cursor-pointer">
+<img alt="Maquillage Cinéma" class="w-full h-full object-cover grayscale-[0.1]" src="/images/ateliers/maquillage-cinema.jpg"/>
+</div>
+</div>
+</section>
+<section id="defiles" class="w-full py-section-gap">
+<h2 class="font-display-xxl text-headline-lg text-center mb-16 reveal-up">Nos Créations</h2>
+<div class="flex flex-col md:flex-row w-full h-[716px]">
+<div class="flex-1 image-container reveal-image stagger-1 cursor-pointer">
+<img alt="Creation 1" class="w-full h-full object-cover" src="/images/defiles/defiles-screenshot-2026-06-21-195852.png"/>
+</div>
+<div class="flex-1 image-container reveal-image stagger-2 cursor-pointer">
+<img alt="Creation 2" class="w-full h-full object-cover" src="/images/defiles/defiles-screenshot-2026-06-21-195150.png"/>
+</div>
+<div class="flex-1 image-container reveal-image stagger-3 cursor-pointer">
+<img alt="Creation 3" class="w-full h-full object-cover" src="/images/defiles/defiles-screenshot-2026-06-21-195330.png"/>
+</div>
+</div>
+</section>
+<section id="ecole" class="bg-deep-ink py-section-gap px-margin-desktop text-center">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+<div class="space-y-4 reveal-up stagger-1">
+<div class="font-chapter-number text-headline-lg text-ivory-base">1000+</div>
+<div class="font-label-caps text-label-caps text-terracotta-accent uppercase">Jeunes formés</div>
+</div>
+<div class="space-y-4 reveal-up stagger-2">
+<div class="font-chapter-number text-headline-lg text-ivory-base">22</div>
+<div class="font-label-caps text-label-caps text-terracotta-accent uppercase">Promotions</div>
+</div>
+<div class="space-y-4 reveal-up stagger-3">
+<div class="font-chapter-number text-headline-lg text-ivory-base">100%</div>
+<div class="font-label-caps text-label-caps text-terracotta-accent uppercase">Taux de réussite CQP</div>
+</div>
+</div>
+</section>
+<section id="soutenir" class="py-section-gap px-margin-desktop text-center max-w-4xl mx-auto space-y-10">
+<h2 class="font-headline-lg text-headline-lg reveal-up">Soutenez NAS MODE</h2>
+<p class="font-body-lg text-body-lg text-primary leading-relaxed reveal-up stagger-1">En tant qu'institution prestigieuse, NAS MODE est soutenue par la Fondation Suisse pour la Formation Professionnelle. Votre contribution nous aide à offrir des bourses aux artisans les plus talentueux de demain, garantissant que l'artisanat ouest-africain continue de prospérer et d'évoluer sur la scène mondiale.</p>
+<div class="pt-6 reveal-up stagger-2 flex justify-center">
+<div class="magnetic-wrap">
+<button class="bg-terracotta-accent text-ivory-base px-16 py-6 font-label-caps text-label-caps hover:bg-deep-ink transition-colors duration-300 cursor-pointer" id="magnetic-button" onclick="window.location.href='mailto:info@nasmodeformation.com?subject=Don NAS MODE'">Faire un don</button>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-deep-ink text-ivory-base px-margin-desktop py-section-gap w-full mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-20">
+<div class="space-y-8">
+<div class="font-display-xxl text-headline-lg">NAS MODE</div>
+<p class="font-body-md text-primary-fixed-dim max-w-xs">Élever l'artisanat ouest-africain grâce à une formation professionnelle d'élite et des laboratoires de design modernes.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">ACADÉMIQUE</h4>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations">Programme</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations">Admissions</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations">Notre impact</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">CONTACT</h4>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="mailto:info@nasmodeformation.com">Contact</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations">Presse</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#">Mentions légales</a>
+</div>
+<div class="space-y-6">
+<h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">NEWSLETTER</h4>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-primary-fixed-dim py-4 focus:outline-none focus:border-terracotta-accent transition-colors text-ivory-base placeholder:text-primary-fixed-dim/50 cursor-pointer" placeholder="Adresse Email" type="email"/>
+<button class="absolute right-0 bottom-4 font-label-caps text-label-caps text-terracotta-accent uppercase cursor-pointer" onclick="alert('Merci pour votre inscription !')">S'abonner</button>
+</div>
+</div>
+</div>
+<div class="pt-10 border-t border-primary-fixed-dim/20 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="font-body-md text-sm text-primary-fixed-dim">© 2024 NAS MODE Ouagadougou. Excellence Artisanale Ouest-Africaine.</p>
+<div class="flex gap-8">
+<a class="text-primary-fixed-dim hover:text-ivory-base transition-colors cursor-pointer" href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle">Facebook</a>
+<a class="text-primary-fixed-dim hover:text-ivory-base transition-colors cursor-pointer" href="mailto:info@nasmodeformation.com">Contact</a>
+</div>
+</div>
+</footer>
+<script>
+const cursorDot = document.getElementById('cursor-dot');
+const cursorRing = document.getElementById('cursor-ring');
+const allowsMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (allowsMotion && window.innerWidth >= 1024) {
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.transform = 'translate(' + mouseX + 'px, ' + mouseY + 'px)';
+    });
+    const animateCursor = () => {
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        cursorRing.style.transform = 'translate(' + ringX + 'px, ' + ringY + 'px)';
+        requestAnimationFrame(animateCursor);
+    };
+    requestAnimationFrame(animateCursor);
+    document.querySelectorAll('a, button, .cursor-pointer, .image-container').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursorDot.classList.add('active');
+            cursorRing.classList.add('active');
+        });
+        el.addEventListener('mouseleave', () => {
+            cursorDot.classList.remove('active');
+            cursorRing.classList.remove('active');
+        });
+    });
+}
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    const logo = document.getElementById('preloader-logo');
+    const body = document.body;
+    setTimeout(() => logo.classList.add('visible'), 100);
+    setTimeout(() => {
+        preloader.classList.add('loaded');
+        body.classList.remove('is-loading');
+    }, 800);
+});
+const progressFill = document.getElementById('reading-progress-fill');
+window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    if (progressFill) progressFill.style.width = scrolled + '%';
+}, { passive: true });
+const nav = document.getElementById('top-nav');
+const heroBg = document.getElementById('hero-bg');
+const heroContent = document.getElementById('hero-content');
+window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    if (scrolled > 50) {
+        nav.classList.add('nav-scrolled');
+        nav.classList.replace('py-6', 'py-4');
+    } else {
+        nav.classList.remove('nav-scrolled');
+        nav.classList.replace('py-4', 'py-6');
+    }
+    if (allowsMotion) {
+        if (heroBg) heroBg.style.transform = 'translateY(' + (scrolled * 0.7) + 'px)';
+        if (heroContent) {
+            heroContent.style.transform = 'translateY(' + (scrolled * 0.2) + 'px)';
+            heroContent.style.opacity = Math.max(0, 1 - scrolled / 800);
+        }
+    }
+});
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal-up, .reveal-image, .reveal-chapter').forEach(el => revealObserver.observe(el));
+if (window.innerWidth >= 768 && allowsMotion) {
+    const parallaxSections = document.querySelectorAll('.parallax-section');
+    const activeSections = new Set();
+    const parallaxObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            entry.isIntersecting ? activeSections.add(entry.target) : activeSections.delete(entry.target);
+        });
+    }, { threshold: 0 });
+    parallaxSections.forEach(section => parallaxObserver.observe(section));
+    const updateParallax = () => {
+        activeSections.forEach(section => {
+            const target = section.querySelector('.parallax-target');
+            if (!target) return;
+            const rect = section.getBoundingClientRect();
+            const strength = parseFloat(section.dataset.parallaxStrength) || 50;
+            const centerOffset = (rect.top + rect.height / 2 - window.innerHeight / 2) / (window.innerHeight / 2);
+            const yPos = centerOffset * strength;
+            const xBase = target.classList.contains('-translate-x-12') ? '-3rem' : '3rem';
+            target.style.transform = 'translate3d(' + xBase + ', calc(-6rem + ' + yPos + 'px), 0)';
+        });
+        requestAnimationFrame(updateParallax);
+    };
+    requestAnimationFrame(updateParallax);
+}
+const magneticBtn = document.getElementById('magnetic-button');
+const magneticWrap = magneticBtn?.closest('.magnetic-wrap');
+if (magneticBtn && allowsMotion) {
+    window.addEventListener('mousemove', (e) => {
+        const rect = magneticWrap.getBoundingClientRect();
+        const btnX = rect.left + rect.width / 2;
+        const btnY = rect.top + rect.height / 2;
+        const dist = Math.hypot(e.clientX - btnX, e.clientY - btnY);
+        if (dist < 200) {
+            const strength = 0.2;
+            const x = (e.clientX - btnX) * strength;
+            const y = (e.clientY - btnY) * strength;
+            magneticBtn.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+        } else {
+            magneticBtn.style.transform = 'translate(0px, 0px)';
+        }
+    });
+    magneticWrap.addEventListener('mouseleave', () => {
+        magneticBtn.style.transform = 'translate(0px, 0px)';
+    });
+}
+</script>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
