@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none">
-  <rect width="200" height="120" rx="4" fill="transparent"/>
-  <rect x="75" y="15" width="50" height="50" rx="8" fill="#C17D5A" opacity="0.15"/>
-  <rect x="90" y="22" width="20" height="36" rx="2" fill="#C17D5A"/>
-  <rect x="82" y="30" width="36" height="20" rx="2" fill="#C17D5A"/>
-  <text x="100" y="85" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="600" fill="#474741">FÖRDERVEREIN</text>
-  <text x="100" y="96" text-anchor="middle" font-family="Inter,sans-serif" font-size="6" font-weight="400" fill="#474741">NAS MODE (SUISSE)</text>
-  <text x="100" y="109" text-anchor="middle" font-family="Inter,sans-serif" font-size="5" font-weight="300" fill="#474741">Schaffhausen</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 90" width="250" height="90">
+  <rect x="0" y="0" width="250" height="90" fill="#FAF7F2" rx="4"/>
+  <rect x="97" y="10" width="56" height="56" rx="14" fill="#D52B1E" stroke="#D52B1E" stroke-width="4"/>
+  <rect x="109" y="22" width="32" height="32" rx="4" fill="#FAF7F2"/>
+  <rect x="121" y="22" width="8" height="32" fill="#D52B1E"/>
+  <rect x="109" y="34" width="32" height="8" fill="#D52B1E"/>
+  <text x="125" y="80" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1A1A1A">Förderverein</text>
+  <text x="125" y="88" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#5A5A5A">NAS MODE (Suisse)</text>
 </svg>

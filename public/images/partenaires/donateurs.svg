@@ -1,10 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" fill="none">
-  <rect width="200" height="120" rx="4" fill="transparent"/>
-  <circle cx="80" cy="30" r="10" fill="#C17D5A" opacity="0.12"/>
-  <circle cx="120" cy="30" r="10" fill="#C17D5A" opacity="0.12"/>
-  <path d="M80 48C73 48 66 52 66 58v8h28v-8c0-6-7-10-14-10z" fill="#C17D5A" opacity="0.15"/>
-  <path d="M120 48c-7 0-14 4-14 10v8h28v-8c0-6-7-10-14-10z" fill="#C17D5A" opacity="0.15"/>
-  <text x="100" y="78" text-anchor="middle" font-family="Inter,sans-serif" font-size="8" font-weight="500" fill="#474741">DONATEURS</text>
-  <text x="100" y="89" text-anchor="middle" font-family="Inter,sans-serif" font-size="7" font-weight="300" fill="#474741">INDIVIDUELS</text>
-  <text x="100" y="103" text-anchor="middle" font-family="Inter,sans-serif" font-size="5" font-weight="300" fill="#999">CHF 500/an = 1 formation</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 90" width="250" height="90">
+  <rect x="0" y="0" width="250" height="90" fill="#FAF7F2" rx="4"/>
+  <circle cx="100" cy="25" r="10" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+  <circle cx="125" cy="25" r="10" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+  <circle cx="150" cy="25" r="10" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+  <circle cx="100" cy="25" r="3" fill="#D4A574" opacity="0.3"/>
+  <circle cx="125" cy="25" r="3" fill="#D4A574" opacity="0.3"/>
+  <circle cx="150" cy="25" r="3" fill="#D4A574" opacity="0.3"/>
+  <text x="125" y="58" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="bold" fill="#1A1A1A">Donateurs</text>
+  <text x="125" y="72" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#1A1A1A">individuels</text>
+  <text x="125" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="9" fill="#5A5A5A">Soutiens privés</text>
 </svg>
