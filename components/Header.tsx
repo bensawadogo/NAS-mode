@@ -12,7 +12,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-content items-center justify-between px-6 py-5 md:px-8">
         <Link
           href="/"
-          className="text-xl md:text-2xl font-medium uppercase tracking-[0.25em] text-ivoire"
+          className="text-2xl md:text-3xl font-medium uppercase tracking-[0.25em] text-ivoire"
         >
           NAS MODE
         </Link>
