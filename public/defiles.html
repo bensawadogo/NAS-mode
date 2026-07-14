@@ -38,9 +38,10 @@ tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertia
 }
 body {
     background-color: #FAF7F2;
-    color: #1A1A1A;
     overflow-x: hidden;
+    color: #1A1A1A;
 }
+html { overflow-x: hidden; }
 .nav-scrolled {
     background-color: #FAF7F2 !important;
     box-shadow: 0 4px 15px -1px rgb(0 0 0 / 0.05);
@@ -245,25 +246,25 @@ body.is-loading {
 </div>
 </div>
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile py-3 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav">
-<a href="nasmode.html" class="block shrink-0"><img src="images/ecole/logo-nas-mode.png" alt="NAS MODE" class="w-auto" style="width:clamp(60px,10vw,130px);height:auto;aspect-ratio:1;max-width:none"/></a>
+<a href="nasmode.html" class="block shrink-0"><img src="images/ecole/logo-nas-mode.png" alt="NAS MODE" class="w-auto" style="width:clamp(90px,16vw,150px);height:auto;aspect-ratio:1;max-width:none"/></a>
 <div class="hidden md:flex items-center gap-10">
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html#formations">Nos Formations</a>
 <a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="#">Défilés</a>
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html#ecole">L'École</a>
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="soutenir/index.html">FONDATION NAS MODE</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html">Nous Contacter</a>
 </div>
 <button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
 <span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-1"></span>
 <span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300" id="menu-bar-2"></span>
 <span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-3"></span>
 </button>
-<a class="hidden md:inline-block bg-deep-ink text-ivory-base px-10 py-4 font-label-caps text-label-caps hover:bg-terracotta-accent transition-colors duration-300 cursor-pointer" href="contact/index.html">Nous Contacter</a>
 </nav>
 <div class="fixed inset-0 z-40 bg-ivory-base flex flex-col items-center justify-center gap-8 transition-all duration-500 ease-in-out" id="mobile-menu" style="transform: translateX(100%); opacity: 0;">
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="nasmode.html#formations" onclick="toggleMobileMenu()">Nos Formations</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="nasmode.html#ecole" onclick="toggleMobileMenu()">L'École</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="soutenir/index.html" onclick="toggleMobileMenu()">FONDATION NAS MODE</a>
-<a class="bg-deep-ink text-ivory-base px-12 py-5 font-label-caps text-label-caps cursor-pointer mt-4" href="contact/index.html">Contact</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="contact/index.html" onclick="toggleMobileMenu()">Nous Contacter</a>
 </div>
 <main>
 <section class="pt-40 pb-20 px-margin-desktop max-md:px-margin-mobile">
