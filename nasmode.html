@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="fr">
+<html class="scroll-smooth" lang="fr" style="overflow-x:hidden">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -147,9 +147,10 @@ html.cursor-active body a, html.cursor-active body button, html.cursor-active bo
 }
 body {
     background-color: #FAF7F2;
-    color: #1A1A1A;
     overflow-x: hidden;
+    color: #1A1A1A;
 }
+html { overflow-x: hidden; }
 .nav-scrolled {
     background-color: #FAF7F2 !important;
     box-shadow: 0 4px 15px -1px rgb(0 0 0 / 0.05);
@@ -661,26 +662,26 @@ body.is-loading {
 </div>
 </div>
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile py-3 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav">
-<a href="#" class="block shrink-0"><picture><source srcset="images/ecole/logo-nas-mode.webp" type="image/webp"><img src="images/ecole/logo-nas-mode.png" alt="NAS MODE" class="w-auto" style="width:clamp(60px,10vw,130px);height:auto;aspect-ratio:1;max-width:none"/></picture></a>
+<a href="#" class="block shrink-0"><picture><source srcset="images/ecole/logo-nas-mode.webp" type="image/webp"><img src="images/ecole/logo-nas-mode.png" alt="NAS MODE" class="w-auto" style="width:clamp(90px,16vw,150px);height:auto;aspect-ratio:1;max-width:none"/></picture></a>
 <div class="hidden md:flex items-center gap-10">
 <a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="#formations">Nos Formations</a>
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="defiles-gallery/index.html">Défilés</a>
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="ecole/index.html">L'École</a>
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="soutenir/index.html">FONDATION NAS MODE</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html">Nous Contacter</a>
 </div>
 <button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
 <span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-1"></span>
 <span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300" id="menu-bar-2"></span>
 <span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-3"></span>
 </button>
-<a class="hidden md:inline-block bg-deep-ink text-ivory-base px-10 py-4 font-label-caps text-label-caps hover:bg-terracotta-accent transition-colors duration-300 cursor-pointer" href="contact/index.html">Nous Contacter</a>
 </nav>
 <div class="fixed inset-0 z-40 bg-ivory-base flex flex-col items-center justify-center gap-8 transition-all duration-500 ease-in-out" id="mobile-menu" style="transform: translateX(100%); opacity: 0;">
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="#formations" onclick="toggleMobileMenu()">Nos Formations</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="defiles-gallery/index.html" onclick="toggleMobileMenu()">Défilés</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="ecole/index.html" onclick="toggleMobileMenu()">L'École</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="soutenir/index.html" onclick="toggleMobileMenu()">FONDATION NAS MODE</a>
-<a class="bg-deep-ink text-ivory-base px-12 py-5 font-label-caps text-label-caps cursor-pointer mt-4" href="contact/index.html">Nous Contacter</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="contact/index.html" onclick="toggleMobileMenu()">Nous Contacter</a>
 </div>
 <header class="relative h-screen max-md:h-[70vh] w-full flex flex-col items-center justify-center overflow-hidden" id="hero">
 <div class="absolute inset-0 z-0">
@@ -858,7 +859,7 @@ POSTULER
 </div>
 </div>
 <div class="pt-10 border-t border-primary-fixed-dim/20 flex flex-col md:flex-row justify-between items-center gap-6">
-<p class="font-body-md text-sm text-primary-fixed-dim">© 2024 NAS MODE Ouagadougou · Abidjan. Excellence Artisanale Ouest-Africaine.</p>
+<p class="font-body-md text-sm text-primary-fixed-dim">© 2026 NAS MODE Ouagadougou · Abidjan. Excellence Artisanale Ouest-Africaine.</p>
 <div class="flex gap-8">
 <a class="text-primary-fixed-dim hover:text-ivory-base transition-colors cursor-pointer" href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle">Facebook</a>
 <a class="text-primary-fixed-dim hover:text-ivory-base transition-colors cursor-pointer" href="contact/index.html">Contact</a>
