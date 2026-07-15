@@ -61,39 +61,8 @@ html { overflow-x: hidden; }
     color: #B5562C !important;
     border-bottom-color: #B5562C;
 }
-.nav-scrolled {
-    background-color: #FAF7F2 !important;
-    box-shadow: 0 4px 15px -1px rgb(0 0 0 / 0.05);
-}
-#preloader {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #FAF7F2;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1), opacity 0.6s ease-in-out;
-    pointer-events: all;
-}
-#preloader.loaded {
-    transform: translateY(-100%);
-    pointer-events: none;
-}
-#preloader-logo {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-#preloader-logo.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-body.is-loading {
-    overflow: hidden;
-}
+.nav-scrolled { background-color: rgba(250,247,242,0.4) !important; box-shadow: 0 4px 15px -1px rgb(0 0 0 / 0.05); }
+
 @media (min-width: 1024px) {
     body { cursor: none; }
     body a, body button, body .cursor-pointer { cursor: none; }
@@ -250,7 +219,7 @@ body.is-loading {
 }
 </script>
 </head>
-<body class="is-loading">
+<body>
 <div class="custom-cursor" id="cursor-dot"></div>
 <div class="custom-cursor-ring" id="cursor-ring"></div>
 <div id="lightbox">
@@ -259,11 +228,7 @@ body.is-loading {
   <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)">&#8250;</button>
   <img id="lightbox-img" src="" alt=""/>
 </div>
-<div id="preloader">
-<div class="text-center">
-<div class="font-display-xxl text-headline-lg md:text-[80px] tracking-tighter text-deep-ink" id="preloader-logo">NAS MODE</div>
-</div>
-</div>
+
 <nav class="flex justify-between items-start w-full px-margin-desktop max-md:px-margin-mobile py-3 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
 <a href="index.html" class="block shrink-0"><img src="images/ecole/logo-nas-mode.png" alt="NAS MODE" class="w-auto" style="width:clamp(120px,22vw,160px);height:auto;aspect-ratio:1;max-width:none"/></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
