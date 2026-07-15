@@ -638,6 +638,11 @@ html { overflow-x: hidden; }
     background: rgba(250,247,242,0.1);
     transform: translateY(-2px);
 }
+#top-nav {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 16px;
+}
 #top-nav > div > a {
     color: #1A1A1A;
     border-bottom: 2px solid transparent;
@@ -693,6 +698,7 @@ html { overflow-x: hidden; }
 </button>
 </nav>
 <div class="fixed inset-0 z-40 bg-ivory-base flex flex-col items-center justify-center gap-8 transition-all duration-500 ease-in-out" id="mobile-menu" style="transform: translateX(100%); opacity: 0;">
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="index.html" onclick="toggleMobileMenu()">L'École</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../index.html#formations" onclick="toggleMobileMenu()">Formation</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../defiles-gallery/index.html" onclick="toggleMobileMenu()">Défilés</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../soutenir/index.html" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
