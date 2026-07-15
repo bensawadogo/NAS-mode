@@ -657,6 +657,7 @@ html { overflow-x: hidden; }
     color: #B5562C !important;
     border-bottom-color: #B5562C;
 }
+.nav-scrolled { background-color: #FAF7F2 !important; box-shadow: 0 4px 15px -1px rgb(0 0 0 / 0.05); }
 </style>
 <script type="application/ld+json">
 {
@@ -682,7 +683,7 @@ html { overflow-x: hidden; }
 <div class="custom-cursor" id="custom-cursor"></div>
 <div class="custom-cursor-ring" id="custom-cursor-ring"></div>
 
-<nav class="flex justify-between items-start w-full px-margin-desktop max-md:px-margin-mobile py-3 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="background:rgba(255,255,255,0.08);backdrop-filter:blur(6px);height:56px;overflow:visible">
+<nav class="flex justify-between items-start w-full px-margin-desktop max-md:px-margin-mobile py-3 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
 <a href="../index.html" class="block shrink-0"><picture><source srcset="../images/ecole/logo-nas-mode.webp" type="image/webp"><img src="../images/ecole/logo-nas-mode.png" alt="NAS MODE" class="w-auto" style="width:clamp(120px,22vw,160px);height:auto;aspect-ratio:1;max-width:none"/></picture></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
 <a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="index.html">L'École</a>
@@ -713,7 +714,7 @@ html { overflow-x: hidden; }
 <picture><source srcset="../images/ecole/ecole-screenshot-2026-06-21-192644.webp" type="image/webp"><img src="../images/ecole/ecole-screenshot-2026-06-21-192644.png" alt="NAS MODE — Photo de l'école"/></picture>
 </div>
 <div class="ecole-hero-overlay"></div>
-<div class="ecole-hero-content" style="padding-top:clamp(160px,30vw,200px)">
+<div class="ecole-hero-content" style="padding-top:clamp(64px,10vw,80px)">
 <p class="ecole-hero-subtitle reveal">NAS MODE — Centre de Formation Professionnelle</p>
 <h1 class="ecole-hero-title reveal reveal-delay-1">L'École NAS MODE</h1>
 <p class="ecole-hero-desc reveal reveal-delay-2">Depuis plus de 20 ans, NAS MODE accompagne les talents vers les métiers de la mode, de la beauté et de la création.</p>
@@ -1001,6 +1002,7 @@ html { overflow-x: hidden; }
 </footer>
 
 <script>
+(function(){ var nav=document.getElementById('top-nav'); var main=document.querySelector('main'); if(nav&&main){ window.addEventListener('scroll',function(){ if(window.scrollY>main.offsetTop-56){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')} },{passive:true}) } })();
 (function() { try { var cursor = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (cursor && ring) { cursor.style.left = (window.innerWidth / 2) + 'px'; cursor.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; document.addEventListener('mousemove', function(e) { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }); document.addEventListener('mouseleave', function() { cursor.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function() { cursor.style.display = ''; ring.style.display = ''; }); var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]'; document.addEventListener('mouseover', function(e) { var t = e.target.closest(interactive); if (t) { cursor.classList.add('hover'); ring.classList.add('hover'); } }); document.addEventListener('mouseout', function(e) { var t = e.target.closest(interactive); if (t) { cursor.classList.remove('hover'); ring.classList.remove('hover'); } }); document.documentElement.classList.add('cursor-active'); } } catch(e) {} var revealElements = document.querySelectorAll('.reveal'); function checkReveal() { for (var i = 0; i < revealElements.length; i++) { var rect = revealElements[i].getBoundingClientRect(); if (rect.top < window.innerHeight * 0.9) { revealElements[i].classList.add('visible'); } } } window.addEventListener('scroll', checkReveal); window.addEventListener('resize', checkReveal); checkReveal(); var counters = document.querySelectorAll('.chiffre-number'); var counted = false; function startCounters() { if (counted) return; var countSection = document.querySelector('.chiffres-grid'); if (!countSection) return; var rect = countSection.getBoundingClientRect(); if (rect.top < window.innerHeight * 0.85) { counted = true; counters.forEach(function(el) { var target = parseInt(el.getAttribute('data-count')); if (isNaN(target)) return; var current = 0; var step = Math.max(1, Math.ceil(target / 60)); var timer = setInterval(function() { current += step; if (current >= target) { current = target; clearInterval(timer); } el.textContent = current + (target === 80 || target === 25 || target === 4 ? '' : '+'); }, 20); }); } } window.addEventListener('scroll', startCounters); startCounters(); })(); function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.classList.remove('open'); document.body.style.overflow = ''; bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.classList.add('open'); document.body.style.overflow = 'hidden'; bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; } }
 </script>
 </body>
