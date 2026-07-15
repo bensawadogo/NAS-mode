@@ -130,7 +130,7 @@ textarea.contact-form-input { resize: none; }
 </button>
 </nav>
 
-<div class="fixed inset-0 z-40" style="background:#FAF7F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transition:all 0.5s ease;transform:translateX(100%);opacity:0;" id="mobile-menu">
+<div class="fixed z-40" style="top:56px;left:0;right:0;bottom:0;background:#FAF7F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;transition:all 0.5s ease;transform:translateX(100%);opacity:0;" id="mobile-menu">
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../index.html#formations" onclick="toggleMobileMenu()">Formation</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../defiles-gallery/index.html" onclick="toggleMobileMenu()">Défilés</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../ecole/index.html" onclick="toggleMobileMenu()">L'École</a>
@@ -337,7 +337,7 @@ Voir sur Google Maps
 </footer>
 
 <script>
-(function(){ var nav=document.getElementById('top-nav'); var main=document.querySelector('main'); if(nav&&main){ window.addEventListener('scroll',function(){ if(window.scrollY>main.offsetTop-56){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')} },{passive:true}) } })();
+(function(){ var nav=document.getElementById('top-nav'); if(nav){ window.addEventListener('scroll',function(){ if(window.scrollY>5){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')} },{passive:true}) } })();
 function toggleMobileMenu() {
 var menu = document.getElementById('mobile-menu');
 var bar1 = document.getElementById('menu-bar-1');
