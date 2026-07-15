@@ -337,7 +337,7 @@ Voir sur Google Maps
 </footer>
 
 <script>
-(function(){ var nav=document.getElementById('top-nav'); if(nav){ window.addEventListener('scroll',function(){ if(window.scrollY>5){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')} },{passive:true}) } })();
+(function(){ var nav=document.getElementById('top-nav'); var main=document.querySelector('main'); if(nav&&main){ window.addEventListener('scroll',function(){ if(window.scrollY>main.offsetTop-56){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')} },{passive:true}) } })();
 function toggleMobileMenu() {
 var menu = document.getElementById('mobile-menu');
 var bar1 = document.getElementById('menu-bar-1');
