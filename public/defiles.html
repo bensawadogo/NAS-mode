@@ -63,6 +63,7 @@ html { overflow-x: hidden; }
 }
 .nav-scrolled { background: rgba(250,247,242,0.72) !important; backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.4); box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
 @media (max-width: 767px) { #top-nav > a img, #top-nav > a picture img { margin-top: 45px; } }
+@media (min-width: 768px) { #top-nav { align-items: flex-start; } #top-nav > a img, #top-nav > a picture img { width: 150px; margin-top: 0; } }
 
 @media (min-width: 1024px) {
     body { cursor: none; }
@@ -230,7 +231,7 @@ html { overflow-x: hidden; }
   <img id="lightbox-img" src="" alt=""/>
 </div>
 
-<nav class="flex justify-between items-center md:items-start w-full px-margin-desktop max-md:px-margin-mobile pt-5 pb-2 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile pt-5 pb-2 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
 <a href="index.html" class="block shrink-0"><img src="images/ecole/logo-nas-mode.png" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html#formations">Formation</a>
