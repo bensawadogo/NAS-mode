@@ -21,3 +21,4 @@ public/images/Capture*
 .aider*
 *.DS_Store
 public/screenshot-*.png
+.vercel
