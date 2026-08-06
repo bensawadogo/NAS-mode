@@ -1,27 +1,42 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html class="scroll-smooth" lang="fr">
 <head>
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  var siScript = document.createElement('script');
+  siScript.src = '/_vercel/speed-insights/script.js';
+  siScript.defer = true;
+  document.head.appendChild(siScript);
+</script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  var vaScript = document.createElement('script');
+  vaScript.src = '/_vercel/insights/script.js';
+  vaScript.defer = true;
+  document.head.appendChild(vaScript);
+</script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>img{max-width:100%;height:auto}#top-nav img{max-width:200px!important;height:auto!important}body{margin:0}</style>
 <meta content="Contactez NAS MODE — Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma. Ouagadougou (Burkina Faso) et Abidjan (Côte d'Ivoire)." name="description"/>
-<link rel="icon" type="image/svg+xml" href="../favicon.svg"/>
-<link rel="icon" href="../images/ecole/logo-nas-mode.png" sizes="any"/>
-<link rel="apple-touch-icon" href="../images/ecole/logo-nas-mode.png"/>
-<title>Nous Contacter — NAS MODE</title>
-<meta property="og:title" content="Nous Contacter — NAS MODE"/>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg?v=26D742C1"/>
+<link rel="icon" href="../images/ecole/logo-nas-mode.png?v=641972E6" sizes="any"/>
+<link rel="apple-touch-icon" href="../images/ecole/logo-nas-mode.png?v=641972E6"/>
+<title>Contact NAS MODE | Adresse, Telephone & Email a Ouagadougou, Burkina Faso</title>
+<meta property="og:title" content="Contact NAS MODE | Adresse, Telephone & Email a Ouagadougou, Burkina Faso"/>
 <meta property="og:description" content="Contactez NAS MODE — Ouagadougou et Abidjan."/>
-<meta property="og:image" content="https://bensawadogo.github.io/NAS-mode/images/ecole/logo-nas-mode.png"/>
+<meta property="og:image" content="https://nas-mode.vercel.app/images/ecole/logo-nas-mode.png"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://bensawadogo.github.io/NAS-mode/contact/"/>
+<meta property="og:url" content="https://nas-mode.vercel.app/contact/"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Nous Contacter — NAS MODE"/>
 <meta name="twitter:description" content="Contactez NAS MODE — Centre de formation professionnelle à Ouagadougou et Abidjan. Stylisme, coiffure, esthétique, maquillage cinéma."/>
-<meta name="twitter:image" content="https://bensawadogo.github.io/NAS-mode/images/ecole/logo-nas-mode.png"/>
-<link rel="canonical" href="https://bensawadogo.github.io/NAS-mode/contact/"/>
+<meta name="twitter:image" content="https://nas-mode.vercel.app/images/ecole/logo-nas-mode.png"/>
+<link rel="canonical" href="https://nas-mode.vercel.app/contact/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="../css/tailwind.css"/>
+<link rel="stylesheet" href="../css/tailwind.css?v=9268AC77"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <style>
@@ -35,7 +50,7 @@ body { background: #FAF7F2; color: #1A1A1A; font-family: 'Inter', sans-serif; ov
 .contact-hero::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.3); z-index: 1; }
 .contact-hero-content { position: relative; z-index: 2; text-align: center; padding: 0 24px; max-width: 800px; }
 @media (max-width: 768px) { .contact-hero { height: 40vh; min-height: 320px; } }
-.custom-cursor { position: fixed; top: 0; left: 0; width: 32px; height: 32px; background-image: url('../images/ecole/logo-nas-mode.png'); background-size: contain; background-repeat: no-repeat; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); transition: transform 0.15s ease; }
+.custom-cursor { position: fixed; top: 0; left: 0; width: 32px; height: 32px; background-image: url('../images/ecole/logo-nas-mode.png?v=641972E6'); background-size: contain; background-repeat: no-repeat; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); transition: transform 0.15s ease; }
 .custom-cursor.hover { transform: translate(-50%, -50%) scale(1.2); }
 .custom-cursor-ring { position: fixed; top: 0; left: 0; width: 28px; height: 28px; border: 1px solid rgba(193,125,90,0.5); border-radius: 50%; pointer-events: none; z-index: 99998; transition: transform 0.3s ease, opacity 0.3s ease; transform: translate(-50%, -50%); }
 @media (max-width: 767px) { * { cursor: auto !important; } .custom-cursor, .custom-cursor-ring { display: none; } }
@@ -77,6 +92,7 @@ textarea.contact-form-input { resize: none; }
     padding-top: 4px;
     padding-bottom: 4px;
     padding-left: 16px;
+    padding-right: 16px;
 }
 #top-nav > div > a {
     color: #1A1A1A;
@@ -93,8 +109,9 @@ textarea.contact-form-input { resize: none; }
     border-bottom-color: #B5562C;
 }
 .nav-scrolled { background: rgba(255,255,255,0.4) !important; backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.5); box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
-@media (max-width: 767px) { #top-nav { align-items: flex-start; } #top-nav > a img, #top-nav > a picture img { margin-top: 45px; } }
-@media (min-width: 768px) { #top-nav { align-items: flex-start; } #top-nav > a img, #top-nav > a picture img { width: 150px !important; margin-top: 0 !important; } }
+#top-nav > a img, #top-nav > a picture img { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
+@media (max-width: 767px) { header { background: transparent !important; } #top-nav { align-items: flex-start; min-height: 135px; } #top-nav > a img, #top-nav > a picture img { margin-top: -8px; margin-left: -12px; } #menu-toggle { margin-top: 68px; } .contact-hero { height: 100vh !important; min-height: 100vh !important; align-items: center; padding-top: 135px !important; padding-bottom: 40px !important; } }
+@media (min-width: 768px) { #top-nav { align-items: flex-start; min-height: 122px; } #top-nav > a img, #top-nav > a picture img { width: 150px !important; margin-top: -15px !important; } }
 </style>
 <script type="application/ld+json">
 {
@@ -102,7 +119,7 @@ textarea.contact-form-input { resize: none; }
   "@type": "EducationalOrganization",
   "name": "NAS MODE",
   "description": "Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma",
-  "url": "https://bensawadogo.github.io/NAS-mode/contact/",
+  "url": "https://nas-mode.vercel.app/contact/",
   "foundingDate": "2001",
   "founder": { "@type": "Person", "name": "Safi Ouattara Diallo" },
   "address": [
@@ -117,27 +134,27 @@ textarea.contact-form-input { resize: none; }
 <div class="custom-cursor-ring" id="custom-cursor-ring"></div>
 
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile pt-5 pb-2 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
-<a href="../index.html" class="block shrink-0"><img src="../images/ecole/logo-nas-mode.png" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></a>
+<a href="../index.html?v=6A56F32B" class="block shrink-0"><img decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../index.html#formations">Formation</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../defiles-gallery/index.html">Défilés</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../ecole/index.html">L'École</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../soutenir/index.html">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="index.html">Contact</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../index.html#formations?v=6A56F32B">Formation</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../defiles-gallery/index.html?v=EEFD074C">Défilés</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../ecole/index.html?v=59920D01">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../soutenir/index.html?v=7723706B">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="index.html?v=8B2B1252">Contact</a>
 </div>
 <button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
-<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-1"></span>
-<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300" id="menu-bar-2"></span>
-<span class="block w-6 h-[2px] bg-deep-ink transition-all duration-300 origin-center" id="menu-bar-3"></span>
+<span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-1" style="background-color:#B5562C"></span>
+<span class="block w-6 h-[2px] transition-all duration-300" id="menu-bar-2" style="background-color:#B5562C"></span>
+<span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-3" style="background-color:#D4721A"></span>
 </button>
 </nav>
 
-<div class="fixed z-40" style="top:132px;left:0;right:0;bottom:0;background:#FAF7F2;display:flex;flex-direction:column;align-items:center;padding-top:32px;gap:32px;overflow-y:auto;transition:all 0.5s ease;transform:translateX(100%);opacity:0;" id="mobile-menu">
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../index.html#formations" onclick="toggleMobileMenu()">Formation</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../defiles-gallery/index.html" onclick="toggleMobileMenu()">Défilés</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../ecole/index.html" onclick="toggleMobileMenu()">L'École</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../soutenir/index.html" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="index.html" onclick="toggleMobileMenu()">Contact</a>
+<div class="fixed z-40" style="top:0;left:0;right:0;bottom:0;background:#FAF7F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;overflow-y:auto;transition:all 0.5s ease;transform:translateX(100%);opacity:0;" id="mobile-menu">
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../index.html#formations?v=6A56F32B" onclick="toggleMobileMenu()">Formation</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../defiles-gallery/index.html?v=EEFD074C" onclick="toggleMobileMenu()">Défilés</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../ecole/index.html?v=59920D01" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../soutenir/index.html?v=7723706B" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="index.html?v=8B2B1252" onclick="toggleMobileMenu()">Contact</a>
 <a class="font-label-caps text-label-caps text-ivory-base" style="cursor:pointer;margin-top:16px;background:#1A1A1A;padding:20px 48px;" href="mailto:info@nasmodeformation.com" onclick="toggleMobileMenu()">Email</a>
 </div>
 
@@ -156,7 +173,7 @@ textarea.contact-form-input { resize: none; }
 <div style="height:12px;background:#B5562C;"></div>
 <div style="padding:40px;">
 <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
-<img src="https://flagcdn.com/w80/bf.png" alt="Burkina Faso" class="flag-icon" loading="lazy"/>
+<img decoding="async" src="https://flagcdn.com/w80/bf.webp" alt="Burkina Faso" class="flag-icon" loading="lazy"/>
 <div>
 <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#1A1A1A;">Ouagadougou</h2>
 <p style="font-size:0.875rem;color:#5f5e5b;">Burkina Faso — Campus Historique</p>
@@ -192,7 +209,7 @@ Voir sur Google Maps
 <div style="height:12px;background:#1A1A1A;"></div>
 <div style="padding:40px;">
 <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
-<img src="https://flagcdn.com/w80/ci.png" alt="Côte d'Ivoire" class="flag-icon" loading="lazy"/>
+<img decoding="async" src="https://flagcdn.com/w80/ci.webp" alt="Côte d'Ivoire" class="flag-icon" loading="lazy"/>
 <div>
 <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#1A1A1A;">Abidjan</h2>
 <p style="font-size:0.875rem;color:#5f5e5b;">Côte d'Ivoire — Nouveau Campus</p>
@@ -286,14 +303,14 @@ Voir sur Google Maps
 <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,30px);text-align:center;color:#1A1A1A;margin-bottom:48px;">Nos Pays d'Implantation</h2>
 <div class="flags-section" style="display:flex;align-items:center;justify-content:center;">
 <div class="flag-card">
-<div class="flag-img"><img src="https://flagcdn.com/w160/bf.png" alt="Drapeau Burkina Faso" loading="lazy"/></div>
+<div class="flag-img"><img decoding="async" src="https://flagcdn.com/w160/bf.webp" alt="Drapeau Burkina Faso" loading="lazy"/></div>
 <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#1A1A1A;">Burkina Faso</h3>
 <p style="font-size:0.875rem;color:#5f5e5b;margin-top:8px;">Ouagadougou — Rayongo</p>
 <p style="font-size:0.875rem;color:#B5562C;margin-top:4px;">+226 25 47 05 85</p>
 </div>
 <div class="separator" style="font-family:'EB Garamond',serif;font-size:2rem;color:#B5562C;font-weight:300;">&</div>
 <div class="flag-card">
-<div class="flag-img"><img src="https://flagcdn.com/w160/ci.png" alt="Drapeau Côte d'Ivoire" loading="lazy"/></div>
+<div class="flag-img"><img decoding="async" src="https://flagcdn.com/w160/ci.webp" alt="Drapeau Côte d'Ivoire" loading="lazy"/></div>
 <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#1A1A1A;">Côte d'Ivoire</h3>
 <p style="font-size:0.875rem;color:#5f5e5b;margin-top:8px;">Abidjan</p>
 <p style="font-size:0.875rem;color:#B5562C;margin-top:4px;">info@nasmodeformation.com</p>
@@ -311,14 +328,14 @@ Voir sur Google Maps
 </div>
 <div style="display:flex;flex-direction:column;gap:16px;">
 <h4 style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#B5562C;margin-bottom:16px;">FORMATIONS</h4>
-<a href="../index.html#formations" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Stylisme & Couture</a>
-<a href="../index.html#formations" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Coiffure</a>
-<a href="../index.html#formations" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Esthétique</a>
-<a href="../index.html#formations" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Maquillage Cinéma</a>
+<a href="../index.html#formations?v=6A56F32B" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Stylisme & Couture</a>
+<a href="../index.html#formations?v=6A56F32B" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Coiffure</a>
+<a href="../index.html#formations?v=6A56F32B" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Esthétique</a>
+<a href="../index.html#formations?v=6A56F32B" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Maquillage Cinéma</a>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px;">
 <h4 style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#B5562C;margin-bottom:16px;">CONTACT</h4>
-<a href="index.html" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Nous Contacter</a>
+<a href="index.html?v=8B2B1252" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Nous Contacter</a>
 <a href="#" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Presse</a>
 <a href="#" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Mentions légales</a>
 </div>
@@ -339,7 +356,7 @@ Voir sur Google Maps
 </footer>
 
 <script>
-(function(){ var nav=document.getElementById('top-nav'); var main=document.querySelector('main'); if(nav&&main){ window.addEventListener('scroll',function(){ if(window.scrollY>main.offsetTop-56){nav.classList.add('nav-scrolled')}else{nav.classList.remove('nav-scrolled')} },{passive:true}) } })();
+(function(){ var nav=document.getElementById('top-nav'); if(nav){ window.addEventListener('scroll',function(){ nav.classList.toggle('nav-scrolled', window.scrollY>50) },{passive:true}) } })();
 function toggleMobileMenu() {
 var menu = document.getElementById('mobile-menu');
 var bar1 = document.getElementById('menu-bar-1');
@@ -362,32 +379,7 @@ if (bar1) { bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.sty
 }
 
 (function() {
-try {
-var cursor = document.getElementById('custom-cursor');
-var ring = document.getElementById('custom-cursor-ring');
-if (cursor && ring && window.innerWidth >= 1024) {
-cursor.style.left = (window.innerWidth / 2) + 'px';
-cursor.style.top = (window.innerHeight / 2) + 'px';
-ring.style.left = (window.innerWidth / 2) + 'px';
-ring.style.top = (window.innerHeight / 2) + 'px';
-document.addEventListener('mousemove', function(e) {
-cursor.style.left = e.clientX + 'px';
-cursor.style.top = e.clientY + 'px';
-ring.style.left = e.clientX + 'px';
-ring.style.top = e.clientY + 'px';
-});
-var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
-document.addEventListener('mouseover', function(e) {
-var t = e.target.closest(interactive);
-if (t) { cursor.classList.add('hover'); ring.classList.add('hover'); }
-});
-document.addEventListener('mouseout', function(e) {
-var t = e.target.closest(interactive);
-if (t) { cursor.classList.remove('hover'); ring.classList.remove('hover'); }
-});
-document.documentElement.classList.add('cursor-active');
-}
-} catch(e) {}
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var cursor = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (cursor && ring) { cursor.style.left = (window.innerWidth / 2) + 'px'; cursor.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var cx = 0, cy = 0, ticking = false; var renderCursor = function () { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; ring.style.left = cx + 'px'; ring.style.top = cy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderCursor); } }, { passive: true }); document.addEventListener('mouseleave', function () { cursor.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { cursor.style.display = ''; ring.style.display = ''; }); var formations = document.getElementById('formations'); if (formations) { formations.addEventListener('mouseenter', function () { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); }); formations.addEventListener('mouseleave', function () { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); }); } var interactiveEls = document.querySelectorAll('a, button, input, textarea, select, .cursor-pointer, [role=button]'); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { cursor.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { cursor.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} }
 
 var map = L.map('map', {
 center: [9.5, -3.5],
@@ -427,3 +419,18 @@ map.fitBounds(group.getBounds().pad(0.3));
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

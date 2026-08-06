@@ -1,8 +1,23 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fr" class="no-js">
 <head>
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  var siScript = document.createElement('script');
+  siScript.src = '/_vercel/speed-insights/script.js';
+  siScript.defer = true;
+  document.head.appendChild(siScript);
+</script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  var vaScript = document.createElement('script');
+  vaScript.src = '/_vercel/insights/script.js';
+  vaScript.defer = true;
+  document.head.appendChild(vaScript);
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>img{max-width:100%;height:auto}#top-nav img{max-width:200px!important;height:auto!important}body{margin:0}</style>
   <title>Défilés — NAS MODE</title>
   <meta name="description" content="Galerie immersive des créations NAS MODE — défilés, collections et savoir-faire ouest-africain." />
   <meta name="author" content="NAS MODE" />
@@ -20,8 +35,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <script>document.documentElement.className = 'js'</script>
-  <script type="module" crossorigin src="./assets/index-CPd6kHPm.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BBq7xlPj.css">
+  <script type="module" crossorigin src="./assets/index-CPd6kHPm.js?v=3C0F6A69"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BBq7xlPj.css?v=C86A3FA6">
   <style>
   html.cursor-active * { cursor: none !important; }
   .custom-cursor {
@@ -30,7 +45,7 @@
       left: 0;
       width: 32px;
       height: 32px;
-      background-image: url('../images/ecole/logo-nas-mode.png');
+      background-image: url('../images/ecole/logo-nas-mode.png?v=641972E6');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -78,9 +93,9 @@
   <main>
     <header class="frame">
       <h1 class="frame__title">
-        <a href="../index.html">NAS MODE</a>
+        <a href="../index.html?v=6A56F32B">NAS MODE</a>
       </h1>
-      <a class="frame__back" href="../index.html">← Retour</a>
+      <a class="frame__back" href="../index.html?v=6A56F32B">← Retour</a>
       <nav class="frame__credit">
         <p>Défilés — Galerie Immersive</p>
       </nav>
@@ -92,40 +107,14 @@
 <div id="custom-cursor" class="custom-cursor"></div>
 <div id="custom-cursor-ring" class="custom-cursor-ring"></div>
 <script>
-try {
-  var dot = document.getElementById('custom-cursor');
-  var ring = document.getElementById('custom-cursor-ring');
-  if (dot && ring) {
-    dot.style.left = (window.innerWidth / 2) + 'px';
-    dot.style.top = (window.innerHeight / 2) + 'px';
-    ring.style.left = (window.innerWidth / 2) + 'px';
-    ring.style.top = (window.innerHeight / 2) + 'px';
-    document.addEventListener('mousemove', function(e) {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top = e.clientY + 'px';
-      ring.style.left = e.clientX + 'px';
-      ring.style.top = e.clientY + 'px';
-    });
-    document.addEventListener('mouseleave', function() {
-      dot.style.display = 'none';
-      ring.style.display = 'none';
-    });
-    document.addEventListener('mouseenter', function() {
-      dot.style.display = '';
-      ring.style.display = '';
-    });
-    var interactive = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role="button"]';
-    document.addEventListener('mouseover', function(e) {
-      var t = e.target.closest(interactive);
-      if (t) { dot.classList.add('hover'); ring.classList.add('hover'); }
-    });
-  document.addEventListener('mouseout', function(e) {
-     var t = e.target.closest(interactive);
-     if (t) { dot.classList.remove('hover'); ring.classList.remove('hover'); }
-   });
-   document.documentElement.classList.add('cursor-active');
-  }
-} catch(e) {}
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var dot = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (dot && ring) { dot.style.left = (window.innerWidth / 2) + 'px'; dot.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var dx = 0, dy = 0, ticking = false; var renderDot = function () { dot.style.left = dx + 'px'; dot.style.top = dy + 'px'; ring.style.left = dx + 'px'; ring.style.top = dy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { dx = e.clientX; dy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderDot); } }, { passive: true }); document.addEventListener('mouseleave', function () { dot.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { dot.style.display = ''; ring.style.display = ''; }); var interactiveSel = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role=button]'; var interactiveEls = document.querySelectorAll(interactiveSel); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { dot.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { dot.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} }
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
