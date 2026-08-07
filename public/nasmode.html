@@ -24,13 +24,13 @@
 <link rel="apple-touch-icon" href="images/ecole/logo-nas-mode.png?v=641972E6"/>
 <title>NAS MODE | Centre de Formation Mode, Couture, Coiffure & Esthétique à Ouagadougou, Burkina Faso</title>
 <meta property="og:title" content="NAS MODE | Centre de Formation Mode, Couture, Coiffure & Esthétique à Ouagadougou, Burkina Faso"/>
-<meta property="og:description" content="NAS MODE — Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 25 ans d'excellence."/>
+<meta property="og:description" content="NAS MODE — Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. 25 ans d'excellence."/>
 <meta property="og:image" content="https://nas-mode.vercel.app/images/ecole/logo-nas-mode.png?v=641972E6"/>
 <meta property="og:url" content="https://nas-mode.vercel.app/"/>
 <meta property="og:type" content="website"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="NAS MODE | Excellence Artisanale Ouest-Africaine"/>
-<meta name="twitter:description" content="NAS MODE — Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 25 ans d'excellence."/>
+<meta name="twitter:description" content="NAS MODE — Centre de formation professionnelle en mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. 25 ans d'excellence."/>
 <meta name="twitter:image" content="https://nas-mode.vercel.app/images/ecole/logo-nas-mode.png?v=641972E6"/>
 <link rel="canonical" href="https://nas-mode.vercel.app/"/>
 
@@ -718,6 +718,36 @@ html { overflow-x: hidden; }
   color: #1A1A1A;
 }
 .pay-ech { font-size: 12px; color: #B5562C; margin: 2px 0 10px; }
+/* Informations que le depliant n'imprime pas : voir js/infos-a-confirmer.js.
+   Grille auto-fit sans hauteur fixe : le passage de « a confirmer aupres du
+   centre » a une vraie valeur ne provoque ni saut ni debordement. */
+.iac-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px 24px;
+}
+.iac-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 0;
+  border-top: 1px solid #F3F1ED;
+  min-width: 0;
+}
+.iac-cle {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #72716D;
+}
+.iac-val {
+  font-size: 14px;
+  color: #1A1A1A;
+  overflow-wrap: anywhere;
+}
+.iac-val.iac-attente { color: #72716D; font-style: italic; }
+.iac-tel { font-size: 12px; color: #72716D; margin-top: 14px; }
+.iac-tel a { color: #B5562C; text-decoration: none; border-bottom: 1px solid currentColor; }
 .depliant-quote { border-left: 3px solid #B5562C; padding-left: 18px; }
 .depliant-quote cite {
   display: block;
@@ -968,6 +998,10 @@ html { overflow-x: hidden; }
   }
 }
 </script>
+<!-- Informations que le depliant n'imprime pas (duree, rythme, effectif,
+     rentree, internat, frais d'entrepreneuriat). Un seul fichier a modifier :
+     public/js/infos-a-confirmer.js. Charge en defer : ne bloque pas le rendu. -->
+<script src="js/infos-a-confirmer.js?v=1" defer></script>
 </head>
 <body>
 <div class="custom-cursor" id="custom-cursor"></div>
@@ -1028,7 +1062,7 @@ POSTULER</a>
 <div class="max-w-[800px] mx-auto text-center space-y-8 max-md:space-y-6">
 <p class="font-label-caps text-label-caps text-terracotta-accent uppercase tracking-[0.15em]">NOTRE VISION</p>
 <h2 class="font-headline-lg text-headline-lg text-deep-ink" style="font-family: 'Cormorant Garamond', serif;">25 ans de savoir-faire et de vies transformées</h2>
-<p class="font-body-lg text-body-lg leading-relaxed" style="color: #474741; line-height: 1.8;">En 2001, Safi Ouattara Diallo fonde NAS MODE à Ouagadougou avec une vision claire : utiliser la formation professionnelle comme levier de transformation sociale. Aujourd'hui, l'école est reconnue comme un <strong>monument identitaire</strong> du Burkina Faso. Plus de <strong>3 000 jeunes femmes et hommes</strong> y ont appris un métier, et <strong>80% des diplômé(e)s</strong> exercent aujourd'hui dans leur domaine. Un investissement de plus de <strong>3,5 milliards de francs CFA</strong> qui a permis de sauver des vies et de créer de l'autonomie. <strong>NAS MODE s'implante désormais à Abidjan</strong>, en Côte d'Ivoire, pour offrir son excellence à une nouvelle génération de talents ouest-africains.</p>
+<p class="font-body-lg text-body-lg leading-relaxed" style="color: #474741; line-height: 1.8;">En 2001, Safi Ouattara Diallo fonde NAS MODE à Ouagadougou avec une vision claire : utiliser la formation professionnelle comme levier de transformation sociale. Aujourd'hui, l'école est reconnue comme un <strong>monument identitaire</strong> du Burkina Faso. Plus de <strong>3 000 jeunes femmes et hommes</strong> y ont appris un métier, et <strong>80% des diplômé(e)s</strong> exercent aujourd'hui dans leur domaine. Un investissement de plus de <strong>3,5 milliards de francs CFA</strong> qui a permis de sauver des vies et de créer de l'autonomie. <strong>NAS MODE s'implantera prochainement à Abidjan</strong>, en Côte d'Ivoire, pour offrir son excellence à une nouvelle génération de talents ouest-africains.</p>
 </div>
 </section>
 <main class="max-w-[1440px] mx-auto">
@@ -1091,7 +1125,7 @@ POSTULER</a>
 <section class="mt-section-gap max-md:mt-16 px-margin-desktop max-md:px-margin-mobile grid grid-cols-1 md:grid-cols-12 gap-gutter items-center relative mb-section-gap max-md:mb-16 parallax-section" data-parallax-strength="80">
 <div class="absolute right-0 top-0 chapter-number-bg font-chapter-number text-chapter-number text-chapter-ghost translate-x-12 -translate-y-24 reveal-chapter parallax-target max-md:hidden">04</div>
 <div class="md:col-span-4 space-y-8 order-2 md:order-1">
-<h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Maquillage Cinéma</h2>
+<h2 class="font-headline-lg text-headline-lg text-deep-ink reveal-up stagger-1">Maquilleur Cinéma et Télévision</h2>
 <p class="font-body-lg text-body-lg text-primary reveal-up stagger-2">Une filière unique au Burkina Faso, formant les maquilleurs des productions cinématographiques et théâtrales.</p>
 <div class="pt-4 reveal-up stagger-3">
 <a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-2 tap-target hover:text-deep-ink hover:border-deep-ink transition-all cursor-pointer" href="#" onclick="openModal('maquillage'); return false;">ENTRER DANS LE STUDIO</a>
@@ -1100,8 +1134,8 @@ POSTULER</a>
 <div class="md:col-span-7 md:col-start-6 order-1 md:order-2 reveal-image">
 <div class="aspect-[3/2] image-container cursor-pointer">
 <div class="slide-container contain" id="slideshow-maquillage">
-<div class="slide active"><img width="965" height="1200" decoding="async" alt="Maquillage Cinéma" class="w-full h-full object-cover" src="images/ateliers/maquillage-cinema.webp?v=C02E6DAE" srcset="images/ateliers/maquillage-cinema-480.webp?v=3D893138 480w, images/ateliers/maquillage-cinema-768.webp?v=4644D13B 768w, images/ateliers/maquillage-cinema.webp?v=C02E6DAE 965w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
-<div class="slide"><img width="1200" height="791" decoding="async" alt="Maquillage Cinéma" class="w-full h-full object-cover" src="images/ateliers/maquillage-02.webp?v=21D2538E" srcset="images/ateliers/maquillage-02-480.webp?v=2D356E86 480w, images/ateliers/maquillage-02-768.webp?v=D07F0E05 768w, images/ateliers/maquillage-02-1024.webp?v=9D04E946 1024w, images/ateliers/maquillage-02.webp?v=21D2538E 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide active"><img width="965" height="1200" decoding="async" alt="Maquilleur Cinéma et Télévision" class="w-full h-full object-cover" src="images/ateliers/maquillage-cinema.webp?v=C02E6DAE" srcset="images/ateliers/maquillage-cinema-480.webp?v=3D893138 480w, images/ateliers/maquillage-cinema-768.webp?v=4644D13B 768w, images/ateliers/maquillage-cinema.webp?v=C02E6DAE 965w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img width="1200" height="791" decoding="async" alt="Maquilleur Cinéma et Télévision" class="w-full h-full object-cover" src="images/ateliers/maquillage-02.webp?v=21D2538E" srcset="images/ateliers/maquillage-02-480.webp?v=2D356E86 480w, images/ateliers/maquillage-02-768.webp?v=D07F0E05 768w, images/ateliers/maquillage-02-1024.webp?v=9D04E946 1024w, images/ateliers/maquillage-02.webp?v=21D2538E 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
 </div>
 </div>
 </div>
@@ -1158,11 +1192,14 @@ POSTULER</a>
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations" onclick="openModal('stylisme');return false;">Stylisme & Couture</a>
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations" onclick="openModal('coiffure');return false;">Coiffure</a>
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations" onclick="openModal('esthetique');return false;">Esthétique</a>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations" onclick="openModal('maquillage');return false;">Maquillage Cinéma</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="#formations" onclick="openModal('maquillage');return false;">Maquilleur Cinéma et Télévision</a>
 </div>
 <div class="flex flex-col gap-4">
-<h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">CONTACT</h4>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html?v=8B2B1252">Contact</a>
+<h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">INSCRIPTIONS ET INFORMATIONS</h4>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="tel:+22678014198">+226 78 01 41 98</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="tel:+22665811818">+226 65 81 18 18</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="mailto:info@nasmodeformation.com">info@nasmodeformation.com</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html?v=8B2B1252">Nous écrire</a>
 </div>
 <div class="space-y-6">
 <h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">NEWSLETTER</h4>
@@ -1201,6 +1238,17 @@ function inscrireNewsletter(e) { e.preventDefault(); var champ = document.getEle
    Aucun fait n'est ecrit ici s'il n'est pas imprime sur le depliant.
    Les montants sont recopies chiffre par chiffre, les niveaux d'admission
    et les sigles de diplome tels qu'imprimes.
+
+   INFORMATIONS QUE LE DEPLIANT N'IMPRIME PAS
+   La duree, le rythme hebdomadaire, l'effectif par promotion, les dates de
+   rentree, ce que couvre l'internat et le montant des frais de la formation
+   en entrepreneuriat ne figurent nulle part sur le depliant. Ils ne sont donc
+   pas ecrits ici. Ils sont centralises dans l'objet `infosAConfirmer`, defini
+   dans public/js/infos-a-confirmer.js -- c'est le SEUL fichier a modifier pour
+   les renseigner, et il est partage avec ecole/index.html pour qu'une valeur
+   ne soit a saisir qu'une seule fois. En attendant, la modale affiche
+   « a confirmer aupres du centre » et le telephone du centre
+   (section « Organisation de la formation », juste apres les metiers).
    ============================================================ */
 const formationCommun = {
   intro: [
@@ -1390,7 +1438,7 @@ const formationData = {
     ]
   }
 };
-var modalSections = [ { type: 'intro', title: 'Bienvenue à NAS MODE' }, { type: 'metiers', title: 'Les métiers de cette filière' }, { type: 'modules', title: 'Modules communs à toutes les formations' }, { type: 'frais', title: 'Ce que comprennent les frais' }, { type: 'paiement', title: 'Modalités de paiement' }, { type: 'commodites', title: 'Nos commodités' }, { type: 'dossier', title: 'Dossier à fournir' }, { type: 'avantages', title: 'Avantages' } ];
+var modalSections = [ { type: 'intro', title: 'Bienvenue à NAS MODE' }, { type: 'metiers', title: 'Les métiers de cette filière' }, { type: 'organisation', title: 'Organisation de la formation' }, { type: 'modules', title: 'Modules communs à toutes les formations' }, { type: 'frais', title: 'Ce que comprennent les frais' }, { type: 'paiement', title: 'Modalités de paiement' }, { type: 'commodites', title: 'Nos commodités' }, { type: 'dossier', title: 'Dossier à fournir' }, { type: 'avantages', title: 'Avantages' } ];
 function listeSimple(items) { return '<div class="objectives-grid">' + items.map(function(i) { return '<div class="objective-item">' + i + '</div>'; }).join('') + '</div>'; }
 function listeTiret(items) { return '<ul class="mf-list">' + items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul>'; }
 function renderTarifs(t) {
@@ -1426,6 +1474,10 @@ function renderSection(type, data, key) {
       return '<div class="presentation"><blockquote class="depliant-quote">' + c.intro.map(function(p) { return '<p>' + p + '</p>'; }).join('') + '<cite>' + c.introSource + '</cite></blockquote></div>';
     case 'metiers':
       return '<div class="mf-acc">' + data.metiers.map(function(m, i) { return renderMetier(m, 'mf-' + key + '-' + i, data.metiers.length === 1); }).join('') + '</div>';
+    /* Duree, rythme, effectif, rentree, internat, frais d'entrepreneuriat :
+       absents du depliant. Valeurs a renseigner dans js/infos-a-confirmer.js. */
+    case 'organisation':
+      return typeof window.infosAConfirmerHTML === 'function' ? window.infosAConfirmerHTML() : '';
     case 'modules':
       return '<div class="mod-group"><div class="mf-label">Modules généraux</div>' + listeSimple(c.modulesGeneraux) + '</div>'
         + '<div class="mod-group"><div class="mf-label">Modules transversaux</div>' + listeSimple(c.modulesTransversaux) + '</div>';
@@ -1443,7 +1495,7 @@ function renderSection(type, data, key) {
     default: return '';
   }
 }
-function getEl(id) { return document.getElementById(id); } var modalRevealObserver = null; window.openModal = function(key) { var data = formationData[key]; if (!data) return; window._prevFocus = document.activeElement; var overlay = getEl('formation-overlay'); var body = getEl('modal-body'); var loading = getEl('modal-loading'); getEl('modal-title').innerHTML = data.title; getEl('modal-subtitle').textContent = data.subtitle; getEl('formation-modal').setAttribute('aria-label', data.title + ' - Détails de la formation'); if (loading) loading.style.display = 'flex'; overlay.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(function() { if (loading) loading.style.display = 'none'; var html = ''; for (var s = 0; s < modalSections.length; s++) { var section = modalSections[s]; html += '<div class="modal-section-reveal">'; html += '<h3 class="modal-section-title">' + section.title + '</h3>'; html += renderSection(section.type, data, key); if (s < modalSections.length - 1) html += '<div class="modal-section-divider"></div>'; html += '</div>'; } var existing = body.querySelectorAll('.modal-section-reveal'); for (var e = 0; e < existing.length; e++) existing[e].remove(); var temp = document.createElement('div'); temp.innerHTML = html; while (temp.firstChild) body.insertBefore(temp.firstChild, loading); if (modalRevealObserver) modalRevealObserver.disconnect(); modalRevealObserver = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { root: body, threshold: 0.08, rootMargin: '0px 0px -40px 0px' }); var reveals = body.querySelectorAll('.modal-section-reveal'); for (var r = 0; r < reveals.length; r++) { modalRevealObserver.observe(reveals[r]); } var first = reveals[0]; if (first) first.classList.add('is-visible'); setTimeout(function() { var f = body.querySelector('button, a, [tabindex]:not([tabindex="-1"])'); if (f) f.focus(); }, 100); }, 200); document.addEventListener('keydown', handleKeydown); }; window.closeModal = function() { getEl('formation-overlay').classList.remove('open'); document.body.style.overflow = ''; document.removeEventListener('keydown', handleKeydown); if (modalRevealObserver) { modalRevealObserver.disconnect(); modalRevealObserver = null; } if (window._prevFocus) { window._prevFocus.focus(); window._prevFocus = null; } }; function handleKeydown(e) { if (e.key === 'Escape') { closeModal(); return; } if (e.key === 'Tab') { var modal = getEl('formation-modal'); var focusable = modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'); if (!focusable.length) return; var first = focusable[0], last = focusable[focusable.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } } } function handlePostuler() { closeModal(); setTimeout(function() { var target = document.getElementById('formations'); if (target) target.scrollIntoView({ behavior: 'smooth' }); }, 350); }
+function getEl(id) { return document.getElementById(id); } var modalRevealObserver = null; window.openModal = function(key) { var data = formationData[key]; if (!data) return; window._prevFocus = document.activeElement; var overlay = getEl('formation-overlay'); var body = getEl('modal-body'); var loading = getEl('modal-loading'); getEl('modal-title').innerHTML = data.title; getEl('modal-subtitle').textContent = data.subtitle; getEl('formation-modal').setAttribute('aria-label', data.title + ' - Détails de la formation'); if (loading) loading.style.display = 'flex'; overlay.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(function() { if (loading) loading.style.display = 'none'; var html = ''; for (var s = 0; s < modalSections.length; s++) { var section = modalSections[s]; var corps = renderSection(section.type, data, key); if (!corps) continue; /* jamais de titre sans contenu */ html += '<div class="modal-section-reveal">'; html += '<h3 class="modal-section-title">' + section.title + '</h3>'; html += corps; if (s < modalSections.length - 1) html += '<div class="modal-section-divider"></div>'; html += '</div>'; } var existing = body.querySelectorAll('.modal-section-reveal'); for (var e = 0; e < existing.length; e++) existing[e].remove(); var temp = document.createElement('div'); temp.innerHTML = html; while (temp.firstChild) body.insertBefore(temp.firstChild, loading); if (modalRevealObserver) modalRevealObserver.disconnect(); modalRevealObserver = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { root: body, threshold: 0.08, rootMargin: '0px 0px -40px 0px' }); var reveals = body.querySelectorAll('.modal-section-reveal'); for (var r = 0; r < reveals.length; r++) { modalRevealObserver.observe(reveals[r]); } var first = reveals[0]; if (first) first.classList.add('is-visible'); setTimeout(function() { var f = body.querySelector('button, a, [tabindex]:not([tabindex="-1"])'); if (f) f.focus(); }, 100); }, 200); document.addEventListener('keydown', handleKeydown); }; window.closeModal = function() { getEl('formation-overlay').classList.remove('open'); document.body.style.overflow = ''; document.removeEventListener('keydown', handleKeydown); if (modalRevealObserver) { modalRevealObserver.disconnect(); modalRevealObserver = null; } if (window._prevFocus) { window._prevFocus.focus(); window._prevFocus = null; } }; function handleKeydown(e) { if (e.key === 'Escape') { closeModal(); return; } if (e.key === 'Tab') { var modal = getEl('formation-modal'); var focusable = modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'); if (!focusable.length) return; var first = focusable[0], last = focusable[focusable.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } } } function handlePostuler() { closeModal(); setTimeout(function() { var target = document.getElementById('formations'); if (target) target.scrollIntoView({ behavior: 'smooth' }); }, 350); }
 </script>
 <div class="formation-overlay" id="formation-overlay" onclick="if(event.target===this)closeModal()">
   <div class="formation-modal" id="formation-modal" role="dialog" aria-modal="true" aria-label="Détails de la formation">

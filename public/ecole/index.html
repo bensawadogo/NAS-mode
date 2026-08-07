@@ -23,17 +23,17 @@
 <link rel="apple-touch-icon" href="/images/ecole/logo-nas-mode.png"/>
 <title>L'Ecole NAS MODE | Formation Mode, Couture & Coiffure à Ouagadougou, Burkina Faso</title>
 <meta property="og:title" content="L'École — NAS MODE | Excellence Artisanale Ouest-Africaine"/>
-<meta property="og:description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 20 ans d'excellence."/>
+<meta property="og:description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. 25 ans d'excellence."/>
 <meta property="og:image" content="https://nas-mode.vercel.app/images/ecole/logo-nas-mode.png"/>
 <meta property="og:url" content="https://nas-mode.vercel.app/ecole/"/>
 <meta property="og:type" content="website"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="L'École — NAS MODE | Excellence Artisanale Ouest-Africaine"/>
-<meta name="twitter:description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 20 ans d'excellence."/>
+<meta name="twitter:description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. 25 ans d'excellence."/>
 <meta name="twitter:image" content="https://nas-mode.vercel.app/images/ecole/logo-nas-mode.png"/>
 <link rel="canonical" href="https://nas-mode.vercel.app/ecole/"/>
 
-<meta name="description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. Plus de 20 ans d'excellence."/>
+<meta name="description" content="Découvrez NAS MODE, une école de mode, coiffure, esthétique et maquillage cinéma au Burkina Faso. 25 ans d'excellence."/>
 <link rel="preload" as="font" type="font/woff2" href="../fonts/inter-300-700.woff2?v=260C81A4" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="../fonts/cormorant-garamond-300-500.woff2?v=C47FF128" crossorigin>
 <style>
@@ -497,6 +497,16 @@ html { overflow-x: hidden; }
     color: #C17D5A;
     line-height: 1;
     margin-bottom: 8px;
+    /* Chiffres a chasse fixe : le compteur qui defile ne fait plus bouger
+       la mise en page pendant l'animation. */
+    font-variant-numeric: tabular-nums;
+}
+.chiffre-souslabel {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.72rem;
+    font-weight: 300;
+    opacity: 0.75;
 }
 .chiffre-label {
     font-family: 'Inter', sans-serif;
@@ -832,6 +842,63 @@ html { overflow-x: hidden; }
 .frais-card li:last-child { border-bottom: none; }
 .frais-card li strong { color: #1A1A1A; font-weight: 500; }
 .frais-card li .price { color: #C17D5A; font-weight: 600; white-space: nowrap; }
+/* Informations que le depliant n'imprime pas : voir js/infos-a-confirmer.js.
+   Grille auto-fit, aucune hauteur fixe, aucun nowrap : le remplacement de
+   « a confirmer aupres du centre » par une vraie valeur (courte ou longue)
+   ne provoque ni saut de mise en page ni debordement. */
+.iac-box {
+    margin-top: 48px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+    padding: 32px 24px;
+}
+@media (min-width: 640px) { .iac-box { padding: 40px; } }
+.iac-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #5f5e5b;
+    margin: 0 0 20px;
+}
+.iac-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 4px 32px;
+}
+.iac-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    min-width: 0;
+}
+.iac-cle {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a8985;
+}
+.iac-val {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #1A1A1A;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+.iac-val.iac-attente { color: #5f5e5b; font-weight: 300; font-style: italic; }
+.iac-tel {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #5f5e5b;
+    margin: 20px 0 0;
+}
+.iac-tel a { color: #C17D5A; text-decoration: none; border-bottom: 1px solid currentColor; }
 .modules-box {
     margin-top: 48px;
     background: #FFFFFF;
@@ -1281,6 +1348,12 @@ html { overflow-x: hidden; }
   }
 }
 </script>
+<!-- Informations que le depliant n'imprime pas (duree, rythme, effectif,
+     rentree, internat, frais d'entrepreneuriat). Un seul fichier a modifier :
+     public/js/infos-a-confirmer.js, partage avec nasmode.html.
+     Charge en defer : ne bloque pas le rendu, et le bloc « Organisation de la
+     formation » reste lisible meme si ce script ne se charge pas. -->
+<script src="../js/infos-a-confirmer.js?v=1" defer></script>
 </head>
 <body>
 
@@ -1321,7 +1394,7 @@ html { overflow-x: hidden; }
 <div class="ecole-hero-content" style="padding-top:clamp(64px,10vw,80px)">
 <p class="ecole-hero-subtitle reveal">NAS MODE — Centre de Formation Professionnelle</p>
 <h1 class="ecole-hero-title reveal reveal-delay-1">L'École NAS MODE</h1>
-<p class="ecole-hero-desc reveal reveal-delay-2">Depuis plus de 20 ans, NAS MODE accompagne les talents vers les métiers de la mode, de la beauté et de la création.</p>
+<p class="ecole-hero-desc reveal reveal-delay-2">Depuis 2001, NAS MODE accompagne les talents vers les métiers de la mode, de la beauté et de la création.</p>
 <div class="reveal reveal-delay-3">
 <a href="#histoire" class="cta-btn cta-btn-primary" style="display: inline-block; cursor: pointer;">DÉCOUVRIR NOTRE HISTOIRE</a>
 </div>
@@ -1348,8 +1421,8 @@ html { overflow-x: hidden; }
 <h2 class="ecole-title" style="margin-bottom: 32px;">Une école née d'une passion.</h2>
 <p class="ecole-text" style="margin-bottom: 24px;">En 2001, Safi Ouattara Diallo fonde NAS MODE à Ouagadougou avec une vision claire : offrir aux jeunes burkinabè une formation professionnelle d'excellence dans les métiers de la mode et de la beauté.</p>
 <p class="ecole-text" style="margin-bottom: 24px;">D'abord modeste atelier de couture, l'école s'est agrandie année après année. En 2008, la rencontre avec Bea Petri, venue de Suisse via Swisscontact, marque un tournant décisif. Grâce à son engagement et aux donateurs internationaux, NAS MODE s'est dotée d'infrastructures modernes.</p>
-<p class="ecole-text">Aujourd'hui, plus de 25 ans après sa création, l'école forme près de 200 jeunes chaque année et rayonne bien au-delà des frontières du Burkina Faso, portée par une conviction simple : la formation est le plus puissant levier de transformation sociale.</p>
-<p class="ecole-text" style="margin-top: 24px;">Forte de cet héritage, NAS MODE franchit une nouvelle étape en ouvrant un second campus à Abidjan, en Côte d'Ivoire. Ce nouveau chapitre incarne notre volonté de rayonner dans toute l'Afrique de l'Ouest et d'offrir aux jeunes ivoiriens la même excellence qui fait notre renomée au Burkina Faso.</p>
+<p class="ecole-text">Aujourd'hui, 25 ans après sa création, l'école forme près de 200 jeunes chaque année et rayonne bien au-delà des frontières du Burkina Faso, portée par une conviction simple : la formation est le plus puissant levier de transformation sociale.</p>
+<p class="ecole-text" style="margin-top: 24px;">Forte de cet héritage, NAS MODE franchira une nouvelle étape en ouvrant un second campus à Abidjan, en Côte d'Ivoire. Ce nouveau chapitre incarnera notre volonté de rayonner dans toute l'Afrique de l'Ouest et d'offrir aux jeunes ivoiriens la même excellence qui fait notre renommée au Burkina Faso.</p>
 </div>
 </div>
 </section>
@@ -1461,9 +1534,9 @@ html { overflow-x: hidden; }
 <section class="ecole-section">
 <div class="ecole-section-header reveal">
 <p class="ecole-label">NOS CAMPUS</p>
-<h2 class="ecole-title">Deux campus, une même excellence.</h2>
+<h2 class="ecole-title">Bientôt deux campus, une même excellence.</h2>
 </div>
-<p class="campus-intro reveal ecole-text">De Ouagadougou à Abidjan, NAS MODE étend son excellence à travers l'Afrique de l'Ouest pour offrir une formation professionnelle d'élite au plus grand nombre.</p>
+<p class="campus-intro reveal ecole-text">De Ouagadougou à Abidjan, NAS MODE étendra son excellence à travers l'Afrique de l'Ouest pour offrir une formation professionnelle d'élite au plus grand nombre.</p>
 <div class="campus-grid">
 <div class="reveal campus-card">
 <picture><source srcset="../images/ecole/ecole-screenshot-2026-06-21-192644.webp?v=3F5C472B" type="image/webp"><img width="1280" height="841" decoding="async" class="campus-card-image" src="../images/ecole/ecole-screenshot-2026-06-21-192644.webp?v=3F5C472B" alt="Campus Ouagadougou" loading="lazy"/></picture>
@@ -1473,7 +1546,7 @@ html { overflow-x: hidden; }
 <p class="campus-card-location">Ouagadougou, Burkina Faso</p>
 <p class="campus-card-text">Le campus historique, berceau de NAS MODE. Des ateliers modernes de couture, coiffure, esthétique et un studio de maquillage cinéma.</p>
 <div class="campus-card-details">
-<span><strong>Formations :</strong> Stylisme &amp; Couture, Coiffure, Esthétique, Maquillage Cinéma</span>
+<span><strong>Formations :</strong> Stylisme &amp; Couture, Coiffure, Esthétique, Maquilleur Cinéma et Télévision</span>
 <span><strong>Contact :</strong> info@nasmodeformation.com</span>
 </div>
 </div>
@@ -1484,9 +1557,9 @@ html { overflow-x: hidden; }
 <span class="campus-card-badge upcoming">Prochainement</span>
 <h3 class="campus-card-title">Campus Abidjan</h3>
 <p class="campus-card-location">Abidjan, Côte d'Ivoire</p>
-<p class="campus-card-text">NAS MODE ouvre son second campus à Abidjan, portant son excellence au-delà des frontières pour former les talents de demain.</p>
+<p class="campus-card-text">NAS MODE ouvrira prochainement son second campus à Abidjan, qui portera son excellence au-delà des frontières pour former les talents de demain.</p>
 <div class="campus-card-details">
-<span><strong>Formations :</strong> Stylisme &amp; Couture, Coiffure, Esthétique, Maquillage Cinéma</span>
+<span><strong>Formations prévues :</strong> Stylisme &amp; Couture, Coiffure, Esthétique, Maquilleur Cinéma et Télévision</span>
 <span><strong>Contact :</strong> info@nasmodeformation.com</span>
 </div>
 </div>
@@ -1515,26 +1588,33 @@ html { overflow-x: hidden; }
 <p class="ecole-label" style="color: #C17D5A;">NOS CHIFFRES</p>
 <h2 class="ecole-title ecole-title-light">L'impact en chiffres.</h2>
 </div>
+<!-- Compteurs harmonises avec le reste du site et avec le depliant :
+     25 = annees depuis 2001 (depliant : « DEPUIS 2001 », reference 2026) ;
+     3000+ = valeur deja publiee sur la page d'accueil (l'ancien 2500 la
+     contredisait) ; 10 = les 10 metiers de formation du depliant (l'ancien
+     « 4 filieres » ne correspondait a rien de source) ; 1 = campus en
+     activite, Abidjan ouvrant prochainement (cf. son badge). Le suffixe est
+     desormais porte par data-suffix et non plus code en dur dans le script. -->
 <div class="chiffres-grid" style="max-width: 900px; margin: 0 auto;">
 <div class="reveal">
-<div class="chiffre-number" data-count="25">0</div>
+<div class="chiffre-number" data-count="25" data-suffix="">0</div>
 <p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Années d'expérience</p>
 </div>
 <div class="reveal reveal-delay-1">
-<div class="chiffre-number" data-count="2500">0</div>
+<div class="chiffre-number" data-count="3000" data-suffix="+">0</div>
 <p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Apprenants formés</p>
 </div>
 <div class="reveal reveal-delay-2">
-<div class="chiffre-number" data-count="4">0</div>
-<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Filières</p>
+<div class="chiffre-number" data-count="10" data-suffix="">0</div>
+<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Métiers de formation</p>
 </div>
 <div class="reveal reveal-delay-3">
-<div class="chiffre-number" data-count="80">0</div>
+<div class="chiffre-number" data-count="80" data-suffix="">0</div>
 <p class="chiffre-label" style="color: rgba(250,247,242,0.6);">% d'insertion</p>
 </div>
 <div class="reveal reveal-delay-4">
-<div class="chiffre-number" data-count="2">0</div>
-<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Campus</p>
+<div class="chiffre-number" data-count="1" data-suffix="">0</div>
+<p class="chiffre-label" style="color: rgba(250,247,242,0.6);">Campus en activité<br/><span class="chiffre-souslabel">Abidjan ouvrira prochainement</span></p>
 </div>
 </div>
 </section>
@@ -1564,6 +1644,7 @@ html { overflow-x: hidden; }
 
 <nav class="formations-nav reveal" aria-label="Sommaire de la section formations">
 <a class="tap-target" href="#les-metiers">Les 10 métiers</a>
+<a class="tap-target" href="#l-organisation">Organisation</a>
 <a class="tap-target" href="#les-tarifs">Coût annuel</a>
 <a class="tap-target" href="#les-modules">Modules</a>
 <a class="tap-target" href="#les-frais">Ce que comprennent les frais</a>
@@ -1689,7 +1770,7 @@ html { overflow-x: hidden; }
 <a class="formation-card-tarif tap-target" href="#tarif-estheticien">Voir le tarif ↓</a>
 </div>
 <div class="formation-card">
-<div class="formation-card-name">Maquillage cinéma et télévision</div>
+<div class="formation-card-name">Maquilleur Cinéma et Télévision</div>
 <div class="formation-card-diplomes">
 <span class="formation-card-diplome">Attestation de fin de formation</span>
 </div>
@@ -1739,6 +1820,30 @@ html { overflow-x: hidden; }
 </div>
 </div>
 
+<!-- Organisation de la formation.
+     Ces six informations ne figurent NULLE PART sur le depliant officiel :
+     elles ne sont donc pas inventees ici. Le texte « a confirmer aupres du
+     centre » est ecrit en dur pour rester lisible sans JavaScript et pour
+     eviter tout decalage de mise en page ; il est remplace automatiquement
+     par la vraie valeur des qu'elle est renseignee dans le fichier
+     public/js/infos-a-confirmer.js -- SEUL fichier a modifier, partage avec
+     les modales de nasmode.html.
+     Ne pas ecrire de valeur en dur ici : elle serait ignoree et divergerait
+     de la modale correspondante. -->
+<h3 class="formations-sub reveal" id="l-organisation">Organisation de la formation</h3>
+<div class="iac-box reveal">
+<p class="iac-intro">Ces précisions ne figurent pas sur le dépliant. Elles sont communiquées directement par le centre.</p>
+<div class="iac-grid">
+<div class="iac-item" data-info-a-confirmer="duree"><span class="iac-cle">Durée de la formation</span><span class="iac-val iac-attente">à confirmer auprès du centre</span></div>
+<div class="iac-item" data-info-a-confirmer="rythme"><span class="iac-cle">Rythme hebdomadaire</span><span class="iac-val iac-attente">à confirmer auprès du centre</span></div>
+<div class="iac-item" data-info-a-confirmer="effectif"><span class="iac-cle">Effectif par promotion</span><span class="iac-val iac-attente">à confirmer auprès du centre</span></div>
+<div class="iac-item" data-info-a-confirmer="rentree"><span class="iac-cle">Date de rentrée</span><span class="iac-val iac-attente">à confirmer auprès du centre</span></div>
+<div class="iac-item" data-info-a-confirmer="internat"><span class="iac-cle">Ce que couvre l'internat</span><span class="iac-val iac-attente">à confirmer auprès du centre</span></div>
+<div class="iac-item" data-info-a-confirmer="fraisEntrepreneuriat"><span class="iac-cle">Frais de la formation en entrepreneuriat</span><span class="iac-val iac-attente">à confirmer auprès du centre</span></div>
+</div>
+<p class="iac-tel">Inscriptions et informations : <a class="tap-target" href="tel:+22678014198">+226 78 01 41 98</a> · <a class="tap-target" href="tel:+22665811818">+226 65 81 18 18</a></p>
+</div>
+
 <!-- Tarifs -->
 <h3 class="formations-sub reveal" id="les-tarifs">Coût annuel de la formation, métier par métier</h3>
 <div class="tarifs-box reveal">
@@ -1782,7 +1887,7 @@ html { overflow-x: hidden; }
 <div class="tarif-card" id="tarif-maquilleur-cinema-et-tv">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>440 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 277 000 F CFA</div>
-<div class="tarif-label">Maquilleur cinéma et TV</div>
+<div class="tarif-label">Maquilleur Cinéma et Télévision</div>
 </div>
 <div class="tarif-card" id="tarif-coiffeur-dame">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>380 000 F CFA</div>
@@ -1991,7 +2096,7 @@ Stylisme · Coiffure · Modélisme · Esthétique — Ouagadougou
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Stylisme & Couture</a>
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Coiffure</a>
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Esthétique</a>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Maquillage Cinéma</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Maquilleur Cinéma et Télévision</a>
 </div>
 <div class="flex flex-col gap-4">
 <h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">CONTACT</h4>
@@ -2017,7 +2122,7 @@ Stylisme · Coiffure · Modélisme · Esthétique — Ouagadougou
 
 <script>
 (function(){ var nav=document.getElementById('top-nav'); if(nav){ window.addEventListener('scroll',function(){ nav.classList.toggle('nav-scrolled', window.scrollY>50) },{passive:true}) } })();
-(function() { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var cursor = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (cursor && ring) { cursor.style.left = (window.innerWidth / 2) + 'px'; cursor.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var cx = 0, cy = 0, ticking = false; var renderCursor = function () { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; ring.style.left = cx + 'px'; ring.style.top = cy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderCursor); } }, { passive: true }); document.addEventListener('mouseleave', function () { cursor.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { cursor.style.display = ''; ring.style.display = ''; }); var formations = document.getElementById('formations'); if (formations) { formations.addEventListener('mouseenter', function () { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); }); formations.addEventListener('mouseleave', function () { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); }); } var interactiveEls = document.querySelectorAll('a, button, input, textarea, select, .cursor-pointer, [role=button]'); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { cursor.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { cursor.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} } var revealElements = document.querySelectorAll('.reveal'); function checkReveal() { for (var i = 0; i < revealElements.length; i++) { var rect = revealElements[i].getBoundingClientRect(); if (rect.top < window.innerHeight * 0.9) { revealElements[i].classList.add('visible'); } } } window.addEventListener('scroll', checkReveal); window.addEventListener('resize', checkReveal); checkReveal(); var counters = document.querySelectorAll('.chiffre-number'); var counted = false; function startCounters() { if (counted) return; var countSection = document.querySelector('.chiffres-grid'); if (!countSection) return; var rect = countSection.getBoundingClientRect(); if (rect.top < window.innerHeight * 0.85) { counted = true; counters.forEach(function(el) { var target = parseInt(el.getAttribute('data-count')); if (isNaN(target)) return; var current = 0; var step = Math.max(1, Math.ceil(target / 60)); var timer = setInterval(function() { current += step; if (current >= target) { current = target; clearInterval(timer); } el.textContent = current + (target === 80 || target === 25 || target === 4 ? '' : '+'); }, 20); }); } } window.addEventListener('scroll', startCounters); startCounters(); })(); function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.classList.remove('open'); document.body.style.overflow = ''; bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.classList.add('open'); document.body.style.overflow = 'hidden'; bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; } }
+(function() { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var cursor = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (cursor && ring) { cursor.style.left = (window.innerWidth / 2) + 'px'; cursor.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var cx = 0, cy = 0, ticking = false; var renderCursor = function () { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; ring.style.left = cx + 'px'; ring.style.top = cy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderCursor); } }, { passive: true }); document.addEventListener('mouseleave', function () { cursor.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { cursor.style.display = ''; ring.style.display = ''; }); var formations = document.getElementById('formations'); if (formations) { formations.addEventListener('mouseenter', function () { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); }); formations.addEventListener('mouseleave', function () { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); }); } var interactiveEls = document.querySelectorAll('a, button, input, textarea, select, .cursor-pointer, [role=button]'); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { cursor.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { cursor.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} } var revealElements = document.querySelectorAll('.reveal'); function checkReveal() { for (var i = 0; i < revealElements.length; i++) { var rect = revealElements[i].getBoundingClientRect(); if (rect.top < window.innerHeight * 0.9) { revealElements[i].classList.add('visible'); } } } window.addEventListener('scroll', checkReveal); window.addEventListener('resize', checkReveal); checkReveal(); var counters = document.querySelectorAll('.chiffre-number'); var counted = false; function startCounters() { if (counted) return; var countSection = document.querySelector('.chiffres-grid'); if (!countSection) return; var rect = countSection.getBoundingClientRect(); if (rect.top < window.innerHeight * 0.85) { counted = true; counters.forEach(function(el) { var target = parseInt(el.getAttribute('data-count')); if (isNaN(target)) return; var current = 0; var step = Math.max(1, Math.ceil(target / 60)); var timer = setInterval(function() { current += step; if (current >= target) { current = target; clearInterval(timer); } el.textContent = current + (el.getAttribute('data-suffix') || ''); }, 20); }); } } window.addEventListener('scroll', startCounters); startCounters(); })(); function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.classList.remove('open'); document.body.style.overflow = ''; bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.classList.add('open'); document.body.style.overflow = 'hidden'; bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; } }
 </script>
 </body>
 </html>
