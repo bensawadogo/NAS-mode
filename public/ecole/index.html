@@ -720,6 +720,16 @@ html { overflow-x: hidden; }
 }
 .tarif-card .tarif-externat { font-size: 1.15rem; margin-bottom: 4px; }
 .tarif-card .tarif-internat { font-size: 0.95rem; color: #C17D5A; }
+.tarif-card .tarif-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+    color: #8A857D;
+}
 .tarif-card .tarif-label {
     font-family: 'Inter', sans-serif;
     font-size: 0.72rem;
@@ -1298,57 +1308,57 @@ html { overflow-x: hidden; }
 <p class="ecole-label" style="text-align:center;">Coût annuel de la formation</p>
 <div class="tarifs-grid">
 <div class="tarif-card">
-<div class="tarif-externat">380 000 F</div>
-<div class="tarif-internat">1 217 500 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>380 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 217 500 F CFA</div>
 <div class="tarif-label">Mécanicien de confection</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">405 000 F</div>
-<div class="tarif-internat">1 242 000 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>405 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 242 000 F CFA</div>
 <div class="tarif-label">Couturier dame</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">392 000 F</div>
-<div class="tarif-internat">1 229 000 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>392 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 229 000 F CFA</div>
 <div class="tarif-label">Modéliste</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">438 000 F</div>
-<div class="tarif-internat">1 275 000 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>438 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 275 000 F CFA</div>
 <div class="tarif-label">Technicien de confection</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">415 000 F</div>
-<div class="tarif-internat">1 252 000 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>415 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 252 000 F CFA</div>
 <div class="tarif-label">Styliste</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">465 000 F</div>
-<div class="tarif-internat">1 302 000 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>465 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 302 000 F CFA</div>
 <div class="tarif-label">Tailleur homme et dame</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">415 000 F</div>
-<div class="tarif-internat">1 252 000 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>415 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 252 000 F CFA</div>
 <div class="tarif-label">Esthéticien</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">440 000 F</div>
-<div class="tarif-internat">1 277 000 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>440 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 277 000 F CFA</div>
 <div class="tarif-label">Maquilleur cinéma et TV</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">380 000 F</div>
-<div class="tarif-internat">1 217 500 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>380 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 217 500 F CFA</div>
 <div class="tarif-label">Coiffeur dame</div>
 </div>
 <div class="tarif-card">
-<div class="tarif-externat">405 000 F</div>
-<div class="tarif-internat">1 242 000 F</div>
+<div class="tarif-externat"><span class="tarif-tag">Externat</span>405 000 F CFA</div>
+<div class="tarif-internat"><span class="tarif-tag">Internat</span>1 242 000 F CFA</div>
 <div class="tarif-label">Coiffeur dame — Spécialisation</div>
 </div>
 </div>
-<p class="tarif-note">Chiffres en Francs CFA par an. Externat / internat selon le métier choisi. Module supplémentaire au choix : 30 000 F CFA par module (sans la matière d'œuvre). Les frais de formation comprennent la matière d'œuvre utilisée en pratique.</p>
+<p class="tarif-note">Tarifs annuels en Francs CFA : <strong>Externat</strong> (formation seule) et <strong>Internat</strong> (formation avec pension complète, réservé aux jeunes filles). Module supplémentaire au choix : 30 000 F CFA par module (sans la matière d'œuvre). La crèche (135 000 F/an) et le bus scolaire (160 000 F/an) sont des commodités ajoutées au tarif selon les besoins. Les frais de formation comprennent la matière d'œuvre utilisée en pratique.</p>
 </div>
 
 <!-- Frais annexes -->
