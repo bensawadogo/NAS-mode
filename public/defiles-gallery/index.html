@@ -35,8 +35,114 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <script>document.documentElement.className = 'js'</script>
-  <script type="module" crossorigin src="./assets/index-CPd6kHPm.js?v=3C0F6A69"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-BBq7xlPj.css?v=C86A3FA6">
+  <script>
+  /* Bascule galerie : WebGL lourd (desktop rapide) vs galerie HTML/CSS legere.
+     Le mode leger est le repli par defaut au moindre doute. */
+  (function () {
+      function mq(query) {
+          try { return !!(window.matchMedia && window.matchMedia(query).matches); } catch (e) { return false; }
+      }
+      function hasWebGL() {
+          try {
+              var probe = document.createElement('canvas');
+              if (!probe.getContext) return false;
+              var gl = probe.getContext('webgl2') || probe.getContext('webgl') || probe.getContext('experimental-webgl');
+              if (!gl) return false;
+              var lose = gl.getExtension && gl.getExtension('WEBGL_lose_context');
+              if (lose) lose.loseContext();
+              return true;
+          } catch (e) { return false; }
+      }
+      function preferLite() {
+          try {
+              if (mq('(max-width: 900px)')) return true;
+              if (mq('(pointer: coarse)')) return true;
+              if (mq('(prefers-reduced-motion: reduce)')) return true;
+              var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+              if (conn) {
+                  if (conn.saveData === true) return true;
+                  var eff = conn.effectiveType;
+                  if (eff === 'slow-2g' || eff === '2g' || eff === '3g') return true;
+              }
+              var mem = navigator.deviceMemory;
+              if (typeof mem === 'number' && mem > 0 && mem < 4) return true;
+              if (!hasWebGL()) return true;
+              return false;
+          } catch (e) { return true; }
+      }
+      if (preferLite()) {
+          document.documentElement.className += ' gallery-lite';
+      } else {
+          var src = './assets/index-CPd6kHPm.js?v=3C0F6A69';
+          /* Le fetch demarre tout de suite... */
+          try {
+              var pre = document.createElement('link');
+              pre.rel = 'modulepreload';
+              pre.crossOrigin = 'anonymous';
+              pre.href = src;
+              document.head.appendChild(pre);
+          } catch (e) {}
+          /* ...mais l'execution attend le DOM : le bundle lit .webgl au chargement du module. */
+          var injectEngine = function () {
+              var s = document.createElement('script');
+              s.type = 'module';
+              s.crossOrigin = 'anonymous';
+              s.src = src;
+              document.head.appendChild(s);
+          };
+          if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', injectEngine, { once: true });
+          } else {
+              injectEngine();
+          }
+      }
+  })();
+  </script>
+  <style>
+  /* --- Mode leger : galerie HTML/CSS, aucun Three.js, aucune texture --- */
+  html.gallery-lite body {
+      --color-text: #2C2C2C;
+      --color-link: #2C2C2C;
+      --color-link-hover: #C9A04D;
+      background-color: var(--color-bg);
+  }
+  html.gallery-lite .content { display: none !important; }
+  html.gallery-lite .frame {
+      position: relative;
+      height: auto;
+      padding: 1.5rem var(--page-padding) 0;
+  }
+  .gallery-lite-view {
+      padding: 1.5rem var(--page-padding) 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+  .gallery-lite-view__intro {
+      margin: 0 0 1.25rem;
+      font-size: .78rem;
+      letter-spacing: var(--ui-tracking);
+      opacity: .78;
+      line-height: 1.4;
+  }
+  .gallery-lite-view__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: .75rem;
+  }
+  @media screen and (min-width: 640px) {
+      .gallery-lite-view__grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  }
+  .gallery-lite-view__grid img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      background-color: #EFE9E0;
+      border-radius: 2px;
+  }
+  </style>
   <style>
   html.cursor-active * { cursor: none !important; }
   .custom-cursor {
@@ -103,6 +209,50 @@
     <div class="content">
       <canvas class="webgl"></canvas>
     </div>
+    <template id="gallery-lite-tpl">
+      <section class="gallery-lite-view" data-gallery-fallback>
+        <p class="gallery-lite-view__intro">Galerie allégée — collections et défilés NAS MODE.</p>
+        <div class="gallery-lite-view__grid">
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.21.11.webp?v=162805E9" width="1280" height="856" alt="Création NAS MODE — défilé, vue 1" loading="eager" fetchpriority="high" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.22.21.webp?v=E4E7850C" width="965" height="1420" alt="Création NAS MODE — défilé, vue 2" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.23.00.webp?v=6057D943" width="1280" height="1178" alt="Création NAS MODE — défilé, vue 3" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.26.43.webp?v=773C20E7" width="1280" height="860" alt="Création NAS MODE — défilé, vue 4" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.27.25.webp?v=8A2BE6D2" width="1280" height="862" alt="Création NAS MODE — défilé, vue 5" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.28.53.webp?v=3B8AAAEC" width="1280" height="947" alt="Création NAS MODE — défilé, vue 6" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.29.32.webp?v=E4E7D9C7" width="1280" height="1216" alt="Création NAS MODE — défilé, vue 7" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.30.25.webp?v=36D25B23" width="1280" height="866" alt="Création NAS MODE — défilé, vue 8" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-181913.webp?v=DC8D2B20" width="1280" height="848" alt="Création NAS MODE — défilé, vue 9" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-193111.webp?v=34840370" width="954" height="1420" alt="Création NAS MODE — défilé, vue 10" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-193158.webp?v=15995EFD" width="967" height="1313" alt="Création NAS MODE — défilé, vue 11" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195150.webp?v=4DCB094A" width="924" height="1376" alt="Création NAS MODE — défilé, vue 12" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195242.webp?v=F72A43E9" width="1280" height="844" alt="Création NAS MODE — défilé, vue 13" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195330.webp?v=8F9A9459" width="966" height="1391" alt="Création NAS MODE — défilé, vue 14" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195408.webp?v=E3DF90EA" width="971" height="1407" alt="Création NAS MODE — défilé, vue 15" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195435.webp?v=3FBD2C55" width="960" height="1389" alt="Création NAS MODE — défilé, vue 16" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195507.webp?v=F5761FE2" width="960" height="1391" alt="Création NAS MODE — défilé, vue 17" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195803.webp?v=63ABC923" width="976" height="1413" alt="Création NAS MODE — défilé, vue 18" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195852.webp?v=102D1E69" width="963" height="1383" alt="Création NAS MODE — défilé, vue 19" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195937.webp?v=CF9EE178" width="1059" height="1399" alt="Création NAS MODE — défilé, vue 20" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200013.webp?v=66CD4128" width="902" height="1395" alt="Création NAS MODE — défilé, vue 21" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200722.webp?v=A399B3EC" width="963" height="1387" alt="Création NAS MODE — défilé, vue 22" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200752.webp?v=9A484477" width="967" height="1403" alt="Création NAS MODE — défilé, vue 23" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200855.webp?v=EAD4CB8D" width="968" height="1400" alt="Création NAS MODE — défilé, vue 24" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200938.webp?v=D412D446" width="961" height="1382" alt="Création NAS MODE — défilé, vue 25" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-201005.webp?v=28D0891F" width="959" height="1376" alt="Création NAS MODE — défilé, vue 26" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-201130.webp?v=84E68491" width="1173" height="1393" alt="Création NAS MODE — défilé, vue 27" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-201221.webp?v=8CE77496" width="1133" height="1408" alt="Création NAS MODE — défilé, vue 28" loading="lazy" decoding="async" />
+        </div>
+      </section>
+    </template>
+    <script>
+    /* Injecte la galerie legere uniquement en mode leger : en mode WebGL le <template> reste inerte, aucune image n'est telechargee. */
+    (function () {
+        if (document.documentElement.className.indexOf('gallery-lite') === -1) return;
+        var tpl = document.getElementById('gallery-lite-tpl');
+        if (!tpl || !('content' in tpl) || !tpl.parentNode) return;
+        tpl.parentNode.insertBefore(tpl.content.cloneNode(true), tpl);
+    })();
+    </script>
   </main>
 <div id="custom-cursor" class="custom-cursor"></div>
 <div id="custom-cursor-ring" class="custom-cursor-ring"></div>
