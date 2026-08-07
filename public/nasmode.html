@@ -595,6 +595,158 @@ html { overflow-x: hidden; }
   color: #474743;
   font-style: italic;
 }
+/* ===== FICHES METIER DES MODALES =====
+   Une fiche par metier, repliable, portant SES propres donnees
+   (admission, diplomes, tarifs, matieres, supplements).
+   Mobile d'abord : tout retombe sur une colonne sous 768px. */
+.mf-acc { border-top: 1px solid #EDEAE5; }
+.mf-item { position: relative; border-bottom: 1px solid #EDEAE5; }
+.mf-item > input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.mf-item > label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 0;
+  cursor: pointer;
+  user-select: none;
+}
+.mf-item > label::after {
+  content: '+';
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1;
+  color: #B5562C;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.mf-item > input:checked + label::after { content: '\2212'; }
+.mf-item > input:focus-visible + label {
+  outline: 2px solid #B5562C;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.mf-head { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.mf-nom {
+  font-family: 'EB Garamond', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A1A1A;
+  line-height: 1.25;
+}
+.mf-pkg {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #B5562C;
+}
+.mf-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.mf-item > input:checked ~ .mf-content { max-height: 4000px; padding-bottom: 20px; }
+.mf-block { margin-top: 16px; }
+.mf-block:first-child { margin-top: 0; }
+.mf-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #72716D;
+  margin-bottom: 8px;
+}
+.mf-list { list-style: none; margin: 0; padding: 0; }
+.mf-list li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #474743;
+  padding: 3px 0;
+}
+.mf-list li::before { content: '\2014'; color: #B5562C; margin-right: 8px; }
+.mf-cycle { font-weight: 600; color: #1A1A1A; }
+.mf-note {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #72716D;
+  font-style: italic;
+  margin-top: 8px;
+}
+.mf-none { font-size: 13px; line-height: 1.65; color: #72716D; font-style: italic; }
+.tarif-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tarif-card {
+  background: #FFFFFF;
+  border: 1px solid #EDEAE5;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.tarif-mode {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #B5562C;
+  margin-bottom: 8px;
+}
+.tarif-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 12px;
+  padding: 6px 0;
+  border-top: 1px solid #F3F1ED;
+}
+.tarif-line:first-of-type { border-top: none; padding-top: 0; }
+.tarif-key { font-size: 12px; color: #72716D; }
+.tarif-val { font-size: 14px; font-weight: 600; color: #1A1A1A; white-space: nowrap; }
+.mod-group { margin-top: 20px; }
+.mod-group:first-child { margin-top: 0; }
+.pay-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.pay-card {
+  background: #FAF7F2;
+  border: 1px solid #EDEAE5;
+  border-radius: 14px;
+  padding: 18px 16px;
+}
+.pay-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1A1A1A;
+}
+.pay-ech { font-size: 12px; color: #B5562C; margin: 2px 0 10px; }
+.depliant-quote { border-left: 3px solid #B5562C; padding-left: 18px; }
+.depliant-quote cite {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  color: #72716D;
+}
+@media (max-width: 768px) {
+  .mf-nom { font-size: 17px; }
+  .mf-list li { font-size: 13px; }
+  .tarif-grid { grid-template-columns: 1fr; }
+  .pay-grid { grid-template-columns: 1fr; }
+  .mod-group { margin-top: 16px; }
+}
+@media (max-width: 380px) {
+  .mf-nom { font-size: 16px; }
+  .mf-pkg { font-size: 9px; }
+  .tarif-card { padding: 12px 14px; }
+  .tarif-key { font-size: 11px; }
+  .tarif-val { font-size: 13px; }
+}
+@media (pointer: coarse), (max-width: 767px) {
+  .mf-item > label { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mf-content { transition: none !important; }
+}
 .formation-modal-footer {
   flex-shrink: 0;
   padding: 0 56px 40px;
@@ -1043,8 +1195,255 @@ document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') retur
 /* La newsletter affichait un alert de remerciement sans rien envoyer.
    Faute de backend, on ouvre le client mail de l'utilisateur - meme
    approche que le bouton "Soutenir Nous" deja en place sur la page. */
-function inscrireNewsletter(e) { e.preventDefault(); var champ = document.getElementById('newsletter-email'); if (!champ || !champ.value) return false; window.location.href = 'mailto:info@nasmodeformation.com?subject=' + encodeURIComponent('Inscription newsletter NAS MODE') + '&body=' + encodeURIComponent('Bonjour,\n\nMerci de m\'inscrire a la newsletter avec cette adresse : ' + champ.value + '\n\nCordialement'); champ.value = ''; return false; } function initSlideshow(id) { const c = document.getElementById(id); if (!c) return; const slides = c.querySelectorAll('.slide'); let cur = 0, timer; function go(i) { slides.forEach(s => s.classList.remove('active')); slides[i].classList.add('active'); cur = i; } c.addEventListener('mouseenter', () => clearInterval(timer)); c.addEventListener('mouseleave', () => { timer = setInterval(() => go((cur + 1) % slides.length), 4000); }); timer = setInterval(() => go((cur + 1) % slides.length), 4000); } initSlideshow('slideshow-stylisme'); initSlideshow('slideshow-coiffure'); initSlideshow('slideshow-maquillage'); const formationData = { stylisme: { title: 'Stylisme, Modélisme & Haute Couture', subtitle: 'Couture, création de mode et haute couture — de l\'esquisse au vêtement fini.', presentation: [ 'La filière Couture & Création de Mode forme aux métiers de Mécanicien de confection, Couturier dame, Modéliste, Technicien de confection, Styliste et Tailleur homme et dame.', 'Chaque parcours allie pratique intensive en atelier, théorie, création et préparation aux diplômes sanctionnés par l\'État.' ], infos: [ { value: 'Attestation / CQP / BQP / BPT / BPTS', label: 'Diplômes' }, { value: 'Cycle 1 : niveau inférieur au CM2 (pratique) · Cycle 2 : CM2 ou plus (théorie + pratique)', label: 'Admission' }, { value: 'Externat : 10 000 F CFA / Internat : 15 000 F CFA', label: 'Frais d\'inscription' }, { value: '380 000 à 465 000 F CFA / an', label: 'Frais de formation EXTERNAT' }, { value: '1 217 500 à 1 302 000 F CFA / an', label: 'Frais de formation INTERNAT' } ], admissionDetails: [ 'Mécanicien de confection & Couturier dame : Cycle 1 (niveau inférieur à la classe de CM2, formation pratique) ou Cycle 2 (niveau CM2 ou plus, formation théorique et pratique) — Attestation de fin de formation', 'Modéliste : être titulaire d\'un diplôme en modélisme ou équivalent — Certificat de Qualification Professionnelle (CQP)', 'Technicien de confection : diplôme en modélisme et technique de confection ou équivalent — Brevet de Qualification Professionnelle (BQP)', 'Styliste : niveau de classe de 3ème au moins et être titulaire d\'un CAP ou CQP du même domaine — Brevet Professionnel de Technicien (BPT)', 'Tailleur homme et dame : Cycle 1 (niveau inférieur ou égal à la classe de 4ème) — Brevet Professionnel de Technicien Supérieur (BPTS)' ], objectives: [ 'Maîtriser les techniques d\'assemblage et de coupe', 'Lire et développer des patrons', 'Réaliser des prototypes et des vêtements finis', 'Entretenir les équipements de couture', 'Créer une collection personnelle' ], program: [ { year: 'Matières communes', items: ['Techniques d\'assemblage','Techniques de coupe','Technologie d\'atelier','Technologie du textile','Organisation du travail','Maintenance des équipements de couture','Lecture des patrons'] }, { year: 'Création de mode', items: ['Développement du patron','Réalisation de prototype','Dessin technique','Réalisation d\'un dessin de mode','Création et réalisation personnelle','Marketing de la mode','Initiation à l\'informatique'] }, { year: 'Suppléments au choix', items: ['Coupe à main levée','Dessin de vêtement à plat','Techniques de moulage','Conception de patrons sur ordinateur (Logiciel StyleCAD 2D)','Confection d\'accessoires (chapeau, chaussure, sac)','Photographie et création de contenus pour les réseaux sociaux'] } ], skills: ['Couture','Modélisme','Stylisme','Coupe','Patronage','Technologie textile','Dessin technique','Entrepreneuriat'], qualites: ['Créativité','Rigueur','Patience','Sens du détail','Esprit d\'équipe'], debouches: ['Mécanicien de confection','Couturier dame','Modéliste','Technicien de confection','Styliste','Tailleur homme et dame','Créateur de marque','Responsable d\'atelier'], why: 'Les frais de formation comprennent la matière d\'oeuvre utilisée pendant les cours pratiques. Module supplémentaire au choix : 30 000 F CFA par module. Accès à un microcrédit pour les meilleurs apprenants de la promotion, facilitation des stages au Burkina Faso et dans la sous-région, et participation aux défilés de fin de formation.' }, coiffure: { title: 'Coiffure & Spécialisation', subtitle: 'Coiffeur dame et Coiffeur dame spécialisation — de la base à l\'expertise.', presentation: [ 'La filière Coiffure forme au métier de Coiffeur dame et à sa spécialisation : traitement des cheveux, rajouts, modifications, tissages, perruques et coiffures événementielles.', 'Une formation pratique intensive, complétée par la gestion d\'un salon de coiffure et le marketing digital.' ], infos: [ { value: 'CQP (Coiffeur dame) · BQP (Spécialisation)', label: 'Diplômes' }, { value: 'Cycle 1 : niveau inférieur à la classe CM2 (pratique) · Cycle 2 : CM2 ou plus (théorie + pratique)', label: 'Admission' }, { value: 'Externat : 10 000 F CFA / Internat : 15 000 F CFA', label: 'Frais d\'inscription' }, { value: '380 000 à 405 000 F CFA / an', label: 'Frais de formation EXTERNAT' }, { value: '1 217 500 à 1 242 000 F CFA / an', label: 'Frais de formation INTERNAT' } ], admissionDetails: [ 'Coiffeur dame : Cycle 1 (niveau inférieur à la classe de CM2, formation pratique) ou Cycle 2 (niveau CM2 ou plus, formation théorique et pratique) — Certificat de Qualification Professionnelle (CQP)', 'Coiffeur dame spécialisation : être titulaire du CQP Coiffeur dame, du BQP esthétique, ou d\'une attestation de formation en coiffure ou en esthétique — Brevet de Qualification Professionnelle (BQP)' ], objectives: [ 'Réaliser des soins capillaires complets', 'Modifier la texture et la couleur des cheveux', 'Confectionner des perruques à la machine (Lace Front et Lace Closure)', 'Maîtriser les tresses africaines modernes et braids', 'Réaliser des coiffures événementielles et chignons professionnels', 'Gérer un salon de coiffure' ], program: [ { year: 'Base coiffure', items: ['Technologie et entretien du matériel du salon','Traitement des cheveux','Entretien du cuir chevelu et des cheveux','Mise en forme des cheveux','Brushing et mise en plis curly','Gestion d\'un salon de coiffure','Organisation du travail'] }, { year: 'Spécialisation', items: ['Rajout de mèches (type de nattes)','Modification de la texture des cheveux','Changement de la couleur des cheveux','Tissage ouvert et fermé + coupe','Confection de perruque à la machine','Extensions à chaud et à froid','Nattes collées'] }, { year: 'Suppléments au choix', items: ['Tresses africaines modernes','Braids (Knotless, Box Braids, Fulani, Vanilles, etc.)','Coiffures événementielles','Chignons professionnels','Coloration et balayage sur modèles','Perruques et postiches','Coiffure de mariée'] } ], skills: ['Coiffure','Soins capillaires','Rajouts et extensions','Perruques','Tresses et braids','Brushing','Gestion de salon','Marketing digital'], qualites: ['Créativité','Rigueur','Patience','Sens du détail','Contact client'], debouches: ['Coiffeur dame','Coiffeur dame spécialisation','Bridage beauté','Gérant de salon','Coiffeur de mariée','Freelance','Formateur'], why: 'Module supplémentaire au choix : 30 000 F CFA par module. Les frais de formation comprennent la matière d\'oeuvre des cours pratiques. Le trousseau (blouse et petits matériels) est à la charge de l\'apprenant. Facilitation des stages et accès au microcrédit pour les meilleurs.' }, esthetique: { title: 'Esthétique & Onglerie', subtitle: 'Esthéticien — soins de la peau, des ongles et embellissement du corps.', presentation: [ 'La filière Esthétique forme des esthéticiens professionnels : soins de la peau et des ongles, embellissement du corps, onglerie, anatomie et colorimétrie.', 'Une formation complète pour exercer dans un institut, un salon ou en indépendant.' ], infos: [ { value: 'Attestation / BQP', label: 'Diplômes' }, { value: 'Cycle 1 : niveau inférieur à la classe CM2 (pratique) · Cycle 2 : CM2 ou plus (théorie + pratique)', label: 'Admission' }, { value: 'Externat : 10 000 F CFA / Internat : 15 000 F CFA', label: 'Frais d\'inscription' }, { value: '415 000 F CFA / an', label: 'Frais de formation EXTERNAT' }, { value: '1 252 000 F CFA / an', label: 'Frais de formation INTERNAT' } ], admissionDetails: [ 'Esthéticien : Cycle 1 (niveau inférieur à la classe CM2, formation pratique) ou Cycle 2 (niveau CM2 ou plus, formation théorique et pratique)', 'Diplômes possibles : Attestation de fin de formation ou Brevet de Qualification Professionnelle (BQP) en esthétique' ], objectives: [ 'Réaliser les soins de la peau et des ongles', 'Maîtriser l\'embellissement du corps (maquillage, épilation…)', 'Pratiquer l\'onglerie professionnelle', 'Connaître l\'anatomie et la colorimétrie', 'Gérer un institut de beauté' ], program: [ { year: 'Esthétique', items: ['Réalisation des soins de la peau et des ongles','Embellissement du corps (maquillage, épilation…)','Onglerie','Gestion','Anatomie et colorimétrie'] }, { year: 'Suppléments au choix', items: ['Maquillage beauté','Confection des bijoux','Réflexologie','Microblading','Dermo-cosmétique'] }, { year: 'Onglerie professionnelle', items: ['Onglerie professionnelle (gel, résine, acrygel, capsules américaines)','Photographie et création de contenus pour les réseaux sociaux'] } ], skills: ['Soins de la peau','Soins des ongles','Onglerie','Épilation','Maquillage','Anatomie et colorimétrie','Gestion d\'institut'], qualites: ['Sens du détail','Rigueur','Hygiène','Douceur','Contact client'], debouches: ['Esthéticien','Praticien onglerie','Spécialiste microblading','Gérant d\'institut','Freelance','Formateur'], why: 'Module supplémentaire au choix : 30 000 F CFA par module. Les frais de formation comprennent la matière d\'oeuvre des cours pratiques. Le trousseau est à la charge de l\'apprenant. Facilitation des stages et accès au microcrédit pour les meilleurs.' }, maquillage: { title: 'Maquillage Cinéma & Télévision', subtitle: 'Maquilleur cinéma et télévision — une filière unique au Burkina Faso.', presentation: [ 'La filière Maquillage Cinéma & Télévision forme des maquilleurs capables d\'intervenir sur les plateaux de tournage, les théâtres et les défilés de mode.', 'Unique au Burkina Faso, elle associe maquillage cinéma et télévision, effets spéciaux (SFX), maquillage artistique, body painting et photographie.' ], infos: [ { value: 'Attestation de fin de formation', label: 'Diplôme' }, { value: 'Attestation de fin de formation en coiffure ou en esthétique', label: 'Admission' }, { value: 'Externat : 10 000 F CFA / Internat : 15 000 F CFA', label: 'Frais d\'inscription' }, { value: '440 000 F CFA / an', label: 'Frais de formation EXTERNAT' }, { value: '1 277 000 F CFA / an', label: 'Frais de formation INTERNAT' } ], admissionDetails: [ 'Maquillage cinéma et télévision : être titulaire d\'une attestation de fin de formation en coiffure ou en esthétique', 'Déposer un dossier de candidature et réussir les formalités d\'admission de NAS MODE' ], objectives: [ 'Maîtriser le maquillage cinéma et télévision', 'Réaliser des effets spéciaux (SFX)', 'Pratiquer le maquillage artistique et le body painting', 'Constituer un portfolio professionnel', 'Travailler sur un plateau de tournage' ], program: [ { year: 'Maquillage professionnel', items: ['Maquillage cinéma','Maquillage télévision','Effets spéciaux (SFX)','Maquillage artistique','Body Painting','Anatomie et colorimétrie'] }, { year: 'Photo & portfolio', items: ['Photographie et portfolio','Conception et gestion de costumes de cinéma','Création de contenus pour les réseaux sociaux'] }, { year: 'Suppléments au choix', items: ['Réflexologie','Microblading','Dermo-cosmétique'] } ], skills: ['Maquillage cinéma','Maquillage télévision','Effets spéciaux (SFX)','Maquillage artistique','Body painting','Photographie et portfolio','Colorimétrie'], qualites: ['Créativité','Rigueur','Patience','Sens du détail','Esprit d\'équipe'], debouches: ['Maquilleur cinéma','Maquilleur télévision','Maquilleur de mode','Artiste SFX','Body painter','Freelance','Formateur'], why: 'Filière unique au Burkina Faso, reconnue pour son excellence et ses équipements de pointe. Module supplémentaire au choix : 30 000 F CFA par module. Facilitation des stages professionnels au Burkina Faso et dans la sous-région, participation aux défilés et masterclass sur l\'entrepreneuriat et le marketing digital.' } };
-var modalSections = [ { type: 'presentation', title: 'Présentation' }, { type: 'infos', title: 'Informations rapides' }, { type: 'admissionDetails', title: 'Conditions d\'admission' }, { type: 'objectives', title: 'Objectifs' }, { type: 'program', title: 'Programme' }, { type: 'skills', title: 'Compétences développées' }, { type: 'qualites', title: 'Qualités requises' }, { type: 'debouches', title: 'Débouchés' }, { type: 'why', title: 'Pourquoi choisir NAS MODE ?' } ]; function renderSection(type, data) { switch (type) { case 'presentation': return '<div class="presentation">' + data.presentation.map(function(p) { return '<p>' + p + '</p>'; }).join('') + '</div>'; case 'infos': return '<div class="info-grid">' + data.infos.map(function(i) { return '<div class="info-card"><div class="value">' + i.value + '</div><div class="label">' + i.label + '</div></div>'; }).join('') + '</div>'; case 'objectives': return '<div class="objectives-grid">' + data.objectives.map(function(o) { return '<div class="objective-item">' + o + '</div>'; }).join('') + '</div>'; case 'program': return '<div class="accordion">' + data.program.map(function(p, i) { return '<div class="accordion-item">' + '<input type="radio" name="accordion" id="acc' + i + '">' + '<label for="acc' + i + '">' + p.year + '</label>' + '<div class="accordion-content"><ul>' + p.items.map(function(it) { return '<li>' + it + '</li>'; }).join('') + '</ul></div></div>'; }).join('') + '</div>'; case 'skills': return '<div class="badges-wrap">' + data.skills.map(function(s) { return '<span class="badge">' + s + '</span>'; }).join('') + '</div>'; case 'admissionDetails': return '<div class="objectives-grid">' + data.admissionDetails.map(function(a) { return '<div class="objective-item">' + a + '</div>'; }).join('') + '</div>'; case 'qualites': return '<div class="badges-wrap">' + data.qualites.map(function(q) { return '<span class="badge">' + q + '</span>'; }).join('') + '</div>'; case 'debouches': return '<div class="debouches-grid">' + data.debouches.map(function(d) { return '<div class="debouche-item">' + d + '</div>'; }).join('') + '</div>'; case 'why': return '<div class="highlight-box"><p>' + data.why + '</p></div>'; default: return ''; } } function getEl(id) { return document.getElementById(id); } var modalRevealObserver = null; window.openModal = function(key) { var data = formationData[key]; if (!data) return; window._prevFocus = document.activeElement; var overlay = getEl('formation-overlay'); var body = getEl('modal-body'); var loading = getEl('modal-loading'); getEl('modal-title').innerHTML = data.title; getEl('modal-subtitle').textContent = data.subtitle; getEl('formation-modal').setAttribute('aria-label', data.title + ' - Détails de la formation'); if (loading) loading.style.display = 'flex'; overlay.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(function() { if (loading) loading.style.display = 'none'; var html = ''; for (var s = 0; s < modalSections.length; s++) { var section = modalSections[s]; html += '<div class="modal-section-reveal">'; html += '<h3 class="modal-section-title">' + section.title + '</h3>'; html += renderSection(section.type, data); if (s < modalSections.length - 1) html += '<div class="modal-section-divider"></div>'; html += '</div>'; } var existing = body.querySelectorAll('.modal-section-reveal'); for (var e = 0; e < existing.length; e++) existing[e].remove(); var temp = document.createElement('div'); temp.innerHTML = html; while (temp.firstChild) body.insertBefore(temp.firstChild, loading); if (modalRevealObserver) modalRevealObserver.disconnect(); modalRevealObserver = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { root: body, threshold: 0.08, rootMargin: '0px 0px -40px 0px' }); var reveals = body.querySelectorAll('.modal-section-reveal'); for (var r = 0; r < reveals.length; r++) { modalRevealObserver.observe(reveals[r]); } var first = reveals[0]; if (first) first.classList.add('is-visible'); setTimeout(function() { var f = body.querySelector('button, a, [tabindex]:not([tabindex="-1"])'); if (f) f.focus(); }, 100); }, 200); document.addEventListener('keydown', handleKeydown); }; window.closeModal = function() { getEl('formation-overlay').classList.remove('open'); document.body.style.overflow = ''; document.removeEventListener('keydown', handleKeydown); if (modalRevealObserver) { modalRevealObserver.disconnect(); modalRevealObserver = null; } if (window._prevFocus) { window._prevFocus.focus(); window._prevFocus = null; } }; function handleKeydown(e) { if (e.key === 'Escape') { closeModal(); return; } if (e.key === 'Tab') { var modal = getEl('formation-modal'); var focusable = modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'); if (!focusable.length) return; var first = focusable[0], last = focusable[focusable.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } } } function handlePostuler() { closeModal(); setTimeout(function() { var target = document.getElementById('formations'); if (target) target.scrollIntoView({ behavior: 'smooth' }); }, 350); }
+function inscrireNewsletter(e) { e.preventDefault(); var champ = document.getElementById('newsletter-email'); if (!champ || !champ.value) return false; window.location.href = 'mailto:info@nasmodeformation.com?subject=' + encodeURIComponent('Inscription newsletter NAS MODE') + '&body=' + encodeURIComponent('Bonjour,\n\nMerci de m\'inscrire a la newsletter avec cette adresse : ' + champ.value + '\n\nCordialement'); champ.value = ''; return false; } function initSlideshow(id) { const c = document.getElementById(id); if (!c) return; const slides = c.querySelectorAll('.slide'); let cur = 0, timer; function go(i) { slides.forEach(s => s.classList.remove('active')); slides[i].classList.add('active'); cur = i; } c.addEventListener('mouseenter', () => clearInterval(timer)); c.addEventListener('mouseleave', () => { timer = setInterval(() => go((cur + 1) % slides.length), 4000); }); timer = setInterval(() => go((cur + 1) % slides.length), 4000); } initSlideshow('slideshow-stylisme'); initSlideshow('slideshow-coiffure'); initSlideshow('slideshow-maquillage'); /* ============================================================
+   DONNEES DES MODALES DE FORMATION
+   Source unique : docs/depliant-transcription.md (depliant officiel NAS MODE).
+   Aucun fait n'est ecrit ici s'il n'est pas imprime sur le depliant.
+   Les montants sont recopies chiffre par chiffre, les niveaux d'admission
+   et les sigles de diplome tels qu'imprimes.
+   ============================================================ */
+const formationCommun = {
+  intro: [
+    'Nous sommes heureux de vous accueillir et de vous compter parmi nos apprenants. En intégrant NAS MODE, vous faites le choix d\'une formation professionnelle de qualité, orientée vers l\'excellence, l\'innovation et l\'employabilité.',
+    'Tout au long de votre parcours, une équipe pluridisciplinaire de formateurs qualifiés et expérimentés sera à votre entière disposition pour vous transmettre les compétences techniques, professionnelles et entrepreneuriales indispensables à votre réussite. Notre engagement est de vous accompagner avec rigueur et bienveillance afin de faire de votre projet professionnel une réalité.'
+  ],
+  introSource: 'Dépliant NAS MODE — « Bienvenue à NAS MODE »',
+  modulesGeneraux: [
+    'Métier et formation',
+    'Hygiène, Santé, Sécurité et protection de l\'Environnement',
+    'Marketing',
+    'Gestion simplifiée'
+  ],
+  modulesTransversaux: [
+    'Droit du travail',
+    'Santé sexuelle et reproductive des jeunes',
+    'Civisme et patriotisme',
+    'Formation en entrepreneuriat après validation de modules de formation'
+  ],
+  fraisComprennent: 'Les frais de formation comprennent la matière d\'œuvre utilisée pendant les cours pratiques.',
+  chargeApprenant: [
+    'Le trousseau (blouse et petits matériels)',
+    'La matière d\'œuvre destinée à la réalisation de l\'ouvrage de fin de formation',
+    'Les frais de la formation en entrepreneuriat organisée en fin de formation'
+  ],
+  moduleSupplementaire: 'Module supplémentaire choisi : 30 000 FCFA par module sans la matière d\'œuvre.',
+  paiement: [
+    { titre: '1er versement', echeance: 'Avant le début de la formation', lignes: ['Frais d\'inscription ou de réinscription', '50 % des frais de formation', '50 % des frais de l\'internat', '50 % des frais de la crèche', '50 % des frais du bus'] },
+    { titre: '2ème versement', echeance: '1ère semaine du mois de décembre', lignes: ['25 % des frais de formation', '25 % des frais de l\'internat', '25 % des frais de la crèche', '25 % des frais du bus'] },
+    { titre: '3ème versement', echeance: '1ère semaine du mois de février', lignes: ['25 % des frais de formation', '25 % des frais de l\'internat', '25 % des frais de la crèche', '25 % des frais du bus'] }
+  ],
+  commodites: [
+    'Bus scolaire : 160 000 F CFA / an',
+    'Crèche pour nourrisson : 135 000 F CFA / an',
+    'Internat pour jeunes filles',
+    'Cantine',
+    'Infirmerie'
+  ],
+  dossier: [
+    'Deux (02) photos d\'identité',
+    'Une (01) copie de l\'acte de naissance',
+    'Diplôme ou dernier bulletin scolaire s\'il y a lieu'
+  ],
+  avantages: [
+    'Accès à un microcrédit pour les meilleurs apprenants de la promotion.',
+    'Facilitation des stages professionnels au Burkina Faso et dans la sous-région.',
+    'Participation au défilé de fin de formation organisé par NAS MODE.',
+    'Participation aux masterclass sur l\'entrepreneuriat et le marketing digital.',
+    'Participation au défilé biennal organisé au profit des formés.'
+  ]
+};
+
+const CYCLE2_VIDE = 'Aucune condition n\'est imprimée sur le dépliant pour ce cycle. À faire préciser au centre.';
+const SANS_SUPPLEMENT = 'Le dépliant n\'indique aucun supplément au choix pour ce métier.';
+
+const formationData = {
+  stylisme: {
+    title: 'Couture, Création de mode & Haute couture',
+    subtitle: 'Package 1 : Couture · Package 2 : Création de mode · Package 3 : Haute couture — six métiers.',
+    metiers: [
+      {
+        nom: 'Mécanicien de confection',
+        pkg: 'Package 1 : Couture',
+        admission: [
+          { c: 'Cycle 1', t: 'Niveau inférieur à la classe de CM2 pour la formation pratique' },
+          { c: 'Cycle 2', t: 'Niveau CM2 ou plus pour la formation théorique et pratique' }
+        ],
+        documents: ['Attestation de fin de formation'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '380 000 F CFA', intIns: '15 000 F CFA', intForm: '1 217 500 F CFA' },
+        matieres: ['Techniques d\'assemblage', 'Lecture des patrons', 'Maintenance des équipements de la couture'],
+        supplements: [],
+        supplementsNote: SANS_SUPPLEMENT
+      },
+      {
+        nom: 'Couturier dame',
+        pkg: 'Package 1 : Couture',
+        admission: [
+          { c: 'Cycle 1', t: 'Niveau inférieur à la classe de CM2 pour la formation pratique' },
+          { c: 'Cycle 2', t: 'Niveau CM2 ou plus pour la formation théorique et pratique' }
+        ],
+        documents: ['Attestation de fin de formation', 'Certificat de Qualification Professionnelle (CQP)'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '405 000 F CFA', intIns: '15 000 F CFA', intForm: '1 242 000 F CFA' },
+        matieres: ['Techniques d\'assemblage', 'Techniques de coupe', 'Technologie d\'atelier', 'Technologie du textile', 'Organisation du travail'],
+        supplements: ['Coupe à main levée', 'Dessin de vêtement à plat', 'Photographie et création de contenus pour les réseaux sociaux']
+      },
+      {
+        nom: 'Modéliste',
+        pkg: 'Package 2 : Création de mode',
+        admission: [{ c: '', t: 'Classe de 3ème' }],
+        documents: ['Attestation de fin de formation', 'Brevet de Qualification Professionnelle (BQP)'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '392 000 F CFA', intIns: '15 000 F CFA', intForm: '1 229 000 F CFA' },
+        matieres: ['Développement du patron', 'Réalisation de prototype', 'Techniques de coupe'],
+        supplements: ['Techniques du moulage', 'Conception de patrons sur ordinateur (Logiciel styleCAD 2D)']
+      },
+      {
+        nom: 'Technicien de confection',
+        pkg: 'Package 2 : Création de mode',
+        admission: [{ c: '', t: 'Diplôme en modélisme ou équivalent' }],
+        documents: ['Attestation de fin de formation'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '438 000 F CFA', intIns: '15 000 F CFA', intForm: '1 275 000 F CFA' },
+        matieres: ['Techniques d\'assemblage (cours théorique et pratique)', 'Dessin technique', 'Organisation du travail', 'Technologie du textile', 'Technologie d\'atelier'],
+        supplements: ['Coupe à main levée', 'Confection des accessoires (chapeau, chaussure, sac à main...)']
+      },
+      {
+        nom: 'Styliste',
+        pkg: 'Package 2 : Création de mode',
+        admission: [{ c: '', t: 'Diplôme en modélisme et technique de confection ou équivalent' }],
+        documents: ['Attestation de fin de formation', 'Brevet Professionnel de Technicien (BPT)'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '415 000 F CFA', intIns: '15 000 F CFA', intForm: '1 252 000 F CFA' },
+        matieres: ['Réalisation d\'un dessin de mode', 'Création et réalisation personnelle', 'Marketing de la mode', 'Initiation à l\'informatique', 'Dessin de mode via les logiciels Adobe Illustrator et Adobe Photoshop'],
+        supplements: ['Confection des bijoux', 'Maquillage beauté']
+      },
+      {
+        nom: 'Tailleur homme et dame',
+        pkg: 'Package 3 : Haute couture',
+        admission: [{ c: '', t: 'Niveau de classe de 3ème au moins et être titulaire d\'un CAP ou CQP du même' }],
+        admissionNote: 'Condition reproduite telle qu\'imprimée sur le dépliant, où la phrase s\'interrompt après « du même ». À faire préciser au centre.',
+        documents: ['Attestation de fin de formation', 'Brevet Professionnel de Technicien Supérieur (BPTS)'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '465 000 F CFA', intIns: '15 000 F CFA', intForm: '1 302 000 F CFA' },
+        matieres: ['Design', 'Dessin technique', 'Techniques de coupe', 'Techniques d\'assemblage (cours théorique et pratique)', 'Organisation du travail'],
+        supplements: ['Conception et gestion de costumes de cinéma']
+      }
+    ]
+  },
+  coiffure: {
+    title: 'Coiffure et spécialisation',
+    subtitle: 'Package 5 : Coiffure et spécialisation — deux métiers.',
+    metiers: [
+      {
+        nom: 'Coiffeur dame',
+        pkg: 'Package 5 : Coiffure et spécialisation',
+        admission: [
+          { c: 'Cycle 1', t: 'Niveau inférieur à la classe CM2 pour une formation pratique' },
+          { c: 'Cycle 2', t: 'Niveau CM2 ou plus pour une formation théorique et pratique' }
+        ],
+        documents: ['Attestation de fin de formation', 'Certificat de Qualification Professionnelle (CQP)'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '380 000 F CFA', intIns: '15 000 F CFA', intForm: '1 217 500 F CFA' },
+        matieres: ['Technologie et entretien du matériel du salon', 'Traitement des cheveux', 'Entretien du cuir chevelu et cheveux', 'Rajout de mèches (type de nattes)', 'Modification de la texture des cheveux', 'Changement de la couleur des cheveux', 'Mise en forme des cheveux', 'Tissage ouvert et fermé + coupe', 'Gestion d\'un salon de coiffure', 'Organisation du travail'],
+        supplements: ['Maquillage beauté', 'Onglerie']
+      },
+      {
+        nom: 'Coiffeur dame Spécialisation',
+        pkg: 'Package 5 : Coiffure et spécialisation',
+        admission: [
+          { c: '', t: 'CQP Coiffeur dame,' },
+          { c: '', t: 'BQP esthétique ou avoir une attestation de formation en coiffure ou en esthétique' }
+        ],
+        admissionNote: 'Condition reproduite telle qu\'imprimée sur le dépliant, où la première ligne se termine par une virgule sans conjonction. À faire préciser au centre.',
+        documents: ['Attestation de fin de formation', 'Brevet de Qualification Professionnelle (BQP)'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '405 000 F CFA', intIns: '15 000 F CFA', intForm: '1 242 000 F CFA' },
+        matieres: ['Confection de perruque à la machine', 'Lace Front et Lace Closure', 'Extensions à chaud et à froid', 'Nattes collées', 'Tresses africaines modernes', 'Braids (Knotless, Box Braids, Fulani, Vanilles, etc.)', 'Coiffures événementielles', 'Chignons professionnels', 'Brushing et mise en plis curly', 'Coloration et balayage sur modèles', 'Soins capillaires complets', 'Marketing digital et développement de la clientèle'],
+        supplements: ['Onglerie professionnelle (Gel, Résine, Acrygel, Capsules américaines)', 'Photographie et création de contenus pour les réseaux sociaux']
+      }
+    ]
+  },
+  esthetique: {
+    title: 'Esthétique',
+    subtitle: 'Package 4 : Esthétique et maquillage cinéma et télévision — métier d\'Esthéticien.',
+    metiers: [
+      {
+        nom: 'Esthéticien',
+        pkg: 'Package 4 : Esthétique et maquillage cinéma et télévision',
+        admission: [
+          { c: 'Cycle 1', t: 'Niveau inférieur ou égal à la classe de 4ème' },
+          { c: 'Cycle 2', t: '' }
+        ],
+        documents: ['Attestation de fin de formation', 'Brevet de Qualification Professionnelle (BQP)'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '415 000 F CFA', intIns: '15 000 F CFA', intForm: '1 252 000 F CFA' },
+        matieres: ['Organisation du travail', 'Réalisation des soins de la peau et des ongles', 'Embellissement du corps (maquillage, épilation...)', 'Onglerie', 'Gestion'],
+        supplements: ['Réflexologie', 'Microblading', 'Dermo-cosmétique']
+      }
+    ]
+  },
+  maquillage: {
+    title: 'Maquilleur Cinéma et Télévision',
+    subtitle: 'Package 4 : Esthétique et maquillage cinéma et télévision — métier de Maquilleur Cinéma et Télévision.',
+    metiers: [
+      {
+        nom: 'Maquilleur Cinéma et Télévision',
+        pkg: 'Package 4 : Esthétique et maquillage cinéma et télévision',
+        admission: [{ c: '', t: 'Attestation de fin de formation en coiffure ou en esthétique' }],
+        documents: ['Attestation de fin de formation'],
+        tarifs: { extIns: '10 000 F CFA', extForm: '440 000 F CFA', intIns: '15 000 F CFA', intForm: '1 277 000 F CFA' },
+        matieres: ['Anatomie et colorimétrie', 'Maquillage cinéma', 'Maquillage télévision', 'Effets spéciaux (SFX)', 'Maquillage artistique', 'Photographie et portfolio', 'Body Painting'],
+        supplements: ['Perruques et postiches', 'Création de contenus pour les réseaux sociaux', 'Coiffure de mariée']
+      }
+    ]
+  }
+};
+var modalSections = [ { type: 'intro', title: 'Bienvenue à NAS MODE' }, { type: 'metiers', title: 'Les métiers de cette filière' }, { type: 'modules', title: 'Modules communs à toutes les formations' }, { type: 'frais', title: 'Ce que comprennent les frais' }, { type: 'paiement', title: 'Modalités de paiement' }, { type: 'commodites', title: 'Nos commodités' }, { type: 'dossier', title: 'Dossier à fournir' }, { type: 'avantages', title: 'Avantages' } ];
+function listeSimple(items) { return '<div class="objectives-grid">' + items.map(function(i) { return '<div class="objective-item">' + i + '</div>'; }).join('') + '</div>'; }
+function listeTiret(items) { return '<ul class="mf-list">' + items.map(function(i) { return '<li>' + i + '</li>'; }).join('') + '</ul>'; }
+function renderTarifs(t) {
+  function carte(mode, ins, form) {
+    return '<div class="tarif-card"><div class="tarif-mode">' + mode + '</div>'
+      + '<div class="tarif-line"><span class="tarif-key">Inscription / réinscription</span><span class="tarif-val">' + ins + '</span></div>'
+      + '<div class="tarif-line"><span class="tarif-key">Frais de formation</span><span class="tarif-val">' + form + '</span></div></div>';
+  }
+  return '<div class="tarif-grid">' + carte('Externat', t.extIns, t.extForm) + carte('Internat', t.intIns, t.intForm) + '</div>';
+}
+function renderMetier(m, id, ouvert) {
+  var adm = '<ul class="mf-list">' + m.admission.map(function(a) {
+    var txt = a.t ? a.t : '<em class="mf-none">' + CYCLE2_VIDE + '</em>';
+    return '<li>' + (a.c ? '<span class="mf-cycle">' + a.c + '</span> ' : '') + txt + '</li>';
+  }).join('') + '</ul>';
+  if (m.admissionNote) adm += '<p class="mf-note">' + m.admissionNote + '</p>';
+  var sup = m.supplements && m.supplements.length ? listeTiret(m.supplements) : '<p class="mf-none">' + (m.supplementsNote || SANS_SUPPLEMENT) + '</p>';
+  return '<div class="mf-item">'
+    + '<input type="checkbox" id="' + id + '"' + (ouvert ? ' checked' : '') + '>'
+    + '<label for="' + id + '"><span class="mf-head"><span class="mf-nom">' + m.nom + '</span><span class="mf-pkg">' + m.pkg + '</span></span></label>'
+    + '<div class="mf-content">'
+    + '<div class="mf-block"><div class="mf-label">Niveau d\'admission</div>' + adm + '</div>'
+    + '<div class="mf-block"><div class="mf-label">Document de fin de formation</div>' + listeTiret(m.documents) + '</div>'
+    + '<div class="mf-block"><div class="mf-label">Coût annuel de la formation</div>' + renderTarifs(m.tarifs) + '</div>'
+    + '<div class="mf-block"><div class="mf-label">Matières</div>' + listeTiret(m.matieres) + '</div>'
+    + '<div class="mf-block"><div class="mf-label">Suppléments au choix</div>' + sup + '</div>'
+    + '</div></div>';
+}
+function renderSection(type, data, key) {
+  var c = formationCommun;
+  switch (type) {
+    case 'intro':
+      return '<div class="presentation"><blockquote class="depliant-quote">' + c.intro.map(function(p) { return '<p>' + p + '</p>'; }).join('') + '<cite>' + c.introSource + '</cite></blockquote></div>';
+    case 'metiers':
+      return '<div class="mf-acc">' + data.metiers.map(function(m, i) { return renderMetier(m, 'mf-' + key + '-' + i, data.metiers.length === 1); }).join('') + '</div>';
+    case 'modules':
+      return '<div class="mod-group"><div class="mf-label">Modules généraux</div>' + listeSimple(c.modulesGeneraux) + '</div>'
+        + '<div class="mod-group"><div class="mf-label">Modules transversaux</div>' + listeSimple(c.modulesTransversaux) + '</div>';
+    case 'frais':
+      return '<div class="highlight-box"><p>' + c.fraisComprennent + '</p></div>'
+        + '<div class="mod-group"><div class="mf-label">À la charge de l\'apprenant(e)</div>' + listeSimple(c.chargeApprenant) + '</div>'
+        + '<div class="mod-group"><div class="mf-label">Module supplémentaire</div><p class="mf-note">' + c.moduleSupplementaire + '</p></div>';
+    case 'paiement':
+      return '<div class="pay-grid">' + c.paiement.map(function(v) {
+        return '<div class="pay-card"><div class="pay-num">' + v.titre + '</div><div class="pay-ech">' + v.echeance + '</div>' + listeTiret(v.lignes) + '</div>';
+      }).join('') + '</div>';
+    case 'commodites': return listeSimple(c.commodites);
+    case 'dossier': return listeSimple(c.dossier);
+    case 'avantages': return listeSimple(c.avantages);
+    default: return '';
+  }
+}
+function getEl(id) { return document.getElementById(id); } var modalRevealObserver = null; window.openModal = function(key) { var data = formationData[key]; if (!data) return; window._prevFocus = document.activeElement; var overlay = getEl('formation-overlay'); var body = getEl('modal-body'); var loading = getEl('modal-loading'); getEl('modal-title').innerHTML = data.title; getEl('modal-subtitle').textContent = data.subtitle; getEl('formation-modal').setAttribute('aria-label', data.title + ' - Détails de la formation'); if (loading) loading.style.display = 'flex'; overlay.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(function() { if (loading) loading.style.display = 'none'; var html = ''; for (var s = 0; s < modalSections.length; s++) { var section = modalSections[s]; html += '<div class="modal-section-reveal">'; html += '<h3 class="modal-section-title">' + section.title + '</h3>'; html += renderSection(section.type, data, key); if (s < modalSections.length - 1) html += '<div class="modal-section-divider"></div>'; html += '</div>'; } var existing = body.querySelectorAll('.modal-section-reveal'); for (var e = 0; e < existing.length; e++) existing[e].remove(); var temp = document.createElement('div'); temp.innerHTML = html; while (temp.firstChild) body.insertBefore(temp.firstChild, loading); if (modalRevealObserver) modalRevealObserver.disconnect(); modalRevealObserver = new IntersectionObserver(function(entries) { entries.forEach(function(entry) { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { root: body, threshold: 0.08, rootMargin: '0px 0px -40px 0px' }); var reveals = body.querySelectorAll('.modal-section-reveal'); for (var r = 0; r < reveals.length; r++) { modalRevealObserver.observe(reveals[r]); } var first = reveals[0]; if (first) first.classList.add('is-visible'); setTimeout(function() { var f = body.querySelector('button, a, [tabindex]:not([tabindex="-1"])'); if (f) f.focus(); }, 100); }, 200); document.addEventListener('keydown', handleKeydown); }; window.closeModal = function() { getEl('formation-overlay').classList.remove('open'); document.body.style.overflow = ''; document.removeEventListener('keydown', handleKeydown); if (modalRevealObserver) { modalRevealObserver.disconnect(); modalRevealObserver = null; } if (window._prevFocus) { window._prevFocus.focus(); window._prevFocus = null; } }; function handleKeydown(e) { if (e.key === 'Escape') { closeModal(); return; } if (e.key === 'Tab') { var modal = getEl('formation-modal'); var focusable = modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'); if (!focusable.length) return; var first = focusable[0], last = focusable[focusable.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } } } function handlePostuler() { closeModal(); setTimeout(function() { var target = document.getElementById('formations'); if (target) target.scrollIntoView({ behavior: 'smooth' }); }, 350); }
 </script>
 <div class="formation-overlay" id="formation-overlay" onclick="if(event.target===this)closeModal()">
   <div class="formation-modal" id="formation-modal" role="dialog" aria-modal="true" aria-label="Détails de la formation">
