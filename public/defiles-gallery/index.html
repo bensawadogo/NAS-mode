@@ -54,7 +54,7 @@
 }
 </style>
   <script>document.documentElement.className = 'js'</script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BBq7xlPj.css?v=C86A3FA6">
+  <link rel="stylesheet" crossorigin href="./assets/index-DLgKUvfy.css?v=C430FC10">
   <script>
   /* Bascule galerie : WebGL lourd (desktop rapide) vs galerie HTML/CSS legere.
      Le mode leger est le repli par defaut au moindre doute. */
@@ -73,27 +73,29 @@
               return true;
           } catch (e) { return false; }
       }
+      /* La galerie reste IMMERSIVE sur tous les appareils, y compris les
+         telephones a faible RAM : c'est le moteur qui adapte sa charge
+         (textures 320/512/origine, antialiasing, densite de rendu, et
+         chargement progressif au lieu des 27 textures d'un coup).
+         La grille HTML ne sert plus que dans trois cas legitimes. */
       function preferLite() {
           try {
-              if (mq('(max-width: 900px)')) return true;
-              if (mq('(pointer: coarse)')) return true;
-              if (mq('(prefers-reduced-motion: reduce)')) return true;
-              var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-              if (conn) {
-                  if (conn.saveData === true) return true;
-                  var eff = conn.effectiveType;
-                  if (eff === 'slow-2g' || eff === '2g' || eff === '3g') return true;
-              }
-              var mem = navigator.deviceMemory;
-              if (typeof mem === 'number' && mem > 0 && mem < 4) return true;
+              /* 1. Pas de WebGL du tout : sinon ecran blanc definitif. */
               if (!hasWebGL()) return true;
+              /* 2. L'utilisateur a demande a economiser ses donnees. */
+              var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+              if (conn && conn.saveData === true) return true;
+              /* 3. Mouvement reduit demande au niveau du systeme : la galerie
+                 est pilotee par le defilement, c'est une question d'accessibilite
+                 et non de performance. */
+              if (mq('(prefers-reduced-motion: reduce)')) return true;
               return false;
           } catch (e) { return true; }
       }
       if (preferLite()) {
           document.documentElement.className += ' gallery-lite';
       } else {
-          var src = './assets/index-CPd6kHPm.js?v=3C0F6A69';
+          var src = './assets/index-B41qt7eB.js?v=DA3EB4BA';
           /* Le fetch demarre tout de suite... */
           try {
               var pre = document.createElement('link');

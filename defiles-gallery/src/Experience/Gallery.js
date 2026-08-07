@@ -70,12 +70,15 @@ class Gallery {
     const planeGeometry = new THREE.PlaneGeometry(3, 3)
 
     this.planeConfig.forEach((plane, index) => {
-      const texture = this.texturesBySource.get(plane.textureSrc) || null
+      const texture = this.texturesBySource.get(this.resolveTextureSrc(plane)) || null
       const textureImage = texture?.image
+      // `plane.aspect` est fige a la generation des donnees : le plan a donc
+      // deja la bonne forme meme si sa texture n'est pas encore chargee.
       const aspectRatio =
-        textureImage && textureImage.width > 0 && textureImage.height > 0
+        plane.aspect ||
+        (textureImage && textureImage.width > 0 && textureImage.height > 0
           ? textureImage.width / textureImage.height
-          : 1
+          : 1)
       const fallbackColor = plane.fallbackColor || '#ffffff'
       const accentColor = plane.accentColor || fallbackColor
       const backgroundColor = plane.backgroundColor || fallbackColor
@@ -258,16 +261,50 @@ class Gallery {
     return moodBlendData?.currentMood || null
   }
 
+  /** Niveau de qualite choisi par Engine (voir Experience/quality.js). */
+  setQuality(quality) {
+    this.quality = quality || null
+  }
+
+  /**
+   * Resout la source d'un visuel pour le niveau courant.
+   * `textureSrc` est un objet { low, mid, high } depuis que les textures
+   * sont declinees ; on tolere l'ancienne forme (chaine) par securite.
+   */
+  resolveTextureSrc(planeDefinition) {
+    const src = planeDefinition && planeDefinition.textureSrc
+    if (!src) return null
+    if (typeof src === 'string') return src
+    const key = (this.quality && this.quality.textureKey) || 'high'
+    return src[key] || src.high || src.mid || src.low || null
+  }
+
   getTextureSources() {
-    const textureSources = this.planeConfig
-      .map((planeDefinition) => planeDefinition.textureSrc)
-      .filter(Boolean)
+    const textureSources = this.planeConfig.map((p) => this.resolveTextureSrc(p)).filter(Boolean)
 
     return [...new Set(textureSources)]
   }
 
   setPreloadedTextures(texturesBySource) {
     this.texturesBySource = texturesBySource instanceof Map ? texturesBySource : new Map()
+  }
+
+  /**
+   * Attache une texture arrivee APRES la creation des plans.
+   * C'est ce qui permet au chargement progressif de ne pas bloquer le
+   * premier rendu : les plans existent des le depart avec leur couleur de
+   * repli et leur bon rapport d'aspect, la texture les rejoint ensuite.
+   */
+  attachTexture(index, texture) {
+    const plane = this.planes[index]
+    if (!plane || !texture) return
+
+    plane.userData.texture = texture
+    if (!this.useTextures) return
+
+    plane.material.map = texture
+    plane.material.color.set('#ffffff')
+    plane.material.needsUpdate = true
   }
 
   updatePlaneMaterialMode() {
