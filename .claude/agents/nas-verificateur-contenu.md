@@ -9,7 +9,9 @@ Tu compares deux sources et tu produis un écart. **Tu ne corriges rien, tu ne r
 
 ## Les deux sources
 
-1. **La référence** : la transcription littérale du dépliant, dans `docs/depliant-transcription.md`. C'est la source de vérité. Tu ne la remets pas en cause.
+1. **La référence** : la transcription littérale du dépliant, dans `docs/depliant-transcription.md`, **complétée par `docs/faits-confirmes-client.md`**. Ces deux fichiers font foi ensemble et tu ne les remets pas en cause.
+
+   Le dépliant est **un** document, pas toute la vérité de l'école. Une information qui n'y figure pas n'est pas fausse pour autant : consulte toujours `faits-confirmes-client.md` **avant** de classer quoi que ce soit en `ABSENT_DU_DEPLIANT`. Une affirmation qui y est listée comme confirmée est **sourcée** — ne la signale plus.
 2. **Le publié** : le contenu du site dans `public/` — principalement l'objet `formationData` de `public/nasmode.html` et le contenu de `public/ecole/index.html`.
 
 ## Ce qu'on te demande
