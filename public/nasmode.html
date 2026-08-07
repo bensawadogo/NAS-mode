@@ -37,8 +37,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@300;400;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
-<link rel="preload" as="image" href="images/defiles/hero-mobile-1.webp?v=AB79F3F7" media="(max-width: 767px)">
-<link rel="preload" as="image" href="images/hero/hero-02.webp?v=A2B8C4D6" media="(min-width: 768px)">
+<link rel="preload" as="image" href="images/defiles/hero-mobile-1-768.webp?v=DB76D8F2" media="(max-width: 767px)">
+<link rel="preload" as="image" href="images/hero/hero-02-1280.webp?v=65B046BD" media="(min-width: 768px) and (max-width: 1440px)">
+<link rel="preload" as="image" href="images/hero/hero-02-1920.webp?v=C6F2FE6E" media="(min-width: 1441px)">
 <style>
 @font-face {
   font-family: 'Zina';
@@ -138,6 +139,27 @@ html.cursor-active body a, html.cursor-active body button, html.cursor-active bo
         background-size: cover;
         background-position: 50% 30%;
     }
+}
+/* Variantes responsives des slides du hero.
+   srcset ne s'applique pas aux background-image : on sélectionne la variante
+   par media query. Les slides 2 et 3 restent différées (bloc 2) : leur règle
+   n'est armée que par la classe .bg-loaded, posée en JS après `load`.
+   Sous 768 px on ne sert QUE la variante 768 (un seul preload possible,
+   pas de bascule DPR) — le preload et le CSS doivent rester synchrones. */
+@media (max-width: 767px) {
+    #hero-m1 { background-image: url('images/defiles/hero-mobile-1-768.webp?v=DB76D8F2'); }
+    #hero-m2.bg-loaded { background-image: url('images/defiles/hero-mobile-2-768.webp?v=4148F49D'); }
+    #hero-m3.bg-loaded { background-image: url('images/defiles/hero-mobile-3-768.webp?v=DC2445B2'); }
+}
+@media (min-width: 768px) {
+    #hero-d1 { background-image: url('images/hero/hero-02-1280.webp?v=65B046BD'); }
+    #hero-d2.bg-loaded { background-image: url('images/hero/hero-03-1280.webp?v=558AF91E'); }
+    #hero-d3.bg-loaded { background-image: url('images/hero/hero-04-1280.webp?v=EDC5FFEC'); }
+}
+/* hero-03 (1550 px) et hero-04 (1665 px) n'ont pas de variante 1920 :
+   au-delà de 1441 px seul hero-02 monte en résolution. */
+@media (min-width: 1441px) {
+    #hero-d1 { background-image: url('images/hero/hero-02-1920.webp?v=C6F2FE6E'); }
 }
 
 .hero-line {
@@ -745,12 +767,12 @@ html { overflow-x: hidden; }
 </div>
 <header class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden" id="hero">
 <div class="absolute inset-0 z-0">
-<div class="hero-slide hero-desktop active" style="background-image: url('images/hero/hero-02.webp?v=A2B8C4D6')"></div>
-<div class="hero-slide hero-desktop" data-bg="images/hero/hero-03.webp?v=B3E5C7D8"></div>
-<div class="hero-slide hero-desktop" data-bg="images/hero/hero-04.webp?v=C4F6D8E9"></div>
-<div class="hero-slide hero-mobile active" style="background-image: url('images/defiles/hero-mobile-1.webp?v=AB79F3F7')"></div>
-<div class="hero-slide hero-mobile" data-bg="images/defiles/hero-mobile-2.webp?v=ABBA03BA"></div>
-<div class="hero-slide hero-mobile" data-bg="images/defiles/hero-mobile-3.webp?v=954DC6C7"></div>
+<div class="hero-slide hero-desktop active" id="hero-d1"></div>
+<div class="hero-slide hero-desktop" id="hero-d2" data-bg></div>
+<div class="hero-slide hero-desktop" id="hero-d3" data-bg></div>
+<div class="hero-slide hero-mobile active" id="hero-m1"></div>
+<div class="hero-slide hero-mobile" id="hero-m2" data-bg></div>
+<div class="hero-slide hero-mobile" id="hero-m3" data-bg></div>
 </div>
 <div class="absolute inset-0 z-[1]" style="background: rgba(0,0,0,0.15)"></div>
 <div class="relative z-[2] text-center px-margin-desktop max-md:px-margin-mobile max-w-4xl mx-auto" id="hero-content" style="padding-top:clamp(32px,6vh,64px)">
@@ -782,10 +804,10 @@ POSTULER</a>
 <div class="md:col-span-7 reveal-image">
 <div class="image-container cursor-pointer aspect-[3/2]">
 <div class="slide-container" id="slideshow-stylisme">
-<div class="slide active"><picture><source srcset="images/ateliers/stylisme-01.webp?v=B70B7CC9" type="image/webp"><img decoding="async" alt="Stylisme &amp; Couture" class="w-full h-full object-cover" src="images/ateliers/stylisme-01.webp?v=B70B7CC9" loading="lazy"/></picture></div>
-<div class="slide"><picture><source srcset="images/ateliers/stylisme-02.webp?v=0EEB3C08" type="image/webp"><img decoding="async" alt="Stylisme &amp; Couture" class="w-full h-full object-cover" src="images/ateliers/stylisme-02.webp?v=0EEB3C08" loading="lazy"/></picture></div>
-<div class="slide"><picture><source srcset="images/ateliers/stylisme-03.webp?v=F2228A1E" type="image/webp"><img decoding="async" alt="Stylisme &amp; Couture" class="w-full h-full object-cover" src="images/ateliers/stylisme-03.webp?v=F2228A1E" loading="lazy"/></picture></div>
-<div class="slide"><picture><source srcset="images/ateliers/stylisme-04.webp?v=31E716E1" type="image/webp"><img decoding="async" alt="Stylisme &amp; Couture" class="w-full h-full object-cover" src="images/ateliers/stylisme-04.webp?v=31E716E1" loading="lazy"/></picture></div>
+<div class="slide active"><img decoding="async" alt="Stylisme &amp; Couture" class="w-full h-full object-cover" src="images/ateliers/stylisme-01.webp?v=B70B7CC9" srcset="images/ateliers/stylisme-01-480.webp?v=341FCCAF 480w, images/ateliers/stylisme-01-768.webp?v=93C07B71 768w, images/ateliers/stylisme-01-1024.webp?v=A892132C 1024w, images/ateliers/stylisme-01.webp?v=B70B7CC9 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img decoding="async" alt="Stylisme &amp; Couture" class="w-full h-full object-cover" src="images/ateliers/stylisme-02.webp?v=0EEB3C08" srcset="images/ateliers/stylisme-02-480.webp?v=E06CCFEC 480w, images/ateliers/stylisme-02-768.webp?v=5F2F5C46 768w, images/ateliers/stylisme-02-1024.webp?v=B46D49B4 1024w, images/ateliers/stylisme-02.webp?v=0EEB3C08 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img decoding="async" alt="Stylisme &amp; Couture" class="w-full h-full object-cover" src="images/ateliers/stylisme-03.webp?v=F2228A1E" srcset="images/ateliers/stylisme-03-480.webp?v=DB4DB249 480w, images/ateliers/stylisme-03-768.webp?v=9EEF162F 768w, images/ateliers/stylisme-03-1024.webp?v=E2C913CE 1024w, images/ateliers/stylisme-03.webp?v=F2228A1E 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img decoding="async" alt="Stylisme &amp; Couture" class="w-full h-full object-cover" src="images/ateliers/stylisme-04.webp?v=31E716E1" srcset="images/ateliers/stylisme-04-480.webp?v=E241F36F 480w, images/ateliers/stylisme-04-768.webp?v=307B893E 768w, images/ateliers/stylisme-04-1024.webp?v=2FE47307 1024w, images/ateliers/stylisme-04.webp?v=31E716E1 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
 </div>
 </div>
 </div>
@@ -809,11 +831,11 @@ POSTULER</a>
 <div class="md:col-span-7 md:col-start-6 order-1 md:order-2 reveal-image">
 <div class="image-container cursor-pointer aspect-[3/2]">
 <div class="slide-container contain" id="slideshow-coiffure">
-<div class="slide active"><picture><source srcset="images/ateliers/coiffure-01.webp?v=61B97956" type="image/webp"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-01.webp?v=61B97956" loading="lazy"/></picture></div>
-<div class="slide"><picture><source srcset="images/ateliers/coiffure-02.webp?v=1D18B38D" type="image/webp"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-02.webp?v=1D18B38D" loading="lazy"/></picture></div>
-<div class="slide"><picture><source srcset="images/ateliers/coiffure-03.webp?v=967B41ED" type="image/webp"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-03.webp?v=967B41ED" loading="lazy"/></picture></div>
-<div class="slide"><picture><source srcset="images/ateliers/coiffure-04.webp?v=29206BBF" type="image/webp"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-04.webp?v=29206BBF" loading="lazy"/></picture></div>
-<div class="slide"><picture><source srcset="images/ateliers/coiffure-05.webp?v=78950779" type="image/webp"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-05.webp?v=78950779" loading="lazy"/></picture></div>
+<div class="slide active"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-01.webp?v=61B97956" srcset="images/ateliers/coiffure-01-480.webp?v=8D455FB1 480w, images/ateliers/coiffure-01-768.webp?v=CFACBF3A 768w, images/ateliers/coiffure-01-1024.webp?v=81E9C073 1024w, images/ateliers/coiffure-01.webp?v=61B97956 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-02.webp?v=1D18B38D" srcset="images/ateliers/coiffure-02-480.webp?v=B2B88A12 480w, images/ateliers/coiffure-02-768.webp?v=E2AC531E 768w, images/ateliers/coiffure-02.webp?v=1D18B38D 836w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-03.webp?v=967B41ED" srcset="images/ateliers/coiffure-03-480.webp?v=34147AE4 480w, images/ateliers/coiffure-03-768.webp?v=076A477A 768w, images/ateliers/coiffure-03.webp?v=967B41ED 830w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-04.webp?v=29206BBF" srcset="images/ateliers/coiffure-04-480.webp?v=B687745A 480w, images/ateliers/coiffure-04-768.webp?v=4C6F93BD 768w, images/ateliers/coiffure-04-1024.webp?v=4669B850 1024w, images/ateliers/coiffure-04.webp?v=29206BBF 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img decoding="async" alt="Coiffure" class="w-full h-full object-cover" src="images/ateliers/coiffure-05.webp?v=78950779" srcset="images/ateliers/coiffure-05-480.webp?v=911822D5 480w, images/ateliers/coiffure-05-768.webp?v=EA6B000C 768w, images/ateliers/coiffure-05-1024.webp?v=02EEE5EC 1024w, images/ateliers/coiffure-05.webp?v=78950779 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
 </div>
 </div>
 </div>
@@ -822,7 +844,7 @@ POSTULER</a>
 <div class="absolute left-0 top-0 chapter-number-bg font-chapter-number text-chapter-number text-chapter-ghost -translate-x-12 -translate-y-24 reveal-chapter parallax-target max-md:hidden">03</div>
 <div class="md:col-span-7 reveal-image">
 <div class="aspect-[3/2] image-container cursor-pointer">
-<picture><source srcset="images/ateliers/esthetique-ongles.webp?v=866B47A8" type="image/webp"><img decoding="async" alt="Esthétique" class="w-full h-full object-cover grayscale-[0.2]" src="images/ateliers/esthetique-ongles.webp?v=866B47A8" loading="lazy"/></picture>
+<img decoding="async" alt="Esthétique" class="w-full h-full object-cover grayscale-[0.2]" src="images/ateliers/esthetique-ongles.webp?v=866B47A8" srcset="images/ateliers/esthetique-ongles-480.webp?v=56143F6B 480w, images/ateliers/esthetique-ongles-768.webp?v=DE381FA9 768w, images/ateliers/esthetique-ongles-1024.webp?v=C17A82B1 1024w, images/ateliers/esthetique-ongles.webp?v=866B47A8 1280w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/>
 </div>
 </div>
 <div class="md:col-span-4 md:col-start-9 space-y-8">
@@ -845,8 +867,8 @@ POSTULER</a>
 <div class="md:col-span-7 md:col-start-6 order-1 md:order-2 reveal-image">
 <div class="aspect-[3/2] image-container cursor-pointer">
 <div class="slide-container contain" id="slideshow-maquillage">
-<div class="slide active"><picture><source srcset="images/ateliers/maquillage-cinema.webp?v=C02E6DAE" type="image/webp"><img decoding="async" alt="Maquillage Cinéma" class="w-full h-full object-cover" src="images/ateliers/maquillage-cinema.webp?v=C02E6DAE" loading="lazy"/></picture></div>
-<div class="slide"><picture><source srcset="images/ateliers/maquillage-02.webp?v=21D2538E" type="image/webp"><img decoding="async" alt="Maquillage Cinéma" class="w-full h-full object-cover" src="images/ateliers/maquillage-02.webp?v=21D2538E" loading="lazy"/></picture></div>
+<div class="slide active"><img decoding="async" alt="Maquillage Cinéma" class="w-full h-full object-cover" src="images/ateliers/maquillage-cinema.webp?v=C02E6DAE" srcset="images/ateliers/maquillage-cinema-480.webp?v=3D893138 480w, images/ateliers/maquillage-cinema-768.webp?v=4644D13B 768w, images/ateliers/maquillage-cinema.webp?v=C02E6DAE 965w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
+<div class="slide"><img decoding="async" alt="Maquillage Cinéma" class="w-full h-full object-cover" src="images/ateliers/maquillage-02.webp?v=21D2538E" srcset="images/ateliers/maquillage-02-480.webp?v=2D356E86 480w, images/ateliers/maquillage-02-768.webp?v=D07F0E05 768w, images/ateliers/maquillage-02-1024.webp?v=9D04E946 1024w, images/ateliers/maquillage-02.webp?v=21D2538E 1200w" sizes="(min-width: 1440px) 733px, (min-width: 768px) calc((100vw - 512px) / 12 * 7 + 192px), calc(100vw - 48px)" loading="lazy"/></div>
 </div>
 </div>
 </div>
@@ -855,13 +877,13 @@ POSTULER</a>
 <h2 class="font-display-xxl text-headline-lg max-md:text-3xl text-center mb-16 max-md:mb-8 reveal-up">Nos Créations</h2>
 <div class="flex flex-col md:flex-row w-full h-auto md:h-[716px]">
 <div class="flex-1 image-container reveal-image stagger-1 cursor-pointer">
-<picture><source srcset="images/defiles/defiles-screenshot-2026-06-21-195852.webp?v=B8D87D18" type="image/webp"><img decoding="async" alt="Creation 1" class="w-full h-full object-cover" src="images/defiles/defiles-screenshot-2026-06-21-195852.webp?v=B8D87D18" loading="lazy"/></picture>
+<img decoding="async" alt="Creation 1" class="w-full h-full object-cover" src="images/defiles/defiles-screenshot-2026-06-21-195852.webp?v=B8D87D18" srcset="images/defiles/defiles-screenshot-2026-06-21-195852-480.webp?v=8EEA80CF 480w, images/defiles/defiles-screenshot-2026-06-21-195852-768.webp?v=5E1A642C 768w, images/defiles/defiles-screenshot-2026-06-21-195852.webp?v=B8D87D18 963w" sizes="(min-width: 1440px) 480px, (min-width: 768px) 33.3vw, 100vw" loading="lazy"/>
 </div>
 <div class="flex-1 image-container reveal-image stagger-2 cursor-pointer">
-<picture><source srcset="images/defiles/defiles-screenshot-2026-06-21-195150.webp?v=AC73604D" type="image/webp"><img decoding="async" alt="Creation 2" class="w-full h-full object-cover" src="images/defiles/defiles-screenshot-2026-06-21-195150.webp?v=AC73604D" loading="lazy"/></picture>
+<img decoding="async" alt="Creation 2" class="w-full h-full object-cover" src="images/defiles/defiles-screenshot-2026-06-21-195150.webp?v=AC73604D" srcset="images/defiles/defiles-screenshot-2026-06-21-195150-480.webp?v=F6352336 480w, images/defiles/defiles-screenshot-2026-06-21-195150-768.webp?v=12FC4244 768w, images/defiles/defiles-screenshot-2026-06-21-195150.webp?v=AC73604D 924w" sizes="(min-width: 1440px) 480px, (min-width: 768px) 33.3vw, 100vw" loading="lazy"/>
 </div>
 <div class="flex-1 image-container reveal-image stagger-3 cursor-pointer">
-<picture><source srcset="images/defiles/defiles-screenshot-2026-06-21-195330.webp?v=F8C861E5" type="image/webp"><img decoding="async" alt="Creation 3" class="w-full h-full object-cover" src="images/defiles/defiles-screenshot-2026-06-21-195330.webp?v=F8C861E5" loading="lazy"/></picture>
+<img decoding="async" alt="Creation 3" class="w-full h-full object-cover" src="images/defiles/defiles-screenshot-2026-06-21-195330.webp?v=F8C861E5" srcset="images/defiles/defiles-screenshot-2026-06-21-195330-480.webp?v=E397902F 480w, images/defiles/defiles-screenshot-2026-06-21-195330-768.webp?v=70B76848 768w, images/defiles/defiles-screenshot-2026-06-21-195330.webp?v=F8C861E5 966w" sizes="(min-width: 1440px) 480px, (min-width: 768px) 33.3vw, 100vw" loading="lazy"/>
 </div>
 </div>
 </section>
@@ -933,7 +955,7 @@ const nav=document.getElementById('top-nav');window.addEventListener('scroll',()
 <script>
 var allowsMotion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches; window.addEventListener('load', () => { const heroSlidesAll = Array.from(document.querySelectorAll('.hero-slide'));
 function getHeroSlides(){ var m = window.innerWidth < 768; return heroSlidesAll.filter(function(s){ return m ? s.classList.contains('hero-mobile') : s.classList.contains('hero-desktop'); }); }
-function loadHeroBg(slide){ if (!slide) return; var bg = slide.getAttribute('data-bg'); if (!bg) return; slide.removeAttribute('data-bg'); slide.style.backgroundImage = "url('" + bg + "')"; }
+function loadHeroBg(slide){ if (!slide) return; if (!slide.hasAttribute('data-bg')) return; slide.removeAttribute('data-bg'); slide.classList.add('bg-loaded'); }
 function loadHeroBgRest(){ heroSlidesAll.forEach(loadHeroBg); }
 let heroSlides = getHeroSlides(); let current = 0; var heroLastWidth = window.innerWidth; document.querySelectorAll('.hero-line').forEach(function(el, i) { setTimeout(function() { el.classList.add('visible'); }, i * 150); }); setTimeout(loadHeroBgRest, 1500); setInterval(function() { heroSlides[current].classList.remove('active'); current = (current + 1) % heroSlides.length; loadHeroBg(heroSlides[current]); heroSlides[current].classList.add('active'); }, 8000); window.addEventListener('resize', function(){ if (window.innerWidth === heroLastWidth) return; heroLastWidth = window.innerWidth; heroSlides = getHeroSlides(); current = 0; heroSlidesAll.forEach(function(s){ s.classList.remove('active'); }); if (heroSlides[0]) { loadHeroBg(heroSlides[0]); heroSlides[0].classList.add('active'); } }); }); const progressFill = document.getElementById('reading-progress-fill'); if (progressFill) { let progTicking = false; let docHeight = 0; const updateProgress = () => { const winScroll = document.body.scrollTop || document.documentElement.scrollTop; const scrolled = docHeight > 0 ? (winScroll / docHeight) * 100 : 0; progressFill.style.width = scrolled + '%'; progTicking = false; }; window.addEventListener('scroll', () => { if (!progTicking) { progTicking = true; requestAnimationFrame(updateProgress); } }, { passive: true }); window.addEventListener('resize', () => { docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; requestAnimationFrame(updateProgress); }); docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight; requestAnimationFrame(updateProgress); } const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-visible'); }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }); document.querySelectorAll('.reveal-up, .reveal-image, .reveal-chapter').forEach(el => revealObserver.observe(el)); if (window.innerWidth >= 768 && allowsMotion) { const parallaxSections = document.querySelectorAll('.parallax-section'); const activeSections = new Set(); const winHeight = window.innerHeight; const parallaxObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { entry.isIntersecting ? activeSections.add(entry.target) : activeSections.delete(entry.target); }); }, { threshold: 0 }); parallaxSections.forEach(section => parallaxObserver.observe(section)); let ticking = false; const updateParallax = () => { activeSections.forEach(section => { const target = section.querySelector('.parallax-target'); if (!target) return; const rect = section.getBoundingClientRect(); const strength = parseFloat(section.dataset.parallaxStrength) || 50; const centerOffset = (rect.top + rect.height / 2 - winHeight / 2) / (winHeight / 2); const xBase = target.classList.contains('-translate-x-12') ? '-3rem' : '3rem'; target.style.transform = 'translate3d(' + xBase + ', calc(-6rem + ' + centerOffset * strength + 'px), 0)'; }); ticking = false; }; window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(updateParallax); } }, { passive: true }); updateParallax(); } const magneticBtn = document.getElementById('magnetic-button'); const magneticWrap = magneticBtn?.closest('.magnetic-wrap'); if (magneticBtn && allowsMotion) { window.addEventListener('mousemove', (e) => { const rect = magneticWrap.getBoundingClientRect(); const btnX = rect.left + rect.width / 2; const btnY = rect.top + rect.height / 2; const dist = Math.hypot(e.clientX - btnX, e.clientY - btnY); if (dist < 200) { const strength = 0.2; const x = (e.clientX - btnX) * strength; const y = (e.clientY - btnY) * strength; magneticBtn.style.transform = 'translate(' + x + 'px, ' + y + 'px)'; } else { magneticBtn.style.transform = 'translate(0px, 0px)'; } }); magneticWrap.addEventListener('mouseleave', () => { magneticBtn.style.transform = 'translate(0px, 0px)'; }); }
 </script>
