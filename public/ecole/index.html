@@ -907,6 +907,282 @@ html { overflow-x: hidden; }
     font-weight: 600;
     flex-shrink: 0;
 }
+
+/* --- Sommaire de la section Formations --- */
+.formations-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 0 auto 48px;
+    max-width: 860px;
+}
+.formations-nav a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #474741;
+    text-decoration: none;
+    background: #FFFFFF;
+    border: 1px solid #EDEAE5;
+    border-radius: 100px;
+    padding: 10px 16px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.25s ease;
+}
+.formations-nav a:hover {
+    color: #B5562C;
+    border-color: rgba(181,86,44,0.4);
+}
+.formations-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin: 56px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EDEAE5;
+    scroll-margin-top: 140px;
+}
+.formations-sub:first-of-type { margin-top: 0; }
+
+/* --- Fiches metier enrichies --- */
+.formation-card { display: flex; flex-direction: column; }
+.formation-card-diplomes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+.formation-card-diplomes .formation-card-diplome { margin-bottom: 0; }
+.formation-card-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8A857D;
+    display: block;
+    margin-bottom: 5px;
+}
+.formation-card-admission ul { list-style: none; margin: 0; padding: 0; }
+.formation-card-admission li { padding: 3px 0; }
+.formation-card-cycle {
+    font-weight: 600;
+    color: #B5562C;
+    margin-right: 6px;
+}
+.formation-card-note {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-style: italic;
+    font-weight: 300;
+    color: #8A857D;
+    line-height: 1.55;
+    margin-top: 8px;
+}
+.formation-card-tarif {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid #EDEAE5;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B5562C;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.25s ease;
+}
+.formation-card-tarif:hover { color: #1A1A1A; }
+.tarif-card { scroll-margin-top: 140px; }
+.tarif-card:target {
+    outline: 2px solid #B5562C;
+    outline-offset: 2px;
+}
+
+/* --- Modalites de paiement --- */
+.paiement-box {
+    margin-top: 48px;
+    background: #FFFFFF;
+    border: 1px solid #EDEAE5;
+    border-radius: 16px;
+    padding: 40px;
+}
+.paiement-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #474741;
+    line-height: 1.7;
+    margin: 0 0 28px;
+}
+.paiement-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+@media (min-width: 768px) {
+    .paiement-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+}
+.paiement-card {
+    background: #FAF7F2;
+    border-radius: 12px;
+    padding: 24px 20px;
+}
+.paiement-card-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #B5562C;
+    margin-bottom: 6px;
+}
+.paiement-card-echeance {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: #1A1A1A;
+    line-height: 1.3;
+    margin-bottom: 14px;
+}
+.paiement-card ul { list-style: none; margin: 0; padding: 0; }
+.paiement-card li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 300;
+    color: #474741;
+    line-height: 1.6;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.paiement-card li:last-child { border-bottom: none; }
+
+/* --- Ce que comprennent les frais --- */
+.frais-inclus {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 48px;
+}
+@media (min-width: 768px) {
+    .frais-inclus { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+.frais-inclus-card {
+    background: #FFFFFF;
+    border: 1px solid #EDEAE5;
+    border-radius: 16px;
+    padding: 32px 28px;
+}
+.frais-inclus-card.charge { background: #FAF7F5; }
+.frais-inclus-card ul { list-style: none; margin: 0; padding: 0; }
+.frais-inclus-card li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: #474741;
+    line-height: 1.7;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    gap: 10px;
+}
+.frais-inclus-card li:last-child { border-bottom: none; }
+.frais-inclus-card li::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: #C17D5A;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 10px;
+}
+
+/* --- Coordonnees --- */
+.coord-box {
+    margin-top: 48px;
+    background: #1A1A1A;
+    border-radius: 16px;
+    padding: 40px;
+    color: #FAF7F2;
+}
+@media (min-width: 640px) { .coord-box { padding: 44px 48px; } }
+.coord-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 20px;
+    color: #FAF7F2;
+}
+.coord-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+@media (min-width: 640px) { .coord-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; } }
+.coord-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(250,247,242,0.75);
+    line-height: 1.7;
+}
+.coord-item .coord-key {
+    display: block;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #C17D5A;
+    margin-bottom: 6px;
+}
+.coord-item a {
+    color: #FAF7F2;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(193,125,90,0.6);
+    display: inline-flex;
+    align-items: center;
+}
+.coord-item a:hover { color: #C17D5A; }
+.coord-item strong { color: #FAF7F2; font-weight: 500; }
+
+/* --- Mobile : une colonne, cibles tactiles 44px --- */
+@media (pointer: coarse), (max-width: 767px) {
+    .tap-target { position: relative; }
+    .tap-target::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        min-width: 44px;
+        height: 100%;
+        min-height: 44px;
+    }
+    .formations-nav a { min-height: 44px; }
+    .formation-card-tarif { min-height: 44px; }
+    .coord-item a { min-height: 44px; }
+}
+@media (max-width: 767px) {
+    .tarifs-box, .modules-box, .paiement-box { padding: 24px 20px; }
+    .eco-avantages { padding: 28px 22px; }
+    .coord-box { padding: 28px 22px; }
+    .frais-inclus-card { padding: 24px 20px; }
+    .formations-grid { grid-template-columns: 1fr; }
+    .formations-sub { font-size: 1.35rem; margin-top: 40px; }
+    .formations-nav { gap: 6px; margin-bottom: 32px; }
+    .formations-nav a { font-size: 0.68rem; padding: 8px 12px; }
+}
+
+.cta-section {
     background: #C17D5A;
     padding: 100px 24px;
     text-align: center;
@@ -1286,119 +1562,234 @@ html { overflow-x: hidden; }
 </div>
 <p class="formations-intro reveal">NAS MODE propose des formations métiers en stylisme, modélisme, couture, coiffure et esthétique, sanctionnées par des diplômes reconnus : Attestation de fin de formation, CQP, BQP, BPT et BPTS. Chaque programme allie théorie, pratique intensive en atelier et préparation à l'insertion professionnelle.</p>
 
+<nav class="formations-nav reveal" aria-label="Sommaire de la section formations">
+<a class="tap-target" href="#les-metiers">Les 10 métiers</a>
+<a class="tap-target" href="#les-tarifs">Coût annuel</a>
+<a class="tap-target" href="#les-modules">Modules</a>
+<a class="tap-target" href="#les-frais">Ce que comprennent les frais</a>
+<a class="tap-target" href="#le-paiement">Modalités de paiement</a>
+<a class="tap-target" href="#les-commodites">Commodités &amp; dossier</a>
+<a class="tap-target" href="#les-avantages">Avantages</a>
+<a class="tap-target" href="#nous-joindre">Nous joindre</a>
+</nav>
+
+<h3 class="formations-sub reveal" id="les-metiers">Les 10 métiers : admission et diplôme</h3>
+
 <div class="formations-grid reveal">
 <div class="formation-col">
-<h3 class="formation-col-title"><span class="package-num">PACKAGE 1</span> Couture</h3>
+<h4 class="formation-col-title"><span class="package-num">PACKAGE 1</span> Couture</h4>
 <div class="formation-card">
-<div class="formation-card-name">Mécanicien de confection <small>et Couturier dame</small></div>
-<div class="formation-card-diplome">Attestation de fin de formation</div>
-<div class="formation-card-admission"><strong>Admission :</strong> Cycle 1 (niveau inférieur à la classe de CM2, formation pratique) ou Cycle 2 (niveau CM2 ou plus, formation théorique et pratique).</div>
+<div class="formation-card-name">Mécanicien de confection</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li><span class="formation-card-cycle">Cycle 1</span>Niveau inférieur à la classe de CM2 pour la formation pratique</li>
+<li><span class="formation-card-cycle">Cycle 2</span>Niveau CM2 ou plus pour la formation théorique et pratique</li>
+</ul>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-mecanicien-de-confection">Voir le tarif ↓</a>
+</div>
+<div class="formation-card">
+<div class="formation-card-name">Couturier dame</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+<span class="formation-card-diplome">Certificat de Qualification Professionnelle (CQP)</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li><span class="formation-card-cycle">Cycle 1</span>Niveau inférieur à la classe de CM2 pour la formation pratique</li>
+<li><span class="formation-card-cycle">Cycle 2</span>Niveau CM2 ou plus pour la formation théorique et pratique</li>
+</ul>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-couturier-dame">Voir le tarif ↓</a>
 </div>
 </div>
 <div class="formation-col">
-<h3 class="formation-col-title"><span class="package-num">PACKAGE 2</span> Création de mode</h3>
+<h4 class="formation-col-title"><span class="package-num">PACKAGE 2</span> Création de mode</h4>
 <div class="formation-card">
 <div class="formation-card-name">Modéliste</div>
-<div class="formation-card-diplome">Certificat de Qualification Professionnelle (CQP)</div>
-<div class="formation-card-admission"><strong>Admission :</strong> diplôme en modélisme ou équivalent.</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+<span class="formation-card-diplome">Brevet de Qualification Professionnelle (BQP)</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li>Classe de 3ème</li>
+</ul>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-modeliste">Voir le tarif ↓</a>
 </div>
 <div class="formation-card">
 <div class="formation-card-name">Technicien de confection</div>
-<div class="formation-card-diplome">Brevet de Qualification Professionnelle (BQP)</div>
-<div class="formation-card-admission"><strong>Admission :</strong> diplôme en modélisme et technique de confection ou équivalent.</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li>Diplôme en modélisme ou équivalent</li>
+</ul>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-technicien-de-confection">Voir le tarif ↓</a>
 </div>
 <div class="formation-card">
 <div class="formation-card-name">Styliste</div>
-<div class="formation-card-diplome">Brevet Professionnel de Technicien (BPT)</div>
-<div class="formation-card-admission"><strong>Admission :</strong> niveau de classe de 3ème au moins et titulaire d'un CAP ou CQP du même domaine.</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+<span class="formation-card-diplome">Brevet Professionnel de Technicien (BPT)</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li>Diplôme en modélisme et technique de confection ou équivalent</li>
+</ul>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-styliste">Voir le tarif ↓</a>
 </div>
 </div>
 <div class="formation-col">
-<h3 class="formation-col-title"><span class="package-num">PACKAGE 3</span> Haute couture</h3>
+<h4 class="formation-col-title"><span class="package-num">PACKAGE 3</span> Haute couture</h4>
 <div class="formation-card">
 <div class="formation-card-name">Tailleur homme et dame</div>
-<div class="formation-card-diplome">Brevet Professionnel de Technicien Supérieur (BPTS)</div>
-<div class="formation-card-admission"><strong>Admission :</strong> Cycle 1 (niveau inférieur ou égal à la classe de 4ème).</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+<span class="formation-card-diplome">Brevet Professionnel de Technicien Supérieur (BPTS)</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li>Niveau de classe de 3ème au moins et être titulaire d'un CAP ou CQP du même</li>
+</ul>
+<p class="formation-card-note">Condition reproduite telle qu'imprimée sur le dépliant, où la phrase s'interrompt après « du même ». À faire préciser au centre.</p>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-tailleur-homme-et-dame">Voir le tarif ↓</a>
 </div>
 </div>
 <div class="formation-col">
-<h3 class="formation-col-title"><span class="package-num">PACKAGE 4</span> Esthétique & maquillage</h3>
+<h4 class="formation-col-title"><span class="package-num">PACKAGE 4</span> Esthétique et maquillage cinéma et télévision</h4>
 <div class="formation-card">
 <div class="formation-card-name">Esthéticien</div>
-<div class="formation-card-diplome">Attestation / Brevet de Qualification Professionnelle (BQP)</div>
-<div class="formation-card-admission"><strong>Admission :</strong> Cycle 1 (niveau inférieur à la classe de CM2) ou Cycle 2 (niveau CM2 ou plus).</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+<span class="formation-card-diplome">Brevet de Qualification Professionnelle (BQP)</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li><span class="formation-card-cycle">Cycle 1</span>Niveau inférieur ou égal à la classe de 4ème</li>
+<li><span class="formation-card-cycle">Cycle 2</span>Aucune condition n'est imprimée sur le dépliant pour ce cycle.</li>
+</ul>
+<p class="formation-card-note">Le dépliant imprime « Cycle 2 » sans condition associée. À faire préciser au centre.</p>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-estheticien">Voir le tarif ↓</a>
 </div>
 <div class="formation-card">
 <div class="formation-card-name">Maquillage cinéma et télévision</div>
-<div class="formation-card-diplome">Attestation de fin de formation</div>
-<div class="formation-card-admission"><strong>Admission :</strong> attestation de fin de formation en coiffure ou en esthétique. Filière unique au Burkina Faso.</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li>Attestation de fin de formation en coiffure ou en esthétique</li>
+</ul>
+<p class="formation-card-note">Filière unique au Burkina Faso.</p>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-maquilleur-cinema-et-tv">Voir le tarif ↓</a>
 </div>
 </div>
 <div class="formation-col">
-<h3 class="formation-col-title"><span class="package-num">PACKAGE 5</span> Coiffure</h3>
+<h4 class="formation-col-title"><span class="package-num">PACKAGE 5</span> Coiffure et spécialisation</h4>
 <div class="formation-card">
 <div class="formation-card-name">Coiffeur dame</div>
-<div class="formation-card-diplome">Certificat de Qualification Professionnelle (CQP)</div>
-<div class="formation-card-admission"><strong>Admission :</strong> Cycle 1 (niveau inférieur à la classe de CM2) ou Cycle 2 (niveau CM2 ou plus).</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+<span class="formation-card-diplome">Certificat de Qualification Professionnelle (CQP)</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li><span class="formation-card-cycle">Cycle 1</span>Niveau inférieur à la classe CM2 pour une formation pratique</li>
+<li><span class="formation-card-cycle">Cycle 2</span>Niveau CM2 ou plus pour une formation théorique et pratique</li>
+</ul>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-coiffeur-dame">Voir le tarif ↓</a>
 </div>
 <div class="formation-card">
 <div class="formation-card-name">Coiffeur dame — Spécialisation</div>
-<div class="formation-card-diplome">Brevet de Qualification Professionnelle (BQP)</div>
-<div class="formation-card-admission"><strong>Admission :</strong> CQP Coiffeur dame, BQP Esthétique ou attestation de formation en coiffure ou en esthétique.</div>
+<div class="formation-card-diplomes">
+<span class="formation-card-diplome">Attestation de fin de formation</span>
+<span class="formation-card-diplome">Brevet de Qualification Professionnelle (BQP)</span>
+</div>
+<div class="formation-card-admission">
+<span class="formation-card-label">Admission</span>
+<ul>
+<li>CQP Coiffeur dame,</li>
+<li>BQP esthétique ou avoir une attestation de formation en coiffure ou en esthétique</li>
+</ul>
+<p class="formation-card-note">Condition reproduite telle qu'imprimée sur le dépliant, où la première ligne se termine par une virgule sans conjonction. À faire préciser au centre.</p>
+</div>
+<a class="formation-card-tarif tap-target" href="#tarif-coiffeur-dame-specialisation">Voir le tarif ↓</a>
 </div>
 </div>
 </div>
 
 <!-- Tarifs -->
+<h3 class="formations-sub reveal" id="les-tarifs">Coût annuel de la formation, métier par métier</h3>
 <div class="tarifs-box reveal">
 <p class="ecole-label" style="text-align:center;">Coût annuel de la formation</p>
 <div class="tarifs-grid">
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-mecanicien-de-confection">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>380 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 217 500 F CFA</div>
 <div class="tarif-label">Mécanicien de confection</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-couturier-dame">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>405 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 242 000 F CFA</div>
 <div class="tarif-label">Couturier dame</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-modeliste">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>392 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 229 000 F CFA</div>
 <div class="tarif-label">Modéliste</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-technicien-de-confection">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>438 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 275 000 F CFA</div>
 <div class="tarif-label">Technicien de confection</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-styliste">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>415 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 252 000 F CFA</div>
 <div class="tarif-label">Styliste</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-tailleur-homme-et-dame">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>465 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 302 000 F CFA</div>
 <div class="tarif-label">Tailleur homme et dame</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-estheticien">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>415 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 252 000 F CFA</div>
 <div class="tarif-label">Esthéticien</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-maquilleur-cinema-et-tv">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>440 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 277 000 F CFA</div>
 <div class="tarif-label">Maquilleur cinéma et TV</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-coiffeur-dame">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>380 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 217 500 F CFA</div>
 <div class="tarif-label">Coiffeur dame</div>
 </div>
-<div class="tarif-card">
+<div class="tarif-card" id="tarif-coiffeur-dame-specialisation">
 <div class="tarif-externat"><span class="tarif-tag">Externat</span>405 000 F CFA</div>
 <div class="tarif-internat"><span class="tarif-tag">Internat</span>1 242 000 F CFA</div>
 <div class="tarif-label">Coiffeur dame — Spécialisation</div>
@@ -1424,26 +1815,10 @@ html { overflow-x: hidden; }
 <li>Au choix selon la filière (sans la matière d'œuvre)</li>
 </ul>
 </div>
-<div class="frais-card">
-<h4 class="frais-card-title">Nos commodités</h4>
-<ul>
-<li>Bus scolaire : <span class="price">160 000 F / an</span></li>
-<li>Crèche pour nourrisson : <span class="price">135 000 F / an</span></li>
-<li>Internat pour jeunes filles</li>
-<li>Cantine & infirmerie</li>
-</ul>
-</div>
-<div class="frais-card">
-<h4 class="frais-card-title">Dossier à fournir</h4>
-<ul>
-<li>Deux (02) photos d'identité</li>
-<li>Une (01) copie de l'acte de naissance</li>
-<li>Diplôme ou dernier bulletin scolaire (si lieu)</li>
-</ul>
-</div>
 </div>
 
 <!-- Modules -->
+<h3 class="formations-sub reveal" id="les-modules">Modules communs à toutes les formations</h3>
 <div class="modules-box reveal">
 <div class="modules-grid">
 <div class="modules-col">
@@ -1461,22 +1836,131 @@ html { overflow-x: hidden; }
 <li>Droit du travail</li>
 <li>Santé sexuelle et reproductive des jeunes</li>
 <li>Civisme et patriotisme</li>
-<li>Formation en entrepreneuriat après validation des modules de formation</li>
+<li>Formation en entrepreneuriat après validation de modules de formation</li>
 </ul>
 </div>
 </div>
 </div>
 
-<!-- Modalités de paiement & avantages -->
-<div class="eco-avantages reveal">
-<h4 class="eco-avantages-title">Modalités de paiement & avantages</h4>
+<!-- Ce que comprennent les frais / ce qui reste à la charge de l'apprenant(e) -->
+<h3 class="formations-sub reveal" id="les-frais">Ce que comprennent les frais</h3>
+<div class="frais-inclus reveal">
+<div class="frais-inclus-card">
+<h4 class="frais-card-title">Compris dans les frais de formation</h4>
 <ul>
-<li>Paiement en 3 versements : 50 % avant le début de la formation, 25 % en décembre, 25 % en février.</li>
+<li>Les frais de formation comprennent la matière d'œuvre utilisée pendant les cours pratiques.</li>
+</ul>
+</div>
+<div class="frais-inclus-card charge">
+<h4 class="frais-card-title">À la charge de l'apprenant(e)</h4>
+<ul>
+<li>Le trousseau (blouse et petits matériels)</li>
+<li>La matière d'œuvre destinée à la réalisation de l'ouvrage de fin de formation</li>
+<li>Les frais de la formation en entrepreneuriat organisée en fin de formation</li>
+</ul>
+</div>
+</div>
+
+<!-- Modalités de paiement -->
+<h3 class="formations-sub reveal" id="le-paiement">Modalités de paiement</h3>
+<div class="paiement-box reveal">
+<p class="paiement-intro">Paiement en 3 versements : 50 % avant le début de la formation, 25 % en décembre, 25 % en février.</p>
+<div class="paiement-grid">
+<div class="paiement-card">
+<div class="paiement-card-num">1er versement</div>
+<div class="paiement-card-echeance">Avant le début de la formation</div>
+<ul>
+<li>Frais d'inscription ou de réinscription</li>
+<li>50 % des frais de formation</li>
+<li>50 % des frais de l'internat</li>
+<li>50 % des frais de la crèche</li>
+<li>50 % des frais du bus</li>
+</ul>
+</div>
+<div class="paiement-card">
+<div class="paiement-card-num">2ème versement</div>
+<div class="paiement-card-echeance">1ère semaine du mois de décembre</div>
+<ul>
+<li>25 % des frais de formation</li>
+<li>25 % des frais de l'internat</li>
+<li>25 % des frais de la crèche</li>
+<li>25 % des frais du bus</li>
+</ul>
+</div>
+<div class="paiement-card">
+<div class="paiement-card-num">3ème versement</div>
+<div class="paiement-card-echeance">1ère semaine du mois de février</div>
+<ul>
+<li>25 % des frais de formation</li>
+<li>25 % des frais de l'internat</li>
+<li>25 % des frais de la crèche</li>
+<li>25 % des frais du bus</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- Commodités & dossier -->
+<h3 class="formations-sub reveal" id="les-commodites">Commodités et dossier à fournir</h3>
+<div class="frais-annexes reveal">
+<div class="frais-card">
+<h4 class="frais-card-title">Nos commodités</h4>
+<ul>
+<li>Bus scolaire : <span class="price">160 000 F CFA / an</span></li>
+<li>Crèche pour nourrisson : <span class="price">135 000 F CFA / an</span></li>
+<li>Internat pour jeunes filles</li>
+<li>Cantine</li>
+<li>Infirmerie</li>
+</ul>
+</div>
+<div class="frais-card">
+<h4 class="frais-card-title">Dossier à fournir</h4>
+<ul>
+<li>Deux (02) photos d'identité</li>
+<li>Une (01) copie de l'acte de naissance</li>
+<li>Diplôme ou dernier bulletin scolaire s'il y a lieu</li>
+</ul>
+</div>
+</div>
+
+<!-- Avantages -->
+<h3 class="formations-sub reveal" id="les-avantages">Avantages</h3>
+<div class="eco-avantages reveal">
+<h4 class="eco-avantages-title">Avantages</h4>
+<ul>
 <li>Accès à un microcrédit pour les meilleurs apprenants de la promotion.</li>
 <li>Facilitation des stages professionnels au Burkina Faso et dans la sous-région.</li>
-<li>Participation aux défilés de fin de formation et au défilé biennal organisé par NAS MODE.</li>
+<li>Participation au défilé de fin de formation organisé par NAS MODE.</li>
 <li>Participation aux masterclass sur l'entrepreneuriat et le marketing digital.</li>
+<li>Participation au défilé biennal organisé au profit des formés.</li>
 </ul>
+</div>
+
+<!-- Inscriptions et informations -->
+<h3 class="formations-sub reveal" id="nous-joindre">Nous joindre</h3>
+<div class="coord-box reveal">
+<h4 class="coord-title">Inscriptions et informations</h4>
+<div class="coord-grid">
+<div class="coord-item">
+<span class="coord-key">Téléphone</span>
+<a class="tap-target" href="tel:+22678014198">+226 78 01 41 98</a><br/>
+<a class="tap-target" href="tel:+22665811818">+226 65 81 18 18</a><br/>
+<a class="tap-target" href="tel:+22625470585">+226 25 47 05 85</a>
+</div>
+<div class="coord-item">
+<span class="coord-key">Email &amp; site web</span>
+<a class="tap-target" href="mailto:info@nasmodeformation.com">info@nasmodeformation.com</a><br/>
+<strong>www.nasmodeformation.com</strong>
+</div>
+<div class="coord-item">
+<span class="coord-key">Adresse postale</span>
+09 BP : 1334 Ouaga 09 Burkina Faso
+</div>
+<div class="coord-item">
+<span class="coord-key">Centre de formation professionnelle</span>
+Stylisme · Coiffure · Modélisme · Esthétique — Ouagadougou
+</div>
+</div>
 </div>
 </section>
 
