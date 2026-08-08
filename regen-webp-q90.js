@@ -20,15 +20,15 @@ let done = 0;
 (async () => {
   for (const f of files) {
     const webp = f.replace(/\.(png|jpe?g)$/i, '.webp');
-    // GARDE-FOU : ne jamais ecraser un .webp plus recent que sa source.
+    // GARDE-FOU : on n ecrase JAMAIS un .webp existant sans --force.
     // Ces scripts ont deja detruit des visuels remplaces a la main (les hero
     // mobile de juillet 2026) en les regenerant depuis l ancien PNG voisin.
-    try {
-      if (fs.existsSync(webp) && fs.statSync(webp).mtimeMs > fs.statSync(f).mtimeMs) {
-        console.log('SAUTE (webp plus recent que la source):', webp);
-        continue;
-      }
-    } catch (e) {}
+    // Comparer les dates ne suffisait pas : re-enregistrer le PNG contournait
+    // le garde-fou. Par defaut on ne touche donc a rien qui existe deja.
+    if (fs.existsSync(webp) && !process.argv.includes('--force')) {
+      console.log('SAUTE (existe deja ; --force pour ecraser):', webp);
+      continue;
+    }
     try {
       const meta = await sharp(f).metadata();
       const w = meta.width;
