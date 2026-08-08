@@ -1014,10 +1014,10 @@ html { overflow-x: hidden; }
 <a href="#" class="block shrink-0"><picture><source srcset="images/ecole/logo-nas-mode.webp?v=4E7AE840" type="image/webp"><img width="400" height="400" decoding="async" src="images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1"/></picture></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
 <a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="#formations">Formation</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="defiles-gallery/index.html?v=4DDDC017">Défilés</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="ecole/index.html?v=5297AD1C">L'École</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="soutenir/index.html?v=15C1141A">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html?v=8AE3A606">Contact</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="defiles-gallery/index.html?v=DF8EB383">Défilés</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="ecole/index.html?v=C549FDD8">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="soutenir/index.html?v=E9A57115">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html?v=8276FE94">Contact</a>
 </div>
 <button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-1" style="background-color:#B5562C"></span>
@@ -1027,10 +1027,10 @@ html { overflow-x: hidden; }
 </nav>
 <div id="mobile-menu" aria-hidden="true" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 40; background: #FAF7F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; overflow-y: auto; transform: translateX(100%); opacity: 0;">
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="#formations" onclick="toggleMobileMenu()">Formation</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="defiles-gallery/index.html?v=4DDDC017" onclick="toggleMobileMenu()">Défilés</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="ecole/index.html?v=5297AD1C" onclick="toggleMobileMenu()">L'École</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="soutenir/index.html?v=15C1141A" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="contact/index.html?v=8AE3A606" onclick="toggleMobileMenu()">Contact</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="defiles-gallery/index.html?v=DF8EB383" onclick="toggleMobileMenu()">Défilés</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="ecole/index.html?v=C549FDD8" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="soutenir/index.html?v=E9A57115" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="contact/index.html?v=8276FE94" onclick="toggleMobileMenu()">Contact</a>
 </div>
 <header class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden" id="hero">
 <div class="absolute inset-0 z-0">
@@ -1041,7 +1041,12 @@ html { overflow-x: hidden; }
 <div class="hero-slide hero-mobile" id="hero-m2" data-bg></div>
 <div class="hero-slide hero-mobile" id="hero-m3" data-bg></div>
 </div>
-<div class="absolute inset-0 z-[1]" style="background: rgba(0,0,0,0.15)"></div>
+<!-- Voile du hero. Il etait a 0.15 : le titre tombait a 1,70:1 de contraste
+     et le bouton POSTULER avait 99,9 % de sa surface sous 4,5:1, selon le
+     visuel affiche. La page Ecole utilise deja 0,4 et passe le seuil.
+     Degrade plutot qu'aplat uni : le bas du hero, ou se trouvent les
+     boutons, est le plus charge visuellement. -->
+<div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.38) 45%, rgba(0,0,0,0.52) 100%)"></div>
 <div class="relative z-[2] text-center px-margin-desktop max-md:px-margin-mobile max-w-4xl mx-auto" id="hero-content" style="padding-top:clamp(32px,6vh,64px)">
 <h1 class="hero-line hero-line-1 text-[clamp(1.75rem,5vw,3.5rem)] md:text-[56px] leading-tight mb-4 text-ivory-base" style="font-family: 'EB Garamond', serif; font-weight: 400;">
 Là où naissent les talents<br class="hidden md:block"> de la mode et de la beauté.
@@ -1050,7 +1055,9 @@ Là où naissent les talents<br class="hidden md:block"> de la mode et de la bea
 <a href="#formations" class="inline-block bg-ivory-base text-deep-ink font-label-caps text-label-caps px-6 py-3 tracking-wider hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 cursor-pointer">
 DÉCOUVRIR LES FORMATIONS
 </a>
-<a href="#ecole" class="inline-block border-2 border-ivory-base text-ivory-base font-label-caps text-label-caps px-6 py-3 tracking-wider hover:-translate-y-0.5 hover:shadow-lg hover:bg-ivory-base hover:text-deep-ink transition-all duration-300 cursor-pointer">
+<!-- Fond semi-opaque sur POSTULER : c'est le seul bouton en texte clair
+     pose directement sur la photo, sans aplat derriere lui. -->
+<a href="#ecole" class="inline-block border-2 border-ivory-base text-ivory-base font-label-caps text-label-caps px-6 py-3 tracking-wider hover:-translate-y-0.5 hover:shadow-lg hover:bg-ivory-base hover:text-deep-ink transition-all duration-300 cursor-pointer" style="background:rgba(26,26,26,0.42);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)">
 POSTULER</a>
 </div>
 </div>
@@ -1199,7 +1206,7 @@ POSTULER</a>
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="tel:+22678014198">+226 78 01 41 98</a>
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="tel:+22665811818">+226 65 81 18 18</a>
 <a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="mailto:info@nasmodeformation.com">info@nasmodeformation.com</a>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html?v=8AE3A606">Nous écrire</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html?v=8276FE94">Nous écrire</a>
 </div>
 <div class="space-y-6">
 <h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">NEWSLETTER</h4>
@@ -1212,7 +1219,7 @@ POSTULER</a>
 <p class="font-body-md text-sm text-primary-fixed-dim">© 2026 NAS MODE Ouagadougou · Abidjan. Excellence Artisanale Ouest-Africaine.</p>
 <div class="flex gap-8">
 <a class="text-primary-fixed-dim hover:text-ivory-base transition-colors cursor-pointer tap-target" href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" rel="noopener noreferrer">Facebook</a>
-<a class="text-primary-fixed-dim hover:text-ivory-base transition-colors cursor-pointer tap-target" href="contact/index.html?v=8AE3A606">Contact</a>
+<a class="text-primary-fixed-dim hover:text-ivory-base transition-colors cursor-pointer tap-target" href="contact/index.html?v=8276FE94">Contact</a>
 </div>
 </div>
 </footer>

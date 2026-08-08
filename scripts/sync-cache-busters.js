@@ -77,9 +77,17 @@ for (const page of pagesHtml) {
     if (/^(https?:)?\/\//.test(url) || url.startsWith('data:') || url.startsWith('mailto:') || url.startsWith('tel:')) {
       return tout
     }
+    // Le fragment doit rester APRÈS la query, jamais avant.
+    // « page.html#formations?v=XXXX » nomme une ancre « formations?v=XXXX »,
+    // qui ne correspond à aucun id : le lien ne mène nulle part.
+    // La forme correcte est « page.html?v=XXXX#formations ».
+    const diese = url.indexOf('#')
+    const fragment = diese === -1 ? '' : url.slice(diese)
+    const chemin = diese === -1 ? url : url.slice(0, diese)
+
     // Une URL commençant par « / » est absolue depuis la racine du site,
     // pas relative au dossier du fichier qui la référence.
-    const brut = decodeURIComponent(url.split('#')[0])
+    const brut = decodeURIComponent(chemin)
     const base = brut.startsWith('/') ? RACINE : dossier
     const cible = path.resolve(base, brut.replace(/^\//, '')).split(path.sep).join('/')
     const attendu = empreintes.get(cible)
@@ -87,9 +95,9 @@ for (const page of pagesHtml) {
       introuvables.push(url)
       return tout
     }
-    if (attendu === ancien) return tout
+    if (attendu === ancien && !fragment) return tout
     corriges++
-    return url + '?v=' + attendu
+    return chemin + '?v=' + attendu + fragment
   })
 
   if (introuvables.length) {

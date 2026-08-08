@@ -16,8 +16,8 @@
   document.head.appendChild(vaScript);
 </script>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<style>img{max-width:100%;height:auto}#top-nav img{max-width:200px!important;height:auto!important}body{margin:0}</style>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>img{max-width:100%;height:auto}#top-nav img{width:135px;max-width:38vw!important;height:auto!important}body{margin:0}</style>
 <link rel="stylesheet" href="css/tailwind.css?v=9268AC77"/>
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=26D742C1"/>
 <link rel="icon" href="images/ecole/logo-nas-mode.png?v=641972E6" sizes="any"/>
@@ -34,8 +34,36 @@
 <meta name="twitter:image" content="https://nas-mode.vercel.app/images/ecole/logo-nas-mode.png"/>
 <link rel="canonical" href="https://nas-mode.vercel.app/defiles.html"/>
 
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Inter:wght@300;400;600;700&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
+<link rel="preload" as="font" type="font/woff2" href="fonts/inter-300-700.woff2?v=260C81A4" crossorigin>
+<style>
+/* Polices auto-hebergees : aucune dependance externe. */
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/inter-300-700.woff2?v=260C81A4') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('fonts/eb-garamond-400-600.woff2?v=F12BC30C') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('fonts/cormorant-garamond-300-500.woff2?v=C47FF128') format('woff2');
+  font-weight: 300 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
 <style>
 @font-face {
   font-family: 'Zina';
@@ -44,7 +72,8 @@
   font-style: normal;
 }
 </style>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- CDN Tailwind retire : outil de prototypage, non destine a la production.
+     La feuille compilee css/tailwind.css est deja chargee plus haut. -->
 <script>
 tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary": "#ffffff", "tertiary-container": "#faf7f6", "on-primary-container": "#72716d", "primary-fixed-dim": "#c8c6c2", "surface-container-low": "#f5f3f3", "primary": "#5f5e5b", "on-secondary-container": "#722700", "on-primary-fixed": "#1c1c19", "secondary-fixed": "#ffdbce", "on-secondary-fixed": "#370e00", "tertiary-fixed": "#e5e2e1", "on-surface": "#1b1c1c", "outline-variant": "#c8c7be", "on-error": "#ffffff", "surface-container-highest": "#e3e2e2", "on-tertiary-container": "#727171", "tertiary-fixed-dim": "#c8c6c5", "deep-ink": "#1A1A1A", "outline": "#787770", "error": "#ba1a1a", "surface-variant": "#e3e2e2", "on-primary-fixed-variant": "#474743", "background": "#fbf9f9", "primary-container": "#faf7f2", "secondary-container": "#fd8d5e", "surface-tint": "#5f5e5b", "inverse-primary": "#c8c6c2", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#1c1b1b", "secondary": "#9c441b", "inverse-on-surface": "#f2f0f0", "surface-container": "#efeded", "on-secondary": "#ffffff", "on-background": "#1b1c1c", "surface-dim": "#dbdad9", "primary-fixed": "#e5e2dd", "terracotta-accent": "#B5562C", "chapter-ghost": "#E5E5E5", "surface": "#fbf9f9", "tertiary": "#5f5e5e", "on-primary": "#ffffff", "on-error-container": "#93000a", "surface-bright": "#fbf9f9", "inverse-surface": "#303031", "surface-container-high": "#e9e8e7", "on-tertiary-fixed-variant": "#474746", "on-surface-variant": "#474741", "on-secondary-fixed-variant": "#7d2d04", "secondary-fixed-dim": "#ffb598", "ivory-base": "#FAF7F2", "error-container": "#ffdad6" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "container-max": "1440px", "margin-desktop": "80px", "section-gap": "120px", "gutter": "32px", "margin-mobile": "24px" }, "fontFamily": { "label-caps": ["Inter"], "display-xxl": ["EB Garamond"], "headline-lg-mobile": ["EB Garamond"], "body-md": ["Inter"], "body-lg": ["Inter"], "headline-lg": ["EB Garamond"], "chapter-number": ["Inter"] }, "fontSize": { "label-caps": ["12px", { "lineHeight": "100%", "letterSpacing": "0.15em", "fontWeight": "600" }], "display-xxl": ["120px", { "lineHeight": "110%", "letterSpacing": "-0.02em", "fontWeight": "400" }], "headline-lg-mobile": ["42px", { "lineHeight": "115%", "fontWeight": "400" }], "body-md": ["16px", { "lineHeight": "160%", "fontWeight": "400" }], "body-lg": ["20px", { "lineHeight": "160%", "fontWeight": "300" }], "headline-lg": ["64px", { "lineHeight": "110%", "fontWeight": "400" }], "chapter-number": ["160px", { "lineHeight": "100%", "letterSpacing": "-0.05em", "fontWeight": "700" }] } }, }, }
 </script>
@@ -210,10 +239,18 @@ html { overflow-x: hidden; }
     .masonry-grid { columns: 3; column-gap: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
-    .reveal-up, .custom-cursor, .custom-cursor-ring {
+    /* Le contenu revele a l'apparition doit rester VISIBLE : on neutralise
+       seulement son animation. Il etait auparavant regroupe avec le curseur
+       personnalise et heritait de son display:none, ce qui faisait
+       disparaitre le h1 et le h2 de la page pour tout visiteur ayant
+       demande la reduction des animations. */
+    .reveal-up {
         transition: none !important;
         opacity: 1 !important;
         transform: none !important;
+    }
+    /* Le curseur personnalise, lui, se retire entierement. */
+    .custom-cursor, .custom-cursor-ring {
         display: none !important;
     }
     body { cursor: auto !important; }
@@ -249,13 +286,13 @@ html { overflow-x: hidden; }
 </div>
 
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile pt-5 pb-2 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
-<a href="index.html?v=938A33F0" class="block shrink-0"><img decoding="async" src="images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></a>
+<a href="index.html?v=938A33F0" class="block shrink-0"><img decoding="async" src="images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1"/></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html#formations?v=891C09C3">Formation</a>
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="#">Défilés</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html#ecole?v=891C09C3">L'École</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="soutenir/index.html?v=15C1141A">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html?v=8AE3A606">Contact</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html?v=E73B2F74#formations">Formation</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="defiles-gallery/">Défilés</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="nasmode.html?v=E73B2F74#ecole">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="soutenir/index.html?v=E9A57115">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="contact/index.html?v=8276FE94">Contact</a>
 </div>
 <button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-1" style="background-color:#B5562C"></span>
@@ -264,11 +301,11 @@ html { overflow-x: hidden; }
 </button>
 </nav>
 <div id="mobile-menu" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 40; background: #FAF7F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; overflow-y: auto; transition: all 0.5s ease-in-out; transform: translateX(100%); opacity: 0;">
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="nasmode.html#formations?v=891C09C3" onclick="toggleMobileMenu()">Formation</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="defiles-gallery/index.html?v=4DDDC017" onclick="toggleMobileMenu()">Défilés</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="nasmode.html#ecole?v=891C09C3" onclick="toggleMobileMenu()">L'École</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="soutenir/index.html?v=15C1141A" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="contact/index.html?v=8AE3A606" onclick="toggleMobileMenu()">Contact</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="nasmode.html?v=E73B2F74#formations" onclick="toggleMobileMenu()">Formation</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="defiles-gallery/index.html?v=DF8EB383" onclick="toggleMobileMenu()">Défilés</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="nasmode.html?v=E73B2F74#ecole" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="soutenir/index.html?v=E9A57115" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="contact/index.html?v=8276FE94" onclick="toggleMobileMenu()">Contact</a>
 </div>
 <main>
 <section class="pt-40 pb-20 px-margin-desktop max-md:px-margin-mobile">

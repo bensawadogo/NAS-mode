@@ -17,7 +17,7 @@
 </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<style>img{max-width:100%;height:auto}#top-nav img{max-width:200px!important;height:auto!important}body{margin:0}</style>
+<style>img{max-width:100%;height:auto}#top-nav img{width:135px;max-width:38vw!important;height:auto!important}body{margin:0}</style>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <link rel="icon" href="/images/ecole/logo-nas-mode.png" sizes="any"/>
 <link rel="apple-touch-icon" href="/images/ecole/logo-nas-mode.png"/>
@@ -89,7 +89,7 @@ body { background-color: #FAF7F2; color: #1A1A1A; overflow-x: hidden; }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 4px; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 .donor-card { background: white; border: 1px solid #e5e5e5; padding: 2rem; transition: all 0.3s; }
-.donor-card:hover { border-color: #C17D5A; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.donor-card:hover { border-color: #B5562C; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 </style>
 <style>
 html.cursor-active * { cursor: none !important; }
@@ -212,13 +212,13 @@ html.cursor-active * { cursor: none !important; }
 <body>
 
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile pt-5 pb-2 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
-<a href="../index.html?v=938A33F0" class="block shrink-0"><picture><source srcset="../images/ecole/logo-nas-mode.webp?v=4E7AE840" type="image/webp"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></picture></a>
+<a href="../index.html?v=938A33F0" class="block shrink-0"><picture><source srcset="../images/ecole/logo-nas-mode.webp?v=4E7AE840" type="image/webp"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1"/></picture></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../index.html#formations?v=938A33F0">Formation</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../ecole/index.html?v=5297AD1C">L'École</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../defiles-gallery/index.html?v=4DDDC017">Défilés</a>
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer tap-target" href="index.html?v=15C1141A">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../contact/index.html?v=8AE3A606">Contact</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../index.html?v=938A33F0#formations">Formation</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../ecole/index.html?v=C549FDD8">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../defiles-gallery/index.html?v=DF8EB383">Défilés</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer tap-target" href="index.html?v=E9A57115">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../contact/index.html?v=8276FE94">Contact</a>
 </div>
 <button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50 tap-target" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-1" style="background-color:#B5562C"></span>
@@ -227,11 +227,11 @@ html.cursor-active * { cursor: none !important; }
 </button>
 </nav>
 <div id="mobile-menu" aria-hidden="true" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 40; background: #FAF7F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; overflow-y: auto; transform: translateX(100%); opacity: 0;">
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../index.html#formations?v=938A33F0" onclick="toggleMobileMenu()">Formation</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../ecole/index.html?v=5297AD1C" onclick="toggleMobileMenu()">L'École</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../defiles-gallery/index.html?v=4DDDC017" onclick="toggleMobileMenu()">Défilés</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../index.html?v=938A33F0#formations" onclick="toggleMobileMenu()">Formation</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../ecole/index.html?v=C549FDD8" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../defiles-gallery/index.html?v=DF8EB383" onclick="toggleMobileMenu()">Défilés</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink font-bold tap-target" href="#" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../contact/index.html?v=8AE3A606" onclick="toggleMobileMenu()">Contact</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../contact/index.html?v=8276FE94" onclick="toggleMobileMenu()">Contact</a>
 </div>
 
 <header class="relative" style="background-color:#1A1A1A;padding-top:clamp(64px,10vw,80px)">
@@ -249,7 +249,7 @@ html.cursor-active * { cursor: none !important; }
 <section class="section-gap px-6 md:px-12">
 <div class="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
 <div class="space-y-6">
-<p class="font-label-caps text-label-caps text-terracotta-accent uppercase tracking-[0.15em]" style="color: #C17D5A;">L'HISTOIRE DE BEA</p>
+<p class="font-label-caps text-label-caps text-terracotta-accent uppercase tracking-[0.15em]" style="color: #B5562C;">L'HISTOIRE DE BEA</p>
 <h2 class="font-headline-lg text-headline-lg text-deep-ink" style="font-family: 'Cormorant Garamond', serif;">Une Suissesse au cœur du Burkina</h2>
 <p class="font-body-lg text-primary leading-relaxed" style="line-height: 1.8;">En novembre 2008, Bea Petri, mandatée par Swisscontact, arrive à Ouagadougou pour une mission d'un mois. Elle découvre l'atelier de Safi Ouattara Diallo, fondé en 2001, et comprend immédiatement le potentiel de cette école de couture.</p>
 <p class="font-body-lg text-primary leading-relaxed" style="line-height: 1.8;">Fascinée par la détermination de Safi et par le talent des jeunes, elle décide de s'engager pleinement au-delà de sa mission initiale. Elle loue et rénove un local voisin, forme les premières promotions en esthétique et coiffure, puis crée le Förderverein NAS MODE — une association caritative en Suisse — pour mobiliser des donateurs et financer durablement l'école.</p>
@@ -266,7 +266,7 @@ html.cursor-active * { cursor: none !important; }
 <section class="section-gap px-6 md:px-12 bg-deep-ink text-ivory-base">
 <div class="max-w-[1100px] mx-auto">
 <div class="text-center mb-16">
-<p class="font-label-caps text-label-caps uppercase tracking-[0.15em] mb-4" style="color: #C17D5A;">EN IMAGES</p>
+<p class="font-label-caps text-label-caps uppercase tracking-[0.15em] mb-4" style="color: #B5562C;">EN IMAGES</p>
 <h2 class="font-headline-lg text-headline-lg" style="font-family: 'Cormorant Garamond', serif;"> Bea Petri au service des communautés</h2>
 </div>
 
@@ -289,7 +289,7 @@ html.cursor-active * { cursor: none !important; }
 <section class="section-gap px-6 md:px-12">
 <div class="max-w-[1100px] mx-auto">
 <div class="text-center mb-16">
-<p class="font-label-caps text-label-caps text-terracotta-accent uppercase tracking-[0.15em] mb-4" style="color: #C17D5A;">NOS PARTENAIRES</p>
+<p class="font-label-caps text-label-caps text-terracotta-accent uppercase tracking-[0.15em] mb-4" style="color: #B5562C;">NOS PARTENAIRES</p>
 <h2 class="font-headline-lg text-headline-lg text-deep-ink" style="font-family: 'Cormorant Garamond', serif;">Des mécènes au service de l'excellence</h2>
 </div>
 
