@@ -1220,7 +1220,12 @@ html { overflow-x: hidden; }
 .coord-item a:hover { color: #C17D5A; }
 .coord-item strong { color: #FAF7F2; font-weight: 500; }
 
-/* --- Mobile : une colonne, cibles tactiles 44px --- */
+/* ===== CIBLES TACTILES (WCAG 2.5.5 : 44x44 minimum) =====
+   Sur pointeur grossier, on agrandit la ZONE DE CONTACT sans toucher
+   a la taille visuelle : un ::after transparent centre sur le lien.
+   Grossir les elements eux-memes aurait decale toute la mise en page.
+   La branche (max-width: 767px) couvre les viewports etroits ET rend
+   le correctif verifiable dans un navigateur en pointer: fine. */
 @media (pointer: coarse), (max-width: 767px) {
     .tap-target { position: relative; }
     .tap-target::after {
@@ -1237,6 +1242,23 @@ html { overflow-x: hidden; }
     .formations-nav a { min-height: 44px; }
     .formation-card-tarif { min-height: 44px; }
     .coord-item a { min-height: 44px; }
+    /* Les champs de formulaire sont des elements remplaces : ils ne rendent
+       pas de ::after. Seule une hauteur minimale reelle les agrandit. */
+    footer input[type="email"] { min-height: 44px; }
+}
+/* visibility:hidden retire les liens du menu ferme de l'ordre de tabulation
+   et des lecteurs d'ecran (plus robuste qu'inert, supporte partout).
+   transition ET visibility sont ici et NON en style inline : un style inline
+   ecraserait la feuille et visibility ne basculerait jamais.
+   Le delai de 0.5s ne doit s'appliquer qu'a la FERMETURE, d'ou la regle
+   .open a 0s : sinon le menu s'ouvre invisible pendant une demi-seconde. */
+#mobile-menu {
+    visibility: hidden;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+#mobile-menu.open {
+    visibility: visible;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0s linear 0s;
 }
 @media (max-width: 767px) {
     .tarifs-box, .modules-box, .paiement-box { padding: 24px 20px; }
@@ -1361,26 +1383,26 @@ html { overflow-x: hidden; }
 <div class="custom-cursor-ring" id="custom-cursor-ring"></div>
 
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile pt-5 pb-2 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
-<a href="../index.html?v=6A56F32B" class="block shrink-0"><picture><source srcset="../images/ecole/logo-nas-mode.webp?v=4E7AE840" type="image/webp"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></picture></a>
+<a href="../index.html?v=938A33F0" class="block shrink-0"><picture><source srcset="../images/ecole/logo-nas-mode.webp?v=4E7AE840" type="image/webp"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></picture></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="index.html?v=59920D01">L'École</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../index.html?v=6A56F32B#formations">Formation</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../defiles-gallery/index.html?v=DB1245CC">Défilés</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../soutenir/index.html?v=7723706B">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../contact/index.html?v=05059E6E">Contact</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer tap-target" href="index.html?v=5297AD1C">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../index.html?v=938A33F0#formations">Formation</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../defiles-gallery/index.html?v=4DDDC017">Défilés</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../soutenir/index.html?v=15C1141A">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../contact/index.html?v=8AE3A606">Contact</a>
 </div>
-<button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+<button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50 tap-target" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-1" style="background-color:#B5562C"></span>
 <span class="block w-6 h-[2px] transition-all duration-300" id="menu-bar-2" style="background-color:#B5562C"></span>
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-3" style="background-color:#D4721A"></span>
 </button>
 </nav>
-<div id="mobile-menu" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 40; background: #FAF7F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; overflow-y: auto; transition: all 0.5s ease-in-out; transform: translateX(100%); opacity: 0;">
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="index.html?v=59920D01" onclick="toggleMobileMenu()">L'École</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../index.html?v=6A56F32B#formations" onclick="toggleMobileMenu()">Formation</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../defiles-gallery/index.html?v=DB1245CC" onclick="toggleMobileMenu()">Défilés</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../soutenir/index.html?v=7723706B" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../contact/index.html?v=05059E6E" onclick="toggleMobileMenu()">Contact</a>
+<div id="mobile-menu" aria-hidden="true" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 40; background: #FAF7F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; overflow-y: auto; transform: translateX(100%); opacity: 0;">
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="index.html?v=5297AD1C" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../index.html?v=938A33F0#formations" onclick="toggleMobileMenu()">Formation</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../defiles-gallery/index.html?v=4DDDC017" onclick="toggleMobileMenu()">Défilés</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../soutenir/index.html?v=15C1141A" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../contact/index.html?v=8AE3A606" onclick="toggleMobileMenu()">Contact</a>
 </div>
 
 <main>
@@ -1399,7 +1421,7 @@ html { overflow-x: hidden; }
 <a href="#histoire" class="cta-btn cta-btn-primary" style="display: inline-block; cursor: pointer;">DÉCOUVRIR NOTRE HISTOIRE</a>
 </div>
 </div>
-<div style="position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; cursor: pointer;" onclick="document.getElementById('histoire').scrollIntoView({behavior:'smooth'})">
+<div class="tap-target" style="position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 2; cursor: pointer;" onclick="document.getElementById('histoire').scrollIntoView({behavior:'smooth'})">
 <span style="color: rgba(250,247,242,0.4); font-size: 24px; font-family: 'Inter', sans-serif; animation: scrollDown 2s ease-in-out infinite; display: block;">↓</span>
 </div>
 <style>
@@ -1577,7 +1599,7 @@ html { overflow-x: hidden; }
 <p class="ecole-label">L'ÉQUIPE</p>
 <h2 class="ecole-title" style="margin-bottom: 24px;">Une équipe engagée.</h2>
 <p class="ecole-text" style="margin-bottom: 32px;">Derrière NAS MODE, une équipe de formateurs passionnés, de partenaires dévoués et de collaborateurs qui œuvrent chaque jour pour offrir aux jeunes la meilleure formation possible.</p>
-<a href="../index.html?v=6A56F32B#formations" class="cta-btn cta-btn-primary" style="display: inline-block; cursor: pointer; background: #C17D5A; color: #FAF7F2; text-decoration: none;">DÉCOUVRIR NOS FORMATIONS</a>
+<a href="../index.html?v=938A33F0#formations" class="cta-btn cta-btn-primary" style="display: inline-block; cursor: pointer; background: #C17D5A; color: #FAF7F2; text-decoration: none;">DÉCOUVRIR NOS FORMATIONS</a>
 </div>
 </div>
 </section>
@@ -2075,8 +2097,8 @@ Stylisme · Coiffure · Modélisme · Esthétique — Ouagadougou
 <div class="reveal">
 <h2 class="cta-title">Prêt à construire votre avenir ?</h2>
 <div class="cta-buttons">
-<a href="../index.html?v=6A56F32B#formations" class="cta-btn cta-btn-primary" style="cursor: pointer; text-decoration: none;">DÉCOUVRIR LES FORMATIONS</a>
-<a href="../index.html?v=6A56F32B#ecole" class="cta-btn cta-btn-secondary" style="cursor: pointer; text-decoration: none;">POSTULER</a>
+<a href="../index.html?v=938A33F0#formations" class="cta-btn cta-btn-primary" style="cursor: pointer; text-decoration: none;">DÉCOUVRIR LES FORMATIONS</a>
+<a href="../index.html?v=938A33F0#ecole" class="cta-btn cta-btn-secondary" style="cursor: pointer; text-decoration: none;">POSTULER</a>
 </div>
 </div>
 </section>
@@ -2093,28 +2115,28 @@ Stylisme · Coiffure · Modélisme · Esthétique — Ouagadougou
 </div>
 <div class="flex flex-col gap-4">
 <h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">FORMATIONS</h4>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Stylisme & Couture</a>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Coiffure</a>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Esthétique</a>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Maquilleur Cinéma et Télévision</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer tap-target" style="color: rgba(250,247,242,0.7);" href="../index.html?v=938A33F0#formations">Stylisme & Couture</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer tap-target" style="color: rgba(250,247,242,0.7);" href="../index.html?v=938A33F0#formations">Coiffure</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer tap-target" style="color: rgba(250,247,242,0.7);" href="../index.html?v=938A33F0#formations">Esthétique</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer tap-target" style="color: rgba(250,247,242,0.7);" href="../index.html?v=938A33F0#formations">Maquilleur Cinéma et Télévision</a>
 </div>
 <div class="flex flex-col gap-4">
 <h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">CONTACT</h4>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../contact/index.html?v=05059E6E">Contact</a>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="../index.html?v=6A56F32B#formations">Presse</a>
-<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer" style="color: rgba(250,247,242,0.7);" href="#">Mentions légales</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer tap-target" style="color: rgba(250,247,242,0.7);" href="../contact/index.html?v=8AE3A606">Contact</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer tap-target" style="color: rgba(250,247,242,0.7);" href="../index.html?v=938A33F0#formations">Presse</a>
+<a class="font-body-md hover:text-terracotta-accent transition-colors cursor-pointer tap-target" style="color: rgba(250,247,242,0.7);" href="#">Mentions légales</a>
 </div>
 <div class="flex flex-col gap-4">
 <h4 class="font-label-caps text-label-caps text-terracotta-accent mb-4">NEWSLETTER</h4>
 <input type="email" placeholder="Adresse Email" class="bg-transparent border-b border-ivory-base/30 pb-3 font-body-md text-ivory-base placeholder:text-ivory-base/30 focus:outline-none focus:border-terracotta-accent transition-colors"/>
-<button class="font-label-caps text-label-caps text-terracotta-accent mt-2 hover:text-ivory-base transition-colors cursor-pointer text-left" onclick="window.location.href='mailto:info@nasmodeformation.com'">S'ABONNER →</button>
+<button class="font-label-caps text-label-caps text-terracotta-accent mt-2 hover:text-ivory-base transition-colors cursor-pointer text-left tap-target" onclick="window.location.href='mailto:info@nasmodeformation.com'">S'ABONNER →</button>
 </div>
 </div>
 <div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-ivory-base/10">
 <p class="font-body-sm" style="color: rgba(250,247,242,0.4);">© 2026 NAS MODE Ouagadougou · Abidjan. Excellence Artisanale Ouest-Africaine.</p>
 <div class="flex items-center gap-6">
-<a href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" class="font-body-sm hover:text-terracotta-accent transition-colors" style="color: rgba(250,247,242,0.5);">Facebook</a>
-<a href="../contact/index.html?v=05059E6E" class="font-body-sm hover:text-terracotta-accent transition-colors" style="color: rgba(250,247,242,0.5);">Contact</a>
+<a href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" class="font-body-sm hover:text-terracotta-accent transition-colors tap-target" style="color: rgba(250,247,242,0.5);">Facebook</a>
+<a href="../contact/index.html?v=8AE3A606" class="font-body-sm hover:text-terracotta-accent transition-colors tap-target" style="color: rgba(250,247,242,0.5);">Contact</a>
 </div>
 </div>
 </div>
@@ -2122,7 +2144,8 @@ Stylisme · Coiffure · Modélisme · Esthétique — Ouagadougou
 
 <script>
 (function(){ var nav=document.getElementById('top-nav'); if(nav){ window.addEventListener('scroll',function(){ nav.classList.toggle('nav-scrolled', window.scrollY>50) },{passive:true}) } })();
-(function() { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var cursor = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (cursor && ring) { cursor.style.left = (window.innerWidth / 2) + 'px'; cursor.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var cx = 0, cy = 0, ticking = false; var renderCursor = function () { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; ring.style.left = cx + 'px'; ring.style.top = cy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderCursor); } }, { passive: true }); document.addEventListener('mouseleave', function () { cursor.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { cursor.style.display = ''; ring.style.display = ''; }); var formations = document.getElementById('formations'); if (formations) { formations.addEventListener('mouseenter', function () { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); }); formations.addEventListener('mouseleave', function () { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); }); } var interactiveEls = document.querySelectorAll('a, button, input, textarea, select, .cursor-pointer, [role=button]'); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { cursor.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { cursor.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} } var revealElements = document.querySelectorAll('.reveal'); function checkReveal() { for (var i = 0; i < revealElements.length; i++) { var rect = revealElements[i].getBoundingClientRect(); if (rect.top < window.innerHeight * 0.9) { revealElements[i].classList.add('visible'); } } } window.addEventListener('scroll', checkReveal); window.addEventListener('resize', checkReveal); checkReveal(); var counters = document.querySelectorAll('.chiffre-number'); var counted = false; function startCounters() { if (counted) return; var countSection = document.querySelector('.chiffres-grid'); if (!countSection) return; var rect = countSection.getBoundingClientRect(); if (rect.top < window.innerHeight * 0.85) { counted = true; counters.forEach(function(el) { var target = parseInt(el.getAttribute('data-count')); if (isNaN(target)) return; var current = 0; var step = Math.max(1, Math.ceil(target / 60)); var timer = setInterval(function() { current += step; if (current >= target) { current = target; clearInterval(timer); } el.textContent = current + (el.getAttribute('data-suffix') || ''); }, 20); }); } } window.addEventListener('scroll', startCounters); startCounters(); })(); function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.classList.remove('open'); document.body.style.overflow = ''; bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.classList.add('open'); document.body.style.overflow = 'hidden'; bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; } }
+(function() { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var cursor = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (cursor && ring) { cursor.style.left = (window.innerWidth / 2) + 'px'; cursor.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var cx = 0, cy = 0, ticking = false; var renderCursor = function () { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; ring.style.left = cx + 'px'; ring.style.top = cy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderCursor); } }, { passive: true }); document.addEventListener('mouseleave', function () { cursor.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { cursor.style.display = ''; ring.style.display = ''; }); var formations = document.getElementById('formations'); if (formations) { formations.addEventListener('mouseenter', function () { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); }); formations.addEventListener('mouseleave', function () { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); }); } var interactiveEls = document.querySelectorAll('a, button, input, textarea, select, .cursor-pointer, [role=button]'); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { cursor.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { cursor.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} } var revealElements = document.querySelectorAll('.reveal'); function checkReveal() { for (var i = 0; i < revealElements.length; i++) { var rect = revealElements[i].getBoundingClientRect(); if (rect.top < window.innerHeight * 0.9) { revealElements[i].classList.add('visible'); } } } window.addEventListener('scroll', checkReveal); window.addEventListener('resize', checkReveal); checkReveal(); var counters = document.querySelectorAll('.chiffre-number'); var counted = false; function startCounters() { if (counted) return; var countSection = document.querySelector('.chiffres-grid'); if (!countSection) return; var rect = countSection.getBoundingClientRect(); if (rect.top < window.innerHeight * 0.85) { counted = true; counters.forEach(function(el) { var target = parseInt(el.getAttribute('data-count')); if (isNaN(target)) return; var current = 0; var step = Math.max(1, Math.ceil(target / 60)); var timer = setInterval(function() { current += step; if (current >= target) { current = target; clearInterval(timer); } el.textContent = current + (el.getAttribute('data-suffix') || ''); }, 20); }); } } window.addEventListener('scroll', startCounters); startCounters(); })(); function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var toggle = document.getElementById('menu-toggle'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.setAttribute('aria-hidden', 'true'); menu.classList.remove('open'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Ouvrir le menu'); bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; toggle.focus(); } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.setAttribute('aria-hidden', 'false'); menu.classList.add('open'); document.body.style.overflow = 'hidden'; toggle.setAttribute('aria-expanded', 'true'); toggle.setAttribute('aria-label', 'Fermer le menu'); bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; var first = menu.querySelector('a'); if (first) first.focus(); } }
+document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; var menu = document.getElementById('mobile-menu'); if (menu && menu.classList.contains('open')) toggleMobileMenu(); });
 </script>
 </body>
 </html>

@@ -206,6 +206,37 @@
       * { cursor: auto !important; }
   }
   </style>
+  <style>
+  /* ===== CIBLES TACTILES (WCAG 2.5.5 : 44x44 minimum) =====
+     Meme technique que nasmode.html : un ::after transparent centre agrandit
+     la ZONE DE CONTACT sans toucher a la taille visuelle. Grossir les liens
+     eux-memes aurait decale l'en-tete de la galerie immersive.
+     Avant : « NAS MODE » 54x13, « Retour » 99x32. */
+  @media (pointer: coarse), (max-width: 767px) {
+      .tap-target { position: relative; display: inline-block; }
+      .tap-target::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 100%;
+          min-width: 44px;
+          height: 100%;
+          min-height: 44px;
+      }
+      /* Les deux zones de 44px se chevauchaient : 12px seulement separaient
+         le titre du bouton Retour. On ecarte les deux lignes de l'en-tete. */
+      .frame { grid-row-gap: 1.9rem; }
+      /* Le CSS compile pose :root{font-size:12px} : le titre tombait a 9.84px
+         et le credit a 9.36px. On releve la taille du TEXTE uniquement --
+         toucher a :root aurait aussi bouge --page-padding et les overlays de
+         la galerie immersive, tous exprimes en rem. */
+      .frame__title { font-size: 14px; }
+      .frame__back { font-size: 14px; }
+      .frame__credit, .gallery-lite-view__intro { font-size: 12px; }
+  }
+  </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -220,9 +251,9 @@
   <main>
     <header class="frame">
       <h1 class="frame__title">
-        <a href="../index.html?v=6A56F32B">NAS MODE</a>
+        <a class="tap-target" href="../index.html?v=938A33F0">NAS MODE</a>
       </h1>
-      <a class="frame__back" href="../index.html?v=6A56F32B">← Retour</a>
+      <a class="frame__back tap-target" href="../index.html?v=938A33F0">← Retour</a>
       <nav class="frame__credit">
         <p>Défilés — Galerie Immersive</p>
       </nav>
@@ -235,10 +266,10 @@
       <section class="gallery-lite-view" data-gallery-fallback>
         <p class="gallery-lite-view__intro">Galerie allégée — collections et défilés NAS MODE.</p>
         <div class="gallery-lite-view__grid">
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.21.11.webp?v=162805E9" width="1280" height="856" alt="Création NAS MODE — défilé, vue 1" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.22.21.webp?v=E4E7850C" width="965" height="1420" alt="Création NAS MODE — défilé, vue 2" loading="lazy" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.23.00.webp?v=6057D943" width="1280" height="1178" alt="Création NAS MODE — défilé, vue 3" loading="lazy" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.26.43.webp?v=773C20E7" width="1280" height="860" alt="Création NAS MODE — défilé, vue 4" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.21.11.webp?v=8CEA3959" width="1280" height="856" alt="Création NAS MODE — défilé, vue 1" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.22.21.webp?v=AB79F3F7" width="965" height="1420" alt="Création NAS MODE — défilé, vue 2" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.23.00.webp?v=ABBA03BA" width="1280" height="1178" alt="Création NAS MODE — défilé, vue 3" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.26.43.webp?v=40C23829" width="1280" height="860" alt="Création NAS MODE — défilé, vue 4" loading="lazy" decoding="async" />
         </div>
       </section>
     </noscript>
@@ -246,34 +277,34 @@
       <section class="gallery-lite-view" data-gallery-fallback>
         <p class="gallery-lite-view__intro">Galerie allégée — collections et défilés NAS MODE.</p>
         <div class="gallery-lite-view__grid">
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.21.11.webp?v=162805E9" width="1280" height="856" alt="Création NAS MODE — défilé, vue 1" loading="eager" fetchpriority="high" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.22.21.webp?v=E4E7850C" width="965" height="1420" alt="Création NAS MODE — défilé, vue 2" loading="lazy" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.23.00.webp?v=6057D943" width="1280" height="1178" alt="Création NAS MODE — défilé, vue 3" loading="lazy" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.26.43.webp?v=773C20E7" width="1280" height="860" alt="Création NAS MODE — défilé, vue 4" loading="lazy" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.27.25.webp?v=8A2BE6D2" width="1280" height="862" alt="Création NAS MODE — défilé, vue 5" loading="lazy" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.28.53.webp?v=3B8AAAEC" width="1280" height="947" alt="Création NAS MODE — défilé, vue 6" loading="lazy" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.29.32.webp?v=E4E7D9C7" width="1280" height="1216" alt="Création NAS MODE — défilé, vue 7" loading="lazy" decoding="async" />
-          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.30.25.webp?v=36D25B23" width="1280" height="866" alt="Création NAS MODE — défilé, vue 8" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-181913.webp?v=DC8D2B20" width="1280" height="848" alt="Création NAS MODE — défilé, vue 9" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-193111.webp?v=34840370" width="954" height="1420" alt="Création NAS MODE — défilé, vue 10" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-193158.webp?v=15995EFD" width="967" height="1313" alt="Création NAS MODE — défilé, vue 11" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195150.webp?v=4DCB094A" width="924" height="1376" alt="Création NAS MODE — défilé, vue 12" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195242.webp?v=F72A43E9" width="1280" height="844" alt="Création NAS MODE — défilé, vue 13" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195330.webp?v=8F9A9459" width="966" height="1391" alt="Création NAS MODE — défilé, vue 14" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195408.webp?v=E3DF90EA" width="971" height="1407" alt="Création NAS MODE — défilé, vue 15" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195435.webp?v=3FBD2C55" width="960" height="1389" alt="Création NAS MODE — défilé, vue 16" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195507.webp?v=F5761FE2" width="960" height="1391" alt="Création NAS MODE — défilé, vue 17" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195803.webp?v=63ABC923" width="976" height="1413" alt="Création NAS MODE — défilé, vue 18" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195852.webp?v=102D1E69" width="963" height="1383" alt="Création NAS MODE — défilé, vue 19" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-195937.webp?v=CF9EE178" width="1059" height="1399" alt="Création NAS MODE — défilé, vue 20" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-200013.webp?v=66CD4128" width="902" height="1395" alt="Création NAS MODE — défilé, vue 21" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-200722.webp?v=A399B3EC" width="963" height="1387" alt="Création NAS MODE — défilé, vue 22" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-200752.webp?v=9A484477" width="967" height="1403" alt="Création NAS MODE — défilé, vue 23" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-200855.webp?v=EAD4CB8D" width="968" height="1400" alt="Création NAS MODE — défilé, vue 24" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-200938.webp?v=D412D446" width="961" height="1382" alt="Création NAS MODE — défilé, vue 25" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-201005.webp?v=28D0891F" width="959" height="1376" alt="Création NAS MODE — défilé, vue 26" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-201130.webp?v=84E68491" width="1173" height="1393" alt="Création NAS MODE — défilé, vue 27" loading="lazy" decoding="async" />
-          <img src="../images/defiles/defiles-screenshot-2026-06-21-201221.webp?v=8CE77496" width="1133" height="1408" alt="Création NAS MODE — défilé, vue 28" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.21.11.webp?v=8CEA3959" width="1280" height="856" alt="Création NAS MODE — défilé, vue 1" loading="eager" fetchpriority="high" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.22.21.webp?v=AB79F3F7" width="965" height="1420" alt="Création NAS MODE — défilé, vue 2" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.23.00.webp?v=ABBA03BA" width="1280" height="1178" alt="Création NAS MODE — défilé, vue 3" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.26.43.webp?v=40C23829" width="1280" height="860" alt="Création NAS MODE — défilé, vue 4" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.27.25.webp?v=FE898320" width="1280" height="862" alt="Création NAS MODE — défilé, vue 5" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.28.53.webp?v=C51BA59F" width="1280" height="947" alt="Création NAS MODE — défilé, vue 6" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.29.32.webp?v=954DC6C7" width="1280" height="1216" alt="Création NAS MODE — défilé, vue 7" loading="lazy" decoding="async" />
+          <img src="../images/defiles/Capture%20d%E2%80%99%C3%A9cran%202026-06-26%20%C3%A0%2002.30.25.webp?v=29A40B52" width="1280" height="866" alt="Création NAS MODE — défilé, vue 8" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-181913.webp?v=4BEC1AAC" width="1280" height="848" alt="Création NAS MODE — défilé, vue 9" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-193111.webp?v=AA359ACB" width="954" height="1420" alt="Création NAS MODE — défilé, vue 10" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-193158.webp?v=454FAC3B" width="967" height="1313" alt="Création NAS MODE — défilé, vue 11" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195150.webp?v=AC73604D" width="924" height="1376" alt="Création NAS MODE — défilé, vue 12" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195242.webp?v=C97883FD" width="1280" height="844" alt="Création NAS MODE — défilé, vue 13" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195330.webp?v=F8C861E5" width="966" height="1391" alt="Création NAS MODE — défilé, vue 14" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195408.webp?v=792F8F8C" width="971" height="1407" alt="Création NAS MODE — défilé, vue 15" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195435.webp?v=28EBDD3F" width="960" height="1389" alt="Création NAS MODE — défilé, vue 16" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195507.webp?v=B543D760" width="960" height="1391" alt="Création NAS MODE — défilé, vue 17" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195803.webp?v=3F357028" width="976" height="1413" alt="Création NAS MODE — défilé, vue 18" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195852.webp?v=B8D87D18" width="963" height="1383" alt="Création NAS MODE — défilé, vue 19" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-195937.webp?v=052BB23A" width="1059" height="1399" alt="Création NAS MODE — défilé, vue 20" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200013.webp?v=8924E791" width="902" height="1395" alt="Création NAS MODE — défilé, vue 21" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200722.webp?v=87BC9E52" width="963" height="1387" alt="Création NAS MODE — défilé, vue 22" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200752.webp?v=D7E7927E" width="967" height="1403" alt="Création NAS MODE — défilé, vue 23" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200855.webp?v=5CD34D31" width="968" height="1400" alt="Création NAS MODE — défilé, vue 24" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-200938.webp?v=C782C010" width="961" height="1382" alt="Création NAS MODE — défilé, vue 25" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-201005.webp?v=1E6F7973" width="959" height="1376" alt="Création NAS MODE — défilé, vue 26" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-201130.webp?v=60708AB4" width="1173" height="1393" alt="Création NAS MODE — défilé, vue 27" loading="lazy" decoding="async" />
+          <img src="../images/defiles/defiles-screenshot-2026-06-21-201221.webp?v=154C2E5E" width="1133" height="1408" alt="Création NAS MODE — défilé, vue 28" loading="lazy" decoding="async" />
         </div>
       </section>
     </template>

@@ -155,6 +155,40 @@ html.cursor-active * { cursor: none !important; }
 #top-nav > a img, #top-nav > a picture img { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
 @media (max-width: 767px) { #top-nav { align-items: flex-start; min-height: 135px; } #top-nav > a img, #top-nav > a picture img { margin-top: -8px; margin-left: -12px; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); } #menu-toggle { margin-top: 68px; } header { background-color: transparent !important; padding-top: clamp(100px,20vw,160px) !important; } }
 @media (min-width: 768px) { #top-nav { align-items: flex-start; min-height: 122px; } #top-nav > a img, #top-nav > a picture img { width: 150px !important; margin-top: -15px !important; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); } header { background-color: transparent !important; padding-top: 0 !important; } }
+/* ===== CIBLES TACTILES (WCAG 2.5.5 : 44x44 minimum) =====
+   Sur pointeur grossier, on agrandit la ZONE DE CONTACT sans toucher
+   a la taille visuelle : un ::after transparent centre sur le lien.
+   Grossir les elements eux-memes aurait decale toute la mise en page.
+   La branche (max-width: 767px) couvre les viewports etroits ET rend
+   le correctif verifiable dans un navigateur en pointer: fine. */
+@media (pointer: coarse), (max-width: 767px) {
+    .tap-target { position: relative; }
+    .tap-target::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        min-width: 44px;
+        height: 100%;
+        min-height: 44px;
+    }
+}
+/* visibility:hidden retire les liens du menu ferme de l'ordre de tabulation
+   et des lecteurs d'ecran (plus robuste qu'inert, supporte partout).
+   transition ET visibility sont ici et NON en style inline : un style inline
+   ecraserait la feuille et visibility ne basculerait jamais.
+   Le delai de 0.5s ne doit s'appliquer qu'a la FERMETURE, d'ou la regle
+   .open a 0s : sinon le menu s'ouvre invisible pendant une demi-seconde. */
+#mobile-menu {
+    visibility: hidden;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+#mobile-menu.open {
+    visibility: visible;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0s linear 0s;
+}
 </style>
 <script type="application/ld+json">
 {
@@ -178,26 +212,26 @@ html.cursor-active * { cursor: none !important; }
 <body>
 
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile pt-5 pb-2 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
-<a href="../index.html?v=6A56F32B" class="block shrink-0"><picture><source srcset="../images/ecole/logo-nas-mode.webp?v=4E7AE840" type="image/webp"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></picture></a>
+<a href="../index.html?v=938A33F0" class="block shrink-0"><picture><source srcset="../images/ecole/logo-nas-mode.webp?v=4E7AE840" type="image/webp"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></picture></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../index.html#formations?v=6A56F32B">Formation</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../ecole/index.html?v=EBAF1D2A">L'École</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../defiles-gallery/index.html?v=DB1245CC">Défilés</a>
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="index.html?v=7723706B">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../contact/index.html?v=05059E6E">Contact</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../index.html#formations?v=938A33F0">Formation</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../ecole/index.html?v=5297AD1C">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../defiles-gallery/index.html?v=4DDDC017">Défilés</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer tap-target" href="index.html?v=15C1141A">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../contact/index.html?v=8AE3A606">Contact</a>
 </div>
-<button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+<button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50 tap-target" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-1" style="background-color:#B5562C"></span>
 <span class="block w-6 h-[2px] transition-all duration-300" id="menu-bar-2" style="background-color:#B5562C"></span>
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-3" style="background-color:#D4721A"></span>
 </button>
 </nav>
-<div id="mobile-menu" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 40; background: #FAF7F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; overflow-y: auto; transition: all 0.5s ease-in-out; transform: translateX(100%); opacity: 0;">
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../index.html#formations?v=6A56F32B" onclick="toggleMobileMenu()">Formation</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../ecole/index.html?v=EBAF1D2A" onclick="toggleMobileMenu()">L'École</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../defiles-gallery/index.html?v=DB1245CC" onclick="toggleMobileMenu()">Défilés</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink font-bold" href="#" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer" href="../contact/index.html?v=05059E6E" onclick="toggleMobileMenu()">Contact</a>
+<div id="mobile-menu" aria-hidden="true" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 40; background: #FAF7F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; overflow-y: auto; transform: translateX(100%); opacity: 0;">
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../index.html#formations?v=938A33F0" onclick="toggleMobileMenu()">Formation</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../ecole/index.html?v=5297AD1C" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../defiles-gallery/index.html?v=4DDDC017" onclick="toggleMobileMenu()">Défilés</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink font-bold tap-target" href="#" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../contact/index.html?v=8AE3A606" onclick="toggleMobileMenu()">Contact</a>
 </div>
 
 <header class="relative" style="background-color:#1A1A1A;padding-top:clamp(64px,10vw,80px)">
@@ -317,7 +351,7 @@ html.cursor-active * { cursor: none !important; }
 <p class="font-body-lg text-ivory-base/90 leading-relaxed">Avec CHF 500, vous financez une année de formation. Avec CHF 1'500, un programme complet de 3 ans. Chaque don va directement au projet, sans intermédiaire.</p>
 <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
 <button class="bg-ivory-base text-deep-ink px-12 py-5 font-label-caps text-label-caps hover:bg-white transition-colors duration-300 cursor-pointer" onclick="window.location.href='mailto:info@nasmodeformation.com?subject=Soutien NAS MODE'">Soutenir Nous</button>
-<a href="../index.html?v=6A56F32B" class="border-2 border-ivory-base text-ivory-base px-12 py-5 font-label-caps text-label-caps hover:bg-ivory-base hover:text-terracotta-accent transition-colors duration-300 cursor-pointer inline-block">Retour au site</a>
+<a href="../index.html?v=938A33F0" class="border-2 border-ivory-base text-ivory-base px-12 py-5 font-label-caps text-label-caps hover:bg-ivory-base hover:text-terracotta-accent transition-colors duration-300 cursor-pointer inline-block">Retour au site</a>
 </div>
 </div>
 </section>
@@ -331,8 +365,8 @@ html.cursor-active * { cursor: none !important; }
 <p class="font-body-sm text-ivory-base/50 mt-1">Excellence Artisanale Ouest-Africaine — Ouagadougou · Abidjan</p>
 </div>
 <div class="flex items-center gap-6">
-<a href="mailto:info@nasmodeformation.com" class="font-body-sm text-ivory-base/70 hover:text-terracotta-accent transition-colors">info@nasmodeformation.com</a>
-<a href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" class="font-body-sm text-ivory-base/70 hover:text-terracotta-accent transition-colors">Facebook</a>
+<a href="mailto:info@nasmodeformation.com" class="font-body-sm text-ivory-base/70 hover:text-terracotta-accent transition-colors tap-target">info@nasmodeformation.com</a>
+<a href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" class="font-body-sm text-ivory-base/70 hover:text-terracotta-accent transition-colors tap-target">Facebook</a>
 </div>
 </div>
 </footer>
@@ -341,7 +375,8 @@ html.cursor-active * { cursor: none !important; }
 <div id="custom-cursor-ring" class="custom-cursor-ring"></div>
 <script>
 (function(){ var nav=document.getElementById('top-nav'); if(nav){ window.addEventListener('scroll',function(){ nav.classList.toggle('nav-scrolled', window.scrollY>50) },{passive:true}) } })();
-if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var dot = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (dot && ring) { dot.style.left = (window.innerWidth / 2) + 'px'; dot.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var dx = 0, dy = 0, ticking = false; var renderDot = function () { dot.style.left = dx + 'px'; dot.style.top = dy + 'px'; ring.style.left = dx + 'px'; ring.style.top = dy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { dx = e.clientX; dy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderDot); } }, { passive: true }); document.addEventListener('mouseleave', function () { dot.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { dot.style.display = ''; ring.style.display = ''; }); var interactiveSel = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role=button]'; var interactiveEls = document.querySelectorAll(interactiveSel); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { dot.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { dot.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} } function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.classList.remove('open'); document.body.style.overflow = ''; bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.classList.add('open'); document.body.style.overflow = 'hidden'; bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; } }
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var dot = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (dot && ring) { dot.style.left = (window.innerWidth / 2) + 'px'; dot.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var dx = 0, dy = 0, ticking = false; var renderDot = function () { dot.style.left = dx + 'px'; dot.style.top = dy + 'px'; ring.style.left = dx + 'px'; ring.style.top = dy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { dx = e.clientX; dy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderDot); } }, { passive: true }); document.addEventListener('mouseleave', function () { dot.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { dot.style.display = ''; ring.style.display = ''; }); var interactiveSel = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role=button]'; var interactiveEls = document.querySelectorAll(interactiveSel); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { dot.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { dot.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} } function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var toggle = document.getElementById('menu-toggle'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.setAttribute('aria-hidden', 'true'); menu.classList.remove('open'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Ouvrir le menu'); bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; toggle.focus(); } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.setAttribute('aria-hidden', 'false'); menu.classList.add('open'); document.body.style.overflow = 'hidden'; toggle.setAttribute('aria-expanded', 'true'); toggle.setAttribute('aria-label', 'Fermer le menu'); bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; var first = menu.querySelector('a'); if (first) first.focus(); } }
+document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; var menu = document.getElementById('mobile-menu'); if (menu && menu.classList.contains('open')) toggleMobileMenu(); });
 </script>
 </body>
 </html>

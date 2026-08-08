@@ -80,8 +80,10 @@
 }
 </style>
 <link rel="stylesheet" href="../css/tailwind.css?v=9268AC77"/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<!-- Leaflet n'est plus charge au chargement de la page : la feuille de style et
+     le script d'unpkg.com sont injectes par le script inline en bas de page,
+     UNIQUEMENT au clic sur « Charger la carte interactive ».
+     Voir le bloc #map-static plus bas. -->
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: #FAF7F2; color: #1A1A1A; font-family: 'Inter', sans-serif; overflow-x: hidden; }
@@ -155,6 +157,86 @@ textarea.contact-form-input { resize: none; }
 #top-nav > a img, #top-nav > a picture img { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
 @media (max-width: 767px) { header { background: transparent !important; } #top-nav { align-items: flex-start; min-height: 135px; } #top-nav > a img, #top-nav > a picture img { margin-top: -8px; margin-left: -12px; } #menu-toggle { margin-top: 68px; } .contact-hero { height: 100vh !important; min-height: 100vh !important; align-items: center; padding-top: 135px !important; padding-bottom: 40px !important; } }
 @media (min-width: 768px) { #top-nav { align-items: flex-start; min-height: 122px; } #top-nav > a img, #top-nav > a picture img { width: 150px !important; margin-top: -15px !important; } }
+
+/* ===== PICTOGRAMMES =====
+   Les emojis 📍 📞 ✉️ 🕐 dependaient de la police emoji du systeme : rendu
+   different sur chaque Android et hors charte. Remplaces par des SVG inline
+   (trait 1.5, currentColor) coherents avec les .coord-icon plus bas. */
+.info-icon { width: 20px; height: 20px; flex-shrink: 0; color: #B5562C; }
+
+/* ===== APERCU DE CARTE STATIQUE =====
+   Leaflet + les tuiles OpenStreetMap coutaient 8 requetes vers 4 origines
+   externes (4 resolutions DNS + 4 poignees de main TLS) avant meme que
+   l'utilisateur ait regarde la carte. L'apercu ci-dessous est un SVG inline :
+   zero requete. Leaflet n'est charge qu'au clic explicite. */
+.map-shell { position: relative; }
+#map-static { position: relative; }
+.map-svg { display: block; width: 100%; height: auto; border-radius: 16px; }
+#map-load {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+  border-radius: 6px;
+}
+#map-error { margin-top: 16px; font-size: 0.875rem; color: #B5562C; text-align: center; }
+.map-exit { margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 768px) { .map-exit { grid-template-columns: 1fr 1fr; } }
+.map-exit-item { display: flex; gap: 12px; align-items: flex-start; font-size: 0.9375rem; color: #5f5e5b; line-height: 1.6; }
+.map-exit-item strong { color: #1A1A1A; font-weight: 600; }
+.map-exit-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 8px; }
+.map-exit-links a { color: #B5562C; text-decoration: none; font-size: 0.875rem; font-weight: 600; }
+.map-exit-links a:hover { text-decoration: underline; }
+
+/* ===== CIBLES TACTILES (WCAG 2.5.5 : 44x44 minimum) =====
+   Sur pointeur grossier, on agrandit la ZONE DE CONTACT sans toucher a la
+   taille visuelle du texte : un ::after transparent centre sur le lien.
+   Grossir les elements eux-memes aurait decale toute la mise en page.
+   La branche (max-width: 767px) rend le correctif verifiable dans un
+   navigateur en pointer: fine. */
+@media (pointer: coarse), (max-width: 767px) {
+  .tap-target { position: relative; }
+  .tap-target::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    min-width: 44px;
+    height: 100%;
+    min-height: 44px;
+  }
+  /* Les liens inline (telephones, emails) sont aussi portes a 44px de haut :
+     sans cela leurs ::after de 44px se chevaucheraient d'une ligne a l'autre. */
+  a.tap-target { display: inline-flex; align-items: center; min-height: 44px; }
+  #menu-toggle { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+  #mobile-menu a { min-height: 44px; display: flex; align-items: center; }
+  .footer-grid a { min-height: 44px; display: flex; align-items: center; }
+  footer input[type="email"] { min-height: 44px; }
+  footer button { min-height: 44px; }
+  /* Les commandes de zoom de Leaflet font 30px : corrigees des l'injection. */
+  .leaflet-control-zoom a { width: 44px !important; height: 44px !important; line-height: 44px !important; }
+}
+
+/* ===== MENU MOBILE =====
+   visibility: hidden retire les liens du menu ferme de l'ordre de tabulation
+   et des lecteurs d'ecran (plus robuste qu'inert, supporte partout).
+   transition et visibility sont ENTIEREMENT en CSS : en style inline, le
+   delai de 0.5s s'appliquait aussi a l'OUVERTURE et la retardait d'autant. */
+#mobile-menu {
+  visibility: hidden;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+}
+#mobile-menu.open {
+  visibility: visible;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0s linear 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  #mobile-menu, #mobile-menu.open { transition: visibility 0s linear 0s; }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -177,27 +259,27 @@ textarea.contact-form-input { resize: none; }
 <div class="custom-cursor-ring" id="custom-cursor-ring"></div>
 
 <nav class="flex justify-between items-center w-full px-margin-desktop max-md:px-margin-mobile pt-5 pb-2 fixed top-0 z-50 bg-transparent transition-all duration-500 ease-in-out" id="top-nav" style="height:56px;overflow:visible">
-<a href="../index.html?v=6A56F32B" class="block shrink-0"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></a>
+<a href="../index.html?v=938A33F0" class="block shrink-0"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1;max-width:none"/></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../index.html#formations?v=6A56F32B">Formation</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../defiles-gallery/index.html?v=EEFD074C">Défilés</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../ecole/index.html?v=59920D01">L'École</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer" href="../soutenir/index.html?v=7723706B">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer" href="index.html?v=8B2B1252">Contact</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../index.html#formations?v=938A33F0">Formation</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../defiles-gallery/index.html?v=4DDDC017">Défilés</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../ecole/index.html?v=5297AD1C">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../soutenir/index.html?v=15C1141A">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer tap-target" href="index.html?v=8AE3A606">Contact</a>
 </div>
-<button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+<button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-1" style="background-color:#B5562C"></span>
 <span class="block w-6 h-[2px] transition-all duration-300" id="menu-bar-2" style="background-color:#B5562C"></span>
 <span class="block w-6 h-[2px] transition-all duration-300 origin-center" id="menu-bar-3" style="background-color:#D4721A"></span>
 </button>
 </nav>
 
-<div class="fixed z-40" style="top:0;left:0;right:0;bottom:0;background:#FAF7F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;overflow-y:auto;transition:all 0.5s ease;transform:translateX(100%);opacity:0;" id="mobile-menu">
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../index.html#formations?v=6A56F32B" onclick="toggleMobileMenu()">Formation</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../defiles-gallery/index.html?v=EEFD074C" onclick="toggleMobileMenu()">Défilés</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../ecole/index.html?v=59920D01" onclick="toggleMobileMenu()">L'École</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../soutenir/index.html?v=7723706B" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="index.html?v=8B2B1252" onclick="toggleMobileMenu()">Contact</a>
+<div class="fixed z-40" style="top:0;left:0;right:0;bottom:0;background:#FAF7F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;overflow-y:auto;transform:translateX(100%);opacity:0;" id="mobile-menu" aria-hidden="true">
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../index.html#formations?v=938A33F0" onclick="toggleMobileMenu()">Formation</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../defiles-gallery/index.html?v=4DDDC017" onclick="toggleMobileMenu()">Défilés</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../ecole/index.html?v=5297AD1C" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="../soutenir/index.html?v=15C1141A" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink" style="cursor:pointer;" href="index.html?v=8AE3A606" onclick="toggleMobileMenu()">Contact</a>
 <a class="font-label-caps text-label-caps text-ivory-base" style="cursor:pointer;margin-top:16px;background:#1A1A1A;padding:20px 48px;" href="mailto:info@nasmodeformation.com" onclick="toggleMobileMenu()">Email</a>
 </div>
 
@@ -224,20 +306,20 @@ textarea.contact-form-input { resize: none; }
 </div>
 <div style="display:flex;flex-direction:column;gap:16px;color:#5f5e5b;">
 <div style="display:flex;gap:12px;align-items:flex-start;">
-<span style="color:#B5562C;margin-top:2px;">📍</span>
+<svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false" style="margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
 <span>Secteur 47, Rayongo<br/>09 BP 1334 Ouaga 09</span>
 </div>
 <div style="display:flex;gap:12px;align-items:center;">
-<span style="color:#B5562C;">📞</span>
+<svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
 <div>
-<a href="tel:+22625470585" style="color:#5f5e5b;text-decoration:none;">+226 25 47 05 85</a><br/>
-<a href="tel:+22678014198" style="color:#5f5e5b;text-decoration:none;">+226 78 01 41 98</a><br/>
-<a href="tel:+22665811818" style="color:#5f5e5b;text-decoration:none;">+226 65 81 18 18</a>
+<a href="tel:+22625470585" class="tap-target" style="color:#5f5e5b;text-decoration:none;">+226 25 47 05 85</a><br/>
+<a href="tel:+22678014198" class="tap-target" style="color:#5f5e5b;text-decoration:none;">+226 78 01 41 98</a><br/>
+<a href="tel:+22665811818" class="tap-target" style="color:#5f5e5b;text-decoration:none;">+226 65 81 18 18</a>
 </div>
 </div>
 <div style="display:flex;gap:12px;align-items:center;">
-<span style="color:#B5562C;">✉️</span>
-<a href="mailto:info@nasmodeformation.com" style="color:#5f5e5b;text-decoration:none;">info@nasmodeformation.com</a>
+<svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+<a href="mailto:info@nasmodeformation.com" class="tap-target" style="color:#5f5e5b;text-decoration:none;">info@nasmodeformation.com</a>
 </div>
 </div>
 <div style="margin-top:32px;">
@@ -261,15 +343,15 @@ Voir sur Google Maps
 </div>
 <div style="display:flex;flex-direction:column;gap:16px;color:#5f5e5b;">
 <div style="display:flex;gap:12px;align-items:flex-start;">
-<span style="color:#B5562C;margin-top:2px;">📍</span>
+<svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false" style="margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
 <span>Abidjan, Côte d'Ivoire<br/>Enseignements prévus en stylisme & modélisme</span>
 </div>
 <div style="display:flex;gap:12px;align-items:center;">
-<span style="color:#B5562C;">✉️</span>
-<a href="mailto:info@nasmodeformation.com" style="color:#5f5e5b;text-decoration:none;">info@nasmodeformation.com</a>
+<svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+<a href="mailto:info@nasmodeformation.com" class="tap-target" style="color:#5f5e5b;text-decoration:none;">info@nasmodeformation.com</a>
 </div>
 <div style="display:flex;gap:12px;align-items:flex-start;">
-<span style="color:#B5562C;margin-top:2px;">🕐</span>
+<svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false" style="margin-top:2px;"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5v5l3.25 2"/></svg>
 <span>Ouverture prochaine —<br/>Contactez-nous pour les dates de session</span>
 </div>
 </div>
@@ -286,7 +368,79 @@ Voir sur Google Maps
 <div style="margin-bottom:96px;">
 <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,5vw,36px);text-align:center;color:#1A1A1A;margin-bottom:16px;">Nos Implantations</h2>
 <p style="font-size:1rem;color:#5f5e5b;text-align:center;max-width:600px;margin:0 auto 40px;">Bientôt deux campus, deux pays, une même excellence au service de la formation professionnelle en Afrique de l'Ouest.</p>
-<div id="map"></div>
+<div class="map-shell">
+<div id="map-static">
+<svg class="map-svg" width="800" height="480" viewBox="0 0 800 480" role="img" aria-labelledby="map-static-title map-static-desc" preserveAspectRatio="xMidYMid meet">
+<title id="map-static-title">Schéma de situation des deux implantations NAS MODE en Afrique de l'Ouest</title>
+<desc id="map-static-desc">Ouagadougou, Burkina Faso, à 12,3489° de latitude nord et 1,5053° de longitude ouest. Abidjan, Côte d'Ivoire, à 5,3200° de latitude nord et 4,0200° de longitude ouest.</desc>
+<rect x="0" y="0" width="800" height="480" rx="16" fill="#F6F1EA"/>
+<g stroke="#E4DBCE" stroke-width="1">
+<path d="M117 70V430M230 70V430M343 70V430M457 70V430M570 70V430M683 70V430"/>
+<path d="M60 415H740M60 355H740M60 295H740M60 235H740M60 175H740M60 115H740"/>
+</g>
+<rect x="60" y="70" width="680" height="360" fill="none" stroke="#D8CCBC" stroke-width="1.5" rx="6"/>
+<g fill="#A79A88" font-family="'Inter',sans-serif" font-size="12">
+<text x="117" y="448" text-anchor="middle">8° O</text>
+<text x="230" y="448" text-anchor="middle">6° O</text>
+<text x="343" y="448" text-anchor="middle">4° O</text>
+<text x="457" y="448" text-anchor="middle">2° O</text>
+<text x="570" y="448" text-anchor="middle">0°</text>
+<text x="683" y="448" text-anchor="middle">2° E</text>
+<text x="50" y="419" text-anchor="end">4° N</text>
+<text x="50" y="359" text-anchor="end">6° N</text>
+<text x="50" y="299" text-anchor="end">8° N</text>
+<text x="50" y="239" text-anchor="end">10° N</text>
+<text x="50" y="179" text-anchor="end">12° N</text>
+<text x="50" y="119" text-anchor="end">14° N</text>
+</g>
+<path d="M485 164L342 375" stroke="#B5562C" stroke-width="1.5" stroke-dasharray="6 6" opacity="0.45"/>
+<circle cx="485" cy="164" r="17" fill="#B5562C" opacity="0.16"/>
+<circle cx="485" cy="164" r="7.5" fill="#B5562C" stroke="#FFFFFF" stroke-width="3"/>
+<circle cx="342" cy="375" r="17" fill="#1A1A1A" opacity="0.14"/>
+<circle cx="342" cy="375" r="7.5" fill="#1A1A1A" stroke="#FFFFFF" stroke-width="3"/>
+<g font-family="'Inter',sans-serif">
+<text x="510" y="159" font-size="20" font-weight="600" fill="#1A1A1A">Ouagadougou</text>
+<text x="510" y="181" font-size="14" fill="#5f5e5b">Burkina Faso · 12,3489° N — 1,5053° O</text>
+<text x="367" y="370" font-size="20" font-weight="600" fill="#1A1A1A">Abidjan</text>
+<text x="367" y="392" font-size="14" fill="#5f5e5b">Côte d'Ivoire · 5,3200° N — 4,0200° O</text>
+<text x="60" y="42" font-size="13" font-weight="600" fill="#B5562C" letter-spacing="1.5">NOS DEUX IMPLANTATIONS</text>
+<text x="740" y="42" font-size="12" fill="#A79A88" text-anchor="end">Schéma de situation — Afrique de l'Ouest</text>
+</g>
+</svg>
+<button type="button" id="map-load" class="btn-primary tap-target" style="display:none;">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+Charger la carte interactive
+</button>
+</div>
+<div id="map" hidden></div>
+<p id="map-error" hidden>La carte interactive n'a pas pu être chargée. Les adresses et les liens ci-dessous restent utilisables.</p>
+<div class="map-exit">
+<div class="map-exit-item">
+<svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false" style="margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+<div>
+<strong>NAS MODE Ouagadougou</strong><br/>
+Secteur 47, Rayongo — 09 BP 1334 Ouaga 09, Burkina Faso<br/>
+12,3489° N — 1,5053° O
+<div class="map-exit-links">
+<a class="tap-target" href="https://www.openstreetmap.org/?mlat=12.3489&amp;mlon=-1.5053#map=13/12.3489/-1.5053" target="_blank" rel="noopener noreferrer">Ouvrir dans OpenStreetMap</a>
+<a class="tap-target" href="https://www.google.com/maps/search/?api=1&amp;query=12.3489%2C-1.5053" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps</a>
+</div>
+</div>
+</div>
+<div class="map-exit-item">
+<svg class="info-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false" style="margin-top:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+<div>
+<strong>NAS MODE Abidjan</strong><br/>
+Abidjan, Côte d'Ivoire — campus à venir<br/>
+5,3200° N — 4,0200° O
+<div class="map-exit-links">
+<a class="tap-target" href="https://www.openstreetmap.org/?mlat=5.32&amp;mlon=-4.02#map=12/5.3200/-4.0200" target="_blank" rel="noopener noreferrer">Ouvrir dans OpenStreetMap</a>
+<a class="tap-target" href="https://www.google.com/maps/search/?api=1&amp;query=5.3200%2C-4.0200" target="_blank" rel="noopener noreferrer">Ouvrir dans Google Maps</a>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 <div style="max-width:700px;margin:0 auto 96px;">
@@ -322,15 +476,15 @@ Voir sur Google Maps
 <div>
 <div class="coord-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
 <h3 style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#B5562C;margin-bottom:8px;">Email</h3>
-<a href="mailto:info@nasmodeformation.com" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">info@nasmodeformation.com</a>
+<a href="mailto:info@nasmodeformation.com" class="tap-target" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">info@nasmodeformation.com</a>
 </div>
 <div>
 <div class="coord-icon"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
 <h3 style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#B5562C;margin-bottom:8px;">Téléphone</h3>
 <p style="font-size:1rem;color:rgba(250,247,242,0.7);">
-<a href="tel:+22625470585" style="color:rgba(250,247,242,0.7);text-decoration:none;">+226 25 47 05 85</a><br/>
-<a href="tel:+22678014198" style="color:rgba(250,247,242,0.7);text-decoration:none;">+226 78 01 41 98</a><br/>
-<a href="tel:+22665811818" style="color:rgba(250,247,242,0.7);text-decoration:none;">+226 65 81 18 18</a>
+<a href="tel:+22625470585" class="tap-target" style="color:rgba(250,247,242,0.7);text-decoration:none;">+226 25 47 05 85</a><br/>
+<a href="tel:+22678014198" class="tap-target" style="color:rgba(250,247,242,0.7);text-decoration:none;">+226 78 01 41 98</a><br/>
+<a href="tel:+22665811818" class="tap-target" style="color:rgba(250,247,242,0.7);text-decoration:none;">+226 65 81 18 18</a>
 </p>
 </div>
 <div>
@@ -373,14 +527,14 @@ Voir sur Google Maps
 </div>
 <div style="display:flex;flex-direction:column;gap:16px;">
 <h4 style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#B5562C;margin-bottom:16px;">FORMATIONS</h4>
-<a href="../index.html#formations?v=6A56F32B" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Stylisme & Couture</a>
-<a href="../index.html#formations?v=6A56F32B" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Coiffure</a>
-<a href="../index.html#formations?v=6A56F32B" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Esthétique</a>
-<a href="../index.html#formations?v=6A56F32B" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Maquilleur Cinéma et Télévision</a>
+<a href="../index.html#formations?v=938A33F0" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Stylisme & Couture</a>
+<a href="../index.html#formations?v=938A33F0" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Coiffure</a>
+<a href="../index.html#formations?v=938A33F0" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Esthétique</a>
+<a href="../index.html#formations?v=938A33F0" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Maquilleur Cinéma et Télévision</a>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px;">
 <h4 style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#B5562C;margin-bottom:16px;">CONTACT</h4>
-<a href="index.html?v=8B2B1252" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Nous Contacter</a>
+<a href="index.html?v=8AE3A606" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Nous Contacter</a>
 <a href="#" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Presse</a>
 <a href="#" style="font-size:1rem;color:rgba(250,247,242,0.7);text-decoration:none;">Mentions légales</a>
 </div>
@@ -393,8 +547,8 @@ Voir sur Google Maps
 <div style="display:flex;flex-direction:column;align-items:center;gap:24px;padding-top:32px;border-top:1px solid rgba(250,247,242,0.1);">
 <p style="font-size:0.875rem;color:rgba(250,247,242,0.4);">© 2026 NAS MODE Ouagadougou · Abidjan. Excellence Artisanale Ouest-Africaine.</p>
 <div style="display:flex;gap:24px;">
-<a href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" style="font-size:0.875rem;color:rgba(250,247,242,0.5);text-decoration:none;">Facebook</a>
-<a href="mailto:info@nasmodeformation.com" style="font-size:0.875rem;color:rgba(250,247,242,0.5);text-decoration:none;">Contact</a>
+<a href="https://www.facebook.com/NasModeCentreDeFormationProfessionnelle" target="_blank" class="tap-target" style="font-size:0.875rem;color:rgba(250,247,242,0.5);text-decoration:none;">Facebook</a>
+<a href="mailto:info@nasmodeformation.com" class="tap-target" style="font-size:0.875rem;color:rgba(250,247,242,0.5);text-decoration:none;">Contact</a>
 </div>
 </div>
 </div>
@@ -402,64 +556,130 @@ Voir sur Google Maps
 
 <script>
 (function(){ var nav=document.getElementById('top-nav'); if(nav){ window.addEventListener('scroll',function(){ nav.classList.toggle('nav-scrolled', window.scrollY>50) },{passive:true}) } })();
+/* Menu mobile : l'etat fait autorite via la classe .open (la visibilite et la
+   transition sont gerees en CSS). aria-hidden + visibility: hidden retirent les
+   liens du menu ferme du clavier et des lecteurs d'ecran ; le focus part sur le
+   premier lien a l'ouverture et revient au bouton a la fermeture. */
 function toggleMobileMenu() {
 var menu = document.getElementById('mobile-menu');
+var toggle = document.getElementById('menu-toggle');
 var bar1 = document.getElementById('menu-bar-1');
 var bar2 = document.getElementById('menu-bar-2');
 var bar3 = document.getElementById('menu-bar-3');
-var isOpen = menu.style.transform === 'translateX(0%)' || menu.classList.contains('open');
+var isOpen = menu.classList.contains('open');
 if (isOpen) {
 menu.style.transform = 'translateX(100%)';
 menu.style.opacity = '0';
+menu.setAttribute('aria-hidden', 'true');
 menu.classList.remove('open');
 document.body.style.overflow = '';
+if (toggle) { toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Ouvrir le menu'); }
 if (bar1) { bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; }
+if (toggle) toggle.focus();
 } else {
 menu.style.transform = 'translateX(0%)';
 menu.style.opacity = '1';
+menu.setAttribute('aria-hidden', 'false');
 menu.classList.add('open');
 document.body.style.overflow = 'hidden';
+if (toggle) { toggle.setAttribute('aria-expanded', 'true'); toggle.setAttribute('aria-label', 'Fermer le menu'); }
 if (bar1) { bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; }
+var first = menu.querySelector('a');
+if (first) first.focus();
 }
 }
+document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; var menu = document.getElementById('mobile-menu'); if (menu && menu.classList.contains('open')) toggleMobileMenu(); });
 
 (function() {
 if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var cursor = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (cursor && ring) { cursor.style.left = (window.innerWidth / 2) + 'px'; cursor.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var cx = 0, cy = 0, ticking = false; var renderCursor = function () { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; ring.style.left = cx + 'px'; ring.style.top = cy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { cx = e.clientX; cy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderCursor); } }, { passive: true }); document.addEventListener('mouseleave', function () { cursor.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { cursor.style.display = ''; ring.style.display = ''; }); var formations = document.getElementById('formations'); if (formations) { formations.addEventListener('mouseenter', function () { cursor.classList.add('cursor-big'); ring.classList.add('cursor-big'); }); formations.addEventListener('mouseleave', function () { cursor.classList.remove('cursor-big'); ring.classList.remove('cursor-big'); }); } var interactiveEls = document.querySelectorAll('a, button, input, textarea, select, .cursor-pointer, [role=button]'); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { cursor.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { cursor.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} }
 
-var map = L.map('map', {
-center: [9.5, -3.5],
-zoom: 6,
-scrollWheelZoom: false,
-zoomControl: true
-});
+})();
+
+/* ============================================================
+   CARTE : CHARGEMENT A LA DEMANDE
+   Avant : leaflet.css + leaflet.js depuis unpkg.com et les tuiles depuis
+   a/b/c.tile.openstreetmap.org partaient au chargement de la page, soit
+   8 requetes vers 4 origines externes (4 DNS + 4 poignees de main TLS,
+   ~146 Ko mesures a 360x560) pour une carte situee sous la ligne de flottaison.
+   Apres : un apercu SVG inline (0 requete) et deux liens de sortie toujours
+   presents, meme sans JavaScript. Leaflet et les tuiles ne sont demandes
+   qu'au clic sur « Charger la carte interactive ».
+   ============================================================ */
+(function() {
+var btn = document.getElementById('map-load');
+var staticBlock = document.getElementById('map-static');
+var mapEl = document.getElementById('map');
+var errEl = document.getElementById('map-error');
+if (!btn || !staticBlock || !mapEl) return;
+
+/* Le bouton n'est revele que si JavaScript est actif : sans JS il serait mort. */
+btn.style.display = 'inline-flex';
+var loading = false;
+
+function fail() {
+loading = false;
+btn.disabled = false;
+btn.style.display = 'inline-flex';
+btn.lastChild.nodeValue = ' Réessayer le chargement de la carte ';
+if (errEl) errEl.hidden = false;
+}
+
+function initMap() {
+if (!window.L) { fail(); return; }
+staticBlock.hidden = true;
+mapEl.hidden = false;
+
+var map = L.map('map', { center: [9.5, -3.5], zoom: 6, scrollWheelZoom: false, zoomControl: true });
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 maxZoom: 18
 }).addTo(map);
 
-var ouagaIcon = L.divIcon({
-html: '<div style="background:#B5562C;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 12px rgba(0,0,0,0.3);border:3px solid #fff;">📍</div>',
+/* Le repere emoji 📍 dependait de la police emoji du systeme : remplace par
+   le meme pictogramme SVG que le reste de la page. */
+function pinIcon(bg) {
+return L.divIcon({
+html: '<div style="background:' + bg + ';color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,0.3);border:3px solid #fff;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>',
+className: '',
 iconSize: [36, 36],
 iconAnchor: [18, 36],
 popupAnchor: [0, -40]
 });
+}
 
-var abidjanIcon = L.divIcon({
-html: '<div style="background:#1A1A1A;color:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 12px rgba(0,0,0,0.3);border:3px solid #fff;">📍</div>',
-iconSize: [36, 36],
-iconAnchor: [18, 36],
-popupAnchor: [0, -40]
-});
+var ouaga = L.marker([12.3489, -1.5053], {icon: pinIcon('#B5562C'), title: 'NAS MODE Ouagadougou'}).addTo(map);
+ouaga.bindPopup('<strong>NAS MODE Ouagadougou</strong><br/>Secteur 47, Rayongo<br/>Burkina Faso<br/><a href="https://www.google.com/maps/search/NAS+MODE+Ouagadougou+Rayongo/" target="_blank" rel="noopener noreferrer" style="color:#B5562C;">Voir sur Google Maps →</a>');
 
-var ouaga = L.marker([12.3489, -1.5053], {icon: ouagaIcon}).addTo(map);
-ouaga.bindPopup('<strong>NAS MODE Ouagadougou</strong><br/>Secteur 47, Rayongo<br/>Burkina Faso<br/><a href="https://www.google.com/maps/search/NAS+MODE+Ouagadougou+Rayongo/" target="_blank" style="color:#B5562C;">Voir sur Google Maps →</a>');
-
-var abidjan = L.marker([5.3200, -4.0200], {icon: abidjanIcon}).addTo(map);
-abidjan.bindPopup('<strong>NAS MODE Abidjan</strong><br/>Abidjan, Côte d\'Ivoire<br/><a href="https://www.google.com/maps/search/NAS+MODE+Abidjan/" target="_blank" style="color:#B5562C;">Voir sur Google Maps →</a>');
+var abidjan = L.marker([5.3200, -4.0200], {icon: pinIcon('#1A1A1A'), title: 'NAS MODE Abidjan'}).addTo(map);
+abidjan.bindPopup('<strong>NAS MODE Abidjan</strong><br/>Abidjan, Côte d\'Ivoire<br/><a href="https://www.google.com/maps/search/NAS+MODE+Abidjan/" target="_blank" rel="noopener noreferrer" style="color:#B5562C;">Voir sur Google Maps →</a>');
 
 var group = L.featureGroup([ouaga, abidjan]);
 map.fitBounds(group.getBounds().pad(0.3));
+map.invalidateSize();
+}
+
+btn.addEventListener('click', function() {
+if (loading) return;
+loading = true;
+btn.disabled = true;
+btn.lastChild.nodeValue = ' Chargement de la carte… ';
+if (errEl) errEl.hidden = true;
+
+var css = document.createElement('link');
+css.rel = 'stylesheet';
+css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+css.crossOrigin = '';
+document.head.appendChild(css);
+
+var s = document.createElement('script');
+s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+s.crossOrigin = '';
+s.async = true;
+s.onload = function() { try { initMap(); } catch (e) { fail(); } };
+s.onerror = fail;
+document.head.appendChild(s);
+});
 })();
 </script>
 </body>
