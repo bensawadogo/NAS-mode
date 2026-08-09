@@ -105,7 +105,16 @@ class Engine {
       texture.generateMipmaps = false
       texture.minFilter = THREE.LinearFilter
     }
-    texture.anisotropy = 1
+    // L'anisotropie etait fixee a 1 : les plans sont vus DE BIAIS pendant le
+    // defilement, et sans filtrage anisotrope la texture devient molle des que
+    // la surface s'incline. On prend le maximum supporte par le GPU, plafonne
+    // a 8. C'est du filtrage : aucune memoire supplementaire.
+    try {
+      const maxAniso = this.renderer.capabilities.getMaxAnisotropy()
+      texture.anisotropy = Math.min(maxAniso || 1, 8)
+    } catch (error) {
+      texture.anisotropy = 1
+    }
     return texture
   }
 

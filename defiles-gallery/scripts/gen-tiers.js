@@ -1,8 +1,8 @@
 /*
  * Genere les variantes de textures par niveau de qualite pour la galerie.
  *
- *   low  (320px) : telephones a faible RAM / connexion lente
- *   mid  (512px) : telephones corrects
+ *   low  (768px) : telephones a faible RAM / connexion lente
+ *   mid  (1024px) : telephones corrects
  *   high         : les JPEG d'origine, inchanges (desktop)
  *
  * Sortie en WebP q80 dans src/assets/defiles-320/ et defiles-512/.
@@ -14,8 +14,8 @@ const sharp = require(path.resolve(__dirname, '../../node_modules/sharp'))
 
 const SRC = path.resolve(__dirname, '../src/assets/defiles')
 const TIERS = [
-  { width: 320, dir: path.resolve(__dirname, '../src/assets/defiles-320') },
-  { width: 512, dir: path.resolve(__dirname, '../src/assets/defiles-512') },
+  { width: 768, dir: path.resolve(__dirname, '../src/assets/defiles-768') },
+  { width: 1024, dir: path.resolve(__dirname, '../src/assets/defiles-1024') },
 ]
 
 ;(async () => {
@@ -39,16 +39,16 @@ const TIERS = [
       if (fs.existsSync(out) && fs.statSync(out).mtimeMs >= srcStat.mtimeMs) {
         const s = fs.statSync(out)
         const m = await sharp(out).metadata()
-        if (tier.width === 320) { stats.low += s.size; stats.lowPx += m.width * m.height * 4 }
+        if (tier.width === 768) { stats.low += s.size; stats.lowPx += m.width * m.height * 4 }
         else { stats.mid += s.size; stats.midPx += m.width * m.height * 4 }
         continue
       }
       // jamais d'agrandissement
       const w = Math.min(tier.width, meta.width)
-      await sharp(src).resize({ width: w, withoutEnlargement: true }).webp({ quality: 80 }).toFile(out)
+      await sharp(src).resize({ width: w, withoutEnlargement: true }).webp({ quality: 86 }).toFile(out)
       const s = fs.statSync(out)
       const m = await sharp(out).metadata()
-      if (tier.width === 320) { stats.low += s.size; stats.lowPx += m.width * m.height * 4 }
+      if (tier.width === 768) { stats.low += s.size; stats.lowPx += m.width * m.height * 4 }
       else { stats.mid += s.size; stats.midPx += m.width * m.height * 4 }
     }
   }

@@ -67,8 +67,8 @@ function detectQuality(gl) {
   }
 
   const profils = {
-    low: { textureKey: 'low', pixelRatio: 1, antialias: false, mipmaps: false, initialBatch: 3 },
-    mid: { textureKey: 'mid', pixelRatio: 1.5, antialias: false, mipmaps: true, initialBatch: 4 },
+    low: { textureKey: 'low', pixelRatio: 1.5, antialias: false, mipmaps: false, initialBatch: 3 },
+    mid: { textureKey: 'mid', pixelRatio: 2, antialias: true, mipmaps: true, initialBatch: 4 },
     high: { textureKey: 'high', pixelRatio: 2, antialias: true, mipmaps: true, initialBatch: 6 },
   }
 
