@@ -88,6 +88,17 @@ body { background-color: #FAF7F2; color: #1A1A1A; overflow-x: hidden; }
 @media (max-width: 767px) { .section-gap { padding-top: 64px; padding-bottom: 64px; } }
 .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 4px; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+/* Facade video : les deux lecteurs YouTube etaient charges au chargement de
+   la page. Un lecteur YouTube pese plusieurs centaines de kilo-octets et
+   contacte trois domaines tiers - inacceptable en 3G. On affiche une vignette
+   locale et on n'injecte l'iframe qu'au clic. */
+.video-facade { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: #000; cursor: pointer; display: block; overflow: hidden; }
+.video-facade img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease, opacity 0.3s ease; }
+.video-facade:hover img { transform: scale(1.04); opacity: 0.85; }
+.video-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 68px; height: 48px; border-radius: 12px; background: rgba(26,26,26,0.75); transition: background 0.3s ease; }
+.video-play::after { content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 10px 0 10px 17px; border-color: transparent transparent transparent #FAF7F2; }
+.video-facade:hover .video-play, .video-facade:focus-visible .video-play { background: #B5562C; }
+.video-facade:focus-visible { outline: 3px solid #B5562C; outline-offset: 3px; }
 .donor-card { background: white; border: 1px solid #e5e5e5; padding: 2rem; transition: all 0.3s; }
 .donor-card:hover { border-color: #B5562C; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
 </style>
@@ -215,9 +226,9 @@ html.cursor-active * { cursor: none !important; }
 <a href="../index.html?v=810B1DFB" class="block shrink-0"><picture><source srcset="../images/ecole/logo-nas-mode.webp?v=4E7AE840" type="image/webp"><img width="400" height="400" decoding="async" src="../images/ecole/logo-nas-mode.webp?v=4E7AE840" alt="NAS MODE" class="w-auto" style="width:clamp(135px,30vw,170px);height:auto;aspect-ratio:1"/></picture></a>
 <div class="hidden md:flex items-center gap-10" style="padding-top:36px">
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../index.html?v=810B1DFB#formations">Formation</a>
-<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../ecole/index.html?v=34293C7A">L'École</a>
+<a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../ecole/index.html?v=B94EB4D4">L'École</a>
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../defiles-gallery/index.html?v=DA6F433C">Défilés</a>
-<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer tap-target" href="index.html?v=08127B18">Fondation NAS MODE</a>
+<a class="font-label-caps text-label-caps text-terracotta-accent border-b border-terracotta-accent pb-1 cursor-pointer tap-target" href="index.html?v=5F6D3613">Fondation NAS MODE</a>
 <a class="font-label-caps text-label-caps text-primary hover:text-terracotta-accent transition-colors cursor-pointer tap-target" href="../contact/index.html?v=8276FE94">Contact</a>
 </div>
 <button class="md:hidden flex flex-col gap-1.5 p-2 cursor-pointer z-50 tap-target" id="menu-toggle" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -228,7 +239,7 @@ html.cursor-active * { cursor: none !important; }
 </nav>
 <div id="mobile-menu" aria-hidden="true" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 40; background: #FAF7F2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; overflow-y: auto; transform: translateX(100%); opacity: 0;">
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../index.html?v=810B1DFB#formations" onclick="toggleMobileMenu()">Formation</a>
-<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../ecole/index.html?v=34293C7A" onclick="toggleMobileMenu()">L'École</a>
+<a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../ecole/index.html?v=B94EB4D4" onclick="toggleMobileMenu()">L'École</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../defiles-gallery/index.html?v=DA6F433C" onclick="toggleMobileMenu()">Défilés</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink font-bold tap-target" href="#" onclick="toggleMobileMenu()">Fondation NAS MODE</a>
 <a class="font-label-caps text-label-caps text-2xl text-deep-ink cursor-pointer tap-target" href="../contact/index.html?v=8276FE94" onclick="toggleMobileMenu()">Contact</a>
@@ -273,13 +284,19 @@ html.cursor-active * { cursor: none !important; }
 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
 <div>
 <div class="video-container">
-<iframe src="https://www.youtube.com/embed/Ts-AAVvgB4U" title="Bea Petri — NAS MODE" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<button class="video-facade" type="button" data-video="Ts-AAVvgB4U" aria-label="Lire la vidéo : Bea Petri et la formation professionnelle au Burkina Faso">
+<img width="640" height="360" src="../images/videos/Ts-AAVvgB4U.webp?v=90CFB554" alt="" loading="lazy" decoding="async"/>
+<span class="video-play" aria-hidden="true"></span>
+</button>
 </div>
 <p class="font-body-sm text-ivory-base/60 mt-3 text-center">Bea Petri et la formation professionnelle au Burkina Faso</p>
 </div>
 <div>
 <div class="video-container">
-<iframe src="https://www.youtube.com/embed/yIMEF4B8bSM" title="NAS MODE — 25 ans" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<button class="video-facade" type="button" data-video="yIMEF4B8bSM" aria-label="Lire la vidéo : 25 ans de NAS MODE, témoignages et créations">
+<img width="640" height="360" src="../images/videos/yIMEF4B8bSM.webp?v=356A3AC9" alt="" loading="lazy" decoding="async"/>
+<span class="video-play" aria-hidden="true"></span>
+</button>
 </div>
 <p class="font-body-sm text-ivory-base/60 mt-3 text-center">25 ans de NAS MODE — Témoignages et créations</p>
 </div>
@@ -377,6 +394,24 @@ html.cursor-active * { cursor: none !important; }
 (function(){ var nav=document.getElementById('top-nav'); if(nav){ window.addEventListener('scroll',function(){ nav.classList.toggle('nav-scrolled', window.scrollY>50) },{passive:true}) } })();
 if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { try { var dot = document.getElementById('custom-cursor'); var ring = document.getElementById('custom-cursor-ring'); if (dot && ring) { dot.style.left = (window.innerWidth / 2) + 'px'; dot.style.top = (window.innerHeight / 2) + 'px'; ring.style.left = (window.innerWidth / 2) + 'px'; ring.style.top = (window.innerHeight / 2) + 'px'; var dx = 0, dy = 0, ticking = false; var renderDot = function () { dot.style.left = dx + 'px'; dot.style.top = dy + 'px'; ring.style.left = dx + 'px'; ring.style.top = dy + 'px'; ticking = false; }; document.addEventListener('mousemove', function (e) { dx = e.clientX; dy = e.clientY; if (!ticking) { ticking = true; requestAnimationFrame(renderDot); } }, { passive: true }); document.addEventListener('mouseleave', function () { dot.style.display = 'none'; ring.style.display = 'none'; }); document.addEventListener('mouseenter', function () { dot.style.display = ''; ring.style.display = ''; }); var interactiveSel = 'a, button, input, textarea, select, [onclick], .cursor-pointer, [role=button]'; var interactiveEls = document.querySelectorAll(interactiveSel); interactiveEls.forEach(function (t) { t.addEventListener('mouseenter', function () { dot.classList.add('hover'); ring.classList.add('hover'); }); t.addEventListener('mouseleave', function () { dot.classList.remove('hover'); ring.classList.remove('hover'); }); }); document.documentElement.classList.add('cursor-active'); } } catch (e) {} } function toggleMobileMenu() { var menu = document.getElementById('mobile-menu'); var toggle = document.getElementById('menu-toggle'); var bar1 = document.getElementById('menu-bar-1'); var bar2 = document.getElementById('menu-bar-2'); var bar3 = document.getElementById('menu-bar-3'); var isOpen = menu.classList.contains('open'); if (isOpen) { menu.style.transform = 'translateX(100%)'; menu.style.opacity = '0'; menu.setAttribute('aria-hidden', 'true'); menu.classList.remove('open'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Ouvrir le menu'); bar1.style.transform = ''; bar2.style.opacity = ''; bar3.style.transform = ''; toggle.focus(); } else { menu.style.transform = 'translateX(0%)'; menu.style.opacity = '1'; menu.setAttribute('aria-hidden', 'false'); menu.classList.add('open'); document.body.style.overflow = 'hidden'; toggle.setAttribute('aria-expanded', 'true'); toggle.setAttribute('aria-label', 'Fermer le menu'); bar1.style.transform = 'rotate(45deg) translate(5px, 5px)'; bar2.style.opacity = '0'; bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)'; var first = menu.querySelector('a'); if (first) first.focus(); } }
 document.addEventListener('keydown', function(e) { if (e.key !== 'Escape') return; var menu = document.getElementById('mobile-menu'); if (menu && menu.classList.contains('open')) toggleMobileMenu(); });
+</script>
+<script>
+/* Injecte le lecteur YouTube UNIQUEMENT au clic sur la vignette.
+   Avant : deux iframes chargees des l ouverture de la page, soit plusieurs
+   centaines de kilo-octets et trois domaines tiers contactes en 3G. */
+document.querySelectorAll(".video-facade").forEach(function (bouton) {
+  bouton.addEventListener("click", function () {
+    var id = bouton.getAttribute("data-video");
+    if (!id) return;
+    var cadre = document.createElement("iframe");
+    cadre.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1";
+    cadre.title = bouton.getAttribute("aria-label") || "Video NAS MODE";
+    cadre.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    cadre.setAttribute("allowfullscreen", "");
+    bouton.replaceWith(cadre);
+    cadre.focus();
+  });
+});
 </script>
 </body>
 </html>
