@@ -84,6 +84,21 @@ import IMG26_HIGH from '@/assets/defiles/new-07.jpg'
 import IMG27_LOW from '@/assets/defiles-320/new-08.webp'
 import IMG27_MID from '@/assets/defiles-512/new-08.webp'
 import IMG27_HIGH from '@/assets/defiles/new-08.jpg'
+import IMG28_LOW from '@/assets/defiles-320/new-09.webp'
+import IMG28_MID from '@/assets/defiles-512/new-09.webp'
+import IMG28_HIGH from '@/assets/defiles/new-09.jpg'
+import IMG29_LOW from '@/assets/defiles-320/new-10.webp'
+import IMG29_MID from '@/assets/defiles-512/new-10.webp'
+import IMG29_HIGH from '@/assets/defiles/new-10.jpg'
+import IMG30_LOW from '@/assets/defiles-320/new-11.webp'
+import IMG30_MID from '@/assets/defiles-512/new-11.webp'
+import IMG30_HIGH from '@/assets/defiles/new-11.jpg'
+import IMG31_LOW from '@/assets/defiles-320/new-12.webp'
+import IMG31_MID from '@/assets/defiles-512/new-12.webp'
+import IMG31_HIGH from '@/assets/defiles/new-12.jpg'
+import IMG32_LOW from '@/assets/defiles-320/new-13.webp'
+import IMG32_MID from '@/assets/defiles-512/new-13.webp'
+import IMG32_HIGH from '@/assets/defiles/new-13.jpg'
 
 const galleryPlaneData = [
   { fallbackColor: '#2d2d44', accentColor: '#A0522D', textureSrc: { low: IMG01_LOW, mid: IMG01_MID, high: IMG01_HIGH }, aspect: 0.6717, position: { x: 0.5, y: 0 }, backgroundColor: '#F5F0E8', blob1Color: '#D4A574', blob2Color: '#C4956A' },
@@ -113,6 +128,10 @@ const galleryPlaneData = [
   { fallbackColor: '#2a1a3a', accentColor: '#6B3A5A', textureSrc: { low: IMG25_LOW, mid: IMG25_MID, high: IMG25_HIGH }, aspect: 1.3529, position: { x: 0.5, y: 0 }, backgroundColor: '#FAF5F0', blob1Color: '#D4A0B0', blob2Color: '#C08090' },
   { fallbackColor: '#3a2a2a', accentColor: '#8B5A3A', textureSrc: { low: IMG26_LOW, mid: IMG26_MID, high: IMG26_HIGH }, aspect: 1.0536, position: { x: -0.4, y: 0 }, backgroundColor: '#F5EDE0', blob1Color: '#B8865A', blob2Color: '#D4A880' },
   { fallbackColor: '#1a2a3a', accentColor: '#4A6B8A', textureSrc: { low: IMG27_LOW, mid: IMG27_MID, high: IMG27_HIGH }, aspect: 1.4778, position: { x: 0.4, y: 0 }, backgroundColor: '#F0F2F5', blob1Color: '#8AA0C0', blob2Color: '#6B8AB0' },
+  { fallbackColor: '#707070', accentColor: '#f8f8f8', textureSrc: { low: IMG28_LOW, mid: IMG28_MID, high: IMG28_HIGH }, aspect: 1.5, position: { x: -0.45, y: 0 }, backgroundColor: '#fefefe', blob1Color: '#fafafa', blob2Color: '#bababa' },
+  { fallbackColor: '#705a53', accentColor: '#f8c8b8', textureSrc: { low: IMG29_LOW, mid: IMG29_MID, high: IMG29_HIGH }, aspect: 0.6667, position: { x: 0.45, y: 0 }, backgroundColor: '#fef7f5', blob1Color: '#fadbd1', blob2Color: '#ba968a' },
+  { fallbackColor: '#685319', accentColor: '#e8b838', textureSrc: { low: IMG30_LOW, mid: IMG30_MID, high: IMG30_HIGH }, aspect: 0.6667, position: { x: -0.45, y: 0 }, backgroundColor: '#fcf5e3', blob1Color: '#f0d17e', blob2Color: '#ae8a2a' },
+  { fallbackColor: '#040b0b', accentColor: '#081818', textureSrc: { low: IMG31_LOW, mid: IMG31_MID, high: IMG31_HIGH }, aspect: 0.6667, position: { x: 0.45, y: 0 }, backgroundColor: '#dcdfdf', blob1Color: '#5e6969', blob2Color: '#061212' },
+  { fallbackColor: '#686870', accentColor: '#e8e8f8', textureSrc: { low: IMG32_LOW, mid: IMG32_MID, high: IMG32_HIGH }, aspect: 0.6667, position: { x: -0.45, y: 0 }, backgroundColor: '#fcfcfe', blob1Color: '#f0f0fa', blob2Color: '#aeaeba' },
 ]
-
 export { galleryPlaneData }

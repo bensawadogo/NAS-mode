@@ -54,7 +54,7 @@
 }
 </style>
   <script>document.documentElement.className = 'js'</script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DLgKUvfy.css?v=1C8107A4">
+  <link rel="stylesheet" crossorigin href="./assets/index-DLgKUvfy.css?v=C430FC10">
   <script>
   /* Bascule galerie : WebGL lourd (desktop rapide) vs galerie HTML/CSS legere.
      Le mode leger est le repli par defaut au moindre doute. */
@@ -85,17 +85,18 @@
               /* 2. L'utilisateur a demande a economiser ses donnees. */
               var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
               if (conn && conn.saveData === true) return true;
-              /* 3. Mouvement reduit demande au niveau du systeme : la galerie
-                 est pilotee par le defilement, c'est une question d'accessibilite
-                 et non de performance. */
-              if (mq('(prefers-reduced-motion: reduce)')) return true;
+              /* prefers-reduced-motion NE declenche PLUS la grille : beaucoup
+                 d'Android activent "supprimer les animations" par defaut ou via
+                 l'economie de batterie, ce qui privait la majorite des visiteurs
+                 de la galerie immersive. C'est un parti pris de conception de
+                 Ben : l'immersif reste, on adapte seulement la charge. */
               return false;
           } catch (e) { return true; }
       }
       if (preferLite()) {
           document.documentElement.className += ' gallery-lite';
       } else {
-          var src = './assets/index-B41qt7eB.js?v=E48E67FE';
+          var src = './assets/index-BOSWp0t-.js?v=88E2FDC8';
           /* Le fetch demarre tout de suite... */
           try {
               var pre = document.createElement('link');
