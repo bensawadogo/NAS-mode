@@ -36,7 +36,7 @@
 
 <link rel="preload" as="font" type="font/woff2" href="fonts/inter-300-700.woff2?v=260C81A4" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/eb-garamond-400-600.woff2?v=F12BC30C" crossorigin>
-<link rel="preload" as="image" href="images/defiles/hero-mobile-1-768.webp?v=DB76D8F2" media="(max-width: 767px)">
+<link rel="preload" as="image" href="images/defiles/hero-mobile-1-studio-768.webp?v=D011DECD" media="(max-width: 767px)">
 <link rel="preload" as="image" href="images/hero/hero-02-1280.webp?v=65B046BD" media="(min-width: 768px) and (max-width: 1440px)">
 <link rel="preload" as="image" href="images/hero/hero-02-1920.webp?v=C6F2FE6E" media="(min-width: 1441px)">
 <style>
@@ -135,7 +135,14 @@ html.cursor-active body a, html.cursor-active body button, html.cursor-active bo
     * { cursor: auto !important; }
 }
 .hero-line-1, .hero-line-2 {
-    text-shadow: 0 2px 12px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3);
+    /* Ombre renforcee : le voile ayant ete allege pour eclaircir la photo,
+       certaines zones claires passaient derriere le titre (contraste au pire
+       pixel a 1,74:1). Trois couches - un liseré serre, une ombre moyenne et
+       un halo large - protegent les lettres sans rassombrir l'image. */
+    text-shadow:
+        0 1px 2px rgba(0,0,0,0.85),
+        0 2px 10px rgba(0,0,0,0.65),
+        0 0 34px rgba(0,0,0,0.45);
 }
 .hero-slide {
     position: absolute;
@@ -183,9 +190,13 @@ html.cursor-active body a, html.cursor-active body button, html.cursor-active bo
    Sous 768 px on ne sert QUE la variante 768 (un seul preload possible,
    pas de bascule DPR) — le preload et le CSS doivent rester synchrones. */
 @media (max-width: 767px) {
-    #hero-m1 { background-image: url('images/defiles/hero-mobile-1-768.webp?v=DB76D8F2'); }
-    #hero-m2.bg-loaded { background-image: url('images/defiles/hero-mobile-defile-1-768.webp?v=9BC48E20'); }
-    #hero-m3.bg-loaded { background-image: url('images/defiles/hero-mobile-defile-2-768.webp?v=208A4B70'); }
+    /* Tirages « studio » : luminosite +12 %, contraste doux, saturation +8 %
+       et legere nettete. Les visuels etaient trop sombres une fois le voile
+       applique ; on eclaire la photo elle-meme plutot que d'alleger le voile,
+       ce qui garderait le titre illisible. */
+    #hero-m1 { background-image: url('images/defiles/hero-mobile-1-studio-768.webp?v=D011DECD'); }
+    #hero-m2.bg-loaded { background-image: url('images/defiles/hero-mobile-defile-1-studio-768.webp?v=E74D5EAC'); }
+    #hero-m3.bg-loaded { background-image: url('images/defiles/hero-mobile-defile-2-studio-768.webp?v=AF99B4FF'); }
 }
 @media (min-width: 768px) {
     #hero-d1 { background-image: url('images/hero/hero-02-1280.webp?v=65B046BD'); }
@@ -1046,7 +1057,11 @@ html { overflow-x: hidden; }
      visuel affiche. La page Ecole utilise deja 0,4 et passe le seuil.
      Degrade plutot qu'aplat uni : le bas du hero, ou se trouvent les
      boutons, est le plus charge visuellement. -->
-<div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.38) 45%, rgba(0,0,0,0.52) 100%)"></div>
+<!-- Voile du hero, traite en eclairage de studio plutot qu'en lavis noir :
+     un halo radial laisse le centre lumineux et assombrit les bords, et un
+     degrade vertical ne renforce que le bas, la ou se trouvent le titre et
+     les boutons. Le visuel respire, le texte reste lisible. -->
+<div class="absolute inset-0 z-[1]" style="background: radial-gradient(115% 80% at 50% 34%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.08) 46%, rgba(0,0,0,0.34) 100%), linear-gradient(180deg, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.06) 38%, rgba(0,0,0,0.30) 68%, rgba(0,0,0,0.50) 100%)"></div>
 <div class="relative z-[2] text-center px-margin-desktop max-md:px-margin-mobile max-w-4xl mx-auto" id="hero-content" style="padding-top:clamp(32px,6vh,64px)">
 <h1 class="hero-line hero-line-1 text-[clamp(1.75rem,5vw,3.5rem)] md:text-[56px] leading-tight mb-4 text-ivory-base" style="font-family: 'EB Garamond', serif; font-weight: 400;">
 Là où naissent les talents<br class="hidden md:block"> de la mode et de la beauté.
