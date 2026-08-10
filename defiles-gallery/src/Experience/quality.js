@@ -67,8 +67,12 @@ function detectQuality(gl) {
   }
 
   const profils = {
-    low: { textureKey: 'low', pixelRatio: 1, antialias: false, mipmaps: false, initialBatch: 3 },
-    mid: { textureKey: 'mid', pixelRatio: 1.5, antialias: false, mipmaps: true, initialBatch: 4 },
+    // Une seule qualite : celle d'origine. Le systeme de niveaux degradait
+    // visiblement le rendu (textures reduites + densite 1 sur des ecrans
+    // DPR 2-3 = pixellisation). Ce qu'on garde de l'optimisation, c'est le
+    // chargement progressif, qui n'affecte en rien la nettete.
+    low: { textureKey: 'high', pixelRatio: 2, antialias: true, mipmaps: true, initialBatch: 3 },
+    mid: { textureKey: 'high', pixelRatio: 2, antialias: true, mipmaps: true, initialBatch: 4 },
     high: { textureKey: 'high', pixelRatio: 2, antialias: true, mipmaps: true, initialBatch: 6 },
   }
 
