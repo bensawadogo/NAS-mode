@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nexus — Centre de contrôle des agents</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grid-bg"></div>
+<header class="top">
+  <div class="brand"><span class="sigil"></span><b>NEXUS</b><i>/ agents</i></div>
+  <div class="pill" id="mode"><span class="dot"></span><span id="modeTxt">connexion…</span></div>
+  <div class="clock" id="clock">--:--:--</div>
+</header>
+
+<main>
+  <section class="kpis">
+    <article class="kpi"><label>CPU hôte</label><strong id="kCpu">–</strong><canvas data-spark="cpu"></canvas></article>
+    <article class="kpi"><label>Mémoire</label><strong id="kMem">–</strong><canvas data-spark="mem"></canvas></article>
+    <article class="kpi"><label>Exécutions réussies</label><strong id="kOk">–</strong><canvas data-spark="ok"></canvas></article>
+    <article class="kpi"><label>Coût cumulé</label><strong id="kCost">–</strong><canvas data-spark="cost"></canvas></article>
+  </section>
+
+  <section class="panel flow">
+    <h2>Pipeline d'agents <small>glisser les nœuds</small></h2>
+    <div id="stage">
+      <svg id="links"></svg>
+    </div>
+  </section>
+
+  <section class="panel"><h2>Latence par agent <small>ms · 60 s</small></h2><canvas id="cLat"></canvas></section>
+  <section class="panel"><h2>Débit de tokens <small>tok/s</small></h2><canvas id="cTok"></canvas></section>
+  <section class="panel donut"><h2>Santé des exécutions</h2><canvas id="cDonut"></canvas><div id="donutLegend"></div></section>
+  <section class="panel"><h2>Réseau hôte <small>Ko/s</small></h2><canvas id="cNet"></canvas></section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
